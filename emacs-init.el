@@ -1,6 +1,6 @@
 ;; File:     ~/.emacs
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-08-10 15:29:57 PDT>
+;; Modified: <2008-08-10 19:49:50 CDT>
 
 (setq emacs-load-start-time (current-time)) 
 (setq debug-on-error t)
@@ -220,11 +220,12 @@
 ;;}}}
 
 (require 'ruby-mode)
-
+(require 'haml-mode)
 (setq auto-mode-alist 
   (nconc 
     '(("\\.xml$"  . nxml-mode))
     '(("\\.html$" . nxml-mode))
+    '(("\\.haml$" . haml-mode))
     '(("\\.rb$"   . ruby-mode))
     '(("^Rakefile$" . ruby-mode))
     auto-mode-alist))
