@@ -1,4 +1,4 @@
-;; -*- emacs-lisp -*- <08/08/12 10:34:35 /home/burke/.emacs.d/tramp>
+;; -*- emacs-lisp -*-
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
