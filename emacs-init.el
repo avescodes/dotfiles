@@ -1,6 +1,8 @@
-;; File:     ~/.emacs
+;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-08-12 10:19:46 CDT>
+;; Modified: <2008-08-12 10:47:24 CDT>
+
+;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
 (setq emacs-load-start-time (current-time)) 
 (setq debug-on-error t)
@@ -227,7 +229,7 @@
     '(("\\.html$" . nxml-mode))
     '(("\\.haml$" . haml-mode))
     '(("\\.rb$"   . ruby-mode))
-    '(("Rakefile$" . ruby-mode))
+    '(("\\/Rakefile$" . ruby-mode))
     auto-mode-alist))
 ;;}}}
 
