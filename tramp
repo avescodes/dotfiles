@@ -1,0 +1,56 @@
+;; -*- emacs-lisp -*- <08/08/12 10:34:35 /home/burke/.emacs.d/tramp>
+;; Tramp connection history.  Don't change this file.
+;; You can delete it, forcing Tramp to reapply the checks.
+
+((["scpc" nil
+   #("mag" 0 1
+     (auto-composed t)
+     1 2
+     (auto-composed t)
+     2 3
+     (auto-composed t))
+   nil]
+  ("uname" "Linux 2.6.18-xen")
+  ("test" "test")
+  ("/bin" t)
+  ("/usr/bin" t)
+  ("/usr/sbin" t)
+  ("/usr/local/bin" t)
+  ("/local/bin" nil)
+  ("/local/freeware/bin" nil)
+  ("/local/gnu/bin" nil)
+  ("/usr/freeware/bin" nil)
+  ("/usr/pkg/bin" nil)
+  ("/usr/contrib/bin" nil)
+  ("remote-path"
+   ("/bin" "/usr/bin" "/usr/sbin" "/usr/local/bin"))
+  ("remote-shell" "/bin/sh")
+  ("~" "/home/burke")
+  ("ls" "/bin/ls")
+  ("file-exists" "test -e"))
+ (["scpc" nil "og" nil]
+  ("uname" "Linux 2.6.24-19-xen")
+  ("test" "test")
+  ("/bin" t)
+  ("/usr/bin" t)
+  ("/usr/sbin" t)
+  ("/usr/local/bin" t)
+  ("/local/bin" nil)
+  ("/local/freeware/bin" nil)
+  ("/local/gnu/bin" nil)
+  ("/usr/freeware/bin" nil)
+  ("/usr/pkg/bin" nil)
+  ("/usr/contrib/bin" nil)
+  ("remote-path"
+   ("/bin" "/usr/bin" "/usr/sbin" "/usr/local/bin"))
+  ("remote-shell" "/bin/sh")
+  ("ls" "/bin/ls")
+  ("file-exists" "test -e")
+  ("stat" "\\stat")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 10)
+  ("perl" "\\perl")
+  ("local-encoding" base64-encode-region)
+  ("local-decoding" base64-decode-region)
+  ("remote-encoding" tramp-perl-encode-with-module)
+  ("remote-decoding" tramp-perl-decode-with-module)))
