@@ -1,6 +1,6 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-08-12 10:47:24 CDT>
+;; Modified: <2008-08-12 10:53:04 CDT>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -19,7 +19,6 @@
   (interactive "P")
   (set-default-font (concat *default-font* "-" (number-to-string arg))))
 (global-set-key "\C-cf" 'change-font-size)
-
 
 ;;; Autocompile .emacs on save.
 ;(defun byte-compile-user-init-file ()
@@ -112,13 +111,11 @@
       (system-time-locale "en_US"))
     (insert (format-time-string format))))
 
-;;{{{ Inserts a basic doctype declaration, etc.
 
-(defun insert-xhtml-strict-skeleton ()
+(defun template-xhtml-strict ()
   (interactive)
-  (insert "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"\n\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n\t<head>\n\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n\t\t<meta http-equiv=\"Content-Language\" content=\"en\" />\n\t\t<title></title>\n\t</head>\n\t<body>\n\n\n\t</body>\n</html>"))
+  (insert-file "~/.emacs.d/templates/xhtml-strict.tpl") 
 
-;;}}}
 
 (global-set-key [(meta up)] '(lambda() (interactive) (scroll-other-window -1)))
 (global-set-key [(meta down)] '(lambda() (interactive) (scroll-other-window 1)))
