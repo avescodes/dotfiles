@@ -1,6 +1,6 @@
 # File:     ~/.zshrc
 # Author:   Burke Libbey <burke@burkelibbey.org>
-# Modified: <2008-08-12 10:48:18 CDT>
+# Modified: <2008-08-13 14:30:44 CDT>
 
 export NAME="Burke Libbey"
 export EMAIL="burke@burkelibbey.org"
@@ -15,7 +15,7 @@ if [ -f /usr/share/gentoo/mc/mc.gentoo ]; then # gentoo linux
   . /usr/share/mc/mc.gentoo
 fi
 
-export IXP_ADDRESS=unix!/tmp/ns.burke.127.0.0.1_0/wmii
+export IXP_ADDRESS=unix!/tmp/ns.$USER.127.0.0.1_0/wmii
 export GIT_AUTHOR_NAME=$NAME
 export GIT_COMMITTER_NAME=$NAME
 export GIT_AUTHOR_EMAIL=$EMAIL
