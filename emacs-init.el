@@ -1,6 +1,6 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-08-13 00:39:54 CDT>
+;; Modified: <2008-08-13 00:41:48 CDT>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -221,9 +221,9 @@
 
 ;;}}}
 
-(autoload 'ruby-mode "ruby-mode" "Major mode for editing ruby" t)
-(autoload 'haml-mode "haml-mode" "Major mode for editing haml" t)
-(autoload 'yaml-mode "yaml-mode" "Major mode for editing yaml" t)
+(autoload 'ruby-mode "ruby-mode" nil t)
+(autoload 'haml-mode "haml-mode" nil t)
+(autoload 'yaml-mode "yaml-mode" nil t)
 (setq auto-mode-alist 
   (nconc 
     '(("\\.xml$"   . nxml-mode))
