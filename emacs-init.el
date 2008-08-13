@@ -1,6 +1,6 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-08-12 10:53:04 CDT>
+;; Modified: <2008-08-12 15:18:27 CDT>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -75,7 +75,7 @@
 (setq time-stamp-end    "\\\\?[\">]")
 (setq time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S %Z")
 
-(set-register ?E '(file . "~/.emacs")) ; Easy access! 
+(set-register ?E '(file . "~/.emacs.d/emacs-init.el")) ; Easy access! 
 (set-register ?Z '(file . "~/.zshrc")) ; (C-x r j <r>)
 
 (when window-system
@@ -89,7 +89,7 @@
 
 ;; Switch back a window
 (defun go-back-window () 
-  (interactive "") 
+  (interactive) 
   (select-window (previous-window)))
 
 ;; Instead of pressing Enter > Tab all the time.
@@ -97,7 +97,7 @@
   (local-set-key "\C-m" 'newline-and-indent))
 
 (defun insert-name-email ()
-  (interactive "")
+  (interactive)
   (insert "Burke Libbey <burke@burkelibbey.org>"))
 
 (defun insert-date (prefix)
@@ -111,16 +111,16 @@
       (system-time-locale "en_US"))
     (insert (format-time-string format))))
 
-
-(defun template-xhtml-strict ()
+;; Templates
+(defun tpl-xhtml-strict ()
   (interactive)
-  (insert-file "~/.emacs.d/templates/xhtml-strict.tpl") 
+  (insert-file "~/.emacs.d/templates/xhtml-strict.tpl"))
 
 
 (global-set-key [(meta up)] '(lambda() (interactive) (scroll-other-window -1)))
 (global-set-key [(meta down)] '(lambda() (interactive) (scroll-other-window 1)))
 ;(global-set-key [(meta right)] 'xsteve-scroll-right)
-;(global-set-key [(meta left)] 'xsteve-scroll-left)
+;(global-set-key [(meta left)]  'xsteve-scroll-left)
 (global-set-key [(meta -)] '(lambda() (interactive) (shrink-window 1)))
 (global-set-key [(meta =)] '(lambda() (interactive) (shrink-window -1)))
 
@@ -205,12 +205,15 @@
 
 (when (and *folding-enabled* (require 'folding nil t))
   (folding-mode-add-find-file-hook)
-  (folding-add-to-marks-list 'ruby-mode       "#{{{"    "#}}}"    nil t)
-  (folding-add-to-marks-list 'conf-space-mode "#{{{"    "#}}}"    nil t)
-  (folding-add-to-marks-list 'scheme-mode     ";{{{"    ";}}}"    nil t)
-  (folding-add-to-marks-list 'clojure-mode    ";{{{"    ";}}}"    nil t)
-  (folding-add-to-marks-list 'css-mode        "/*{{{"   "/*}}}"   nil t)
-  (folding-add-to-marks-list 'nxml-mode       "<!--{{{" "<!--}}}" nil t)
+  (setq folding-mode-marks-alist
+    (nconc
+      '((ruby-mode       "#{{{"    "#}}}" ))
+      '((conf-space-mode "#{{{"    "#}}}" ))
+      '((scheme-mode     ";{{{"    ";}}}" ))
+      '((clojure-mode    ";{{{"    ";}}}" ))
+      '((css-mode       "/*{{{"   "/*}}}" ))
+      '((nxml-mode    "<!--{{{" "<!--}}}" ))
+      folding-mode-marks-alist))
   (add-hook 'find-file-hooks 'folding-mode)
   (global-set-key "\C-co" 'folding-open-buffer)
   (global-set-key "\C-cf" 'folding-toggle-show-hide)
@@ -220,15 +223,17 @@
 
 (require 'ruby-mode)
 (require 'haml-mode)
+(require 'yaml-mode)
 (setq auto-mode-alist 
   (nconc 
-    '(("\\.xml$"  . nxml-mode))
-    '(("\\.html$" . nxml-mode))
-    '(("\\.haml$" . haml-mode))
-    '(("\\.rb$"   . ruby-mode))
-    '(("\\/Rakefile$" . ruby-mode))
+    '(("\\.xml$"   . nxml-mode))
+    '(("\\.html$"  . nxml-mode))
+    '(("\\.haml$"  . haml-mode))
+    '(("\\.yml$"   . yaml-mode))
+    '(("\\.json$"  . yaml-mode))
+    '(("\\.rb$"    . ruby-mode))
+    '(("Rakefile$" . ruby-mode))
     auto-mode-alist))
-;;}}}
 
 (setq magic-mode-alist ())
 
