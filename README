@@ -1,4 +1,1 @@
-After checking this out on a new machine, you'll still have to do one of:
-1) cp ~/.emacs.d/.emacs ~
-2) Put this in your .emacs:
-   (load "~/.emacs.d/emacs-init.el")
+Run rake to install dotfiles. Backups are saved to ~/#{file}.old.
