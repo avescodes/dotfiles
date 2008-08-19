@@ -1,6 +1,6 @@
 # File:     ~/.zshrc
 # Author:   Burke Libbey <burke@burkelibbey.org>
-# Modified: <2008-08-13 14:30:44 CDT>
+# Modified: <2008-08-19 00:04:42 CDT>
 
 export NAME="Burke Libbey"
 export EMAIL="burke@burkelibbey.org"
@@ -130,6 +130,14 @@ pc()     { awk "{print \$$1}" }
 # {{{ Aliases ###############################################################
 
 alias gitc="git add .;git commit -a -m"
+alias gitco="git checkout"
+alias gitl="git log"
+alias gitd="git diff"
+alias gitbl="git branch -l"
+alias gitbd="git branch -d"
+alias gitpl="git pull"
+alias gitpu="git push"  
+alias gitm="git merge"
 alias hamachi='sudo hamachi -c /etc/hamachi'
 alias sx="startx"
 alias slime='emacs -e slime'
