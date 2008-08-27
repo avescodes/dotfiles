@@ -1,6 +1,6 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-08-26 23:16:40 CDT>
+;; Modified: <2008-08-26 23:45:42 CDT>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -164,6 +164,17 @@
   version-control        t)            ;; use versioned backups
 
 ;;}}}
+
+;;{{{ Git Stuff
+
+(require 'vc-git)
+(when (featurep 'vc-git) (add-to-list 'vc-handled-backends 'git))
+(require 'git)
+(autoload 'git-blame-mode "git-blame"
+           "Minor mode for incremental blame for Git." t)
+
+;;}}}
+
 
 ;; No syntax highlighting on plain text
 (add-hook 'text-mode-hook     'turn-off-auto-fill)
