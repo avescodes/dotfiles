@@ -1,52 +1,89 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-08-27 13:47:50 CDT>
+;; Modified: <2008-08-27 16:01:20 CDT>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
 (setq emacs-load-start-time (current-time))
 (setq debug-on-error t)
 
-(defvar *folding-enabled* nil) ;; Enable code folding
-(defvar *emacs-server*    nil)
-(defvar *default-font*    "pragmata tt")
+(defvar *default-font*  "pragmata tt")
+(defvar *folding*       nil)
+(defvar *emacs-server*  nil)
+(defvar *tramp*         t)
+(defvar *cedet*         t)
+(defvar *ecb*           t)
+(defvar *icicles*       t)
+(defvar *rails*         t)
+(defvar *color-theme*   t)
+(defvar *speedbar*      t)
+(defvar *yasnippet*     t)
+(defvar *timestamp*     t)
+(defvar *slime*         nil)
 
-(add-to-list 'load-path "~/.emacs.d/lisp")
-(add-to-list 'load-path "~/.emacs.d/lisp/icicles")
-(add-to-list 'load-path "~/.emacs.d/lisp/rails")
-(add-to-list 'load-path "~/.emacs.d/lisp/ecb")
-(add-to-list 'load-path "~/.emacs.d/lisp/yasnippet-0.5.6")
+(setq base-lisp-path "~/.emacs.d/lisp/")
+
+(defun add-path (p)
+  (add-to-list 'load-path (concat base-lisp-path p)))
+
+(add-path "")
+(add-path "icicles")
+(add-path "rails")
+(add-path "ecb")
 
 
-;; Let's just not bother doing rails dev outside of a gui.
+(when *cedet*
+  (load-file (concat base-lisp-path "cedet-1.0pre4/common/cedet.el"))
+  (semantic-load-enable-code-helpers))
+
 (when window-system
-  (load-file "~/.emacs.d/lisp/cedet-1.0pre4/common/cedet.el")
-  (semantic-load-enable-code-helpers)
-  (require 'ecb)
-  (require 'icicles)
-  (require 'rcodetools)
-  (require 'icicles-rcodetools)
-  (require 'rails)
-  (icy-mode)
-  (global-set-key "\C-c\C-f" 'rails-goto-file-on-current-line))
+
+  (global-unset-key "\C-z")
+
+  (when *color-theme*
+    (require 'color-theme)
+    (color-theme-initialize)
+    (setq color-theme-is-global t)
+    (color-theme-comidia))
+
+  (when *speedbar*
+    (require 'speedbar)
+    (speedbar t)
+    (speedbar-disable-update)
+    (global-set-key "\C-c\C-s" 'speedbar))
+
+  (when *ecb*
+    (require 'ecb))
+
+  (when *rails*
+    (require 'rcodetools)
+    (require 'rails)
+    (global-set-key "\C-c\C-f" 'rails-goto-file-on-current-line))
+
+  (when *icicles*
+    (require 'icicles)
+    (when *rails*
+      (require 'icicles-rcodetools))
+    (icy-mode))
+
+  (when *yasnippet*
+    (require 'yasnippet)
+    (yas/initialize)
+    (yas/load-directory "~/.emacs.d/snippets"))
 
 
-(when (and window-system (not aquamacs-version))
-  (set-default-font (concat *default-font* "-10")))
+  (when (not (boundp 'aquamacs-version))
+    (set-default-font (concat *default-font* "-10"))
+    (defun change-font-size (arg)
+      (interactive "P")
+      (set-default-font (concat *default-font* "-" (number-to-string arg))))
+    (global-set-key "\C-cf" 'change-font-size))
 
-;; Aquamacs-specific
+  (when (boundp 'aquamacs-version)
+    (one-buffer-one-frame-mode 0)
+    (setq mac-allow-anti-aliasing nil)
+    (set-default-font "-apple-monaco-medium-r-normal--10-120-72-72-m-120-mac-roman")))
 
-(when (boundp 'aquamacs-version)
-  (one-buffer-one-frame-mode 0)
-  (setq mac-allow-anti-aliasing nil)
-  (set-default-font "-apple-monaco-medium-r-normal--10-120-72-72-m-120-mac-roman"))
-;  (set-default-font "-apple-pragmata tt-medium-r-normal--10-0-72-72-m-0-iso10646-1"))
-
-
-(defun change-font-size (arg)
-  (interactive "P")
-  (set-default-font (concat *default-font* "-" (number-to-string arg))))
-(global-set-key "\C-cf" 'change-font-size)
 
 (when *emacs-server*
   (global-set-key "\C-x\C-c" 'server-edit)
@@ -83,24 +120,16 @@
 
 ;;}}}
 
-;; When files have "Modified: <>" in their first 8 lines, fill it in on save.
-(add-hook 'before-save-hook 'time-stamp)
-(setq time-stamp-start  "Modified:[   ]+\\\\?[\"<]+")
-(setq time-stamp-end    "\\\\?[\">]")
-(setq time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S %Z")
+(when *timestamp*
+  ;; When files have "Modified: <>" in their first 8 lines, fill it in on save.
+  (add-hook 'before-save-hook 'time-stamp)
+  (setq time-stamp-start  "Modified:[   ]+\\\\?[\"<]+")
+  (setq time-stamp-end    "\\\\?[\">]")
+  (setq time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S %Z"))
 
 (set-register ?E '(file . "~/.emacs.d/emacs-init.el")) ; Easy access!
 (set-register ?Z '(file . "~/.zshrc")) ; (C-x r j <r>)
 
-(when window-system
-  (require 'color-theme)
-  (color-theme-initialize)
-  (setq color-theme-is-global t)
-  (color-theme-comidia)
-  (speedbar t)
-  (speedbar-disable-update)
-;  (speedbar-toggle-show-all-files) ;; Is there a way to explicitly set this to ON?
-  (global-set-key "\C-c\C-s"   'speedbar))
 
 ;; how patronizing could an editor possibly be? 'y' will do...
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -129,16 +158,8 @@
       (system-time-locale "en_US"))
     (insert (format-time-string format))))
 
-;; Templates
-(defun tpl-xhtml-strict ()
-  (interactive)
-  (insert-file "~/.emacs.d/templates/xhtml-strict.tpl"))
-
-
 (global-set-key [(meta up)] '(lambda() (interactive) (scroll-other-window -1)))
 (global-set-key [(meta down)] '(lambda() (interactive) (scroll-other-window 1)))
-;(global-set-key [(meta right)] 'xsteve-scroll-right)
-;(global-set-key [(meta left)]  'xsteve-scroll-left)
 (global-set-key [(meta -)] '(lambda() (interactive) (shrink-window 1)))
 (global-set-key [(meta =)] '(lambda() (interactive) (shrink-window -1)))
 
@@ -152,7 +173,7 @@
 ;; Select all. Apparently some morons bind this to C-a.
 (global-set-key "\C-c\C-a"   'mark-whole-buffer)
 
-;; Alternative to finger-killing M-x, and extra insurance.
+;; Alternative to RSI-inducing M-x, and extra insurance.
 (global-set-key "\C-xm"      'execute-extended-command)
 (global-set-key "\C-cm"      'execute-extended-command)
 (global-set-key "\C-x\C-m"   'execute-extended-command)
@@ -178,9 +199,6 @@
 (global-set-key (kbd "<down-mouse-2>")  '())
 (global-set-key (kbd "<mouse-2>")       '())
 
-;; It's sort of stupid that C-z stops emacs in X as well.
-(when window-system
-  (global-unset-key "\C-z"))
 
 ;;{{{ Backups and Autosaves
 
@@ -198,12 +216,10 @@
 
 
 
-
-
 ;;{{{ Git Stuff
 
 (require 'vc-git)
-(when (featurep 'vc-git) (add-to-list 'vc-handled-backends 'git))
+(add-to-list 'vc-handled-backends 'git)
 (require 'git)
 (autoload 'git-blame-mode "git-blame"
            "Minor mode for incremental blame for Git." t)
@@ -232,18 +248,20 @@
 (add-hook 'lisp-mode          'set-newline-and-indent)
 
 ;; Remote File Editing
-(when (require 'tramp nil t)
+(when *tramp*
+  (require 'tramp)
   (setq tramp-default-method "scpc"))
 
-
-(when (require 'slime nil t)
+(when *slime*
+  (require 'slime)
   (setq inferior-lisp-program "/usr/bin/sbcl")
   (add-hook 'slime-mode 'set-newline-and-indent)
   (slime-setup))
 
 ;;{{{ Code Folding
 
-(when (and *folding-enabled* (require 'folding nil t))
+(when *folding*
+  (require 'folding)
   (folding-mode-add-find-file-hook)
   (setq folding-mode-marks-alist
     (nconc
@@ -277,13 +295,10 @@
 
 (setq magic-mode-alist ())
 
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/lisp/yasnippet-0.5.6/snippets")
 
 
-
-(ecb-activate)
-
+(when *ecb*
+  (ecb-activate))
 
 
 (when (require 'time-date nil t)
