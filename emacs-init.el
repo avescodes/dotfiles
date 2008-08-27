@@ -1,6 +1,6 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-08-26 23:52:41 CDT>
+;; Modified: <2008-08-27 00:31:21 CDT>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -70,6 +70,8 @@
 	(setq color-theme-is-global t)
   (color-theme-comidia)
 	(speedbar t)
+	(speedbar-disable-update)
+	(speedbar-toggle-show-all-files) ;; Is there a way to explicitly set this to ON?
   (global-set-key "\C-c\C-s"   'speedbar))
 
 ;; how patronizing could an editor possibly be? 'y' will do...
