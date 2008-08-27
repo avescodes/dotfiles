@@ -1,6 +1,6 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-08-26 23:45:42 CDT>
+;; Modified: <2008-08-26 23:52:41 CDT>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -172,6 +172,7 @@
 (require 'git)
 (autoload 'git-blame-mode "git-blame"
            "Minor mode for incremental blame for Git." t)
+(global-set-key "\C-xg" 'git-status)
 
 ;;}}}
 
