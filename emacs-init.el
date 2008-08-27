@@ -1,10 +1,10 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-08-27 00:31:21 CDT>
+;; Modified: <2008-08-27 02:00:40 CDT>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
-(setq emacs-load-start-time (current-time)) 
+(setq emacs-load-start-time (current-time))
 (setq debug-on-error t)
 
 (defvar *folding-enabled* nil) ;; Enable code folding
@@ -12,6 +12,19 @@
 (defvar *default-font*    "pragmata tt")
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
+(add-to-list 'load-path "~/.emacs.d/lisp/icicles")
+(add-to-list 'load-path "~/.emacs.d/lisp/rails")
+
+
+
+(require 'icicles)
+(require 'rcodetools)
+(require 'icicles-rcodetools)
+(require 'snippet)
+(require 'rails)
+(icy-mode)
+(global-set-key "\C-c\C-f" 'rails-goto-file-on-current-line)
+
 
 ;(set-default-font (concat *default-font* "-10"))
 
@@ -20,7 +33,7 @@
   (set-default-font (concat *default-font* "-" (number-to-string arg))))
 (global-set-key "\C-cf" 'change-font-size)
 
-(when *emacs-server* 
+(when *emacs-server*
   (global-set-key "\C-x\C-c" 'server-edit)
   (global-set-key "\C-x\#" 'kill-emacs)
   (add-hook 'server-switch-hook
@@ -57,29 +70,29 @@
 
 ;; When files have "Modified: <>" in their first 8 lines, fill it in on save.
 (add-hook 'before-save-hook 'time-stamp)
-(setq time-stamp-start  "Modified:[ 	]+\\\\?[\"<]+")
+(setq time-stamp-start  "Modified:[   ]+\\\\?[\"<]+")
 (setq time-stamp-end    "\\\\?[\">]")
 (setq time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S %Z")
 
-(set-register ?E '(file . "~/.emacs.d/emacs-init.el")) ; Easy access! 
+(set-register ?E '(file . "~/.emacs.d/emacs-init.el")) ; Easy access!
 (set-register ?Z '(file . "~/.zshrc")) ; (C-x r j <r>)
 
 (when window-system
   (require 'color-theme)
   (color-theme-initialize)
-	(setq color-theme-is-global t)
+  (setq color-theme-is-global t)
   (color-theme-comidia)
-	(speedbar t)
-	(speedbar-disable-update)
-	(speedbar-toggle-show-all-files) ;; Is there a way to explicitly set this to ON?
+  (speedbar t)
+  (speedbar-disable-update)
+  (speedbar-toggle-show-all-files) ;; Is there a way to explicitly set this to ON?
   (global-set-key "\C-c\C-s"   'speedbar))
 
 ;; how patronizing could an editor possibly be? 'y' will do...
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Switch back a window
-(defun go-back-window () 
-  (interactive) 
+(defun go-back-window ()
+  (interactive)
   (select-window (previous-window)))
 
 ;; Instead of pressing Enter > Tab all the time.
@@ -91,7 +104,7 @@
   (insert "Burke Libbey <burke@burkelibbey.org>"))
 
 (defun insert-date (prefix)
-  "Insert the current date. With prefix-argument, use ISO format. With 
+  "Insert the current date. With prefix-argument, use ISO format. With
   two prefix arguments, write out the day and month name."
   (interactive "P")
   (let ((format (cond
@@ -125,7 +138,7 @@
 (global-set-key "\C-c\C-a"   'mark-whole-buffer)
 
 ;; Alternative to finger-killing M-x, and extra insurance.
-(global-set-key "\C-xm"      'execute-extended-command) 
+(global-set-key "\C-xm"      'execute-extended-command)
 (global-set-key "\C-cm"      'execute-extended-command)
 (global-set-key "\C-x\C-m"   'execute-extended-command)
 (global-set-key "\C-c\C-m"   'execute-extended-command)
@@ -167,6 +180,11 @@
 
 ;;}}}
 
+
+
+
+
+
 ;;{{{ Git Stuff
 
 (require 'vc-git)
@@ -178,6 +196,9 @@
 
 ;;}}}
 
+;; Hippie Expand
+(when (require 'hippie-exp nil t)
+  (global-set-key [C-tab] 'hippie-expand))
 
 ;; No syntax highlighting on plain text
 (add-hook 'text-mode-hook     'turn-off-auto-fill)
@@ -185,8 +206,13 @@
 ;; C and C-ish
 (add-hook 'c-mode-common-hook 'set-newline-and-indent)
 
+
+(defun enable-rct ()
+  (local-set-key [C-tab] 'rct-complete-symbol--icicles))
+
 ;; Ruby
 (add-hook 'ruby-mode-hook     'set-newline-and-indent)
+(add-hook 'ruby-mode-hook     'enable-rct)
 
 (add-hook 'lisp-mode          'set-newline-and-indent)
 
@@ -194,9 +220,6 @@
 (when (require 'tramp nil t)
   (setq tramp-default-method "scpc"))
 
-;; Hippie Expand
-(when (require 'hippie-exp nil t)
-  (global-set-key [C-tab] 'hippie-expand))
 
 (when (require 'slime nil t)
   (setq inferior-lisp-program "/usr/bin/sbcl")
@@ -226,8 +249,8 @@
 (autoload 'ruby-mode "ruby-mode" nil t)
 (autoload 'haml-mode "haml-mode" nil t)
 (autoload 'yaml-mode "yaml-mode" nil t)
-(setq auto-mode-alist 
-  (nconc 
+(setq auto-mode-alist
+  (nconc
     '(("\\.xml$"   . nxml-mode))
     '(("\\.html$"  . nxml-mode))
     '(("\\.haml$"  . haml-mode))
@@ -239,8 +262,8 @@
 
 (setq magic-mode-alist ())
 
-(when (require 'time-date nil t) 
-  (message "Emacs startup time: %d seconds." 
+(when (require 'time-date nil t)
+  (message "Emacs startup time: %d seconds."
            (time-to-seconds (time-since emacs-load-start-time))))
 
 (setq debug-on-error nil)
