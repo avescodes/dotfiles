@@ -1,6 +1,6 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-08-27 02:00:40 CDT>
+;; Modified: <2008-08-27 13:47:50 CDT>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -14,19 +14,34 @@
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (add-to-list 'load-path "~/.emacs.d/lisp/icicles")
 (add-to-list 'load-path "~/.emacs.d/lisp/rails")
+(add-to-list 'load-path "~/.emacs.d/lisp/ecb")
+(add-to-list 'load-path "~/.emacs.d/lisp/yasnippet-0.5.6")
 
 
+;; Let's just not bother doing rails dev outside of a gui.
+(when window-system
+  (load-file "~/.emacs.d/lisp/cedet-1.0pre4/common/cedet.el")
+  (semantic-load-enable-code-helpers)
+  (require 'ecb)
+  (require 'icicles)
+  (require 'rcodetools)
+  (require 'icicles-rcodetools)
+  (require 'rails)
+  (icy-mode)
+  (global-set-key "\C-c\C-f" 'rails-goto-file-on-current-line))
 
-(require 'icicles)
-(require 'rcodetools)
-(require 'icicles-rcodetools)
-(require 'snippet)
-(require 'rails)
-(icy-mode)
-(global-set-key "\C-c\C-f" 'rails-goto-file-on-current-line)
 
+(when (and window-system (not aquamacs-version))
+  (set-default-font (concat *default-font* "-10")))
 
-;(set-default-font (concat *default-font* "-10"))
+;; Aquamacs-specific
+
+(when (boundp 'aquamacs-version)
+  (one-buffer-one-frame-mode 0)
+  (setq mac-allow-anti-aliasing nil)
+  (set-default-font "-apple-monaco-medium-r-normal--10-120-72-72-m-120-mac-roman"))
+;  (set-default-font "-apple-pragmata tt-medium-r-normal--10-0-72-72-m-0-iso10646-1"))
+
 
 (defun change-font-size (arg)
   (interactive "P")
@@ -84,7 +99,7 @@
   (color-theme-comidia)
   (speedbar t)
   (speedbar-disable-update)
-  (speedbar-toggle-show-all-files) ;; Is there a way to explicitly set this to ON?
+;  (speedbar-toggle-show-all-files) ;; Is there a way to explicitly set this to ON?
   (global-set-key "\C-c\C-s"   'speedbar))
 
 ;; how patronizing could an editor possibly be? 'y' will do...
@@ -261,6 +276,15 @@
     auto-mode-alist))
 
 (setq magic-mode-alist ())
+
+(yas/initialize)
+(yas/load-directory "~/.emacs.d/lisp/yasnippet-0.5.6/snippets")
+
+
+
+(ecb-activate)
+
+
 
 (when (require 'time-date nil t)
   (message "Emacs startup time: %d seconds."
