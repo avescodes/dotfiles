@@ -1,6 +1,6 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-08-13 00:41:48 CDT>
+;; Modified: <2008-08-26 23:11:19 CDT>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -19,20 +19,6 @@
   (interactive "P")
   (set-default-font (concat *default-font* "-" (number-to-string arg))))
 (global-set-key "\C-cf" 'change-font-size)
-
-;;; Autocompile .emacs on save.
-;(defun byte-compile-user-init-file ()
-;  (let ((byte-compile-warnings '(unresolved)))
-    ;; in case compilation fails, don't leave the old .elc around:
-;    (when (file-exists-p (concat user-init-file ".elc"))
-;      (delete-file (concat user-init-file ".elc")))
-;    (byte-compile-file user-init-file)
-;    (message "%s compiled" user-init-file)))
-;(defun my-emacs-lisp-mode-hook ()
-;  (when (equal buffer-file-name user-init-file)
-;    (add-hook 'after-save-hook 'byte-compile-user-init-file t t)))
-;(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
-;(add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-mode-hook)
 
 (when *emacs-server* 
   (global-set-key "\C-x\C-c" 'server-edit)
@@ -79,9 +65,10 @@
 (set-register ?Z '(file . "~/.zshrc")) ; (C-x r j <r>)
 
 (when window-system
-;  (require 'color-theme)
-;  (color-theme-initialize)
-;  (color-theme-comidia)
+  (require 'color-theme)
+  (color-theme-initialize)
+	(setq color-theme-is-global t)
+  (color-theme-comidia)
   (global-set-key "\C-c\C-s"   'speedbar))
 
 ;; how patronizing could an editor possibly be? 'y' will do...
