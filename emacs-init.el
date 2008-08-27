@@ -1,6 +1,6 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-08-26 23:11:19 CDT>
+;; Modified: <2008-08-26 23:16:40 CDT>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -69,6 +69,7 @@
   (color-theme-initialize)
 	(setq color-theme-is-global t)
   (color-theme-comidia)
+	(speedbar t)
   (global-set-key "\C-c\C-s"   'speedbar))
 
 ;; how patronizing could an editor possibly be? 'y' will do...
