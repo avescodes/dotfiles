@@ -1,10 +1,12 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-08-27 16:01:20 CDT>
+;; Modified: <2008-09-07 17:54:18 CDT>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
-(setq emacs-load-start-time (current-time))
+(require 'cl)
+
+(defvar *emacs-load-start* (current-time))
 (setq debug-on-error t)
 
 (defvar *default-font*  "pragmata tt")
@@ -12,11 +14,8 @@
 (defvar *emacs-server*  nil)
 (defvar *tramp*         t)
 (defvar *cedet*         t)
-(defvar *ecb*           t)
 (defvar *icicles*       t)
-(defvar *rails*         t)
 (defvar *color-theme*   t)
-(defvar *speedbar*      t)
 (defvar *yasnippet*     t)
 (defvar *timestamp*     t)
 (defvar *slime*         nil)
@@ -30,11 +29,12 @@
 (add-path "icicles")
 (add-path "rails")
 (add-path "ecb")
-
+(add-to-list 'load-path "~/.emacs.d/themes")
 
 (when *cedet*
   (load-file (concat base-lisp-path "cedet-1.0pre4/common/cedet.el"))
   (semantic-load-enable-code-helpers))
+
 
 (when window-system
 
@@ -44,33 +44,31 @@
     (require 'color-theme)
     (color-theme-initialize)
     (setq color-theme-is-global t)
-    (color-theme-comidia))
+    (require 'sunburst)
+    (color-theme-sunburst))
 
-  (when *speedbar*
-    (require 'speedbar)
-    (speedbar t)
-    (speedbar-disable-update)
-    (global-set-key "\C-c\C-s" 'speedbar))
+  (autoload 'speedbar "speedbar" t)
+  (eval-after-load "speedbar"
+    '(progn (speedbar-disable-update)))
+  (global-set-key "\C-c\C-s" 'speedbar)
 
-  (when *ecb*
-    (require 'ecb))
+  (autoload 'ecb "ecb" t)
+  (eval-after-load "ecb"
+    '(progn (require 'ecb-layout-burke)))
 
-  (when *rails*
-    (require 'rcodetools)
-    (require 'rails)
-    (global-set-key "\C-c\C-f" 'rails-goto-file-on-current-line))
+  (require 'rcodetools)
+  (require 'rails)
+  (global-set-key "\C-c\C-f" 'rails-goto-file-on-current-line)
 
   (when *icicles*
     (require 'icicles)
-    (when *rails*
-      (require 'icicles-rcodetools))
+    (require 'icicles-rcodetools)
     (icy-mode))
 
   (when *yasnippet*
     (require 'yasnippet)
     (yas/initialize)
     (yas/load-directory "~/.emacs.d/snippets"))
-
 
   (when (not (boundp 'aquamacs-version))
     (set-default-font (concat *default-font* "-10"))
@@ -82,7 +80,8 @@
   (when (boundp 'aquamacs-version)
     (one-buffer-one-frame-mode 0)
     (setq mac-allow-anti-aliasing nil)
-    (set-default-font "-apple-monaco-medium-r-normal--10-120-72-72-m-120-mac-roman")))
+    ;; M-x describe-font
+    (set-default-font "-apple-proggycleantt-medium-r-normal--16-0-72-72-m-0-iso10646-1")))
 
 
 (when *emacs-server*
@@ -96,7 +95,6 @@
   (add-hook 'server-done-hook 'delete-frame))
 
 ;;{{{ Custom-set-variables
-
 
 (custom-set-variables
   '(global-font-lock-mode    t nil (font-lock)) ;; Syntax higlighting
@@ -116,7 +114,9 @@
   '(default-major-mode       'text-mode) ;; open unknown in text mode
   '(ring-bell-function       'ignore)    ;; turn off system beep
   '(bookmark-save-flag       1)          ;; Autosave bookmarks on create/etc.
-  '(c-default-style          "k&r"))     ;; use k&r style for C indentation
+  '(c-default-style          "k&r")      ;; use k&r style for C indentation
+  '(ecb-source-path (quote ("/Users/burke/devel" ("/" "/"))))
+  '(ecb-tip-of-the-day       nil))       ;; yeah, that got annoying fast.
 
 ;;}}}
 
@@ -128,7 +128,6 @@
   (setq time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S %Z"))
 
 (set-register ?E '(file . "~/.emacs.d/emacs-init.el")) ; Easy access!
-(set-register ?Z '(file . "~/.zshrc")) ; (C-x r j <r>)
 
 
 ;; how patronizing could an editor possibly be? 'y' will do...
@@ -228,8 +227,9 @@
 ;;}}}
 
 ;; Hippie Expand
-(when (require 'hippie-exp nil t)
-  (global-set-key [C-tab] 'hippie-expand))
+(autoload 'hippie-expand "hippie-exp" t)
+(eval-after-load "hippie-exp"
+  '(progn (global-set-key [C-tab] 'hippie-expand)))
 
 ;; No syntax highlighting on plain text
 (add-hook 'text-mode-hook     'turn-off-auto-fill)
@@ -297,13 +297,8 @@
 
 
 
-(when *ecb*
-  (ecb-activate))
-
-
-(when (require 'time-date nil t)
-  (message "Emacs startup time: %d seconds."
-           (time-to-seconds (time-since emacs-load-start-time))))
+(message "My .emacs loaded in %ds" (destructuring-bind (hi lo ms) (current-time)
+                           (- (+ hi lo) (+ (first *emacs-load-start*) (second *emacs-load-start*)))))
 
 (setq debug-on-error nil)
 

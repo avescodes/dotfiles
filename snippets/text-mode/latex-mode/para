@@ -1,0 +1,3 @@
+#name : \paragraph{ ... }
+# --
+\paragraph{${e}}

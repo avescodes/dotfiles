@@ -1,6 +1,6 @@
 # File:     ~/.zshrc
 # Author:   Burke Libbey <burke@burkelibbey.org>
-# Modified: <2008-08-19 00:04:42 CDT>
+# Modified: <2008-09-12 21:56:49 CDT>
 
 export NAME="Burke Libbey"
 export EMAIL="burke@burkelibbey.org"
@@ -25,7 +25,7 @@ export EDITOR="emacs"
 export BROWSER="w3m"
 export PAGER="less"
 
-export PATH="/usr/bin:$PATH:$HOME/bin:/usr/local/bin:/opt/local/bin"
+export PATH="/opt/local/bin:/usr/bin:$PATH:$HOME/bin:/usr/local/bin"
 
 setopt CORRECT
 
