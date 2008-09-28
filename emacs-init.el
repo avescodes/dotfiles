@@ -1,6 +1,6 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-09-07 17:54:18 CDT>
+;; Modified: <2008-09-28 11:38:58 CDT>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -19,6 +19,7 @@
 (defvar *yasnippet*     t)
 (defvar *timestamp*     t)
 (defvar *slime*         nil)
+(defvar *erlang*        t)
 
 (setq base-lisp-path "~/.emacs.d/lisp/")
 
@@ -29,13 +30,20 @@
 (add-path "icicles")
 (add-path "rails")
 (add-path "ecb")
+(add-path "distel")
 (add-to-list 'load-path "~/.emacs.d/themes")
 
 (when *cedet*
   (load-file (concat base-lisp-path "cedet-1.0pre4/common/cedet.el"))
   (semantic-load-enable-code-helpers))
 
+(when *erlang*
+  (require 'erlang)
+  (require 'distel)
+  (distel-setup)
+  (add-to-list 'auto-mode-alist '("\\.erl$" . erlang-mode)))
 
+(print auto-mode-alist)
 (when window-system
 
   (global-unset-key "\C-z")
@@ -236,6 +244,7 @@
 
 ;; C and C-ish
 (add-hook 'c-mode-common-hook 'set-newline-and-indent)
+(add-hook 'erlang-mode-hook 'set-newline-and-indent)
 
 
 (defun enable-rct ()
@@ -301,4 +310,5 @@
                            (- (+ hi lo) (+ (first *emacs-load-start*) (second *emacs-load-start*)))))
 
 (setq debug-on-error nil)
+
 
