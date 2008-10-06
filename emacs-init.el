@@ -1,6 +1,6 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-09-28 11:38:58 CDT>
+;; Modified: <2008-10-06 16:47:29 CDT>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -10,24 +10,26 @@
 (setq debug-on-error t)
 
 (defvar *default-font*  "pragmata tt")
-(defvar *folding*       nil)
-(defvar *emacs-server*  nil)
-(defvar *tramp*         t)
-(defvar *cedet*         t)
-(defvar *icicles*       t)
-(defvar *color-theme*   t)
-(defvar *yasnippet*     t)
-(defvar *timestamp*     t)
-(defvar *slime*         nil)
-(defvar *erlang*        t)
+(defvar *folding*       nil) ;; Code folding. Enable as needed, it's buggy as hell.
+(defvar *emacs-server*  nil) ;; This might break, but run emacs in client/server mode.
+(defvar *tramp*         t)   ;; Enable remote file access
+(defvar *cedet*         t)   ;; Common emacs development tools. Big, but handy.
+(defvar *icicles*       t)   ;; The ultimate minibuffer enhancement.
+(defvar *color-theme*   t)   ;; Probably disable for GNU Emacs <22
+(defvar *yasnippet*     t)   ;; Snippets a la Textmate. Awesomeness, defined.
+(defvar *timestamp*     t)   ;; Update "Modified: <>" comments on save
+(defvar *slime*         t) ;; Using common lisp?
+(defvar *erlang*        t)   ;; Using erlang?
 
 (setq base-lisp-path "~/.emacs.d/lisp/")
 
 (defun add-path (p)
   (add-to-list 'load-path (concat base-lisp-path p)))
 
+;; I should really just do this recursively.
 (add-path "")
 (add-path "icicles")
+(add-path "slime")
 (add-path "rails")
 (add-path "ecb")
 (add-path "distel")
@@ -93,6 +95,7 @@
 
 
 (when *emacs-server*
+  ;; I seem to recall this being broken, but it's not useful enough for me to bother testing.
   (global-set-key "\C-x\C-c" 'server-edit)
   (global-set-key "\C-x\#" 'kill-emacs)
   (add-hook 'server-switch-hook
@@ -101,8 +104,6 @@
                 (bury-buffer)
                 (switch-to-buffer-other-frame server-buf))))
   (add-hook 'server-done-hook 'delete-frame))
-
-;;{{{ Custom-set-variables
 
 (custom-set-variables
   '(global-font-lock-mode    t nil (font-lock)) ;; Syntax higlighting
@@ -126,7 +127,6 @@
   '(ecb-source-path (quote ("/Users/burke/devel" ("/" "/"))))
   '(ecb-tip-of-the-day       nil))       ;; yeah, that got annoying fast.
 
-;;}}}
 
 (when *timestamp*
   ;; When files have "Modified: <>" in their first 8 lines, fill it in on save.
@@ -135,7 +135,8 @@
   (setq time-stamp-end    "\\\\?[\">]")
   (setq time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S %Z"))
 
-(set-register ?E '(file . "~/.emacs.d/emacs-init.el")) ; Easy access!
+(set-register ?E '(file . "~/.emacs.d/emacs-init.el")) ;; Easy access!
+(set-register ?Z '(file . "~/.emacs.d/zshrc.zsh"))     ;; Ditto.
 
 
 ;; how patronizing could an editor possibly be? 'y' will do...
@@ -145,6 +146,7 @@
 (defun go-back-window ()
   (interactive)
   (select-window (previous-window)))
+
 
 ;; Instead of pressing Enter > Tab all the time.
 (defun set-newline-and-indent ()
@@ -263,12 +265,12 @@
 
 (when *slime*
   (require 'slime)
-  (setq inferior-lisp-program "/usr/bin/sbcl")
+  (setq inferior-lisp-program "/opt/local/bin/sbcl")
   (add-hook 'slime-mode 'set-newline-and-indent)
   (slime-setup))
 
 ;;{{{ Code Folding
-
+;; If only this didn't suck so hard.
 (when *folding*
   (require 'folding)
   (folding-mode-add-find-file-hook)
@@ -306,9 +308,8 @@
 
 
 
-(message "My .emacs loaded in %ds" (destructuring-bind (hi lo ms) (current-time)
+(message "Loaded .emacs in %ds" (destructuring-bind (hi lo ms) (current-time)
                            (- (+ hi lo) (+ (first *emacs-load-start*) (second *emacs-load-start*)))))
 
 (setq debug-on-error nil)
-
 

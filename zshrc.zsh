@@ -1,6 +1,6 @@
 # File:     ~/.zshrc
 # Author:   Burke Libbey <burke@burkelibbey.org>
-# Modified: <2008-09-12 21:56:49 CDT>
+# Modified: <2008-10-06 00:12:04 CDT>
 
 export NAME="Burke Libbey"
 export EMAIL="burke@burkelibbey.org"
