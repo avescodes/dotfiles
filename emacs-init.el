@@ -1,6 +1,6 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-10-06 16:47:29 CDT>
+;; Modified: <2008-10-20 02:10:40 CDT>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -18,8 +18,9 @@
 (defvar *color-theme*   t)   ;; Probably disable for GNU Emacs <22
 (defvar *yasnippet*     t)   ;; Snippets a la Textmate. Awesomeness, defined.
 (defvar *timestamp*     t)   ;; Update "Modified: <>" comments on save
-(defvar *slime*         t) ;; Using common lisp?
+(defvar *slime*         t)   ;; Using lisp?
 (defvar *erlang*        t)   ;; Using erlang?
+(defvar *clojure*       t)   ;; Using clojure?
 
 (setq base-lisp-path "~/.emacs.d/lisp/")
 
@@ -263,11 +264,20 @@
   (require 'tramp)
   (setq tramp-default-method "scpc"))
 
-(when *slime*
+
+(when *clojure*
+  (add-path "swank-clojure")
+  (add-path "slime")
+  (add-path "clojure-mode")
+  (require 'clojure-auto)
   (require 'slime)
-  (setq inferior-lisp-program "/opt/local/bin/sbcl")
   (add-hook 'slime-mode 'set-newline-and-indent)
-  (slime-setup))
+  (add-hook 'clojure-mode-hook '(lambda() (local-set-key "\C-j" 'slime-eval-print-last-expression)))
+  (slime-setup)
+  (setq swank-clojure-binary "/Users/burke/opt/clojure-extra/sh-script/clojure")
+  (require 'swank-clojure-autoload)
+  )
+
 
 ;;{{{ Code Folding
 ;; If only this didn't suck so hard.
@@ -306,6 +316,22 @@
 
 (setq magic-mode-alist ())
 
+
+
+  (defun pretty-lambdas ()
+    (interactive)
+    (font-lock-add-keywords
+     nil `(("(\\(lambda\\>\\)"
+            (0 (progn (compose-region (match-beginning 1) (match-end 1)
+                                      ,(make-char 'greek-iso8859-7 107))
+                      nil))))))
+
+;(global-set-key (kbd "[") 'insert-parentheses)
+;(global-set-key (kbd "]") 'move-past-close-and-reindent)
+;; (global-set-key (kbd "[") (lambda () (interactive) (insert "[")))
+;; (global-set-key (kbd "]") (lambda () (interactive) (insert "]")))
+;; (global-set-key (kbd "(") (lambda () (interactive) (insert "(")))
+;; (global-set-key (kbd ")") (lambda () (interactive) (insert ")")))
 
 
 (message "Loaded .emacs in %ds" (destructuring-bind (hi lo ms) (current-time)

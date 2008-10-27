@@ -1,6 +1,7 @@
+
 # File:     ~/.zshrc
 # Author:   Burke Libbey <burke@burkelibbey.org>
-# Modified: <2008-10-06 00:12:04 CDT>
+# Modified: <2008-10-19 23:34:45 CDT>
 
 export NAME="Burke Libbey"
 export EMAIL="burke@burkelibbey.org"
@@ -25,7 +26,7 @@ export EDITOR="emacs"
 export BROWSER="w3m"
 export PAGER="less"
 
-export PATH="/opt/local/bin:/usr/bin:$PATH:$HOME/bin:/usr/local/bin"
+export PATH="~/opt/clojure-extra/sh-script:/opt/local/bin:/usr/bin:$PATH:$HOME/bin:/usr/local/bin"
 
 setopt CORRECT
 
