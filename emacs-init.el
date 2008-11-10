@@ -1,6 +1,6 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-10-20 02:10:40 CDT>
+;; Modified: <2008-11-09 23:49:28 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -10,8 +10,8 @@
 (setq debug-on-error t)
 
 (defvar *default-font*  "pragmata tt")
-(defvar *folding*       nil) ;; Code folding. Enable as needed, it's buggy as hell.
-(defvar *emacs-server*  nil) ;; This might break, but run emacs in client/server mode.
+(defvar *folding*       nil) ;; Code folding (buggy).
+(defvar *emacs-server*  nil) ;; Run emacs in client/server mode (broken).
 (defvar *tramp*         t)   ;; Enable remote file access
 (defvar *cedet*         t)   ;; Common emacs development tools. Big, but handy.
 (defvar *icicles*       t)   ;; The ultimate minibuffer enhancement.
@@ -19,7 +19,7 @@
 (defvar *yasnippet*     t)   ;; Snippets a la Textmate. Awesomeness, defined.
 (defvar *timestamp*     t)   ;; Update "Modified: <>" comments on save
 (defvar *slime*         t)   ;; Using lisp?
-(defvar *erlang*        t)   ;; Using erlang?
+(defvar *erlang*        nil) ;; Using erlang?
 (defvar *clojure*       t)   ;; Using clojure?
 
 (setq base-lisp-path "~/.emacs.d/lisp/")
