@@ -1,6 +1,6 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-11-09 23:49:28 CST>
+;; Modified: <2008-11-17 18:48:23 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -21,6 +21,7 @@
 (defvar *slime*         t)   ;; Using lisp?
 (defvar *erlang*        nil) ;; Using erlang?
 (defvar *clojure*       t)   ;; Using clojure?
+(defvar *ido*           t)   ;; Using ido?
 
 (setq base-lisp-path "~/.emacs.d/lisp/")
 
@@ -35,6 +36,10 @@
 (add-path "ecb")
 (add-path "distel")
 (add-to-list 'load-path "~/.emacs.d/themes")
+
+(when *ido*
+  (require 'ido)
+  (ido-mode t))
 
 (when *cedet*
   (load-file (concat base-lisp-path "cedet-1.0pre4/common/cedet.el"))
@@ -275,12 +280,11 @@
   (add-hook 'clojure-mode-hook '(lambda() (local-set-key "\C-j" 'slime-eval-print-last-expression)))
   (slime-setup)
   (setq swank-clojure-binary "/Users/burke/opt/clojure-extra/sh-script/clojure")
-  (require 'swank-clojure-autoload)
-  )
+  (require 'swank-clojure-autoload))
 
 
 ;;{{{ Code Folding
-;; If only this didn't suck so hard.
+;; If only this didn't suck so hard...
 (when *folding*
   (require 'folding)
   (folding-mode-add-find-file-hook)
