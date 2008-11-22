@@ -1,6 +1,6 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-11-17 18:48:23 CST>
+;; Modified: <2008-11-22 16:21:25 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -14,7 +14,7 @@
 (defvar *emacs-server*  nil) ;; Run emacs in client/server mode (broken).
 (defvar *tramp*         t)   ;; Enable remote file access
 (defvar *cedet*         t)   ;; Common emacs development tools. Big, but handy.
-(defvar *icicles*       t)   ;; The ultimate minibuffer enhancement.
+(defvar *icicles*       nil) ;; The ultimate minibuffer enhancement.
 (defvar *color-theme*   t)   ;; Probably disable for GNU Emacs <22
 (defvar *yasnippet*     t)   ;; Snippets a la Textmate. Awesomeness, defined.
 (defvar *timestamp*     t)   ;; Update "Modified: <>" comments on save
@@ -39,7 +39,8 @@
 
 (when *ido*
   (require 'ido)
-  (ido-mode t))
+  (ido-mode t)
+  (setq ido-enable-flex-matching t))
 
 (when *cedet*
   (load-file (concat base-lisp-path "cedet-1.0pre4/common/cedet.el"))
@@ -315,6 +316,7 @@
     '(("\\.yml$"   . yaml-mode))
     '(("\\.json$"  . yaml-mode))
     '(("\\.rb$"    . ruby-mode))
+    '(("\\.js$"    . js2-mode))
     '(("Rakefile$" . ruby-mode))
     auto-mode-alist))
 
