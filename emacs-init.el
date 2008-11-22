@@ -1,6 +1,6 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-11-22 16:21:25 CST>
+;; Modified: <2008-11-22 16:29:16 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -229,6 +229,10 @@
 
 ;;}}}
 
+
+;; Javascript indentation. Who the hell thought 5 spaces was a good idea?
+(require 'js2-mode)
+(setq js2-basic-offset 2)
 
 
 
