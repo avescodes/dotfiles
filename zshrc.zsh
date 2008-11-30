@@ -1,7 +1,6 @@
-
 # File:     ~/.zshrc
 # Author:   Burke Libbey <burke@burkelibbey.org>
-# Modified: <2008-10-19 23:34:45 CDT>
+# Modified: <2008-11-30 09:58:03 CST>
 
 export NAME="Burke Libbey"
 export EMAIL="burke@burkelibbey.org"
@@ -41,7 +40,7 @@ SAVEHIST=1000
 setopt appendhistory autocd extendedglob
 
 # Emacs editing
-bindkey -e 
+bindkey -e
 
 # Compatibility with TRAMP
 [ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
@@ -51,27 +50,26 @@ bindkey -e
 # {{{ Prompts ###############################################################
 
 # Colorize red for root, green for normal users. It's Gentoolicious!
-if [[ $USER == "root" ]]; then 
+if [[ $USER == "root" ]]; then
   COLOR="%{[0m[01;31m%}"
-else 
+else
   COLOR="%{[0m[01;32m%}"
 fi
 
-# If we're on a remote host, prefix PS1 with the first letter of the hostname.
-#if [[ $SSH_CLIENT != "" ]]; then
-  export HNC="$(hostname | tr '[a-z]' '[A-Z]') "
-#fi
-
 # prompt (if running screen, show window #)
 if [[ $WINDOW != "" ]]; then
-    export PS1="$HNC$COLOR$WINDOW:%{[01;34m%}%~ $COLOR%#%{[0m%} "
+    export PS1="$COLOR$WINDOW:%{[01;34m%}%~ $COLOR%#%{[0m%} "
 else
-    export PS1="$HNC%{[01;34m%}%~ $COLOR%#%{[0m%} "
+    export PS1="%{[01;34m%}%~ $COLOR%#%{[0m%} "
 fi
+
+
+RPS1="%n@%{[0m[01;31m%}%m%{[0m%} (%T)"
+
 
 # If we're using a dumb terminal (ie. emacs), assume we don't want colour.
 if [[ $TERM == "dumb" ]]; then
-		export PS1="%~ %# "
+    export PS1="%~ %# "
 fi
 
 # }}}
@@ -137,7 +135,7 @@ alias gitd="git diff"
 alias gitbl="git branch -l"
 alias gitbd="git branch -d"
 alias gitpl="git pull"
-alias gitpu="git push"  
+alias gitpu="git push"
 alias gitm="git merge"
 alias hamachi='sudo hamachi -c /etc/hamachi'
 alias sx="startx"
@@ -175,3 +173,6 @@ alias scr="screen -r"
 alias su="su -s /bin/zsh"
 
 # }}}
+
+
+
