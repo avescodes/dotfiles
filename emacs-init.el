@@ -1,6 +1,6 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-11-22 16:29:16 CST>
+;; Modified: <2008-12-03 12:16:49 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -19,7 +19,6 @@
 (defvar *yasnippet*     t)   ;; Snippets a la Textmate. Awesomeness, defined.
 (defvar *timestamp*     t)   ;; Update "Modified: <>" comments on save
 (defvar *slime*         t)   ;; Using lisp?
-(defvar *erlang*        nil) ;; Using erlang?
 (defvar *clojure*       t)   ;; Using clojure?
 (defvar *ido*           t)   ;; Using ido?
 
@@ -45,12 +44,6 @@
 (when *cedet*
   (load-file (concat base-lisp-path "cedet-1.0pre4/common/cedet.el"))
   (semantic-load-enable-code-helpers))
-
-(when *erlang*
-  (require 'erlang)
-  (require 'distel)
-  (distel-setup)
-  (add-to-list 'auto-mode-alist '("\\.erl$" . erlang-mode)))
 
 (print auto-mode-alist)
 (when window-system
