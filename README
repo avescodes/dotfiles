@@ -1,1 +1,5 @@
-Run rake to install dotfiles. Backups are saved to ~/#{file}.old.
+Make sure this repository is located at ~/.emacs.d, then run install.sh to
+install dotfiles. Backups are saved to ~/#{file}.old.
+
+You'll almsot certainly have to change *clojure* to nil in emacs-init.el.
+
