@@ -1,6 +1,6 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-12-03 12:19:25 CST>
+;; Modified: <2008-12-03 12:22:34 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -9,11 +9,13 @@
 (defvar *emacs-load-start* (current-time))
 (setq debug-on-error t)
 
+
+(defvar *user-name* "Burke Libbey <burke@burkelibbey.org>")
+
 (defvar *default-font*  "pragmata tt")
 (defvar *folding*       nil) ;; Code folding (buggy).
 (defvar *tramp*         t)   ;; Enable remote file access
 (defvar *cedet*         t)   ;; Common emacs development tools. Big, but handy.
-(defvar *icicles*       nil) ;; The ultimate minibuffer enhancement.
 (defvar *color-theme*   t)   ;; Probably disable for GNU Emacs <22
 (defvar *yasnippet*     t)   ;; Snippets a la Textmate. Awesomeness, defined.
 (defvar *timestamp*     t)   ;; Update "Modified: <>" comments on save
@@ -28,7 +30,6 @@
 
 ;; I should really just do this recursively.
 (add-path "")
-(add-path "icicles")
 (add-path "slime")
 (add-path "rails")
 (add-path "ecb")
@@ -67,11 +68,6 @@
   (require 'rcodetools)
   (require 'rails)
   (global-set-key "\C-c\C-f" 'rails-goto-file-on-current-line)
-
-  (when *icicles*
-    (require 'icicles)
-    (require 'icicles-rcodetools)
-    (icy-mode))
 
   (when *yasnippet*
     (require 'yasnippet)
@@ -140,7 +136,7 @@
 
 (defun insert-name-email ()
   (interactive)
-  (insert "Burke Libbey <burke@burkelibbey.org>"))
+  (insert *user-name*))
 
 (defun insert-date (prefix)
   "Insert the current date. With prefix-argument, use ISO format. With
@@ -238,10 +234,6 @@
 (add-hook 'c-mode-common-hook 'set-newline-and-indent)
 (add-hook 'erlang-mode-hook 'set-newline-and-indent)
 
-
-(defun enable-rct ()
-  (local-set-key [C-tab] 'rct-complete-symbol--icicles))
-
 ;; Ruby
 (add-hook 'ruby-mode-hook     'set-newline-and-indent)
 (add-hook 'ruby-mode-hook     'enable-rct)
@@ -304,23 +296,6 @@
     auto-mode-alist))
 
 (setq magic-mode-alist ())
-
-
-
-  (defun pretty-lambdas ()
-    (interactive)
-    (font-lock-add-keywords
-     nil `(("(\\(lambda\\>\\)"
-            (0 (progn (compose-region (match-beginning 1) (match-end 1)
-                                      ,(make-char 'greek-iso8859-7 107))
-                      nil))))))
-
-;(global-set-key (kbd "[") 'insert-parentheses)
-;(global-set-key (kbd "]") 'move-past-close-and-reindent)
-;; (global-set-key (kbd "[") (lambda () (interactive) (insert "[")))
-;; (global-set-key (kbd "]") (lambda () (interactive) (insert "]")))
-;; (global-set-key (kbd "(") (lambda () (interactive) (insert "(")))
-;; (global-set-key (kbd ")") (lambda () (interactive) (insert ")")))
 
 
 (message "Loaded .emacs in %ds" (destructuring-bind (hi lo ms) (current-time)
