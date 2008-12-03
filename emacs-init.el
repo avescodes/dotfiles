@@ -1,6 +1,6 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-12-03 12:16:49 CST>
+;; Modified: <2008-12-03 12:19:25 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -11,7 +11,6 @@
 
 (defvar *default-font*  "pragmata tt")
 (defvar *folding*       nil) ;; Code folding (buggy).
-(defvar *emacs-server*  nil) ;; Run emacs in client/server mode (broken).
 (defvar *tramp*         t)   ;; Enable remote file access
 (defvar *cedet*         t)   ;; Common emacs development tools. Big, but handy.
 (defvar *icicles*       nil) ;; The ultimate minibuffer enhancement.
@@ -33,7 +32,6 @@
 (add-path "slime")
 (add-path "rails")
 (add-path "ecb")
-(add-path "distel")
 (add-to-list 'load-path "~/.emacs.d/themes")
 
 (when *ido*
@@ -92,18 +90,6 @@
     (setq mac-allow-anti-aliasing nil)
     ;; M-x describe-font
     (set-default-font "-apple-proggycleantt-medium-r-normal--16-0-72-72-m-0-iso10646-1")))
-
-
-(when *emacs-server*
-  ;; I seem to recall this being broken, but it's not useful enough for me to bother testing.
-  (global-set-key "\C-x\C-c" 'server-edit)
-  (global-set-key "\C-x\#" 'kill-emacs)
-  (add-hook 'server-switch-hook
-            (lambda nil
-              (let ((server-buf (current-buffer)))
-                (bury-buffer)
-                (switch-to-buffer-other-frame server-buf))))
-  (add-hook 'server-done-hook 'delete-frame))
 
 (custom-set-variables
   '(global-font-lock-mode    t nil (font-lock)) ;; Syntax higlighting
