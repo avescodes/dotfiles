@@ -1,6 +1,6 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-12-03 12:22:34 CST>
+;; Modified: <2008-12-03 22:23:47 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -8,7 +8,6 @@
 
 (defvar *emacs-load-start* (current-time))
 (setq debug-on-error t)
-
 
 (defvar *user-name* "Burke Libbey <burke@burkelibbey.org>")
 
@@ -23,7 +22,7 @@
 (defvar *clojure*       t)   ;; Using clojure?
 (defvar *ido*           t)   ;; Using ido?
 
-(setq base-lisp-path "~/.emacs.d/lisp/")
+(setq base-lisp-path "~/.emacs.d/site-lisp/")
 
 (defun add-path (p)
   (add-to-list 'load-path (concat base-lisp-path p)))
@@ -81,6 +80,7 @@
       (set-default-font (concat *default-font* "-" (number-to-string arg))))
     (global-set-key "\C-cf" 'change-font-size))
 
+  ;; If you don't have this font, you don't deserve to use emacs.
   (when (boundp 'aquamacs-version)
     (one-buffer-one-frame-mode 0)
     (setq mac-allow-anti-aliasing nil)
