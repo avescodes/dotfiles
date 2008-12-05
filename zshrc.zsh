@@ -1,11 +1,25 @@
 # File:     ~/.zshrc
-# Author:   Burke Libbey <burke@burkelibbey.org>
-# Modified: <2008-11-30 09:58:03 CST>
+# Author:   Ryan Neufeld <neufelry@gmail.com>
+# Modified: <2008-12-03 22:02:51 CST>
 
-export NAME="Burke Libbey"
-export EMAIL="burke@burkelibbey.org"
 
-# {{{ Environment ###########################################################
+# TOC:
+#  - Environment
+#  - Misc.
+#  - History
+#  - Titles
+#  - Completion
+#  - Functions
+#  - Aliases
+#  - Git functions
+#  - Prompts
+
+export NAME="Ryan Neufeld"
+export EMAIL="neufelry@gmail.com"
+
+#############################################################################
+# Environment ###############################################################
+#############################################################################
 
 if [ -f /sw/bin/init.sh ]; then # OS X
   . /sw/bin/init.sh
@@ -15,7 +29,7 @@ if [ -f /usr/share/gentoo/mc/mc.gentoo ]; then # gentoo linux
   . /usr/share/mc/mc.gentoo
 fi
 
-export IXP_ADDRESS=unix!/tmp/ns.$USER.127.0.0.1_0/wmii
+
 export GIT_AUTHOR_NAME=$NAME
 export GIT_COMMITTER_NAME=$NAME
 export GIT_AUTHOR_EMAIL=$EMAIL
@@ -24,57 +38,46 @@ export RUBYOPT=""
 export EDITOR="emacs"
 export BROWSER="w3m"
 export PAGER="less"
-
-export PATH="~/opt/clojure-extra/sh-script:/opt/local/bin:/usr/bin:$PATH:$HOME/bin:/usr/local/bin"
-
+export SHELL="/opt/local/bin/zsh"
 setopt CORRECT
 
-# }}}
-
-# {{{ Miscellaneous #########################################################
-
-# history
-HISTFILE=~/.zsh_history
-HISTSIZE=5000
-SAVEHIST=1000
-setopt appendhistory autocd extendedglob
+#############################################################################
+# Miscellaneous #############################################################
+#############################################################################
 
 # Emacs editing
 bindkey -e
 
-# Compatibility with TRAMP
-[ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
+#############################################################################
+# History ###################################################################
+#############################################################################
 
-# }}}
+setopt ALL_EXPORT
 
-# {{{ Prompts ###############################################################
+HISTFILE=~/.history
+HISTSIZE=10500
+SAVEHIST=10000
+SHARE_HISTORY=1
+EXTENDED_HISTORY=1
+HIST_EXPIRE_DUPS_FIRST=1
+ 
+# Grep the history with 'h'
+h () { history 0 | grep $1 }
 
-# Colorize red for root, green for normal users. It's Gentoolicious!
-if [[ $USER == "root" ]]; then
-  COLOR="%{[0m[01;31m%}"
-else
-  COLOR="%{[0m[01;32m%}"
-fi
+setopt appendhistory autocd extendedglob
 
-# prompt (if running screen, show window #)
-if [[ $WINDOW != "" ]]; then
-    export PS1="$COLOR$WINDOW:%{[01;34m%}%~ $COLOR%#%{[0m%} "
-else
-    export PS1="%{[01;34m%}%~ $COLOR%#%{[0m%} "
-fi
+# Path setting
+MANPATH=/opt/local/share/man:$MANPATH
+PATH="/usr/local/mysql/bin:/Users/jaffer/bin/:$PATH:$HOME/opt/jruby/bin"
+PATH="$HOME/bin:/opt/local/bin:/opt/local/sbin:$PATH"
+PATH="$HOME/opt/clojure-extra/sh-script:$PATH"
+CLASSHPATH="$CLASSPATH:/Users/jaffer/Dev/clj/"
 
+unsetopt ALL_EXPORT
 
-RPS1="%n@%{[0m[01;31m%}%m%{[0m%} (%T)"
-
-
-# If we're using a dumb terminal (ie. emacs), assume we don't want colour.
-if [[ $TERM == "dumb" ]]; then
-    export PS1="%~ %# "
-fi
-
-# }}}
-
-# {{{ Titles ################################################################
+#############################################################################
+# Titles ####################################################################
+#############################################################################
 
 function title() {
   # escape '%' chars in $1, make nonprintables visible
@@ -101,32 +104,45 @@ function precmd()  { title "zsh" "$USER@%m" "%35<...<%~" }
 # preexec is called just before any command line is executed
 function preexec() { title "$1"  "$USER@%m" "%55<...<%~" }
 
-# }}}
-
-# {{{ Completion ############################################################
+#############################################################################
+# Completion ################################################################
+#############################################################################
 
 # colorful listings
 zmodload -i zsh/complist
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
+zstyle ':completion:*' completer _complete _ignored
+zstyle ':completion:*' menu select=1
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 autoload -U compinit
 compinit
+
+# Files to ignore during completion
+fignore=(DS_Store $fignore)
 
 # cache completions
 zstyle ':completion::complete:*' use-cache 1
 
-# }}}
-
-# {{{ Functions #############################################################
+#############################################################################
+# Functions #################################################################
+#############################################################################
 
 mdc()    { mkdir -p "$1" && cd "$1" }
 setenv() { export $1=$2 }
 sdate()  { date +%Y.%m.%d }
 pc()     { awk "{print \$$1}" }
 
-# }}}
+# Open manpage with Preview.app
+# Uses ps2pdf conversion because it's faster
+if [[ $OSTYPE[1,6] == "darwin" ]]; then
+  function manp () {
+    man -t $* | ps2pdf - - | open -f -a Preview
+  }
+fi
 
-# {{{ Aliases ###############################################################
+#############################################################################
+# Aliases ###################################################################
+#############################################################################
 
 alias gitc="git add .;git commit -a -m"
 alias gitco="git checkout"
@@ -137,14 +153,9 @@ alias gitbd="git branch -d"
 alias gitpl="git pull"
 alias gitpu="git push"
 alias gitm="git merge"
-alias hamachi='sudo hamachi -c /etc/hamachi'
-alias sx="startx"
+
 alias slime='emacs -e slime'
-alias conkeror='/opt/conkeror/conkeror'
-alias rdesktop='rdesktop -g 1680x1024'
-#alias sx='xinit /home/burke/.xinitrc'
 alias sl='ls'
-alias psql='psql -U postgres'
 alias mv='nocorrect mv'
 alias cp='nocorrect cp'
 alias mkdir='nocorrect mkdir'
@@ -165,14 +176,106 @@ alias cd..='cd ..'
 alias ..='cd ..'
 alias po='popd'
 alias pu='pushd'
-alias tsl="tail -f /var/log/syslog"
+alias tsl="tail -f /var/log/system.log"
 alias df="df -hT"
 alias em="emacs -nw"
 alias sc="screen"
 alias scr="screen -r"
 alias su="su -s /bin/zsh"
 
+alias m="mate"
+alias e="emacs"
+alias status="git status"
+alias pull="git pull"
+alias rb="ruby"
+alias rd="ruby -d"
+
+alias ssh-atlantis='ssh quick.thruhere.net -L 5900:localhost:5900'
+
+if [[ ! ( -x `which seq` ) && ( -x `which gseq` ) ]]; then
+  alias seq=`which gseq`
+fi
 # }}}
 
+#############################################################################
+# Git Functions #############################################################
+#############################################################################
+if [[ -x `which git` ]]; then
+	function git-branch-name () {
+		git branch 2> /dev/null | grep '^\*' | sed 's/^\*\ //'
+	}
+	function git-dirty () {
+		git status 2> /dev/null | grep "nothing to commit (working directory clean)"
+		echo $?
+	}
+	function gsrb () {
+		branch=$(git-branch-name) 
+		git checkout master
+		git svn rebase
+		git checkout "${branch}"
+		git rebase master
+	}
+	function git-prompt() {
+		gstatus=$(git status 2> /dev/null)
+		branch=$(echo $gstatus | head -n 1 | sed 's/^# On branch //')
+		dirty=$(echo $gstatus | sed 's/^#.*$//' | tail -n 2 | grep 'nothing to commit (working directory clean)'; echo $?)
+		if [[ x$branch != x ]]; then
+			dirty_color=$fg[cyan]
+			if [[ $dirty = 1 ]] { dirty_color=$fg[magenta] }
+			[ x$branch != x ] && echo " %{$dirty_color%}$branch%{$reset_color%} "
+		fi
+	}
+	function git-scoreboard () {
+		git log | grep Author | sort | uniq -ci | sort -r
+	}
+	function github-init () {
+		git config branch.$(git-branch-name).remote origin
+		git config branch.$(git-branch-name).merge refs/heads/$(git-branch-name)
+	}
+	
+	function github-url () {
+		git config remote.origin.url | sed -En 's/git(@|:\/\/)github.com(:|\/)(.+)\/(.+).git/https:\/\/github.com\/\3\/\4/p'
+	}
+	
+	# Seems to be the best OS X jump-to-github alias from http://tinyurl.com/2mtncf
+	function github-go () {
+		open $(github-url)
+	}
+	
+	function nhgk () {
+		nohup gitk --all &
+	}
+fi
 
+#############################################################################
+# Prompts ###################################################################
+#############################################################################
+setopt ALL_EXPORT
 
+autoload colors zsh/terminfo
+if [[ "$terminfo[colors]" -ge 8 ]]; then
+colors
+fi
+for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
+eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
+eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
+(( count = $count + 1 ))
+done
+PR_NO_COLOR="%{$terminfo[sgr0]%}"
+PS1="$PR_RED%2c $PR_YELLOW%(!.#.$)$PR_NO_COLOR "
+RPS1="$PR_RED%n$PR_NO_COLOR@$PR_LIGHT_RED%U%m%u $PR_YELLOW(%T)$PR_NO_COLOR"
+#(`git-prompt`)
+
+# If we're on a remote host, prefix PS1 with the first letter of the hostname.
+#if [[ $SSH_CLIENT != "" ]]; then
+  HNC="$(hostname | tr '[a-z]' '[A-Z]') "
+#fi
+
+# If we're using a dumb terminal (ie. emacs), assume we don't want colour.
+if [[ $TERM == "dumb" ]]; then
+      PS1="%~ %# "
+fi
+# Compatibility with TRAMP
+[ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
+
+unsetopt ALL_EXPORT
