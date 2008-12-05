@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-12-03 21:54:07 CST>
+;; Modified: <2008-12-04 21:47:07 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -31,6 +31,7 @@
 
 ;; I should really just do this recursively.
 (add-path "")
+
 (add-path "slime")
 (add-path "rails")
 ;;(add-path "ecb")
@@ -84,7 +85,7 @@
   (when (boundp 'aquamacs-version)
     (one-buffer-one-frame-mode 0)
     (setq mac-allow-anti-aliasing 1))
-    
+
   (require 'java-complete)
   (require 'lorem-ipsum)
   (require 'mode-compile)
@@ -93,10 +94,7 @@
   ;(require 'ruby-compilation)
   (require 'ruby-electric)
   (require 'ruby-mode)
-  (require 'unbound)
-
-  (add-path 'textmate)
-  (require 'textmate))
+  (require 'unbound))
 
 (custom-set-variables
   '(global-font-lock-mode    t nil (font-lock)) ;; Syntax higlighting
@@ -132,12 +130,12 @@
 (set-register ?E '(file . "~/.emacs.d/emacs-init.el")) ;; Easy access!
 (set-register ?Z '(file . "~/.emacs.d/zshrc.zsh"))     ;; Ditto.
 
-(when *fuzzy-find* 
+(when *fuzzy-find*
   (add-path "fuzzy-find-in-project")
   (require 'fuzzy-find-in-project)
   (global-set-key "\C-c\C-f" 'fuzzy-find-in-project)
   (global-set-key "\C-cfr" 'fuzzy-find-project-root))
-  
+
 ;; how patronizing could an editor possibly be? 'y' will do...
 (fset 'yes-or-no-p 'y-or-n-p)
 
