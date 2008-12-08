@@ -1,6 +1,6 @@
 # File:     ~/.zshrc
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2008-12-03 22:02:51 CST>
+# Modified: <2008-12-06 15:19:07 CST>
 
 
 # TOC:
@@ -279,3 +279,4 @@ fi
 [ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
 
 unsetopt ALL_EXPORT
+
