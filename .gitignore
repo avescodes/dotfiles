@@ -2,3 +2,4 @@ autosaves/*
 auto-save-list/*
 tramp
 \#*\#
+*.cache

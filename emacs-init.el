@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-12-04 21:47:07 CST>
+;; Modified: <2008-12-07 23:33:04 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -238,8 +238,8 @@
 
 ;; Ruby
 (add-hook 'ruby-mode-hook     'set-newline-and-indent)
-(add-hook 'ruby-mode-hook     'enable-rct)
-
+;(add-hook 'ruby-mode-hook     'enable-rct)
+;;This isn't working
 (add-hook 'lisp-mode          'set-newline-and-indent)
 
 ;; Remote File Editing
