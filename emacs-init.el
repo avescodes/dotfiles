@@ -2,6 +2,7 @@
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
 ;; Modified: <2008-12-11 00:36:54 CST>
+
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
 (require 'cl)
@@ -151,15 +152,17 @@
   "If mark is active, indents region. Else if point is at the end of a symbol,
    expands it. Else indents the current line. Acts as normal in minibuffer."
   (interactive)
-  (if (minibufferp)
-      (unless (minibuffer-complete)
-        (dabbrev-expand nil))
-    (if mark-active
-        (indent-region (region-beginning)
-                       (region-end))
-      (if (looking-at "\\_>")
-          (dabbrev-expand nil)
-        (indent-for-tab-command)))))
+  (if (boundp 'ido-cur-item)
+      (ido-complete)
+    (if (minibufferp)
+        (unless (minibuffer-complete)
+          (dabbrev-expand nil))
+      (if mark-active
+          (indent-region (region-beginning)
+                         (region-end))
+        (if (looking-at "\\_>")
+            (dabbrev-expand nil)
+          (indent-for-tab-command))))))
 (global-set-key [(tab)] 'smart-tab)
 
 
