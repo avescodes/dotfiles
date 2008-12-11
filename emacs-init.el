@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-12-11 01:36:43 CST>
+;; Modified: <2008-12-11 02:05:18 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -321,8 +321,6 @@
                 (define-key slime-mode-map (kbd "C-c D") 'slime-javadoc)
                 (define-key slime-repl-mode-map (kbd "C-c D") 'slime-javadoc))))
 
-;; Make "*.pro" files load in prolog-mode
-(setq auto-mode-alist (cons '("\\.pro\\'" . prolog-mode) auto-mode-alist))
 
 ;;; >>> Code Folding <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; If only this didn't suck so hard...
@@ -359,6 +357,7 @@
     '(("\\.rb$"    . ruby-mode))
     '(("\\.js$"    . js2-mode))
     '(("Rakefile$" . ruby-mode))
+    '(("\\.pro$" . prolog-mode))
     auto-mode-alist))
 
 (setq magic-mode-alist ())
