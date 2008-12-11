@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-12-11 02:05:18 CST>
+;; Modified: <2008-12-11 02:06:36 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -280,7 +280,7 @@
   (add-hook 'slime-mode 'set-newline-and-indent)
   (add-hook 'clojure-mode-hook '(lambda() (local-set-key "\C-j" 'slime-eval-print-last-expression)))
   (slime-setup)
-  (setq swank-clojure-binary "~/opt/clojure-extra/sh-script/clojure")
+  (setq swank-clojure-binary "~/.emacs.d/clojure/clojure")
   (require 'swank-clojure-autoload)
 
   ;; Slime-javadoc config
