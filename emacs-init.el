@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-12-11 00:36:54 CST>
+;; Modified: <2008-12-11 01:35:01 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -21,7 +21,6 @@
 (defvar *color-theme*   t)   ;; Probably disable for GNU Emacs <22
 (defvar *yasnippet*     t)   ;; Snippets a la Textmate. Awesomeness, defined.
 (defvar *timestamp*     t)   ;; Update "Modified: <>" comments on save
-(defvar *hippie-expand* nil) ;; Unintelligent code completion
 (defvar *slime*         t)   ;; Using lisp?
 (defvar *clojure*       t)   ;; Using clojure? (Select slime as well.)
 (defvar *ido*           t)   ;; Using ido?
@@ -51,11 +50,6 @@
   (add-hook 'ido-setup-hook  ;;Do I need?
     (lambda ()
       (define-key ido-completion-map [tab] 'ido-complete))))
-
-(when *hippie-expand*
-  (autoload 'hippie-expand "hippie-exp" t)
-  (eval-after-load "hippie-exp"
-    '(progn (global-set-key [C-tab] 'hippie-expand))))
 
 (when *cedet*
   (load-file (concat base-lisp-path "cedet-1.0pre4/common/cedet.el"))
@@ -148,6 +142,16 @@
   (interactive)
   (select-window (previous-window)))
 
+(require 'hippie-exp)
+
+(setq hippie-expand-try-functions-list
+      '(yas/hippie-try-expand
+        try-expand-dabbrev
+        try-expand-dabbrev-all-buffers
+        try-expand-dabbrev-from-kill
+        try-complete-file-name
+        try-complete-lisp-symbol))
+
 (defun smart-tab ()
   "If mark is active, indents region. Else if point is at the end of a symbol,
    expands it. Else indents the current line. Acts as normal in minibuffer."
@@ -155,17 +159,13 @@
   (if (boundp 'ido-cur-item)
       (ido-complete)
     (if (minibufferp)
-        (unless (minibuffer-complete)
-          (dabbrev-expand nil))
+        (minibuffer-complete)
       (if mark-active
-          (indent-region (region-beginning)
-                         (region-end))
+          (indent-region (region-beginning) (region-end))
         (if (looking-at "\\_>")
-            (dabbrev-expand nil)
+            (hippie-expand nil)
           (indent-for-tab-command))))))
 (global-set-key [(tab)] 'smart-tab)
-
-
 
 ;; Instead of pressing Enter > Tab all the time.
 (defun set-newline-and-indent ()
