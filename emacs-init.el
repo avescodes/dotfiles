@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-12-11 01:35:01 CST>
+;; Modified: <2008-12-11 01:36:43 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -11,7 +11,6 @@
 (setq debug-on-error t)
 
 (defvar *user-name* "Ryan Neufeld <neufelry@gmail.com>")
-
 (defvar *default-font*  "Anonymous")
 
 ;;; >>> Feature Selection <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -25,10 +24,6 @@
 (defvar *clojure*       t)   ;; Using clojure? (Select slime as well.)
 (defvar *ido*           t)   ;; Using ido?
 (defvar *fuzzy-find*    t)   ;; Fuzzy find in project
-
-
-(defvar *user-name* "Burke Libbey <burke@burkelibbey.org>")
-(defvar *default-font*  "pragmata tt")
 
 ;;; >>> Configure Load Path <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq emacs-config-path "~/.emacs.d/")
