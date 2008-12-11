@@ -1,7 +1,12 @@
 ;; File:     ~/.emacs.d/emacs-init.el
+<<<<<<< HEAD:emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
 ;; Modified: <2008-12-10 19:24:13 CST>
+=======
+;; Author:   Burke Libbey <burke@burkelibbey.org>
+;; Modified: <2008-12-11 00:20:21 CST>
+>>>>>>> 1af4e418c6036ead39d2f4f3f78fa9186e3f8636:emacs-init.el
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -10,21 +15,32 @@
 (defvar *emacs-load-start* (current-time))
 (setq debug-on-error t)
 
+<<<<<<< HEAD:emacs-init.el
 
 (defvar *user-name* "Ryan Neufeld <neufelry@gmail.com>")
 
 (defvar *default-font*  "Anonymous")
+=======
+;;; >>> Feature Selection <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+>>>>>>> 1af4e418c6036ead39d2f4f3f78fa9186e3f8636:emacs-init.el
 (defvar *folding*       nil) ;; Code folding (buggy).
 (defvar *tramp*         t)   ;; Enable remote file access
 (defvar *cedet*         t)   ;; Common emacs development tools. Big, but handy.
 (defvar *color-theme*   t)   ;; Probably disable for GNU Emacs <22
 (defvar *yasnippet*     t)   ;; Snippets a la Textmate. Awesomeness, defined.
 (defvar *timestamp*     t)   ;; Update "Modified: <>" comments on save
+(defvar *hippie-expand* nil) ;; Unintelligent code completion
 (defvar *slime*         t)   ;; Using lisp?
-(defvar *clojure*       t)   ;; Using clojure?
+(defvar *clojure*       t)   ;; Using clojure? (Select slime as well.)
 (defvar *ido*           t)   ;; Using ido?
 (defvar *fuzzy-find*    t)   ;; Fuzzy find in project
 
+
+(defvar *user-name* "Burke Libbey <burke@burkelibbey.org>")
+(defvar *default-font*  "pragmata tt")
+
+;;; >>> Configure Load Path <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq emacs-config-path "~/.emacs.d/")
 (setq base-lisp-path "~/.emacs.d/site-lisp/")
 (defun add-path (p)
   (add-to-list 'load-path (concat base-lisp-path p)))
@@ -34,8 +50,12 @@
 
 (add-path "slime")
 (add-path "rails")
+<<<<<<< HEAD:emacs-init.el
 ;;(add-path "ecb")
 ;;(add-to-list 'load-path "~/.emacs.d/themes")
+=======
+(add-to-list 'load-path "~/.emacs.d/themes")
+>>>>>>> 1af4e418c6036ead39d2f4f3f78fa9186e3f8636:emacs-init.el
 
 (when *ido*
   (require 'ido)
@@ -45,11 +65,15 @@
     (lambda ()
       (define-key ido-completion-map [tab] 'ido-complete))))
 
+(when *hippie-expand*
+  (autoload 'hippie-expand "hippie-exp" t)
+  (eval-after-load "hippie-exp"
+    '(progn (global-set-key [C-tab] 'hippie-expand))))
+
 (when *cedet*
   (load-file (concat base-lisp-path "cedet-1.0pre4/common/cedet.el"))
   (semantic-load-enable-code-helpers))
 
-(print auto-mode-alist)
 (when window-system
 
   (global-unset-key "\C-z")
@@ -66,10 +90,13 @@
     '(progn (speedbar-disable-update)))
   (global-set-key "\C-c\C-s" 'speedbar)
 
+<<<<<<< HEAD:emacs-init.el
   (autoload 'ecb "ecb" t)
   ;(eval-after-load "ecb"
     ;'(progn (require 'ecb-layout-burke)))
 
+=======
+>>>>>>> 1af4e418c6036ead39d2f4f3f78fa9186e3f8636:emacs-init.el
   (require 'rcodetools)
   (require 'rails)
   (require 'find-recursive)
@@ -115,10 +142,14 @@
   '(default-major-mode       'text-mode) ;; open unknown in text mode
   '(ring-bell-function       'ignore)    ;; turn off system beep
   '(bookmark-save-flag       1)          ;; Autosave bookmarks on create/etc.
+<<<<<<< HEAD:emacs-init.el
   '(c-default-style          "k&r")      ;; use k&r style for C indentation
   '(ecb-source-path (quote ("/Users/jaffe/dev" ("/" "/"))))
   '(ecb-tip-of-the-day       nil))       ;; yeah, that got annoying fast.
 
+=======
+  '(c-default-style          "k&r"))     ;; use k&r style for C indentation
+>>>>>>> 1af4e418c6036ead39d2f4f3f78fa9186e3f8636:emacs-init.el
 
 (when *timestamp*
   ;; When files have "Modified: <>" in their first 8 lines, fill it in on save.
@@ -144,6 +175,27 @@
   (interactive)
   (select-window (previous-window)))
 
+<<<<<<< HEAD:emacs-init.el
+=======
+
+(defun smart-tab ()
+  "If mark is active, indents region. Else if point is at the end of a symbol,
+   expands it. Else indents the current line. Acts as normal in minibuffer."
+  (interactive)
+  (if (minibufferp)
+      (unless (minibuffer-complete)
+        (dabbrev-expand nil))
+    (if mark-active
+        (indent-region (region-beginning)
+                       (region-end))
+      (if (looking-at "\\_>")
+          (dabbrev-expand nil)
+        (indent-for-tab-command)))))
+(global-set-key [(tab)] 'smart-tab)
+
+
+
+>>>>>>> 1af4e418c6036ead39d2f4f3f78fa9186e3f8636:emacs-init.el
 ;; Instead of pressing Enter > Tab all the time.
 (defun set-newline-and-indent ()
   (local-set-key "\C-m" 'newline-and-indent))
@@ -163,15 +215,19 @@
       (system-time-locale "en_US"))
     (insert (format-time-string format))))
 
+<<<<<<< HEAD:emacs-init.el
 ;(global-set-key (kbd "<down>") '())
 ;(global-set-key (kbd "<up>") '())
 ;(global-set-key (kbd "<right>") '())
 ;(global-set-key (kbd "<left>") '())
 
 (global-set-key [(meta up)] '(lambda() (interactive) (scroll-other-window -1)))
+=======
+(global-set-key [(meta up)]   '(lambda() (interactive) (scroll-other-window -1)))
+>>>>>>> 1af4e418c6036ead39d2f4f3f78fa9186e3f8636:emacs-init.el
 (global-set-key [(meta down)] '(lambda() (interactive) (scroll-other-window 1)))
-(global-set-key [(meta -)] '(lambda() (interactive) (shrink-window 1)))
-(global-set-key [(meta =)] '(lambda() (interactive) (shrink-window -1)))
+(global-set-key [(meta -)]    '(lambda() (interactive) (shrink-window 1)))
+(global-set-key [(meta =)]    '(lambda() (interactive) (shrink-window -1)))
 
 (global-set-key "\C-cd"      'insert-date)
 (global-set-key "\C-ce"      'insert-name-email)
@@ -196,8 +252,7 @@
 ;; short form for query regex replace
 (defalias 'qrr 'query-replace-regexp)
 
-;;{{{ Backups and Autosaves
-
+;;; >>> Backups and Autosaves <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq
   backup-by-copying      t             ;; don't clobber symlinks
   backup-directory-alist
@@ -207,14 +262,22 @@
   kept-old-versions      2
   version-control        t)            ;; use versioned backups
 
+<<<<<<< HEAD:emacs-init.el
 ;;}}}
+=======
+>>>>>>> 1af4e418c6036ead39d2f4f3f78fa9186e3f8636:emacs-init.el
 
 ;; Javascript indentation. Who the hell thought 5 spaces was a good idea?
 (require 'js2-mode)
 (setq js2-basic-offset 2)
 
+<<<<<<< HEAD:emacs-init.el
 ;;{{{ Git Stuff
 
+=======
+
+;;; >>> Git <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+>>>>>>> 1af4e418c6036ead39d2f4f3f78fa9186e3f8636:emacs-init.el
 (require 'vc-git)
 (add-to-list 'vc-handled-backends 'git)
 (require 'git)
@@ -222,12 +285,7 @@
            "Minor mode for incremental blame for Git." t)
 (global-set-key "\C-xg" 'git-status)
 
-;;}}}
 
-;; Hippie Expand
-(autoload 'hippie-expand "hippie-exp" t)
-(eval-after-load "hippie-exp"
-  '(progn (global-set-key [C-tab] 'hippie-expand)))
 
 ;; No syntax highlighting on plain text
 (add-hook 'text-mode-hook     'turn-off-auto-fill)
@@ -238,6 +296,7 @@
 
 ;; Ruby
 (add-hook 'ruby-mode-hook     'set-newline-and-indent)
+<<<<<<< HEAD:emacs-init.el
 (add-hook 'ruby-mode-hook
           (lambda()
             (add-hook 'local-write-file-hooks
@@ -255,6 +314,9 @@
             ))
 ;(add-hook 'ruby-mode-hook     'enable-rct)
 ;;This isn't working
+=======
+
+>>>>>>> 1af4e418c6036ead39d2f4f3f78fa9186e3f8636:emacs-init.el
 (add-hook 'lisp-mode          'set-newline-and-indent)
 
 ;; Remote File Editing
@@ -274,6 +336,7 @@
   (add-hook 'slime-mode 'set-newline-and-indent)
   (add-hook 'clojure-mode-hook '(lambda() (local-set-key "\C-j" 'slime-eval-print-last-expression)))
   (slime-setup)
+<<<<<<< HEAD:emacs-init.el
   (setq swank-clojure-binary "~/opt/clojure-extra/sh-script/clojure")
   (require 'swank-clojure-autoload)
 
@@ -317,6 +380,32 @@
 
 ;; Make "*.pro" files load in prolog-mode
 (setq auto-mode-alist (cons '("\\.pro\\'" . prolog-mode) auto-mode-alist))
+=======
+  (setq swank-clojure-binary "~/.emacs.d/clojure/clojure")
+  (require 'swank-clojure-autoload))
+
+
+;;; >>> Code Folding <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; If only this didn't suck so hard...
+(when *folding*
+  (require 'folding)
+  (folding-mode-add-find-file-hook)
+  (setq folding-mode-marks-alist
+    (nconc
+      '((ruby-mode       "#{{{"    "#}}}" ))
+      '((conf-space-mode "#{{{"    "#}}}" ))
+      '((scheme-mode     ";{{{"    ";}}}" ))
+      '((clojure-mode    ";{{{"    ";}}}" ))
+      '((css-mode       "/*{{{"   "/*}}}" ))
+      '((nxml-mode    "<!--{{{" "<!--}}}" ))
+      folding-mode-marks-alist))
+  (add-hook 'find-file-hooks 'folding-mode)
+  (global-set-key "\C-co" 'folding-open-buffer)
+  (global-set-key "\C-cf" 'folding-toggle-show-hide)
+  (global-set-key "\C-cc" 'folding-whole-buffer))
+
+;;}}}
+>>>>>>> 1af4e418c6036ead39d2f4f3f78fa9186e3f8636:emacs-init.el
 
 (autoload 'ruby-mode "ruby-mode" nil t)
 (autoload 'haml-mode "haml-mode" nil t)
@@ -337,7 +426,7 @@
 
 
 (message "Loaded .emacs in %ds" (destructuring-bind (hi lo ms) (current-time)
-                           (- (+ hi lo) (+ (first *emacs-load-start*) (second *emacs-load-start*)))))
+  (- (+ hi lo) (+ (first *emacs-load-start*) (second *emacs-load-start*)))))
 
 (setq debug-on-error nil)
 
