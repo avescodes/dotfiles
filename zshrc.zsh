@@ -1,6 +1,6 @@
 # File:     ~/.zshrc
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2008-12-11 18:13:18 CST>
+# Modified: <2008-12-11 19:35:27 CST>
 
 
 # TOC:
@@ -70,8 +70,8 @@ setopt appendhistory autocd extendedglob
 MANPATH=/opt/local/share/man:$MANPATH
 PATH="/usr/local/mysql/bin:/Users/jaffer/bin/:$PATH:$HOME/opt/jruby/bin"
 PATH="$HOME/bin:/opt/local/bin:/opt/local/sbin:$PATH"
-PATH="$HOME/opt/clojure-extra/sh-script:$PATH"
-CLASSPATH="$HOME/clojure/contrib:$HOME/clojure/:$CLASSPATH"
+PATH="$HOME/.emacs.d/clojure:$PATH"
+CLASSPATH="$HOME/.emacs.d/clojure/:.:$CLASSPATH"
 
 unsetopt ALL_EXPORT
 
