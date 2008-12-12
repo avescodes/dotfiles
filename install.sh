@@ -7,4 +7,6 @@ for FILE in .??*; do
   cp ~/.emacs.d/installable/$FILE ~/$FILE
 done
 
+mkdir $HOME/.clojure
+cp $CLJ_DIR/jline.jar $HOME/.clojure/jline.jar
 echo "Done!"
