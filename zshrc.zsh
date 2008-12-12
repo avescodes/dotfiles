@@ -1,6 +1,6 @@
 # File:     ~/.zshrc
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2008-12-11 19:35:27 CST>
+# Modified: <2008-12-12 10:05:05 CST>
 
 
 # TOC:
@@ -66,12 +66,19 @@ h () { history 0 | grep $1 }
 
 setopt appendhistory autocd extendedglob
 
+CLJ_DIR=$HOME/.emacs.d/clojure
+CLJ_CONTRIB=$CLJ_DIR/contrib/clojure-contrib.jar
+JLINE=$CLJ_DIR/jline.jar
+CLJ=$CLJ_DIR/clojure.jar
+CLJ_SELF=$CLJ_DIR/self.clj
+CLASSPATH="$CLJ_DIR:$CLJ_CONTRIB:$JLINE:$CLJ:$CLJ_SELF:.:$CLASSPATH"
+
 # Path setting
 MANPATH=/opt/local/share/man:$MANPATH
 PATH="/usr/local/mysql/bin:/Users/jaffer/bin/:$PATH:$HOME/opt/jruby/bin"
 PATH="$HOME/bin:/opt/local/bin:/opt/local/sbin:$PATH"
-PATH="$HOME/.emacs.d/clojure:$PATH"
-CLASSPATH="$HOME/.emacs.d/clojure/:.:$CLASSPATH"
+PATH="$CLJ_DIR:$PATH"
+
 
 unsetopt ALL_EXPORT
 
