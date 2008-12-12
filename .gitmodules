@@ -7,3 +7,6 @@
 [submodule "site-lisp/slime"]
 	path = site-lisp/slime
 	url = git://git.boinkor.net/slime.git
+[submodule "clojure/contrib"]
+	path = clojure/contrib
+	url = git://github.com/kevinoneill/clojure-contrib.git

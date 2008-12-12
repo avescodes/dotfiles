@@ -1,6 +1,6 @@
 # File:     ~/.zshrc
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2008-12-06 15:19:07 CST>
+# Modified: <2008-12-11 18:13:18 CST>
 
 
 # TOC:
@@ -71,7 +71,7 @@ MANPATH=/opt/local/share/man:$MANPATH
 PATH="/usr/local/mysql/bin:/Users/jaffer/bin/:$PATH:$HOME/opt/jruby/bin"
 PATH="$HOME/bin:/opt/local/bin:/opt/local/sbin:$PATH"
 PATH="$HOME/opt/clojure-extra/sh-script:$PATH"
-CLASSHPATH="$CLASSPATH:/Users/jaffer/Dev/clj/"
+CLASSPATH="$HOME/clojure/contrib:$HOME/clojure/:$CLASSPATH"
 
 unsetopt ALL_EXPORT
 
