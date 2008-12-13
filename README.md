@@ -1,8 +1,6 @@
 # Installation Instructions #
 
-1. Make sure this repository is located at ~/.emacs.d
-
-2. From ~/.emacs.d, run "./install.sh" to install dotfiles to ~/
-
-3. From ~/.emacs.d, run "git submodule update --init".
-
+To install, make sure the repository is located at `~/.emacs.d`, then
+run `rake install` from within the directory. To update, run `rake
+update`. This will fetch the newest version of the repository and
+update git submodules.
