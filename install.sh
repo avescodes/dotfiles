@@ -6,5 +6,6 @@ for FILE in .??*; do
   mv ~/$FILE ~/$FILE.old >/dev/null 2>&1
   cp ~/.emacs.d/installable/$FILE ~/$FILE
 done
-
+mkdir ~/.clojure/ || cd ~/.clojure/
+cp ~/.emacs.d/clojure/jline.jar .
 echo "Done!"

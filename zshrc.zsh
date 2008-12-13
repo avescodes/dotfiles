@@ -1,6 +1,6 @@
 # File:     ~/.zshrc
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2008-12-11 19:35:27 CST>
+# Modified: <2008-12-12 21:17:19 CST>
 
 
 # TOC:
@@ -71,7 +71,8 @@ MANPATH=/opt/local/share/man:$MANPATH
 PATH="/usr/local/mysql/bin:/Users/jaffer/bin/:$PATH:$HOME/opt/jruby/bin"
 PATH="$HOME/bin:/opt/local/bin:/opt/local/sbin:$PATH"
 PATH="$HOME/.emacs.d/clojure:$PATH"
-CLASSPATH="$HOME/.emacs.d/clojure/:.:$CLASSPATH"
+CLJ_DIR="$HOME/.emacs.d/clojure"
+CLASSPATH="$CLJ_DIR/clojure.jar:$CLJ_DIR/user.clj:$HOME/.clojure/jline.jar"
 
 unsetopt ALL_EXPORT
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 CLOJURE_DIR=$HOME/.emacs.d/clojure
-CONTRIB=$CLOJURE_DIR/contrib/clojure-contrib.jar
-JLINE=$CLOJURE_DIR/jline.jar
+    CONTRIB=$CLOJURE_DIR/contrib/clojure-contrib.jar
+      JLINE=$HOME/.clojure/jline.jar
 CLOJURE_JAR=$CLOJURE_DIR/clojure.jar
 if [ -z "$1" ]; then
   java -cp $CONTRIB:$JLINE:$CLOJURE_JAR \
