@@ -1,11 +1,10 @@
 #!/bin/bash
-CLOJURE_DIR=$HOME/.emacs.d/clojure
-    CONTRIB=$CLOJURE_DIR/contrib/clojure-contrib.jar
-      JLINE=$HOME/.clojure/jline.jar
-CLOJURE_JAR=$CLOJURE_DIR/clojure.jar
+
+CP=$(echo ~/.emacs.d/clojure/*.jar | tr ' ' ':'):~/.emacs.d/clojure/user.clj
+
 if [ -z "$1" ]; then
-  java -cp $CONTRIB:$JLINE:$CLOJURE_JAR \
+  java -cp $CP \
   jline.ConsoleRunner clojure.lang.Repl
 else
-  java -cp  $CONTRIB:$CLOJURE_JAR clojure.lang.Script $1
+  java -cp $CP clojure.lang.Script $1
 fi
