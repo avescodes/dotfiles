@@ -44,6 +44,8 @@ namespace :update do
   task :git do
     puts "Updating emacs.d repository..."
     system("cd #{PATH}; git pull")
+    puts "Updating emacs.d remotes"
+    system("cd #{PATH}; git remote update")
   end
 
   task :all => [:submodules, :git]
