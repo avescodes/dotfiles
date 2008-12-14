@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-12-12 23:47:51 CST>
+;; Modified: <2008-12-13 14:28:52 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -122,6 +122,7 @@
 
 (set-register ?E '(file . "~/.emacs.d/emacs-init.el")) ;; Easy access!
 (set-register ?Z '(file . "~/.emacs.d/zshrc.zsh"))     ;; Ditto.
+(set-register ?T '(file . "~/Documents/todo.txt"))     ;; And more for me
 
 (when *fuzzy-find*
   (add-path "fuzzy-find-in-project")

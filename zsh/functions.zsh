@@ -1,8 +1,10 @@
 # File:     ~/.emacs.d/zsh/functions.zsh
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2008-12-12 23:59:26 CST>
+# Modified: <2008-12-13 00:09:41 CST>
 
 # This file is loaded by zshrc.zsh
+
+set_cp() { export CLASSPATH
 
 mdc()    { mkdir -p "$1" && cd "$1" }
 setenv() { export $1=$2 }
