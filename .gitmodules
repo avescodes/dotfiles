@@ -13,3 +13,6 @@
 [submodule "site-lisp/magit"]
 	path = site-lisp/magit
 	url = git://gitorious.org/magit/mainline.git
+[submodule "site-lisp/emacs-rails"]
+	path = site-lisp/emacs-rails
+	url = git://github.com/tomtt/emacs-rails.git

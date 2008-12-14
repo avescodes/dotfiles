@@ -36,8 +36,9 @@
 
 (add-path "slime")
 (add-path "magit")
-(add-path "rails")
+(add-path "emacs-rails")
 (add-to-list 'load-path "~/.emacs.d/themes")
+
 
 (require 'magit)
 (global-set-key "\C-xg" 'magit-status)
