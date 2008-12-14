@@ -37,7 +37,7 @@ namespace :update do
   desc "Update git submodules"
   task :submodules do
     puts "Updating submodules..."
-    system("cd #{PATH}; git submodule update")
+    system("cd #{PATH}; git submodule init; git submodule update")
   end
 
   desc "Update emacs.d repository"

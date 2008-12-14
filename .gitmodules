@@ -10,3 +10,6 @@
 [submodule "clojure/contrib"]
 	path = clojure/contrib
 	url = git://github.com/kevinoneill/clojure-contrib.git
+[submodule "site-lisp/magit"]
+	path = site-lisp/magit
+	url = git://gitorious.org/magit/mainline.git
