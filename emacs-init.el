@@ -35,8 +35,11 @@
 (add-path "")
 
 (add-path "slime")
+(add-path "magit")
 (add-path "rails")
 (add-to-list 'load-path "~/.emacs.d/themes")
+
+(require 'magit)
 
 (when *ido*
   (require 'ido)
@@ -227,12 +230,12 @@
   version-control        t)            ;; use versioned backups
 
 ;;; >>> Git <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'vc-git)
-(add-to-list 'vc-handled-backends 'git)
-(require 'git)
-(autoload 'git-blame-mode "git-blame"
-           "Minor mode for incremental blame for Git." t)
-(global-set-key "\C-xg" 'git-status)
+;; (require 'vc-git)
+;; (add-to-list 'vc-handled-backends 'git)
+;; (require 'git)
+;; (autoload 'git-blame-mode "git-blame"
+;;            "Minor mode for incremental blame for Git." t)
+;; (global-set-key "\C-xg" 'git-status)
 
 
 
