@@ -14,7 +14,6 @@
 (defvar *default-font*  "Anonymous")
 
 ;;; >>> Feature Selection <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defvar *folding*       nil) ;; Code folding (buggy).
 (defvar *tramp*         t)   ;; Enable remote file access
 (defvar *cedet*         t)   ;; Common emacs development tools. Big, but handy.
 (defvar *color-theme*   t)   ;; Probably disable for GNU Emacs <22
@@ -322,28 +321,6 @@
                 (define-key slime-repl-mode-map (kbd "C-c d") 'slime-java-describe)
                 (define-key slime-mode-map (kbd "C-c D") 'slime-javadoc)
                 (define-key slime-repl-mode-map (kbd "C-c D") 'slime-javadoc))))
-
-
-;;; >>> Code Folding <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; If only this didn't suck so hard...
-(when *folding*
-  (require 'folding)
-  (folding-mode-add-find-file-hook)
-  (setq folding-mode-marks-alist
-    (nconc
-      '((ruby-mode       "#{{{"    "#}}}" ))
-      '((conf-space-mode "#{{{"    "#}}}" ))
-      '((scheme-mode     ";{{{"    ";}}}" ))
-      '((clojure-mode    ";{{{"    ";}}}" ))
-      '((css-mode       "/*{{{"   "/*}}}" ))
-      '((nxml-mode    "<!--{{{" "<!--}}}" ))
-      folding-mode-marks-alist))
-  (add-hook 'find-file-hooks 'folding-mode)
-  (global-set-key "\C-co" 'folding-open-buffer)
-  (global-set-key "\C-cf" 'folding-toggle-show-hide)
-  (global-set-key "\C-cc" 'folding-whole-buffer))
-
-;;}}}
 
 
 (autoload 'ruby-mode "ruby-mode" nil t)
