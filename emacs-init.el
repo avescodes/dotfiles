@@ -40,6 +40,7 @@
 (add-to-list 'load-path "~/.emacs.d/themes")
 
 (require 'magit)
+(global-set-key "\C-xg" 'magit-status)
 
 (when *ido*
   (require 'ido)
@@ -229,15 +230,11 @@
   kept-old-versions      2
   version-control        t)            ;; use versioned backups
 
-;;; >>> Git <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (require 'vc-git)
-;; (add-to-list 'vc-handled-backends 'git)
-;; (require 'git)
-;; (autoload 'git-blame-mode "git-blame"
-;;            "Minor mode for incremental blame for Git." t)
-;; (global-set-key "\C-xg" 'git-status)
 
-
+(add-hook 'c-mode-common-hook 'set-newline-and-indent)
+(add-hook 'clojure-mode-hook  'set-newline-and-indent)
+(add-hook 'ruby-mode-hook     'set-newline-and-indent)
+(add-hook 'lisp-mode          'set-newline-and-indent)
 
 ;; No syntax highlighting on plain text
 (add-hook 'text-mode-hook     'turn-off-auto-fill)
