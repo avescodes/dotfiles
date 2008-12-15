@@ -1,6 +1,6 @@
 # File:     ~/.emacs.d/zsh/prompts.zsh
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2008-12-15 09:09:11 CST>
+# Modified: <2008-12-15 09:10:14 CST>
 
 # This file is loaded by zshrc.zsh
 
@@ -18,7 +18,7 @@ eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
 done
 
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
-PS1="$PR_RED%2c $PR_NO_COLOR`git-prompt`$PR_YELLOW% $ $PR_NO_COLOR"
+PS1="$PR_RED%2c $PR_YELLOW% $ $PR_NO_COLOR"
 RPS1="$PR_RED%n$PR_NO_COLOR@$PR_LIGHT_RED%U%m%u $PR_YELLOW(%T)$PR_NO_COLOR"
 #(`git-prompt`)
 
