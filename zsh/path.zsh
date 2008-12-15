@@ -1,6 +1,6 @@
 # File:     ~/.emacs.d/zsh/path.zsh
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2008-12-13 00:09:38 CST>
+# Modified: <2008-12-14 12:26:16 CST>
 
 # This file is loaded by zshrc.zsh
 
@@ -12,5 +12,5 @@ PATH="$HOME/bin:/opt/local/bin:/opt/local/sbin:$PATH"
 PATH="$HOME/.emacs.d/clojure:$PATH"
 CLJ_DIR="$HOME/.emacs.d/clojure"
 
+CLASSPATH=.:$CLASSPATH
 unsetopt ALL_EXPORT
-$CLJ_DIR/clojure
