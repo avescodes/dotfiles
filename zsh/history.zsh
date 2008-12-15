@@ -1,6 +1,6 @@
 # File:     ~/.emacs.d/zsh/history.zsh
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2008-12-12 23:53:47 CST>
+# Modified: <2008-12-15 08:45:31 CST>
 
 # This file is loaded by zshrc.zsh
 
@@ -16,6 +16,6 @@ HIST_EXPIRE_DUPS_FIRST=1
 # Grep the history with 'h'
 h () { history 0 | grep $1 }
 
-setopt appendhistory autocd extendedglob
+setopt appendhistory autocd extendedglob auto_pushd pushd_silent
 
 unsetopt ALL_EXPORT

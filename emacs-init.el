@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-12-13 14:28:52 CST>
+;; Modified: <2008-12-15 08:48:34 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -14,7 +14,7 @@
 (defvar *default-font*  "Anonymous")
 
 ;;; >>> Feature Selection <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defvar *tramp*         t)   ;; Enable remote file access
+
 (defvar *cedet*         t)   ;; Common emacs development tools. Big, but handy.
 (defvar *color-theme*   t)   ;; Probably disable for GNU Emacs <22
 (defvar *yasnippet*     t)   ;; Snippets a la Textmate. Awesomeness, defined.
@@ -206,6 +206,7 @@
 
 ;; Select all. Apparently some morons bind this to C-a.
 (global-set-key "\C-c\C-a"   'mark-whole-buffer)
+(global-set-key "\C-ct"      '(lambda () (interactive) (ansi-term "/bin/zsh")))
 
 ;; Alternative to RSI-inducing M-x, and extra insurance.
 (global-set-key "\C-xm"      'execute-extended-command)
@@ -264,25 +265,18 @@
 ;;This isn't working
 (add-hook 'lisp-mode          'set-newline-and-indent)
 
-;; Remote File Editing
-(when *tramp*
-  (require 'tramp)
-  (setq tramp-default-method "ssh"))
-
-
-
 (when *clojure*
   (add-path "swank-clojure")
   (add-path "slime")
   (add-path "clojure-mode")
 
   (require 'clojure-auto)
-  (require 'slime)
+  (require 'swank-clojure-autoload)
+  (autoload 'slime "slime" nil t)
   (add-hook 'slime-mode 'set-newline-and-indent)
   (add-hook 'clojure-mode-hook '(lambda() (local-set-key "\C-j" 'slime-eval-print-last-expression)))
-  (slime-setup)
   (setq swank-clojure-binary "~/.emacs.d/clojure/clojure")
-  (require 'swank-clojure-autoload)
+
 
   ;; Slime-javadoc config
   (defun slime-java-describe (symbol-name)
@@ -334,7 +328,7 @@
     '(("\\.yml$"   . yaml-mode))
     '(("\\.json$"  . yaml-mode))
     '(("\\.rb$"    . ruby-mode))
-    '(("\\.js$"    . js2-mode))
+    '(("\\.zsh$"   . sh-mode))
     '(("Rakefile$" . ruby-mode))
     '(("\\.pro$" . prolog-mode))
     auto-mode-alist))
@@ -346,22 +340,3 @@
   (- (+ hi lo) (+ (first *emacs-load-start*) (second *emacs-load-start*)))))
 
 (setq debug-on-error nil)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

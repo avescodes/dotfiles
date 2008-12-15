@@ -1,6 +1,6 @@
 # File:     ~/.zshrc
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2008-12-13 00:02:59 CST>
+# Modified: <2008-12-15 08:53:03 CST>
 
 
 # TOC:
@@ -38,6 +38,7 @@ setopt CORRECT
 
 bindkey -e
 
+. ~/.emacs.d/zsh/git.zsh
 . ~/.emacs.d/zsh/history.zsh
 . ~/.emacs.d/zsh/path.zsh
 . ~/.emacs.d/zsh/completions.zsh

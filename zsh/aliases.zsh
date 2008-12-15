@@ -1,10 +1,10 @@
 # File:     ~/.emacs.d/zsh/aliases.zsh
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2008-12-13 00:01:23 CST>
+# Modified: <2008-12-15 08:44:47 CST>
 
 # This file is loaded by zshrc.zsh
 
-
+alias b="popd"
 
 alias gitc="git add .;git commit -a -m"
 alias gitco="git checkout"
