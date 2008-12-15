@@ -1,6 +1,6 @@
 # File:     ~/.emacs.d/zsh/prompts.zsh
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2008-12-15 08:51:57 CST>
+# Modified: <2008-12-15 09:09:11 CST>
 
 # This file is loaded by zshrc.zsh
 
@@ -10,13 +10,15 @@ autoload colors zsh/terminfo
 if [[ "$terminfo[colors]" -ge 8 ]]; then
 colors
 fi
+
 for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
 eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
 eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
 (( count = $count + 1 ))
 done
+
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
-PS1="$PR_RED%2c [`git-prompt`]$PR_YELLOW%(!.#.$)$PR_NO_COLOR "
+PS1="$PR_RED%2c $PR_NO_COLOR`git-prompt`$PR_YELLOW% $ $PR_NO_COLOR"
 RPS1="$PR_RED%n$PR_NO_COLOR@$PR_LIGHT_RED%U%m%u $PR_YELLOW(%T)$PR_NO_COLOR"
 #(`git-prompt`)
 
@@ -31,7 +33,7 @@ if [[ $TERM == "dumb" ]]; then
       RPS1=""
 fi
 # Compatibility with TRAMP
-$TERM = "dumb" ] && unsetopt zle && PS1='$ ' && RPS1=''
+[ $TERM = "dumb" ] && unsetopt zle && PS1='$ ' && RPS1=''
 
 # emacs ansi-term sends "eterm-color".
 if [[ $TERM == "eterm-color" ]]; then
