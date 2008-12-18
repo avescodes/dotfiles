@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-12-15 08:48:34 CST>
+;; Modified: <2008-12-17 22:57:42 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -23,6 +23,7 @@
 (defvar *clojure*       t)   ;; Using clojure? (Select slime as well.)
 (defvar *ido*           t)   ;; Using ido?
 (defvar *fuzzy-find*    t)   ;; Fuzzy find in project
+(defvar *gist*          t)   ;; Gist integration
 
 ;;; >>> Configure Load Path <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq emacs-config-path "~/.emacs.d/")
@@ -92,7 +93,7 @@
   (require 'ri)
   (require 'ruby-block)
   ;(require 'ruby-compilation)
-  (require 'ruby-electric)
+  ;(require 'ruby-electric)
   (require 'ruby-mode)
   (require 'unbound))
 
@@ -340,3 +341,8 @@
   (- (+ hi lo) (+ (first *emacs-load-start*) (second *emacs-load-start*)))))
 
 (setq debug-on-error nil)
+
+(when *gist*
+  (add-path "gist")
+  (require 'gist)
+  (load-file "~/.emacs.d/private/private.el"))
