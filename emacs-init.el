@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-12-17 22:57:42 CST>
+;; Modified: <2008-12-18 07:23:51 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -37,6 +37,7 @@
 (add-path "slime")
 (add-path "magit")
 (add-path "emacs-rails")
+(add-path "markdown-mode")
 (add-to-list 'load-path "~/.emacs.d/themes")
 
 
@@ -321,6 +322,7 @@
 (autoload 'ruby-mode "ruby-mode" nil t)
 (autoload 'haml-mode "haml-mode" nil t)
 (autoload 'yaml-mode "yaml-mode" nil t)
+(autoload 'markdown-mode "markdown-mode" nil t)
 (setq auto-mode-alist
   (nconc
     '(("\\.xml$"   . nxml-mode))
@@ -329,6 +331,7 @@
     '(("\\.yml$"   . yaml-mode))
     '(("\\.json$"  . yaml-mode))
     '(("\\.rb$"    . ruby-mode))
+    '(("\\.md$"    . markdown-mode))
     '(("\\.zsh$"   . sh-mode))
     '(("Rakefile$" . ruby-mode))
     '(("\\.pro$" . prolog-mode))
