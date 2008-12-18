@@ -1,6 +1,6 @@
 # File:     ~/.emacs.d/zsh/aliases.zsh
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2008-12-15 08:44:47 CST>
+# Modified: <2008-12-18 07:21:07 CST>
 
 # This file is loaded by zshrc.zsh
 
@@ -8,6 +8,7 @@ alias b="popd"
 
 alias gitc="git add .;git commit -a -m"
 alias gitco="git checkout"
+alias gits="git status"
 alias gitl="git log"
 alias gitd="git diff"
 alias gitbl="git branch -l"
