@@ -1,18 +1,6 @@
 # File:     ~/.zshrc
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2008-12-23 01:50:08 CST>
-
-
-# TOC:
-#  - Environment
-#  - Misc.
-#  - History
-#  - Titles
-#  - Completion
-#  - Functions
-#  - Aliases
-#  - Git functions
-#  - Prompts
+# Modified: <2008-12-23 02:09:28 CST>
 
 export NAME="Ryan Neufeld"
 export EMAIL="neufelry@gmail.com"

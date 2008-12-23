@@ -1,3 +1,5 @@
+git config --global core.excludesfile ~/.gitignore
+
 if [[ -x `which git` ]]; then
   function git-branch-name () {
     git branch 2> /dev/null | grep '^\*' | sed 's/^\*\ //'
