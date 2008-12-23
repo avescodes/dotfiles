@@ -1,6 +1,6 @@
 # File:     ~/.zshrc
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2008-12-15 08:53:03 CST>
+# Modified: <2008-12-23 01:50:08 CST>
 
 
 # TOC:
@@ -45,3 +45,4 @@ bindkey -e
 . ~/.emacs.d/zsh/functions.zsh
 . ~/.emacs.d/zsh/prompts.zsh
 . ~/.emacs.d/zsh/aliases.zsh
+. ~/.emacs.d/zsh/rake_completions.zsh

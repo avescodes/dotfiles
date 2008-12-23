@@ -4,7 +4,7 @@
 
 # This file is loaded by zshrc.zsh
 
-set_cp() { export CLASSPATH
+set_cp() { export CLASSPATH }
 
 mdc()    { mkdir -p "$1" && cd "$1" }
 setenv() { export $1=$2 }

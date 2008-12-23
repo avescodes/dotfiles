@@ -1,1 +1,1 @@
-. ~/.emacs.d/zshrc.zsh
+. ~/.emacs.d/zsh/zshrc.zsh
