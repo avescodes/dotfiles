@@ -25,7 +25,11 @@ namespace :install do
     puts "Backing up current files to ~/<FILE>.old."
     dotfiles.each do |dotfile|
       sys_loc = File.join(File.expand_path("~"), dotfile)
-      FileUtils.copy sys_loc, "#{sys_loc}.old"
+      begin 
+        FileUtils.copy sys_loc, "#{sys_loc}.old"
+      rescue
+        ## do nothing
+      end
       install "dotfiles/#{dotfile}", sys_loc
     end
   end
