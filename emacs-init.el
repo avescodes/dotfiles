@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-12-18 07:23:51 CST>
+;; Modified: <2008-12-23 00:52:28 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -24,6 +24,7 @@
 (defvar *ido*           t)   ;; Using ido?
 (defvar *fuzzy-find*    t)   ;; Fuzzy find in project
 (defvar *gist*          t)   ;; Gist integration
+(defvar *merb*          t)   ;; Merb, Rails minor modes
 
 ;;; >>> Configure Load Path <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq emacs-config-path "~/.emacs.d/")
@@ -135,6 +136,10 @@
   (require 'fuzzy-find-in-project)
   (global-set-key "\C-c\C-f" 'fuzzy-find-in-project)
   (global-set-key "\C-cfr" 'fuzzy-find-project-root))
+
+(when *merb* 
+  (add-path "rinari")
+  (require 'rinari-merb))
 
 ;; how patronizing could an editor possibly be? 'y' will do...
 (fset 'yes-or-no-p 'y-or-n-p)
