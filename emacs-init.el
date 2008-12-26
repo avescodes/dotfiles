@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-12-23 00:52:28 CST>
+;; Modified: <2008-12-25 19:34:48 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -106,6 +106,7 @@
   '(minibuffer-max-depth     nil)        ;; enable multiple minibuffers
   '(indent-tabs-mode         nil)        ;; soft tabs
   '(default-tab-width        2)          ;; tabs of width 2
+  '(tab-stop-list (quote (2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40 42 44 46 48 50 52 54 56 58 60 62 64 66 68 70 72 74 76 78 80)))    ;; Make tabs work better
   '(standard-indent          2)
   '(scroll-bar-mode          nil)        ;; no scroll bar
   '(tool-bar-mode            nil)        ;; eww. bad.
@@ -262,7 +263,6 @@
                            (delete-trailing-whitespace)
                            )))
             (set (make-local-variable 'indent-tabs-mode) 'nil)
-            (set (make-local-variable 'tab-width) 2)
             (imenu-add-to-menubar "IMENU")
             (define-key ruby-mode-map "C-m" 'newline-and-indent) ;Not sure if this line is 100% right but it works!
             (require 'ruby-electric)
