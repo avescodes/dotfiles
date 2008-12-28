@@ -29,10 +29,10 @@ if (RUBY_VERSION == "1.8.7")
         method = [klass, method].compact.join('#')
       end
       puts `ri '#{method}'`
+
     end
-  
-    def non_class_methods
-      self.methods - Class.methods
+    def local_methods
+      (methods - Object.instance_methods).sort
     end
   end
 end
