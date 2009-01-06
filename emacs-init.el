@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2008-12-25 19:34:48 CST>
+;; Modified: <2009-01-06 17:09:21 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -94,8 +94,6 @@
   (require 'mode-compile)
   (require 'ri)
   (require 'ruby-block)
-  ;(require 'ruby-compilation)
-  ;(require 'ruby-electric)
   (require 'ruby-mode)
   (require 'unbound))
 
@@ -225,6 +223,8 @@
 (global-set-key "\C-c\C-r" 'query-replace)
 (global-set-key "\C-c\C-e" 'query-replace-regex)
 
+(global-set-key "\C-ch" 'hs-hide-block)
+(global-set-key "\C-cs" 'hs-show-block)
 
 ;; short form for query regex replace
 (defalias 'qrr 'query-replace-regexp)
@@ -264,9 +264,7 @@
                            )))
             (set (make-local-variable 'indent-tabs-mode) 'nil)
             (imenu-add-to-menubar "IMENU")
-            (define-key ruby-mode-map "C-m" 'newline-and-indent) ;Not sure if this line is 100% right but it works!
-            (require 'ruby-electric)
-            (ruby-electric-mode t)
+            (define-key ruby-mode-map "\C-m" 'newline-and-indent) ;Not sure if this line is 100% right but it works!
             ))
 ;(add-hook 'ruby-mode-hook     'enable-rct)
 ;;This isn't working
@@ -344,13 +342,13 @@
 
 (setq magic-mode-alist ())
 
+(when *gist*
+  (add-path "gist")
+  (require 'gist)
+  (load-file "~/.emacs.d/private/private.el"))
 
 (message "Loaded .emacs in %ds" (destructuring-bind (hi lo ms) (current-time)
   (- (+ hi lo) (+ (first *emacs-load-start*) (second *emacs-load-start*)))))
 
 (setq debug-on-error nil)
 
-(when *gist*
-  (add-path "gist")
-  (require 'gist)
-  (load-file "~/.emacs.d/private/private.el"))

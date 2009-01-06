@@ -31,8 +31,10 @@ if (RUBY_VERSION == "1.8.7")
       puts `ri '#{method}'`
 
     end
+
     def local_methods
       (methods - Object.instance_methods).sort
     end
+
   end
 end

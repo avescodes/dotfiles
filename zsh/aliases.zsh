@@ -1,6 +1,6 @@
 # File:     ~/.emacs.d/zsh/aliases.zsh
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2008-12-18 07:21:07 CST>
+# Modified: <2008-12-31 17:58:18 CST>
 
 # This file is loaded by zshrc.zsh
 
@@ -47,11 +47,12 @@ alias scr="screen -r"
 alias su="su -s /bin/zsh"
 
 alias m="mate"
-alias e="emacs"
+alias e="zile"
 alias status="git status"
 alias pull="git pull"
 alias rb="ruby"
 alias rd="ruby -d"
+alias mg="merb-gen"
 
 alias ssh-atlantis='ssh quick.thruhere.net -L 5900:localhost:5900'
 
