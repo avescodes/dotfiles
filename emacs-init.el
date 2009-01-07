@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-07 13:30:10 CST>
+;; Modified: <2009-01-07 13:35:48 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -67,11 +67,6 @@
     (setq color-theme-is-global t)
     (require 'sunburst)
     (color-theme-sunburst))
-
-  (autoload 'speedbar "speedbar" t)
-  (eval-after-load "speedbar"
-    '(progn (speedbar-disable-update)))
-  (global-set-key "\C-c\C-s" 'speedbar)
 
   (require 'rcodetools)
   (require 'rails)
