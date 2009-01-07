@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-07 14:44:06 CST>
+;; Modified: <2009-01-07 17:55:00 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -39,6 +39,7 @@
 (add-path "magit")
 (add-path "emacs-rails")
 (add-path "ruby")
+(add-path "ri")
 (add-path "markdown-mode")
 (add-to-list 'load-path "~/.emacs.d/themes")
 
@@ -75,6 +76,14 @@
   
   ;; Hooks
   (add-hook 'ruby-mode-hook     'set-newline-and-indent)
+  (add-hook 'ruby-mode-hook
+         '(lambda ()
+            (define-key ruby-mode-map "\C-hr"
+              'ri)))
+  (add-hook 'ruby-mode-hook
+            '(lambda ()
+               (define-key ruby-mode-map "\C-c\C-r"
+                 'run-ruby-region)))
   (add-hook 'ruby-mode-hook
             (lambda()
               (add-hook 'local-write-file-hooks
@@ -209,11 +218,6 @@
     (insert (format-time-string format))))
 
 
-;(global-set-key (kbd "<down>") '())
-;(global-set-key (kbd "<up>") '())
-;(global-set-key (kbd "<right>") '())
-;(global-set-key (kbd "<left>") '())
-
 (global-set-key [(meta up)]   '(lambda() (interactive) (scroll-other-window -1)))
 (global-set-key [(meta down)] '(lambda() (interactive) (scroll-other-window 1)))
 (global-set-key [(meta -)]    '(lambda() (interactive) (shrink-window 1)))
@@ -236,7 +240,7 @@
 (global-set-key "\C-x\C-m"   'execute-extended-command)
 (global-set-key "\C-c\C-m"   'execute-extended-command)
 
-(global-set-key "\C-c\C-r" 'query-replace)
+(global-set-key "\C-c\C-q" 'query-replace)
 (global-set-key "\C-c\C-e" 'query-replace-regex)
 
 (global-set-key "\C-ch" 'hs-hide-block)

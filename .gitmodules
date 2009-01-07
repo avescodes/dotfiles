@@ -25,3 +25,6 @@
 [submodule "site-lisp/rinari"]
 	path = site-lisp/rinari
 	url = git://github.com/eschulte/rinari.git
+[submodule "site-lisp/ri"]
+	path = site-lisp/ri
+	url = git://github.com/technomancy/ri-emacs.git
