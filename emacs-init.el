@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-07 13:57:53 CST>
+;; Modified: <2009-01-07 14:44:06 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -38,8 +38,12 @@
 (add-path "slime")
 (add-path "magit")
 (add-path "emacs-rails")
+(add-path "ruby")
 (add-path "markdown-mode")
 (add-to-list 'load-path "~/.emacs.d/themes")
+
+(require 'ansi-color)
+(ansi-color-for-comint-mode-on)
 
 (require 'magit)
 
