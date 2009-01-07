@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-07 13:35:48 CST>
+;; Modified: <2009-01-07 13:57:53 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -24,6 +24,7 @@
 (defvar *ido*           t)   ;; Using ido?
 (defvar *fuzzy-find*    t)   ;; Fuzzy find in project
 (defvar *gist*          t)   ;; Gist integration
+(defvar *ruby*          t)   ;; Ruby
 (defvar *merb*          t)   ;; Merb, Rails minor modes
 
 ;;; >>> Configure Load Path <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -34,16 +35,13 @@
 
 ;; I should really just do this recursively.
 (add-path "")
-
 (add-path "slime")
 (add-path "magit")
 (add-path "emacs-rails")
 (add-path "markdown-mode")
 (add-to-list 'load-path "~/.emacs.d/themes")
 
-
 (require 'magit)
-(global-set-key "\C-xg" 'magit-status)
 
 (when *ido*
   (require 'ido)
@@ -57,6 +55,39 @@
   (load-file (concat base-lisp-path "cedet-1.0pre4/common/cedet.el"))
   (semantic-load-enable-code-helpers))
 
+(when *ruby* 
+  ; (require 'rcodetools) ;;Not using
+  
+  (require 'rails)
+  (require 'find-recursive)
+  (require 'snippet)
+  (global-set-key "\C-c\C-f" 'rails-goto-file-on-current-line)
+
+  (require 'ri)
+  (require 'ruby-block)
+  (require 'ruby-mode)
+  
+  (require 'inf-ruby) ;; Not working yet
+  
+  ;; Hooks
+  (add-hook 'ruby-mode-hook     'set-newline-and-indent)
+  (add-hook 'ruby-mode-hook
+            (lambda()
+              (add-hook 'local-write-file-hooks
+                        '(lambda()
+                           (save-excursion
+                             (untabify (point-min) (point-max))
+                             (delete-trailing-whitespace)
+                             )))
+              (set (make-local-variable 'indent-tabs-mode) 'nil)
+              (imenu-add-to-menubar "IMENU")
+              (define-key ruby-mode-map "\C-m" 'newline-and-indent) ;Not sure if this line is 100% right but it works!
+              ))
+
+  (when *merb* 
+    (add-path "rinari")
+    (require 'rinari-merb)))
+
 (when window-system
 
   (global-unset-key "\C-z")
@@ -67,13 +98,6 @@
     (setq color-theme-is-global t)
     (require 'sunburst)
     (color-theme-sunburst))
-
-  (require 'rcodetools)
-  (require 'rails)
-  (require 'find-recursive)
-  (require 'snippet)
-  (require 'inf-ruby)
-  (global-set-key "\C-c\C-f" 'rails-goto-file-on-current-line)
 
   (when *yasnippet*
     (require 'yasnippet)
@@ -87,9 +111,6 @@
   (require 'java-complete)
   (require 'lorem-ipsum)
   (require 'mode-compile)
-  (require 'ri)
-  (require 'ruby-block)
-  (require 'ruby-mode)
   (require 'unbound))
 
 (custom-set-variables
@@ -130,10 +151,6 @@
   (require 'fuzzy-find-in-project)
   (global-set-key "\C-c\C-f" 'fuzzy-find-in-project)
   (global-set-key "\C-cfr" 'fuzzy-find-project-root))
-
-(when *merb* 
-  (add-path "rinari")
-  (require 'rinari-merb))
 
 ;; how patronizing could an editor possibly be? 'y' will do...
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -221,6 +238,8 @@
 (global-set-key "\C-ch" 'hs-hide-block)
 (global-set-key "\C-cs" 'hs-show-block)
 
+(global-set-key "\C-xg" 'magit-status)
+
 ;; short form for query regex replace
 (defalias 'qrr 'query-replace-regexp)
 
@@ -247,21 +266,6 @@
 (add-hook 'c-mode-common-hook 'set-newline-and-indent)
 (add-hook 'erlang-mode-hook 'set-newline-and-indent)
 
-;; Ruby
-(add-hook 'ruby-mode-hook     'set-newline-and-indent)
-(add-hook 'ruby-mode-hook
-          (lambda()
-            (add-hook 'local-write-file-hooks
-                      '(lambda()
-                         (save-excursion
-                           (untabify (point-min) (point-max))
-                           (delete-trailing-whitespace)
-                           )))
-            (set (make-local-variable 'indent-tabs-mode) 'nil)
-            (imenu-add-to-menubar "IMENU")
-            (define-key ruby-mode-map "\C-m" 'newline-and-indent) ;Not sure if this line is 100% right but it works!
-            ))
-;(add-hook 'ruby-mode-hook     'enable-rct)
 ;;This isn't working
 (add-hook 'lisp-mode          'set-newline-and-indent)
 
@@ -316,7 +320,6 @@
                 (define-key slime-mode-map (kbd "C-c D") 'slime-javadoc)
                 (define-key slime-repl-mode-map (kbd "C-c D") 'slime-javadoc))))
 
-
 (autoload 'ruby-mode "ruby-mode" nil t)
 (autoload 'haml-mode "haml-mode" nil t)
 (autoload 'yaml-mode "yaml-mode" nil t)
@@ -346,4 +349,3 @@
   (- (+ hi lo) (+ (first *emacs-load-start*) (second *emacs-load-start*)))))
 
 (setq debug-on-error nil)
-
