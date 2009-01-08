@@ -9,7 +9,7 @@ setopt ALL_EXPORT
 MANPATH=/opt/local/share/man:$MANPATH
 PATH="/usr/local/mysql/bin:/Users/jaffer/bin/:$PATH:$HOME/opt/jruby/bin"
 PATH="$HOME/bin:/opt/local/bin:/opt/local/sbin:$PATH"
-PATH="$HOME/.emacs.d/clojure:$PATH"
+PATH="$HOME/.emacs.d/clojure:$HOME/.emacs.d/site-lisp/ri:$PATH"
 CLJ_DIR="$HOME/.emacs.d/clojure"
 
 CLASSPATH=.:$CLASSPATH
