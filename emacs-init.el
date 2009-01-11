@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-10 20:16:38 CST>
+;; Modified: <2009-01-10 20:26:43 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -27,6 +27,7 @@
 (defvar *ruby*          t)   ;; Ruby
 (defvar *merb*          t)   ;; Merb, Rails minor modes
 (defvar *jess*          t)   ;; Jess, a java expert systems language
+(defvar *joust*         t)   ;; Joust package manager
 
 ;;; >>> Configure Load Path <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq emacs-config-path "~/.emacs.d/")
@@ -36,14 +37,8 @@
 
 ;; I should really just do this recursively.
 (add-path "")
-(add-path "slime")
-(add-path "magit")
-(add-path "emacs-rails")
-(add-path "ruby")
-(add-path "ri")
 (add-path "markdown-mode")
-(add-path "jess")
-(add-to-list 'load-path "~/.emacs.d/themes")
+(add-path "themes")
 
 ;;; >>> Loading Packages <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'ansi-color)
@@ -110,9 +105,10 @@
   (global-set-key "\C-c\C-f" 'fuzzy-find-in-project)
   (global-set-key "\C-cfr" 'fuzzy-find-project-root))
 
-(when *gist*
-  (require 'magit)
+(when *git*
+  (add-path "magit")
   (add-path "gist")
+  (require 'magit)
   (require 'gist)
   (let ((private-el (concat *emacs-config-directory* "/private/private.el")))
     (when (file-exists-p private-el)
@@ -127,6 +123,7 @@
       (define-key ido-completion-map [tab] 'ido-complete))))
 
 (when *jess*
+  (add-path "jess")
   (autoload 'jess-mode "jess-mode" "Jess Editing Mode" t nil)
   (autoload 'run-jess "inf-jess" "Inferior Jess Mode" t nil)
   (add-hook 'jess-mode-hook
@@ -136,9 +133,15 @@
   (setq auto-mode-alist
     (append auto-mode-alist `(("\\.clp$" . jess-mode)))))
 
+(when *joust*
+  (add-to-list 'load-path (concat *emacs-config-directory* "/joust"))
+  (require 'joust))
+
 (when *ruby* 
-  ; (require 'rcodetools) ;;Not using
-  
+  (add-path "ruby")
+  (add-path "ri")
+  (add-path "emacs-rails") 
+
   (require 'rails)
   (require 'find-recursive)
   (require 'snippet)
