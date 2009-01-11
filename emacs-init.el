@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-10 20:26:43 CST>
+;; Modified: <2009-01-11 11:35:56 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -16,18 +16,18 @@
 ;;; >>> Feature Selection <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defvar *cedet*         t)   ;; Common emacs development tools. Big, but handy.
-(defvar *color-theme*   t)   ;; Probably disable for GNU Emacs <22
-(defvar *yasnippet*     t)   ;; Snippets a la Textmate. Awesomeness, defined.
-(defvar *timestamp*     t)   ;; Update "Modified: <>" comments on save
-(defvar *slime*         t)   ;; Using lisp?
 (defvar *clojure*       t)   ;; Using clojure? (Select slime as well.)
-(defvar *ido*           t)   ;; Using ido?
+(defvar *color-theme*   t)   ;; Probably disable for GNU Emacs <22
 (defvar *fuzzy-find*    t)   ;; Fuzzy find in project
 (defvar *git*           t)   ;; Git & Gist integration
-(defvar *ruby*          t)   ;; Ruby
-(defvar *merb*          t)   ;; Merb, Rails minor modes
+(defvar *ido*           t)   ;; Using ido?
 (defvar *jess*          t)   ;; Jess, a java expert systems language
 (defvar *joust*         t)   ;; Joust package manager
+(defvar *merb*          t)   ;; Merb, Rails minor modes
+(defvar *ruby*          t)   ;; Ruby
+(defvar *slime*         t)   ;; Using lisp?
+(defvar *timestamp*     t)   ;; Update "Modified: <>" comments on save
+(defvar *yasnippet*     t)   ;; Snippets a la Textmate. Awesomeness, defined.
 
 ;;; >>> Configure Load Path <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq emacs-config-path "~/.emacs.d/")
@@ -298,10 +298,7 @@
 (set-register ?Z '(file . "~/.emacs.d/zshrc.zsh"))     ;; Ditto.
 (set-register ?T '(file . "~/Documents/todo.txt"))     ;; And more for me
 
-(global-set-key [(meta up)]   '(lambda() (interactive) (scroll-other-window -1)))
-(global-set-key [(meta down)] '(lambda() (interactive) (scroll-other-window 1)))
-(global-set-key [(meta -)]    '(lambda() (interactive) (shrink-window 1)))
-(global-set-key [(meta =)]    '(lambda() (interactive) (shrink-window -1)))
+(windmove-default-keybindings 'meta)
 
 (global-set-key "\C-cd"      'insert-date)
 (global-set-key "\C-ce"      'insert-name-email)
