@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-11 11:35:56 CST>
+;; Modified: <2009-01-11 11:44:02 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -215,26 +215,26 @@
 ;;; ----[ Custom Set Variables ]------------------------------------------------
 
 (custom-set-variables
-  '(global-font-lock-mode    t nil (font-lock)) ;; Syntax higlighting
-  ;; buffers with duplicate names will be dir/file, not file<n>
-  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
-  '(minibuffer-max-depth     nil)        ;; enable multiple minibuffers
-  '(indent-tabs-mode         nil)        ;; soft tabs
-  '(default-tab-width        2)          ;; tabs of width 2
-  '(tab-stop-list (quote (2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40 42 44 46 48 50 52 54 56 58 60 62 64 66 68 70 72 74 76 78 80)))    ;; Make tabs work better
-  '(standard-indent          2)
-  '(scroll-bar-mode          nil)        ;; no scroll bar
-  '(tool-bar-mode            nil)        ;; eww. bad.
-  '(menu-bar-mode            nil)        ;; eww. bad.
-  '(column-number-mode       t)          ;; show column number in the bottom bar
-  '(show-paren-mode          t)          ;; highlight matching paren on hover
-  '(case-fold-search         t)          ;; case-insensitive search
-  '(transient-mark-mode      t)          ;; highlight the marked region
-  '(inhibit-startup-message  t)          ;; no startup message
-  '(default-major-mode       'text-mode) ;; open unknown in text mode
-  '(ring-bell-function       'ignore)    ;; turn off system beep
   '(bookmark-save-flag       1)          ;; Autosave bookmarks on create/etc.
-  '(c-default-style          "k&r"))     ;; use k&r style for C indentation
+  '(c-default-style          "k&r")     ;; use k&r style for C indentation
+  '(case-fold-search         t)          ;; case-insensitive search
+  '(column-number-mode       t)          ;; show column number in the bottom bar
+  '(default-major-mode       'text-mode) ;; open unknown in text mode
+  '(default-tab-width        2)          ;; tabs of width 2
+  '(global-font-lock-mode    t nil (font-lock)) ;; Syntax higlighting
+  '(indent-tabs-mode         nil)        ;; soft tabs
+  '(inhibit-startup-message  t)          ;; no startup message
+  '(menu-bar-mode            nil)        ;; eww. bad.
+  '(minibuffer-max-depth     nil)        ;; enable multiple minibuffers
+  '(ring-bell-function       'ignore)    ;; turn off system beep
+  '(scroll-bar-mode          nil)        ;; no scroll bar
+  '(show-paren-mode          t)          ;; highlight matching paren on hover
+  '(standard-indent          2)
+  '(tab-stop-list (quote (2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40 42 44 46 48 50 52 54 56 58 60 62 64 66 68 70 72 74 76 78 80)))    ;; Make tabs work better
+  '(tool-bar-mode            nil)        ;; eww. bad.
+  '(transient-mark-mode      t)          ;; highlight the marked region
+  ;; buffers with duplicate names will be dir/file, not file<n>
+  '(uniquify-buffer-name-style (quote forward) nil (uniquify)))
 
 ;;; ----[ Tab Functionality ]---------------------------------------------------
 
