@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-07 17:55:00 CST>
+;; Modified: <2009-01-10 19:53:49 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -26,6 +26,7 @@
 (defvar *gist*          t)   ;; Gist integration
 (defvar *ruby*          t)   ;; Ruby
 (defvar *merb*          t)   ;; Merb, Rails minor modes
+(defvar *jess*          t)   ;; Jess, a java expert systems language
 
 ;;; >>> Configure Load Path <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq emacs-config-path "~/.emacs.d/")
@@ -41,8 +42,10 @@
 (add-path "ruby")
 (add-path "ri")
 (add-path "markdown-mode")
+(add-path "jess")
 (add-to-list 'load-path "~/.emacs.d/themes")
 
+;;; >>> Loading Packages <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'ansi-color)
 (ansi-color-for-comint-mode-on)
 
@@ -83,7 +86,7 @@
   (add-hook 'ruby-mode-hook
             '(lambda ()
                (define-key ruby-mode-map "\C-c\C-r"
-                 'run-ruby-region)))
+                 'ruby-send-region)))
   (add-hook 'ruby-mode-hook
             (lambda()
               (add-hook 'local-write-file-hooks
@@ -100,6 +103,16 @@
   (when *merb* 
     (add-path "rinari")
     (require 'rinari-merb)))
+
+(when *jess*
+  (autoload 'jess-mode "jess-mode" "Jess Editing Mode" t nil)
+  (autoload 'run-jess "inf-jess" "Inferior Jess Mode" t nil)
+  (add-hook 'jess-mode-hook
+    #'(lambda ()
+        (auto-fill-mode t)
+        (turn-on-font-lock)))
+  (setq auto-mode-alist
+    (append auto-mode-alist `(("\\.clp$" . jess-mode)))))
 
 (when window-system
 
@@ -154,10 +167,6 @@
   (setq time-stamp-start  "Modified:[   ]+\\\\?[\"<]+")
   (setq time-stamp-end    "\\\\?[\">]")
   (setq time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S %Z"))
-
-(set-register ?E '(file . "~/.emacs.d/emacs-init.el")) ;; Easy access!
-(set-register ?Z '(file . "~/.emacs.d/zshrc.zsh"))     ;; Ditto.
-(set-register ?T '(file . "~/Documents/todo.txt"))     ;; And more for me
 
 (when *fuzzy-find*
   (add-path "fuzzy-find-in-project")
@@ -217,6 +226,9 @@
       (system-time-locale "en_US"))
     (insert (format-time-string format))))
 
+(set-register ?E '(file . "~/.emacs.d/emacs-init.el")) ;; Easy access!
+(set-register ?Z '(file . "~/.emacs.d/zshrc.zsh"))     ;; Ditto.
+(set-register ?T '(file . "~/Documents/todo.txt"))     ;; And more for me
 
 (global-set-key [(meta up)]   '(lambda() (interactive) (scroll-other-window -1)))
 (global-set-key [(meta down)] '(lambda() (interactive) (scroll-other-window 1)))

@@ -1,0 +1,59 @@
+This package contains the official release of jess-mode, a collection
+of Emacs Lisp files designed to facilitate the development of Jess
+applications. Currently, jess-mode consists of two source files:
+
+  * inf-jess.el: An inferior mode for running a Jess interpreter
+    within Emacs. This mode is derived from 'comint', and offers hooks
+    to customize the way Jess is invoked.
+
+  * jess-mode.el: A major mode for editing Jess code. Based on
+    'lisp-mode', jess-mode includes such niceties as font-lock support
+    and special commands for evaluating expressions and controlling an
+    inferior Jess interpreter.
+
+To use jess-mode you should probably install the files in some
+location accessible via 'load-path' (like site-lisp or perhaps your
+personal elisp repository). Otherwise, you'll have to tell Emacs where
+jess-mode lives. You might put something like
+
+  (setq load-path (cons "<path to jess-mode>" load-path))
+
+in your .emacs file, or wherever you keep such things. Next, you'll
+probably want to "auto load" the functions 'jess-mode' and 'run-jess';
+add the following someplace appropriate (again, perhaps your .emacs
+file):
+
+  (autoload 'jess-mode "jess-mode" "Jess Editing Mode" t nil)
+  (autoload 'run-jess "inf-jess" "Inferior Jess Mode" t nil)
+
+You'll probably also want to take advantage of jess-mode's font-lock
+support; I do it like this:
+
+  (add-hook 'jess-mode-hook
+          #'(lambda ()
+              (auto-fill-mode t)
+              (turn-on-font-lock)))
+
+See the font-lock documentation for additional features.
+  
+Finally, tell Emacs to start 'jess-mode' whenever you visit a Jess
+source file:
+
+  (setq auto-mode-alist
+        (append auto-mode-alist '(("\\.clp$" . jess-mode))))
+
+To run an inferior Jess process you must first tell inf-jess how Jess
+should be started. Look at the documentation at the top of inf-jess.el
+for an explanation and examples. Once this has been accomplished,
+evaluating the form (run-jess) should give you a buffer attached to
+the inferior process.
+
+Send any comments and all your bug fixes/complaints to
+`david.young@fnc.fujitsu.com'.
+
+                
+
+
+
+
+        
