@@ -35,13 +35,16 @@
 (defvar *git*           t)   ;; Git & Gist integration
 (defvar *ido*           t)   ;; Using ido?
 (defvar *jess*          t)   ;; Jess, a java expert systems language
-(defvar *joust*         t)   ;; Joust package manager
+(defvar *joust*         nil)   ;; Joust package manager
 (defvar *merb*          t)   ;; Merb, Rails minor modes
 (defvar *ruby*          t)   ;; Ruby
 (defvar *slime*         t)   ;; Using lisp?
 (defvar *timestamp*     t)   ;; Update "Modified: <>" comments on save
 (defvar *yasnippet*     t)   ;; Snippets a la Textmate. Awesomeness, defined.
 
+(when *joust*
+  (add-to-list 'load-path (concat emacs-config-path "/joust"))
+  (require 'joust))
 
 ;;; >>> Loading Packages <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'ansi-color)
@@ -121,7 +124,7 @@
   (add-path "gist")
   (require 'magit)
   (require 'gist)
-  (let ((private-el (concat *emacs-config-directory* "/private/private.el")))
+  (let ((private-el (concat emacs-config-path "/private/private.el")))
     (when (file-exists-p private-el)
       (load-file private-el))))
 
@@ -143,10 +146,6 @@
         (turn-on-font-lock)))
   (setq auto-mode-alist
     (append auto-mode-alist `(("\\.clp$" . jess-mode)))))
-
-(when *joust*
-  (add-to-list 'load-path (concat *emacs-config-directory* "/joust"))
-  (require 'joust))
 
 (when *ruby* 
   (add-path "ruby")
