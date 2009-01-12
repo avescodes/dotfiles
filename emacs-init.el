@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-11 19:16:31 CST>
+;; Modified: <2009-01-11 20:49:38 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -19,6 +19,7 @@
 (defvar *clojure*       t)   ;; Using clojure? (Select slime as well.)
 (defvar *color-theme*   t)   ;; Probably disable for GNU Emacs <22
 (defvar *erc*           t)   ;; Emacs IRC Client
+(defvar *flyspell*      t)   ;; Flyspell spell checking mode
 (defvar *fuzzy-find*    t)   ;; Fuzzy find in project
 (defvar *git*           t)   ;; Git & Gist integration
 (defvar *ido*           t)   ;; Using ido?
@@ -103,6 +104,10 @@
 (when *erc*
   (add-path "erc")
   (require 'erc))
+
+(when *flyspell*
+  (setq ispell-program-name "aspell")
+  (require 'flyspell))
 
 (when *fuzzy-find*
   (add-path "fuzzy-find-in-project")

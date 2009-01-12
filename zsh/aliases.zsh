@@ -1,6 +1,6 @@
 # File:     ~/.emacs.d/zsh/aliases.zsh
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2008-12-31 17:58:18 CST>
+# Modified: <2009-01-11 19:38:24 CST>
 
 # This file is loaded by zshrc.zsh
 
@@ -47,7 +47,7 @@ alias scr="screen -r"
 alias su="su -s /bin/zsh"
 
 alias m="mate"
-alias e="zile"
+alias z="zile"
 alias status="git status"
 alias pull="git pull"
 alias rb="ruby"
