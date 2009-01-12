@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-11 19:13:21 CST>
+;; Modified: <2009-01-11 19:16:31 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -18,6 +18,7 @@
 (defvar *cedet*         t)   ;; Common emacs development tools. Big, but handy.
 (defvar *clojure*       t)   ;; Using clojure? (Select slime as well.)
 (defvar *color-theme*   t)   ;; Probably disable for GNU Emacs <22
+(defvar *erc*           t)   ;; Emacs IRC Client
 (defvar *fuzzy-find*    t)   ;; Fuzzy find in project
 (defvar *git*           t)   ;; Git & Gist integration
 (defvar *ido*           t)   ;; Using ido?
@@ -98,6 +99,10 @@
                 (define-key slime-repl-mode-map (kbd "C-c d") 'slime-java-describe)
                 (define-key slime-mode-map (kbd "C-c D") 'slime-javadoc)
                 (define-key slime-repl-mode-map (kbd "C-c D") 'slime-javadoc))))
+
+(when *erc*
+  (add-path "erc")
+  (require 'erc))
 
 (when *fuzzy-find*
   (add-path "fuzzy-find-in-project")
