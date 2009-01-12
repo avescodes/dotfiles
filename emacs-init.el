@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-11 11:44:02 CST>
+;; Modified: <2009-01-11 19:13:21 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -224,6 +224,7 @@
   '(global-font-lock-mode    t nil (font-lock)) ;; Syntax higlighting
   '(indent-tabs-mode         nil)        ;; soft tabs
   '(inhibit-startup-message  t)          ;; no startup message
+  '(kill-ring                120)
   '(menu-bar-mode            nil)        ;; eww. bad.
   '(minibuffer-max-depth     nil)        ;; enable multiple minibuffers
   '(ring-bell-function       'ignore)    ;; turn off system beep
@@ -284,6 +285,10 @@
       (system-time-locale "en_US"))
     (insert (format-time-string format))))
 
+(defun insert-file-name ()
+  (interactive)
+  (insert (car (last (split-string (buffer-file-name) "/")))))
+
 ;; Switch back a window
 (defun go-back-window ()
   (interactive)
@@ -302,6 +307,7 @@
 
 (global-set-key "\C-cd"      'insert-date)
 (global-set-key "\C-ce"      'insert-name-email)
+(global-set-key "\C-cf"      'insert-file-name)
 
 ;; How did I live without this?
 (global-set-key "\C-w"       'backward-kill-word)
