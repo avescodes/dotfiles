@@ -5,6 +5,17 @@
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
+;;; >>> Configure Load Path <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq emacs-config-path "~/.emacs.d/")
+(setq base-lisp-path "~/.emacs.d/site-lisp/")
+(defun add-path (p)
+  (add-to-list 'load-path (concat base-lisp-path p)))
+
+;; I should really just do this recursively.
+(add-path "")
+(add-path "markdown-mode")
+(add-path "themes")
+
 (require 'cl)
 
 (defvar *emacs-load-start* (current-time))
@@ -31,16 +42,6 @@
 (defvar *timestamp*     t)   ;; Update "Modified: <>" comments on save
 (defvar *yasnippet*     t)   ;; Snippets a la Textmate. Awesomeness, defined.
 
-;;; >>> Configure Load Path <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setq emacs-config-path "~/.emacs.d/")
-(setq base-lisp-path "~/.emacs.d/site-lisp/")
-(defun add-path (p)
-  (add-to-list 'load-path (concat base-lisp-path p)))
-
-;; I should really just do this recursively.
-(add-path "")
-(add-path "markdown-mode")
-(add-path "themes")
 
 ;;; >>> Loading Packages <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'ansi-color)
