@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-12 19:55:24 CST>
+;; Modified: <2009-01-12 23:14:04 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -139,7 +139,8 @@
 
 (when *jabber*
   (add-path "jabber")
-  (require 'jabber))
+  (require 'jabber)
+  (setq jabber-roster-show-bindings nil))
 
 (when *jess*
   (add-path "jess")
@@ -148,7 +149,7 @@
   (add-hook 'jess-mode-hook
     #'(lambda ()
         (auto-fill-mode t)
-        (turn-on-font-lock)))
+        (turn-on-font-lock)))T
   (setq auto-mode-alist
     (append auto-mode-alist `(("\\.clp$" . jess-mode)))))
 
@@ -304,7 +305,7 @@
   (insert (car (last (split-string (buffer-file-name) "/")))))
 
 ;; Switch back a window
-(defun go-back-window ()
+
   (interactive)
   (select-window (previous-window)))
 

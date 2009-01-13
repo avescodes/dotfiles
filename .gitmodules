@@ -28,3 +28,6 @@
 [submodule "site-lisp/ri"]
 	path = site-lisp/ri
 	url = git://github.com/technomancy/ri-emacs.git
+[submodule "site-lisp/color-theme-twilight"]
+	path = site-lisp/color-theme-twilight
+	url = git://github.com/crafterm/twilight-emacs.git
