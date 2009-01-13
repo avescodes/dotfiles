@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-12 23:14:04 CST>
+;; Modified: <2009-01-13 10:56:11 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -149,7 +149,7 @@
   (add-hook 'jess-mode-hook
     #'(lambda ()
         (auto-fill-mode t)
-        (turn-on-font-lock)))T
+        (turn-on-font-lock)))
   (setq auto-mode-alist
     (append auto-mode-alist `(("\\.clp$" . jess-mode)))))
 
@@ -206,10 +206,9 @@
 (when window-system
 
   (global-unset-key "\C-z")
-
+  (tabbar-mode nil)
   (when *color-theme*
     (require 'color-theme)
-    (color-theme-initialize)
     (setq color-theme-is-global t)
     (require 'sunburst)
     (color-theme-sunburst))
@@ -305,7 +304,7 @@
   (insert (car (last (split-string (buffer-file-name) "/")))))
 
 ;; Switch back a window
-
+(defun go-back-window ()
   (interactive)
   (select-window (previous-window)))
 
