@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+<title>MUC alerts - jabber.el manual 0.7.1</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="jabber.el manual 0.7.1">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Customizing-alerts.html#Customizing-alerts" title="Customizing alerts">
+<link rel="prev" href="Message-alerts.html#Message-alerts" title="Message alerts">
+<link rel="next" href="Info-alerts.html#Info-alerts" title="Info alerts">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for jabber.el, version 0.7.1.
+
+Copyright (C) 2004, 2005, 2006, 2007 Magnus Henoch, Tom Berger.
+
+     Permission is granted to make and distribute verbatim copies or
+     modified versions of this manual, provided the copyright notice and
+     this permission notice are preserved on all copies.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="MUC-alerts"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Info-alerts.html#Info-alerts">Info alerts</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Message-alerts.html#Message-alerts">Message alerts</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Customizing-alerts.html#Customizing-alerts">Customizing alerts</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">15.6.4 MUC alerts</h4>
+
+<p><a name="index-jabber_002dalert_002dmuc_002dfunction-216"></a><a name="index-jabber_002dmuc_002dalert_002dself-217"></a><a name="index-jabber_002dmuc_002ddefault_002dmessage-218"></a>
+Set <code>jabber-alert-muc-function</code> to your desired
+function.  This function should look like:
+
+<pre class="example">     (defun <var>function</var> (<var>nick</var> <var>group</var> <var>buffer</var> <var>text</var>)
+        ...
+        )
+</pre>
+   <p><var>nick</var> is the nickname, <var>group</var> is the JID of the group,
+<var>buffer</var> is the buffer where the message is displayed, and
+<var>text</var> is the text of the message.
+
+   <p>The default function, <code>jabber-muc-default-message</code>, returns
+&ldquo;Message from <var>nick</var> in <var>group</var>&rdquo; or &ldquo;Message in
+<var>group</var>&rdquo;, the latter for messages from the room itself.
+
+   <p>All MUC alert hooks take the same arguments plus the additional
+<var>proposed-alert</var>, which is the result of the specified message
+function.
+
+   <p>By default, no alert is made for messages from yourself.  To change
+that, customize the variable <code>jabber-muc-alert-self</code>.
+
+   </body></html>
+

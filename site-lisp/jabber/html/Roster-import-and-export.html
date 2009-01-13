@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+<title>Roster import and export - jabber.el manual 0.7.1</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="jabber.el manual 0.7.1">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Message-events.html#Message-events" title="Message events">
+<link rel="next" href="XMPP-URIs.html#XMPP-URIs" title="XMPP URIs">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for jabber.el, version 0.7.1.
+
+Copyright (C) 2004, 2005, 2006, 2007 Magnus Henoch, Tom Berger.
+
+     Permission is granted to make and distribute verbatim copies or
+     modified versions of this manual, provided the copyright notice and
+     this permission notice are preserved on all copies.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Roster-import-and-export"></a>Next:&nbsp;<a rel="next" accesskey="n" href="XMPP-URIs.html#XMPP-URIs">XMPP URIs</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Message-events.html#Message-events">Message events</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr><br>
+</div>
+
+<h2 class="chapter">13 Roster import and export</h2>
+
+<p><a name="index-jabber_002dexport_002droster-144"></a><a name="index-jabber_002dimport_002droster-145"></a><a name="index-Export-roster-146"></a><a name="index-Import-roster-147"></a>
+Your roster is saved on the Jabber server, and usually not in the
+client.  However, you might want to save the roster to a file anyway. 
+The most common reason for this is probably to copy it to another
+account.
+
+   <p>To export your roster to a file, type <kbd>M-x jabber-export-roster</kbd>. 
+A buffer will appear in which you can edit the data to be exported. 
+Changes done in that buffer will not affect your real roster.
+
+   <p>To import your roster from a file, type <kbd>M-x jabber-import-roster</kbd>. 
+You will be able to edit the data before importing it.  Items not in the
+roster will be added; items in the roster will be modified to match
+imported data.  Subscriptions will be updated.
+
+   <p>The format of the roster files is the XML used by roster pushes in the
+XMPP protocol, in UTF-8 encoding.
+
+   </body></html>
+

@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+<title>Sending files - jabber.el manual 0.7.1</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="jabber.el manual 0.7.1">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="File-transfer.html#File-transfer" title="File transfer">
+<link rel="prev" href="Receiving-files.html#Receiving-files" title="Receiving files">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for jabber.el, version 0.7.1.
+
+Copyright (C) 2004, 2005, 2006, 2007 Magnus Henoch, Tom Berger.
+
+     Permission is granted to make and distribute verbatim copies or
+     modified versions of this manual, provided the copyright notice and
+     this permission notice are preserved on all copies.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Sending-files"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="Receiving-files.html#Receiving-files">Receiving files</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="File-transfer.html#File-transfer">File transfer</a>
+<hr><br>
+</div>
+
+<h3 class="section">5.2 Sending files</h3>
+
+<p><a name="index-proxy_002c-file-transfer-60"></a><a name="index-file-transfer-proxy-61"></a><a name="index-XEP_002d0065-proxy-62"></a>
+To send a file to someone, you need an XEP-0065 proxy.<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>  If your Jabber server hosts such a proxy, it will be found
+automatically, otherwise it needs to be manually configured.
+
+   <p>You can check whether your Jabber server has a proxy with <kbd>M-x
+jabber-get-disco-items</kbd>; see <a href="Service-discovery-and-browsing.html#Service-discovery-and-browsing">Service discovery and browsing</a>.
+
+   <p><a name="index-jabber_002dsocks5_002dproxies-63"></a><a name="index-jabber_002dsocks5_002dquery_002dall_002dproxies-64"></a>To configure a proxy manually, customize the variable
+<code>jabber-socks5-proxies</code>.  Putting <code>proxy.jabber.se</code> there
+should work.  Type <kbd>M-x jabber-socks5-query-all-proxies</kbd> to see if
+the proxies answer.
+
+   <p><a name="index-jabber_002dft_002dsend-65"></a>Now, you can type <kbd>M-x jabber-ft-send</kbd> to send a file to someone. 
+You need to enter the correct full JID, including resource, to get this
+right.  If the contact is logged in with only one client, and you can
+see it online, just typing the JID or roster name is enough.  If you run
+the command from a chat buffer, the JID of the contact is given as
+the default value.
+
+   <p>If the contact has several clients online, you probably want to send the
+file to a particular one.  If you run this command from within a chat
+buffer, the default target will be the one that last sent a message to
+you.  If you just type a bare JID or a roster name, the client with the
+highest priority will get the file.
+
+   <p>If the contact accepts the file, and the contact's client succeeds in
+connecting to the proxy, jabber.el will send the file through the
+proxy.  During this time, your Emacs will be blocked, so you might want
+to avoid sending large files over slow connections.
+
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> This
+requirement is not inherent in the protocol, only in the current file
+transfer implementation of jabber.el, and in Emacs versions earlier than
+22.</p>
+
+   <p><hr></div>
+
+   </body></html>
+

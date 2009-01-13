@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+<title>Listening for new requests - jabber.el manual 0.7.1</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="jabber.el manual 0.7.1">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Hacking-and-extending.html#Hacking-and-extending" title="Hacking and extending">
+<link rel="prev" href="Roster-structure.html#Roster-structure" title="Roster structure">
+<link rel="next" href="Sending-new-requests.html#Sending-new-requests" title="Sending new requests">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for jabber.el, version 0.7.1.
+
+Copyright (C) 2004, 2005, 2006, 2007 Magnus Henoch, Tom Berger.
+
+     Permission is granted to make and distribute verbatim copies or
+     modified versions of this manual, provided the copyright notice and
+     this permission notice are preserved on all copies.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Listening-for-new-requests"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Sending-new-requests.html#Sending-new-requests">Sending new requests</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Roster-structure.html#Roster-structure">Roster structure</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Hacking-and-extending.html#Hacking-and-extending">Hacking and extending</a>
+<hr><br>
+</div>
+
+<h3 class="section">16.3 Listening for new requests</h3>
+
+<p><a name="index-jabber_002dsend_002diq-231"></a><a name="index-jabber_002dprocess_002diq-232"></a><a name="index-jabber_002dsignal_002derror-233"></a><a name="index-jabber_002diq_002dget_002dxmlns_002dalist-234"></a><a name="index-jabber_002diq_002dset_002dxmlns_002dalist-235"></a>
+To listen for new IQ requests, add the appropriate entry in
+<code>jabber-iq-get-xmlns-alist</code> or <code>jabber-iq-set-xmlns-alist</code>. 
+The key is the namespace of the request, and the value is a function
+that takes one argument, the entire IQ stanza in list format. 
+<code>jabber-process-iq</code> reads these alists to determine which
+function to call on incoming packets.
+
+   <p>For example, the Ad-Hoc Commands module contains the following:
+
+<pre class="example">     (add-to-list 'jabber-iq-set-xmlns-alist
+     	     (cons "http://jabber.org/protocol/commands" 'jabber-ahc-process))
+</pre>
+   <p>To send a response to an IQ request, use <span class="samp">(jabber-send-iq
+</span><var>sender</var><span class="samp"> "result" </span><var>query</var><span class="samp"> nil nil nil nil </span><var>id</var><span class="samp">)</span>, where
+<var>query</var> is the query in list format.  <code>jabber-send-iq</code> will
+encapsulate the query in an IQ packet with the specified id.
+
+   <p>To return an error to the Jabber entity that sent the query, use
+<code>jabber-signal-error</code>.  The signal is caught by
+<code>jabber-process-iq</code>, which takes care of sending the error.
+
+   </body></html>
+

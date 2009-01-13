@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+<title>Roster buffer - jabber.el manual 0.7.1</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="jabber.el manual 0.7.1">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Basic-operation.html#Basic-operation" title="Basic operation">
+<link rel="prev" href="Presence-subscription.html#Presence-subscription" title="Presence subscription">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for jabber.el, version 0.7.1.
+
+Copyright (C) 2004, 2005, 2006, 2007 Magnus Henoch, Tom Berger.
+
+     Permission is granted to make and distribute verbatim copies or
+     modified versions of this manual, provided the copyright notice and
+     this permission notice are preserved on all copies.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Roster-buffer"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="Presence-subscription.html#Presence-subscription">Presence subscription</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Basic-operation.html#Basic-operation">Basic operation</a>
+<hr><br>
+</div>
+
+<h3 class="section">2.5 The roster buffer</h3>
+
+<p><a name="index-Roster-buffer_002c-basics-20"></a><a name="index-Menus-21"></a><a name="index-Key-bindings-22"></a><a name="index-jabber_002ddisplay_002droster-23"></a>
+The roster buffer is called <code>*-jabber-*</code>.  It simply contains a
+list of the contacts on your roster.
+
+   <p>In the roster buffer, any command which requires a JID will default to
+the JID under point when called.  These commands can be called through
+either keyboard menus or mouse menus.  To open a menu with the mouse,
+simply press the second mouse button over the JID in
+question.<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>  This will bring up a menu with all available
+actions.  The keyboard menus are split into categories: Chat, Roster,
+Information, MUC (Multi-User Chat, or groupchat) and Services, opened
+by <kbd>C-c C-c</kbd>, <kbd>C-c C-r</kbd>, <kbd>C-c C-i</kbd>, <kbd>C-c C-m</kbd> and
+<kbd>C-c C-s</kbd>, respectively.
+
+   <p>A list of keybindings is displayed at the top of the roster buffer. 
+You can turn it off by setting <code>jabber-roster-show-bindings</code> to
+nil.
+
+   <p>You can call <code>jabber-display-roster</code> to redisplay your roster
+according to changed preferences (see <a href="Customizing-the-roster-buffer.html#Customizing-the-roster-buffer">Customizing the roster buffer</a>).  This will not refetch your roster from the server. 
+Refetching the roster is usually not needed, since updates are pushed
+to clients automatically.
+
+   <p>You can choose not to have the roster updated automatically on
+presence changes (see <a href="Presence-alerts.html#Presence-alerts">Presence alerts</a>).  In that case, you need to
+call <code>jabber-display-roster</code> manually.
+
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> For some reason, mouse menus don't work in XEmacs. 
+Patches welcome.</p>
+
+   <p><hr></div>
+
+   </body></html>
+

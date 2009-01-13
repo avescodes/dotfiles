@@ -1,0 +1,96 @@
+<html lang="en">
+<head>
+<title>Customizing alerts - jabber.el manual 0.7.1</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="jabber.el manual 0.7.1">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Customization.html#Customization" title="Customization">
+<link rel="prev" href="Customizing-the-chat-buffer.html#Customizing-the-chat-buffer" title="Customizing the chat buffer">
+<link rel="next" href="Hooks.html#Hooks" title="Hooks">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for jabber.el, version 0.7.1.
+
+Copyright (C) 2004, 2005, 2006, 2007 Magnus Henoch, Tom Berger.
+
+     Permission is granted to make and distribute verbatim copies or
+     modified versions of this manual, provided the copyright notice and
+     this permission notice are preserved on all copies.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Customizing-alerts"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Hooks.html#Hooks">Hooks</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Customizing-the-chat-buffer.html#Customizing-the-chat-buffer">Customizing the chat buffer</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Customization.html#Customization">Customization</a>
+<hr><br>
+</div>
+
+<h3 class="section">15.6 Customizing alerts</h3>
+
+<p><a name="index-Alert-hooks-207"></a><a name="index-define_002djabber_002dalert-208"></a>
+When an event happens (currently including presence changes, incoming
+messages, and completed queries) you will usually want to be
+notified.  Since tastes in this area vary wildly, these alerts are
+implemented as hooks, so you can choose which ones you want, or write
+your own if none fit.
+
+   <p>Actually, if you don't want to write your own, stop reading this
+section and just read <a href="Standard-alerts.html#Standard-alerts">Standard alerts</a>.
+
+   <p>Many kinds of alerts consist in displaying a text message through a
+certain mechanism.  This text message is provided by a function which
+you can rewrite or replace.  If this function returns <code>nil</code>, no
+message is displayed, and non-textual alerts refrain from action.
+
+   <p>If you want to write alert hooks that do nothing except displaying the
+supplied message in some way, use the macro
+<code>define-jabber-alert</code>.  For example, if <var>foo</var> is a function
+that takes a string as an argument, write
+<pre class="example">     (define-jabber-alert foo
+       "Display a message in a fooish way"
+       'foo)
+</pre>
+   <p>and all details will be taken care of for you.
+
+   <p>The hooks take different arguments depending on category.  However,
+they all have in common that the last argument is the result of the
+message function.  The message function for each category takes the
+same arguments as the corresponding hooks, except for that last
+argument.
+
+   <p>Alert hook contributions are very welcome.  You can send them to the
+mailing list, or to the Sourceforge patch tracker.
+
+   <p>Alert hooks are meant for optional UI things, that are subject to
+varying user tastes, and that can be toggled by simply adding or
+removing the function to and from the hook.  For other things, there
+are corresponding general hooks, that are defvars instead of
+defcustoms, and that are to be managed by Lisp code.  They have the
+same name as the alert hooks minus the <code>-alert</code> part,
+i.e. <code>jabber-message-hooks</code> vs <code>jabber-alert-message-hooks</code>,
+etc.
+
+<ul class="menu">
+<li><a accesskey="1" href="Standard-alerts.html#Standard-alerts">Standard alerts</a>
+<li><a accesskey="2" href="Presence-alerts.html#Presence-alerts">Presence alerts</a>
+<li><a accesskey="3" href="Message-alerts.html#Message-alerts">Message alerts</a>
+<li><a accesskey="4" href="MUC-alerts.html#MUC-alerts">MUC alerts</a>
+<li><a accesskey="5" href="Info-alerts.html#Info-alerts">Info alerts</a>
+</ul>
+
+   </body></html>
+

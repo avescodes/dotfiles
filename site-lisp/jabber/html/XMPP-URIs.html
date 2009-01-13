@@ -1,0 +1,84 @@
+<html lang="en">
+<head>
+<title>XMPP URIs - jabber.el manual 0.7.1</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="jabber.el manual 0.7.1">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Roster-import-and-export.html#Roster-import-and-export" title="Roster import and export">
+<link rel="next" href="Customization.html#Customization" title="Customization">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for jabber.el, version 0.7.1.
+
+Copyright (C) 2004, 2005, 2006, 2007 Magnus Henoch, Tom Berger.
+
+     Permission is granted to make and distribute verbatim copies or
+     modified versions of this manual, provided the copyright notice and
+     this permission notice are preserved on all copies.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="XMPP-URIs"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Customization.html#Customization">Customization</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Roster-import-and-export.html#Roster-import-and-export">Roster import and export</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr><br>
+</div>
+
+<h2 class="chapter">14 XMPP URIs</h2>
+
+<p><a name="index-URIs-148"></a><a name="index-URLs-149"></a><a name="index-links-150"></a><a name="index-xmpp_003a-links-151"></a><a name="index-Mozilla-integration-152"></a><a name="index-web-browser-integration-153"></a><a name="index-browser-integration-154"></a><a name="index-jabber_002dhandle_002duri-155"></a>
+Many web page authors use links starting with <span class="samp">xmpp:</span> for JIDs. 
+Your web browser could be made to pass such links to jabber.el, so that
+such links are actually useful and not just decoration.  How to do that
+depends on your operating system and web browser.
+
+<h3 class="section">14.1 Mozilla and Unix</h3>
+
+<p>If you use a Mozilla-based web browser on a Unix-like operating system,
+follow these steps.
+
+     <ol type=1 start=1>
+<li>Make sure you are running the Emacs server.  See <a href="../emacs/Emacs-Server.html#Emacs-Server">Using Emacs as a Server (GNU Emacs Manual)</a>.
+
+     <li>Note the path of the <span class="file">xmppuri.sh</span> file in the jabber.el
+distribution, and make sure it is executable.
+
+     <li>Set the Mozilla preference <span class="samp">network.protocol-handler.app.xmpp</span> to
+the path of <span class="file">xmppuri.sh</span>.  There are two ways to do this:
+
+          <ul>
+<li>Go to the URL <span class="samp">about:config</span>, right-click in the list, choose &ldquo;New
+string&rdquo;, and enter <span class="samp">network.protocol-handler.app.xmpp</span> and the
+path in the following dialogs.
+
+          <li>Open or create the file <span class="file">user.js</span> in your Mozilla profile directory
+(in the same directory as <span class="file">prefs.js</span>), and add the following line:
+
+          <pre class="example">               user_pref("network.protocol-handler.app.xmpp", "<var>/path/to</var>/xmppuri.sh");
+          </pre>
+          <p>Restart Mozilla for this change to take effect. 
+</ul>
+     </ol>
+
+<h3 class="section">14.2 Other systems</h3>
+
+<p>If you know how to pass an XMPP URI from your browser to the function
+<code>jabber-handle-uri</code>, your contribution for this section would be
+appreciated.
+
+   </body></html>
+

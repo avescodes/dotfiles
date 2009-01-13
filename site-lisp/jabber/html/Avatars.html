@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+<title>Avatars - jabber.el manual 0.7.1</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="jabber.el manual 0.7.1">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Personal-information.html#Personal-information" title="Personal information">
+<link rel="next" href="Time-queries.html#Time-queries" title="Time queries">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for jabber.el, version 0.7.1.
+
+Copyright (C) 2004, 2005, 2006, 2007 Magnus Henoch, Tom Berger.
+
+     Permission is granted to make and distribute verbatim copies or
+     modified versions of this manual, provided the copyright notice and
+     this permission notice are preserved on all copies.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Avatars"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Time-queries.html#Time-queries">Time queries</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Personal-information.html#Personal-information">Personal information</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr><br>
+</div>
+
+<h2 class="chapter">8 Avatars</h2>
+
+<p><a name="index-avatars-89"></a><a name="index-jabber_002dvcard_002davatars_002dretrieve-90"></a><a name="index-jabber_002dvcard_002davatars_002dpublish-91"></a><a name="index-jabber_002davatar_002dcache_002ddirectory-92"></a>
+jabber.el supports viewing and publishing avatars according to XEP-0153,
+vCard-Based Avatars.  By default, if you have an avatar in your vCard
+(see <a href="Personal-information.html#Personal-information">Personal information</a>), it will be published for others to see,
+and if other people publish their avatars, they will be displayed in the
+roster buffer and in the header line of chat buffers, assuming that your
+Emacs can display images.
+
+   <p>To disable retrieval of other people's avatars, set
+<code>jabber-vcard-avatars-retrieve</code> to nil.  To disable publishing of
+your own avatar, set <code>jabber-vcard-avatars-publish</code> to nil.
+
+   <p>Avatars are cached in the directory specified by
+<code>jabber-avatar-cache-directory</code>, by default
+<span class="file">~/.jabber-avatars/</span>.  The cache is never cleaned, so you might
+want to do that yourself from time to time.
+
+   </body></html>
+

@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+<title>Keepalive - jabber.el manual 0.7.1</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="jabber.el manual 0.7.1">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Useful-features.html#Useful-features" title="Useful features">
+<link rel="prev" href="Modeline-status.html#Modeline-status" title="Modeline status">
+<link rel="next" href="Tracking-activity.html#Tracking-activity" title="Tracking activity">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for jabber.el, version 0.7.1.
+
+Copyright (C) 2004, 2005, 2006, 2007 Magnus Henoch, Tom Berger.
+
+     Permission is granted to make and distribute verbatim copies or
+     modified versions of this manual, provided the copyright notice and
+     this permission notice are preserved on all copies.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Keepalive"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Tracking-activity.html#Tracking-activity">Tracking activity</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Modeline-status.html#Modeline-status">Modeline status</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Useful-features.html#Useful-features">Useful features</a>
+<hr><br>
+</div>
+
+<h3 class="section">10.3 Keepalive</h3>
+
+<p><a name="index-Keepalive-108"></a><a name="index-Detecting-lost-connections-109"></a><a name="index-jabber_002dkeepalive_002dstart-110"></a><a name="index-jabber_002dkeepalive_002dstop-111"></a><a name="index-jabber_002dkeepalive_002dinterval-112"></a><a name="index-jabber_002dkeepalive_002dtimeout-113"></a>
+Sometimes network connections are lost without you noticing.  This is
+especially true with Jabber, as it is quite reasonable to keep the
+connection open for a long time without either sending or receiving
+any data.
+
+   <p>If you want to detect a lost connection earlier, you can use the
+keepalive functions.  Type <kbd>M-x jabber-keepalive-start</kbd> to start
+it, and <kbd>M-x jabber-keepalive-stop</kbd> to stop it.
+
+   <p>These functions work by asking your server for the time once in a
+while (by default every ten minutes), and considering the connection
+lost if the server doesn't answer within reasonable time (by default
+20 seconds).
+
+   <p>You can customize the interval and the timeout with the variables
+<code>jabber-keepalive-interval</code> and <code>jabber-keepalive-timeout</code>,
+respectively.
+
+   </body></html>
+

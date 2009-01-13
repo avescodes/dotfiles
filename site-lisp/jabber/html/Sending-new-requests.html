@@ -1,0 +1,86 @@
+<html lang="en">
+<head>
+<title>Sending new requests - jabber.el manual 0.7.1</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="jabber.el manual 0.7.1">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Hacking-and-extending.html#Hacking-and-extending" title="Hacking and extending">
+<link rel="prev" href="Listening-for-new-requests.html#Listening-for-new-requests" title="Listening for new requests">
+<link rel="next" href="Extending-service-discovery.html#Extending-service-discovery" title="Extending service discovery">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for jabber.el, version 0.7.1.
+
+Copyright (C) 2004, 2005, 2006, 2007 Magnus Henoch, Tom Berger.
+
+     Permission is granted to make and distribute verbatim copies or
+     modified versions of this manual, provided the copyright notice and
+     this permission notice are preserved on all copies.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Sending-new-requests"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Extending-service-discovery.html#Extending-service-discovery">Extending service discovery</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Listening-for-new-requests.html#Listening-for-new-requests">Listening for new requests</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Hacking-and-extending.html#Hacking-and-extending">Hacking and extending</a>
+<hr><br>
+</div>
+
+<h3 class="section">16.4 Sending new requests</h3>
+
+<p><a name="index-jabber_002dsend_002diq-236"></a><a name="index-jabber_002dprocess_002diq-237"></a><a name="index-jabber_002dreport_002dsuccess-238"></a><a name="index-jabber_002dprocess_002ddata-239"></a>
+To send an IQ request, use <code>jabber-send-iq</code>.  It will generate an
+id, and create a mapping for it for use when the response comes.  The
+syntax is:
+
+<pre class="example">     (jabber-send-iq <var>to</var> <var>type</var> <var>query</var>
+                     <var>success-callback</var> <var>success-closure</var>
+                     <var>failure-callback</var> <var>failure-closure</var>)
+</pre>
+   <p>Both callbacks take two arguments, the IQ stanza returned and the
+closure item mentioned here.
+
+   <p>Two standard callbacks are provided.  <code>jabber-report-success</code>
+takes a string as closure item, and reports success or failure in the
+echo area.  <code>jabber-process-data</code> prepares a browse buffer.  If
+its closure argument is a function, it calls that function with point
+in this browse buffer.  If it's a string, it prints that string along
+with the error message in the IQ response.  If it's anything else
+(e.g. <code>nil</code>), it just dumps the XML in the browse buffer.
+
+   <p>Examples follow.  This is the hypothetical Jabber protocol &ldquo;frob&rdquo;,
+for which only success report is needed:
+<pre class="example">     (jabber-send-iq "someone@somewhere.org" "set"
+                     '(query ((xmlns . "frob")))
+                     'jabber-report-success "Frobbing"
+                     'jabber-report-success "Frobbing")
+</pre>
+   <p>This will print &ldquo;Frobbing succeeded&rdquo; or &ldquo;Frobbing failed: reason&rdquo;,
+respectively, in the echo area.
+
+   <p>The protocol &ldquo;investigate&rdquo; needs to parse results and show them in a
+browse buffer:
+<pre class="example">     (jabber-send-iq "someone@somewhere.org" "get"
+                     '(query ((xmlns . "investigate")))
+                     'jabber-process-data 'jabber-process-investigate
+                     'jabber-process-data "Investigation failed")
+</pre>
+   <p>Of course, the previous example could have used
+<code>jabber-report-success</code> for the error message.  It's a matter of
+UI taste.
+
+   </body></html>
+

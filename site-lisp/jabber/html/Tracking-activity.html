@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+<title>Tracking activity - jabber.el manual 0.7.1</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="jabber.el manual 0.7.1">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Useful-features.html#Useful-features" title="Useful features">
+<link rel="prev" href="Keepalive.html#Keepalive" title="Keepalive">
+<link rel="next" href="Watch-buddies.html#Watch-buddies" title="Watch buddies">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for jabber.el, version 0.7.1.
+
+Copyright (C) 2004, 2005, 2006, 2007 Magnus Henoch, Tom Berger.
+
+     Permission is granted to make and distribute verbatim copies or
+     modified versions of this manual, provided the copyright notice and
+     this permission notice are preserved on all copies.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Tracking-activity"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Watch-buddies.html#Watch-buddies">Watch buddies</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Keepalive.html#Keepalive">Keepalive</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Useful-features.html#Useful-features">Useful features</a>
+<hr><br>
+</div>
+
+<h3 class="section">10.4 Tracking activity</h3>
+
+<p><a name="index-Activity-114"></a><a name="index-jabber_002dactivity_002dmode-115"></a><a name="index-jabber_002dactivity_002dmake_002dstrings-116"></a><a name="index-jabber_002dactivity_002dquery_002dunread-117"></a><a name="index-jabber_002dactivity_002dcount_002din_002dtitle-118"></a><a name="index-jabber_002dactivity_002dcount_002din_002dtitle_002dformat-119"></a>
+When you're working on something important you might want to delay
+responding to incoming messages.  However, when you're done working,
+will you remember them?  If you're anything like me, you'll have a lot
+of buffers in your Emacs session, and a jabber chat buffer can easily
+get lost.
+
+   <p>When you type <kbd>M-x jabber-activity-mode</kbd> Emacs starts keeping
+track of the buddies which have messaged you since last you visited
+their buffer, and will display them in mode line.  As soon as you
+visit their buffer they disappear from the mode line, indicating that
+you've read their message.
+
+   <p>If your mode line fills over because of these notifications, you can
+customize <code>jabber-activity-make-strings</code> to shorten them to the
+shortest possibly unambiguous form.
+
+   <p>If you try to exit Emacs while you still have unread messages, you
+will be notified and asked about this.  If you don't like that, set
+<code>jabber-activity-query-unread</code> to nil.
+
+   <p>If you want to display the number of unread buffers in the frame title,
+set <code>jabber-activity-count-in-title</code> to t.  The format of the
+number can be changed through
+<code>jabber-activity-count-in-title-format</code>.
+
+   <p>For complete customizability, write a hook function for
+<code>jabber-activity-update-hook</code>.  From that function, you can take
+action based on <code>jabber-activity-jids</code>,
+<code>jabber-activity-mode-string</code>, and
+<code>jabber-activity-count-string</code>.
+
+   </body></html>
+

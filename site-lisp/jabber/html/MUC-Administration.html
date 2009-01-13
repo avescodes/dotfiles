@@ -1,0 +1,91 @@
+<html lang="en">
+<head>
+<title>MUC Administration - jabber.el manual 0.7.1</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="jabber.el manual 0.7.1">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Groupchat.html#Groupchat" title="Groupchat">
+<link rel="prev" href="Private-messages.html#Private-messages" title="Private messages">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for jabber.el, version 0.7.1.
+
+Copyright (C) 2004, 2005, 2006, 2007 Magnus Henoch, Tom Berger.
+
+     Permission is granted to make and distribute verbatim copies or
+     modified versions of this manual, provided the copyright notice and
+     this permission notice are preserved on all copies.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="MUC-Administration"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="Private-messages.html#Private-messages">Private messages</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Groupchat.html#Groupchat">Groupchat</a>
+<hr><br>
+</div>
+
+<h3 class="section">3.4 Administration</h3>
+
+<p>Administration of a MUC room mostly consists of managing roles and
+affiliations.  Roles are temporary, and apply until the user leaves the
+room.  Affiliations are permanent, and based on JIDs.
+
+<h4 class="subsection">3.4.1 Roles</h4>
+
+<p><a name="index-jabber_002dmuc_002dset_002drole-47"></a><a name="index-Kicking_002c-MUC-48"></a><a name="index-Voice_002c-MUC-49"></a><a name="index-Moderator_002c-MUC-50"></a><a name="index-Roles_002c-MUC-51"></a>If you have moderator privileges, you can change the role of a
+participant with <kbd>M-x jabber-muc-set-role</kbd>.  Kicking means setting
+the role to &ldquo;none&rdquo;.  Granting and revoking voice are &ldquo;participant&rdquo;
+and &ldquo;visitor&rdquo;, respectively.  &ldquo;moderator&rdquo; gives moderator
+privileges, obviously.
+
+   <p>The possible roles are:
+
+     <dl>
+<dt><span class="samp">moderator</span><dd>Has voice, can change other people's roles.
+
+     <br><dt><span class="samp">participant</span><dd>Has voice.
+
+     <br><dt><span class="samp">visitor</span><dd>Doesn't have voice (can't send messages to everyone, but can send
+private messages)
+
+     <br><dt><span class="samp">none</span><dd>Not in room. 
+</dl>
+
+<h4 class="subsection">3.4.2 Affiliations</h4>
+
+<p><a name="index-jabber_002dmuc_002dset_002daffiliation-52"></a><a name="index-Affiliations_002c-MUC-53"></a><a name="index-Banning_002c-MUC-54"></a>If you have admin or owner privileges, you can change the affiliation of
+a user with <kbd>M-x jabber-muc-set-affiliation</kbd>.  Affiliation is
+persistent, and based on JIDs.  Depending of your affiliation and the
+MUC implementation, you might not be allowed to perform all kinds of
+changes, and maybe not in one step.
+
+   <p>Affiliations are:
+
+     <dl>
+<dt><span class="samp">owner</span><dd>Can destroy room, appoint admins, make people members, ban people.
+
+     <br><dt><span class="samp">admin</span><dd>Can make people members or ban people.
+
+     <br><dt><span class="samp">member</span><dd>Can enter the room, and has voice by default.
+
+     <br><dt><span class="samp">none</span><dd>Rights depend on room configuration.  The room might be members-only, or
+grant voice only to members.
+
+     <br><dt><span class="samp">outcast</span><dd>Banned from the room
+</dl>
+
+   </body></html>
+

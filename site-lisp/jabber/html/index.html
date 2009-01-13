@@ -1,0 +1,201 @@
+<html lang="en">
+<head>
+<title>jabber.el manual 0.7.1</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="jabber.el manual 0.7.1">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="#Top">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for jabber.el, version 0.7.1.
+
+Copyright (C) 2004, 2005, 2006, 2007 Magnus Henoch, Tom Berger.
+
+     Permission is granted to make and distribute verbatim copies or
+     modified versions of this manual, provided the copyright notice and
+     this permission notice are preserved on all copies.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<h1 class="settitle">jabber.el manual 0.7.1</h1>
+<div class="contents">
+<h2>Table of Contents</h2>
+<ul>
+<li><a name="toc_Top" href="index.html#Top">jabber.el manual</a>
+<li><a name="toc_Introduction" href="Introduction.html#Introduction">1 Introduction</a>
+<ul>
+<li><a href="Contact.html#Contact">1.1 Contact</a>
+</li></ul>
+<li><a name="toc_Basic-operation" href="Basic-operation.html#Basic-operation">2 Basic operation</a>
+<ul>
+<li><a href="Connecting.html#Connecting">2.1 Connecting</a>
+<li><a href="Chatting.html#Chatting">2.2 Chatting</a>
+<li><a href="Presence.html#Presence">2.3 Presence</a>
+<li><a href="Presence-subscription.html#Presence-subscription">2.4 Presence subscription</a>
+<li><a href="Roster-buffer.html#Roster-buffer">2.5 The roster buffer</a>
+</li></ul>
+<li><a name="toc_Groupchat" href="Groupchat.html#Groupchat">3 Groupchat</a>
+<ul>
+<li><a href="Automation.html#Automation">3.1 Automation</a>
+<li><a href="Invitations.html#Invitations">3.2 Invitations</a>
+<li><a href="Private-messages.html#Private-messages">3.3 Private messages</a>
+<li><a href="MUC-Administration.html#MUC-Administration">3.4 Administration</a>
+<ul>
+<li><a href="MUC-Administration.html#MUC-Administration">3.4.1 Roles</a>
+<li><a href="MUC-Administration.html#MUC-Administration">3.4.2 Affiliations</a>
+</li></ul>
+</li></ul>
+<li><a name="toc_Composing-messages" href="Composing-messages.html#Composing-messages">4 Composing messages</a>
+<li><a name="toc_File-transfer" href="File-transfer.html#File-transfer">5 File transfer</a>
+<ul>
+<li><a href="Receiving-files.html#Receiving-files">5.1 Receiving files</a>
+<li><a href="Sending-files.html#Sending-files">5.2 Sending files</a>
+</li></ul>
+<li><a name="toc_Services" href="Services.html#Services">6 Services</a>
+<ul>
+<li><a href="Service-discovery-and-browsing.html#Service-discovery-and-browsing">6.1 Service discovery and browsing</a>
+<li><a href="Registering.html#Registering">6.2 Registering</a>
+<li><a href="Searching.html#Searching">6.3 Searching</a>
+<li><a href="Ad_002dHoc-Commands.html#Ad_002dHoc-Commands">6.4 Ad-Hoc Commands</a>
+</li></ul>
+<li><a name="toc_Personal-information" href="Personal-information.html#Personal-information">7 Personal information</a>
+<li><a name="toc_Avatars" href="Avatars.html#Avatars">8 Avatars</a>
+<li><a name="toc_Time-queries" href="Time-queries.html#Time-queries">9 Time queries</a>
+<li><a name="toc_Useful-features" href="Useful-features.html#Useful-features">10 Useful features</a>
+<ul>
+<li><a href="Autoaway.html#Autoaway">10.1 Autoaway</a>
+<li><a href="Modeline-status.html#Modeline-status">10.2 Modeline status</a>
+<li><a href="Keepalive.html#Keepalive">10.3 Keepalive</a>
+<li><a href="Tracking-activity.html#Tracking-activity">10.4 Tracking activity</a>
+<li><a href="Watch-buddies.html#Watch-buddies">10.5 Watch buddies</a>
+<li><a href="Spell-checking.html#Spell-checking">10.6 Spell checking</a>
+</li></ul>
+<li><a name="toc_Message-history" href="Message-history.html#Message-history">11 Message history</a>
+<li><a name="toc_Message-events" href="Message-events.html#Message-events">12 Message events</a>
+<li><a name="toc_Roster-import-and-export" href="Roster-import-and-export.html#Roster-import-and-export">13 Roster import and export</a>
+<li><a name="toc_XMPP-URIs" href="XMPP-URIs.html#XMPP-URIs">14 XMPP URIs</a>
+<ul>
+<li><a href="XMPP-URIs.html#XMPP-URIs">14.1 Mozilla and Unix</a>
+<li><a href="XMPP-URIs.html#XMPP-URIs">14.2 Other systems</a>
+</li></ul>
+<li><a name="toc_Customization" href="Customization.html#Customization">15 Customization</a>
+<ul>
+<li><a href="Account-settings.html#Account-settings">15.1 Account settings</a>
+<li><a href="Connection-settings.html#Connection-settings">15.2 Connection settings</a>
+<li><a href="Miscellaneous-settings.html#Miscellaneous-settings">15.3 Miscellaneous settings</a>
+<li><a href="Customizing-the-roster-buffer.html#Customizing-the-roster-buffer">15.4 Customizing the roster buffer</a>
+<li><a href="Customizing-the-chat-buffer.html#Customizing-the-chat-buffer">15.5 Customizing the chat buffer</a>
+<li><a href="Customizing-alerts.html#Customizing-alerts">15.6 Customizing alerts</a>
+<ul>
+<li><a href="Standard-alerts.html#Standard-alerts">15.6.1 Standard alerts</a>
+<li><a href="Presence-alerts.html#Presence-alerts">15.6.2 Presence alerts</a>
+<li><a href="Message-alerts.html#Message-alerts">15.6.3 Message alerts</a>
+<li><a href="MUC-alerts.html#MUC-alerts">15.6.4 MUC alerts</a>
+<li><a href="Info-alerts.html#Info-alerts">15.6.5 Info alerts</a>
+</li></ul>
+<li><a href="Hooks.html#Hooks">15.7 Hooks</a>
+<li><a href="Debug-options.html#Debug-options">15.8 Debug options</a>
+</li></ul>
+<li><a name="toc_Hacking-and-extending" href="Hacking-and-extending.html#Hacking-and-extending">16 Hacking and extending</a>
+<ul>
+<li><a href="XML-representation.html#XML-representation">16.1 XML representation</a>
+<li><a href="Roster-structure.html#Roster-structure">16.2 Roster structure</a>
+<li><a href="Listening-for-new-requests.html#Listening-for-new-requests">16.3 Listening for new requests</a>
+<li><a href="Sending-new-requests.html#Sending-new-requests">16.4 Sending new requests</a>
+<li><a href="Extending-service-discovery.html#Extending-service-discovery">16.5 Service discovery</a>
+<li><a href="Chat-printers.html#Chat-printers">16.6 Chat printers</a>
+<li><a href="Stanza-chains.html#Stanza-chains">16.7 Stanza chains</a>
+</li></ul>
+<li><a name="toc_Protocol-support" href="Protocol-support.html#Protocol-support">Appendix A Protocol support</a>
+<ul>
+<li><a href="RFC-3920.html#RFC-3920">A.1 RFC 3920 (XMPP-CORE)</a>
+<li><a href="RFC-3921.html#RFC-3921">A.2 RFC 3921 (XMPP-IM)</a>
+<li><a href="XEP_002d0004.html#XEP_002d0004">A.3 XEP-0004 (Data Forms)</a>
+<li><a href="XEP_002d0012.html#XEP_002d0012">A.4 XEP-0012 (Last Activity)</a>
+<li><a href="XEP_002d0020.html#XEP_002d0020">A.5 XEP-0020 (Feature Negotiation)</a>
+<li><a href="XEP_002d0022.html#XEP_002d0022">A.6 XEP-0022 (Message Events)</a>
+<li><a href="XEP_002d0030.html#XEP_002d0030">A.7 XEP-0030 (Service Discovery)</a>
+<li><a href="XEP_002d0045.html#XEP_002d0045">A.8 XEP-0045 (Multi-User Chat)</a>
+<li><a href="XEP_002d0049.html#XEP_002d0049">A.9 XEP-0049 (Private XML Storage)</a>
+<li><a href="XEP_002d0050.html#XEP_002d0050">A.10 XEP-0050 (Ad-Hoc Commands)</a>
+<li><a href="XEP_002d0054.html#XEP_002d0054">A.11 XEP-0054 (vcard-temp)</a>
+<li><a href="XEP_002d0055.html#XEP_002d0055">A.12 XEP-0055 (Jabber Search)</a>
+<li><a href="XEP_002d0065.html#XEP_002d0065">A.13 XEP-0065 (SOCKS5 Bytestreams)</a>
+<li><a href="XEP_002d0066.html#XEP_002d0066">A.14 XEP-0066 (Out of Band Data)</a>
+<li><a href="XEP_002d0068.html#XEP_002d0068">A.15 XEP-0068 (Field Standardization for Data Forms)</a>
+<li><a href="XEP_002d0077.html#XEP_002d0077">A.16 XEP-0077 (In-Band Registration)</a>
+<li><a href="XEP_002d0078.html#XEP_002d0078">A.17 XEP-0078 (Non-SASL Authentication)</a>
+<li><a href="XEP_002d0082.html#XEP_002d0082">A.18 XEP-0082 (Jabber Date and Time Profiles)</a>
+<li><a href="XEP_002d0086.html#XEP_002d0086">A.19 XEP-0086 (Error Condition Mappings)</a>
+<li><a href="XEP_002d0090.html#XEP_002d0090">A.20 XEP-0090 (Entity Time)</a>
+<li><a href="XEP_002d0091.html#XEP_002d0091">A.21 XEP-0091 (Delayed Delivery)</a>
+<li><a href="XEP_002d0092.html#XEP_002d0092">A.22 XEP-0092 (Software Version)</a>
+<li><a href="XEP_002d0095.html#XEP_002d0095">A.23 XEP-0095 (Stream Initiation)</a>
+<li><a href="XEP_002d0096.html#XEP_002d0096">A.24 XEP-0096 (File Transfer)</a>
+<li><a href="XEP_002d0146.html#XEP_002d0146">A.25 XEP-0146 (Remote Controlling Clients)</a>
+<li><a href="XEP_002d0153.html#XEP_002d0153">A.26 XEP-0153 (vCard-Based Avatars)</a>
+</li></ul>
+<li><a name="toc_Concept-index" href="Concept-index.html#Concept-index">Concept index</a>
+<li><a name="toc_Function-index" href="Function-index.html#Function-index">Function index</a>
+<li><a name="toc_Variable-index" href="Variable-index.html#Variable-index">Variable index</a>
+</li></ul>
+</div>
+
+
+
+<div class="node">
+<p>
+<a name="Top"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Introduction.html#Introduction">Introduction</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="../index.html#dir">(dir)</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="../index.html#dir">(dir)</a>
+<hr><br>
+</div>
+
+<h2 class="unnumbered">jabber.el manual</h2>
+
+<p>This manual is for jabber.el, version 0.7.1.
+
+   <p>Copyright &copy; 2004, 2005, 2006, 2007 Magnus Henoch, Tom Berger.
+
+   <blockquote>
+Permission is granted to make and distribute verbatim copies or
+modified versions of this manual, provided the copyright notice and
+this permission notice are preserved on all copies. 
+</blockquote>
+
+<ul class="menu">
+<li><a accesskey="1" href="Introduction.html#Introduction">Introduction</a>
+<li><a accesskey="2" href="Basic-operation.html#Basic-operation">Basic operation</a>
+<li><a accesskey="3" href="Groupchat.html#Groupchat">Groupchat</a>
+<li><a accesskey="4" href="Composing-messages.html#Composing-messages">Composing messages</a>
+<li><a accesskey="5" href="File-transfer.html#File-transfer">File transfer</a>
+<li><a accesskey="6" href="Services.html#Services">Services</a>
+<li><a accesskey="7" href="Personal-information.html#Personal-information">Personal information</a>
+<li><a accesskey="8" href="Avatars.html#Avatars">Avatars</a>
+<li><a accesskey="9" href="Time-queries.html#Time-queries">Time queries</a>
+<li><a href="Useful-features.html#Useful-features">Useful features</a>
+<li><a href="Message-history.html#Message-history">Message history</a>
+<li><a href="Message-events.html#Message-events">Message events</a>
+<li><a href="Roster-import-and-export.html#Roster-import-and-export">Roster import and export</a>
+<li><a href="XMPP-URIs.html#XMPP-URIs">XMPP URIs</a>
+<li><a href="Customization.html#Customization">Customization</a>
+<li><a href="Hacking-and-extending.html#Hacking-and-extending">Hacking and extending</a>
+<li><a href="Protocol-support.html#Protocol-support">Protocol support</a>
+<li><a href="Concept-index.html#Concept-index">Concept index</a>
+<li><a href="Function-index.html#Function-index">Function index</a>
+<li><a href="Variable-index.html#Variable-index">Variable index</a>
+</ul>
+
+   </body></html>
+

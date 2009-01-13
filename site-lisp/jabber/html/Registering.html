@@ -1,0 +1,78 @@
+<html lang="en">
+<head>
+<title>Registering - jabber.el manual 0.7.1</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="jabber.el manual 0.7.1">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Services.html#Services" title="Services">
+<link rel="prev" href="Service-discovery-and-browsing.html#Service-discovery-and-browsing" title="Service discovery and browsing">
+<link rel="next" href="Searching.html#Searching" title="Searching">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for jabber.el, version 0.7.1.
+
+Copyright (C) 2004, 2005, 2006, 2007 Magnus Henoch, Tom Berger.
+
+     Permission is granted to make and distribute verbatim copies or
+     modified versions of this manual, provided the copyright notice and
+     this permission notice are preserved on all copies.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Registering"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Searching.html#Searching">Searching</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Service-discovery-and-browsing.html#Service-discovery-and-browsing">Service discovery and browsing</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Services.html#Services">Services</a>
+<hr><br>
+</div>
+
+<h3 class="section">6.2 Registering</h3>
+
+<p><a name="index-Registration-72"></a><a name="index-Cancelling-registration-73"></a><a name="index-Changing-password-74"></a><a name="index-Gateway-registration-75"></a><a name="index-Password-change-76"></a><a name="index-Account-removal-77"></a><a name="index-Removing-an-account-78"></a><a name="index-jabber_002dget_002dregister-79"></a>
+Some services, in particular user directories and gateways to legacy
+IM systems, require registration.  To register with such a service,
+either type <kbd>M-x jabber-get-register</kbd> or select it from the
+Service menu, which is opened by typing <kbd>C-c C-s</kbd>.  You have to
+know the service's JID, possibly from service discovery. 
+(see <a href="Service-discovery-and-browsing.html#Service-discovery-and-browsing">Service discovery and browsing</a>)
+
+   <p>This is also the way to change your registration details, e.g. your
+password &mdash; just ask to register with that service again.  To change
+the password of your Jabber account, ask to register with your Jabber
+server.
+
+   <p>Please note that any passwords sent in this way will be sent in
+cleartext to your Jabber server, unless you have enabled SSL encryption
+(see <a href="Connection-settings.html#Connection-settings">Connection settings</a>), and possibly sent in cleartext from your
+server to the server hosting the service.
+
+   <p>jabber.el will then request a registration form from that service.  If
+for some reason the service does not answer (maybe network problems,
+or some services neither support registration nor report errors about
+that) that will be the last thing you saw about it.  jabber.el will
+not report timeout errors, but rather simply wait until you shut it
+down.
+
+   <p>Once the response arrives, the form will be rendered in a browse
+buffer.  Just fill out the fields, and hit Submit.  You will receive
+confirmation of your registration in the echo area.
+
+   <p>To cancel an existing registration (and also for cancelling your
+Jabber account, if you sent a registration request to your server),
+hit Cancel.  The unregistration will be confirmed in the echo area.
+
+   </body></html>
+

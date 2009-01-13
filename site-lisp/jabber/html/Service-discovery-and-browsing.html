@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+<title>Service discovery and browsing - jabber.el manual 0.7.1</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="jabber.el manual 0.7.1">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Services.html#Services" title="Services">
+<link rel="prev" href="Services.html#Services" title="Services">
+<link rel="next" href="Registering.html#Registering" title="Registering">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for jabber.el, version 0.7.1.
+
+Copyright (C) 2004, 2005, 2006, 2007 Magnus Henoch, Tom Berger.
+
+     Permission is granted to make and distribute verbatim copies or
+     modified versions of this manual, provided the copyright notice and
+     this permission notice are preserved on all copies.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Service-discovery-and-browsing"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Registering.html#Registering">Registering</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Services.html#Services">Services</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Services.html#Services">Services</a>
+<hr><br>
+</div>
+
+<h3 class="section">6.1 Service discovery and browsing</h3>
+
+<p><a name="index-Service-discovery-67"></a><a name="index-Browsing-68"></a><a name="index-jabber_002dget_002dbrowse-69"></a><a name="index-jabber_002dget_002ddisco_002ditems-70"></a><a name="index-jabber_002dget_002ddisco_002dinfo-71"></a>
+To find services you want to use, you need to discover them first. 
+This can be done with either service discovery or browsing.  Service
+discovery is the newer and preferred protocol, while browsing is still
+used by much software.  The use of both is very similar.
+
+   <p>The most common use of service discovery is to browse your home
+server, to see what services are provided locally.  Note, however,
+that this is no restriction; you can use services from all over the
+network.
+
+   <p>For service discovery there are two commands,
+<code>jabber-get-disco-items</code> and <code>jabber-get-disco-info</code>,
+depending on whether you want information about that specific JID or
+about services related to it, respectively.  To start browsing, type
+<kbd>M-x jabber-get-browse</kbd> and enter the JID you want to browse.
+
+   <p>These commands can be accessed from the Info menu, which is opened by
+typing <kbd>C-c C-i</kbd>.
+
+   <p>If you think that the interface to service discovery is awkward and
+should be replaced with something better, you are completely right.
+
+   </body></html>
+

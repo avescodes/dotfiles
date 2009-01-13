@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-11 20:49:38 CST>
+;; Modified: <2009-01-12 19:55:24 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -26,21 +26,22 @@
 
 ;;; >>> Feature Selection <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defvar *cedet*         t)   ;; Common emacs development tools. Big, but handy.
-(defvar *clojure*       t)   ;; Using clojure? (Select slime as well.)
-(defvar *color-theme*   t)   ;; Probably disable for GNU Emacs <22
-(defvar *erc*           t)   ;; Emacs IRC Client
-(defvar *flyspell*      t)   ;; Flyspell spell checking mode
-(defvar *fuzzy-find*    t)   ;; Fuzzy find in project
-(defvar *git*           t)   ;; Git & Gist integration
-(defvar *ido*           t)   ;; Using ido?
-(defvar *jess*          t)   ;; Jess, a java expert systems language
-(defvar *joust*         nil)   ;; Joust package manager
-(defvar *merb*          t)   ;; Merb, Rails minor modes
-(defvar *ruby*          t)   ;; Ruby
-(defvar *slime*         t)   ;; Using lisp?
-(defvar *timestamp*     t)   ;; Update "Modified: <>" comments on save
-(defvar *yasnippet*     t)   ;; Snippets a la Textmate. Awesomeness, defined.
+(defvar *cedet*       t)   ;; Common emacs development tools. Big, but handy.
+(defvar *clojure*     t)   ;; Using clojure? (Select slime as well.)
+(defvar *color-theme* t)   ;; Probably disable for GNU Emacs <22
+(defvar *erc*         t)   ;; Emacs IRC Client
+(defvar *flyspell*    t)   ;; Flyspell spell checking mode
+(defvar *fuzzy-find*  t)   ;; Fuzzy find in project
+(defvar *git*         t)   ;; Git & Gist integration
+(defvar *ido*         t)   ;; Using ido?
+(defvar *jabber*      t)   ;; Jabber client
+(defvar *jess*        t)   ;; Jess, a java expert systems language
+(defvar *joust*       nil) ;; Joust package manager
+(defvar *merb*        t)   ;; Merb, Rails minor modes
+(defvar *ruby*        t)   ;; Ruby
+(defvar *slime*       t)   ;; Using lisp?
+(defvar *timestamp*   t)   ;; Update "Modified: <>" comments on save
+(defvar *yasnippet*   t)   ;; Snippets a la Textmate. Awesomeness, defined.abc
 
 (when *joust*
   (add-to-list 'load-path (concat emacs-config-path "/joust"))
@@ -135,6 +136,10 @@
   (add-hook 'ido-setup-hook  ;;Do I need?
     (lambda ()
       (define-key ido-completion-map [tab] 'ido-complete))))
+
+(when *jabber*
+  (add-path "jabber")
+  (require 'jabber))
 
 (when *jess*
   (add-path "jess")
@@ -234,7 +239,6 @@
   '(global-font-lock-mode    t nil (font-lock)) ;; Syntax higlighting
   '(indent-tabs-mode         nil)        ;; soft tabs
   '(inhibit-startup-message  t)          ;; no startup message
-  '(kill-ring                120)
   '(menu-bar-mode            nil)        ;; eww. bad.
   '(minibuffer-max-depth     nil)        ;; enable multiple minibuffers
   '(ring-bell-function       'ignore)    ;; turn off system beep
@@ -383,6 +387,7 @@
     '(("\\.yml$"   . yaml-mode))
     '(("\\.json$"  . yaml-mode))
     '(("\\.rb$"    . ruby-mode))
+    '(("\\.gemspec$" . ruby-mode))
     '(("\\.md$"    . markdown-mode))
     '(("\\.zsh$"   . sh-mode))
     '(("Rakefile$" . ruby-mode))

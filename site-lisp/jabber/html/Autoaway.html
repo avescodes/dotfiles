@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+<title>Autoaway - jabber.el manual 0.7.1</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="jabber.el manual 0.7.1">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Useful-features.html#Useful-features" title="Useful features">
+<link rel="prev" href="Useful-features.html#Useful-features" title="Useful features">
+<link rel="next" href="Modeline-status.html#Modeline-status" title="Modeline status">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for jabber.el, version 0.7.1.
+
+Copyright (C) 2004, 2005, 2006, 2007 Magnus Henoch, Tom Berger.
+
+     Permission is granted to make and distribute verbatim copies or
+     modified versions of this manual, provided the copyright notice and
+     this permission notice are preserved on all copies.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Autoaway"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Modeline-status.html#Modeline-status">Modeline status</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Useful-features.html#Useful-features">Useful features</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Useful-features.html#Useful-features">Useful features</a>
+<hr><br>
+</div>
+
+<h3 class="section">10.1 Autoaway</h3>
+
+<p><a name="index-autoaway-100"></a><a name="index-idle-101"></a><a name="index-xprintidle-102"></a><a name="index-jabber_002dautoaway_002dmethod-103"></a>
+It is possible to automatically set your status to &ldquo;away&rdquo; when you
+haven't used your computer for a while.  This lets your contacts know
+that you might not answer immediately.
+
+   <p>To activate this feature, add <code>jabber-autoaway-start</code> to
+<code>jabber-post-connect-hook</code>, e.g:
+<pre class="example">     (add-hook 'jabber-post-connect-hook 'jabber-autoaway-start)
+</pre>
+   <p>There are different methods to find how long you have been &ldquo;idle&rdquo;. 
+The method to use is specified by <code>jabber-autoaway-method</code>.  The
+value of this variable should be a function that returns the number of
+seconds you have been idle.  Three functions are provided.
+
+   <p>If you are running Emacs 22 and thus have the <code>current-idle-time</code>
+function, it is used by default.  Note that this method only measures
+the time since you last interacted with Emacs, and thus disregards
+activity in other programs.
+
+   <p>If you are using the X Window System, you can use the
+<a href="http://www.dtek.chalmers.se/~henoch/text/xprintidle.html">xprintidle</a> program.  Make sure that <code>jabber-xprintidle-program</code> is
+set to the correct file name.  This uses the same method as XScreensaver
+to find your idle time.
+
+   <p>If you are using Emacs on a GNU/Linux terminal, the function
+<code>jabber-termatime-get-idle-time</code> is used by default.
+
+   </body></html>
+

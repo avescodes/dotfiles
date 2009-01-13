@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+<title>Chat printers - jabber.el manual 0.7.1</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="jabber.el manual 0.7.1">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Hacking-and-extending.html#Hacking-and-extending" title="Hacking and extending">
+<link rel="prev" href="Extending-service-discovery.html#Extending-service-discovery" title="Extending service discovery">
+<link rel="next" href="Stanza-chains.html#Stanza-chains" title="Stanza chains">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for jabber.el, version 0.7.1.
+
+Copyright (C) 2004, 2005, 2006, 2007 Magnus Henoch, Tom Berger.
+
+     Permission is granted to make and distribute verbatim copies or
+     modified versions of this manual, provided the copyright notice and
+     this permission notice are preserved on all copies.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Chat-printers"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Stanza-chains.html#Stanza-chains">Stanza chains</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Extending-service-discovery.html#Extending-service-discovery">Extending service discovery</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Hacking-and-extending.html#Hacking-and-extending">Hacking and extending</a>
+<hr><br>
+</div>
+
+<h3 class="section">16.6 Chat printers</h3>
+
+<p><a name="index-jabber_002dchat_002dprinters-244"></a><a name="index-jabber_002dmuc_002dprinters-245"></a><a name="index-jabber_002dbody_002dprinters-246"></a><a name="index-Chat-printers-247"></a><a name="index-Body-printers-248"></a>
+Chat printers are functions that print a certain aspect of an incoming
+message in a chat buffer.  Included are functions for printing subjects
+(<code>jabber-chat-print-subject</code>), bodies
+(<code>jabber-chat-print-body</code>, and <code>jabber:x:oob</code>-style URLs
+(<code>jabber-chat-print-url</code>).  The functions in
+<code>jabber-chat-printers</code> are called in order, with the entire
+<code>&lt;message/&gt;</code> stanza as argument, and are expected to call
+<code>insert</code> if they have anything to add.
+
+   <p>For MUC, the functions in <code>jabber-muc-printers</code> are prepended to
+those in <code>jabber-chat-printers</code>.
+
+   <p>Body printers are a subgroup of chat printers.  They are exclusive; only
+one of them applies to any given message.  The idea is that
+&ldquo;higher-quality&rdquo; parts of the message override pieces included for
+backwards compatibility.  Included are <code>jabber-muc-print-invite</code>
+and <code>jabber-chat-normal-body</code>; functions for XHTML-IM and PGP
+encrypted messages may be written in the future.  The functions in
+<code>jabber-body-printers</code> are called in order until one of them
+returns non-nil.
+
+   </body></html>
+

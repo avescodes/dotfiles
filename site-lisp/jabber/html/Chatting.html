@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+<title>Chatting - jabber.el manual 0.7.1</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="jabber.el manual 0.7.1">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Basic-operation.html#Basic-operation" title="Basic operation">
+<link rel="prev" href="Connecting.html#Connecting" title="Connecting">
+<link rel="next" href="Presence.html#Presence" title="Presence">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for jabber.el, version 0.7.1.
+
+Copyright (C) 2004, 2005, 2006, 2007 Magnus Henoch, Tom Berger.
+
+     Permission is granted to make and distribute verbatim copies or
+     modified versions of this manual, provided the copyright notice and
+     this permission notice are preserved on all copies.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Chatting"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Presence.html#Presence">Presence</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Connecting.html#Connecting">Connecting</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Basic-operation.html#Basic-operation">Basic operation</a>
+<hr><br>
+</div>
+
+<h3 class="section">2.2 Chatting</h3>
+
+<p><a name="index-Chatting-5"></a><a name="index-jabber_002dchat_002dwith-6"></a>
+There are several ways to open a chat buffer.  The shortest way is to
+put point over the person you want to chat with in the roster display
+and hit RET.
+
+   <p>You can also use menus to access commands.  In the roster display, you
+can access several menus through keystrokes or mouse clicks.  You can
+bring one big menu up by pressing the second mouse button, or you can
+bring up the &ldquo;chat menu&rdquo; by typing <kbd>C-c C-c</kbd>.  If you do the
+latter while point is on a roster entry, that entry will be the
+default value when you are asked for whom to chat with.
+
+   <p>You can also use the function <code>jabber-chat-with</code>, which is what the
+menu item is bound to.  This function is bound to <kbd>C-x C-j C-j</kbd> in
+the global keymap.
+
+   <p>Now, try opening a chat with someone.  A buffer named
+<code>*-jabber-chat-:-</code><var>person</var><code>-*</code> will be created and selected. 
+Type your message at the end of the buffer, and hit <kbd>RET</kbd> to send
+it.  To include a newline in your message, use <kbd>C-j</kbd>.
+
+   </body></html>
+

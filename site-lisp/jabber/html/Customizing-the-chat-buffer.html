@@ -1,0 +1,96 @@
+<html lang="en">
+<head>
+<title>Customizing the chat buffer - jabber.el manual 0.7.1</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="jabber.el manual 0.7.1">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Customization.html#Customization" title="Customization">
+<link rel="prev" href="Customizing-the-roster-buffer.html#Customizing-the-roster-buffer" title="Customizing the roster buffer">
+<link rel="next" href="Customizing-alerts.html#Customizing-alerts" title="Customizing alerts">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This manual is for jabber.el, version 0.7.1.
+
+Copyright (C) 2004, 2005, 2006, 2007 Magnus Henoch, Tom Berger.
+
+     Permission is granted to make and distribute verbatim copies or
+     modified versions of this manual, provided the copyright notice and
+     this permission notice are preserved on all copies.
+   -->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Customizing-the-chat-buffer"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Customizing-alerts.html#Customizing-alerts">Customizing alerts</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Customizing-the-roster-buffer.html#Customizing-the-roster-buffer">Customizing the roster buffer</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Customization.html#Customization">Customization</a>
+<hr><br>
+</div>
+
+<h3 class="section">15.5 Customizing the chat buffer</h3>
+
+<p><a name="index-Chat-buffer-189"></a><a name="index-Timestamps-190"></a><a name="index-Faces_002c-chat-buffer-191"></a>
+You can customize the look of the prompts in the chat buffer.  There
+are separate settings for local (i.e. your own messages) and foreign
+prompts.
+
+   <p><a name="index-jabber_002dchat_002dtext_002dlocal-192"></a><a name="index-jabber_002dchat_002dtext_002dforeign-193"></a><code>jabber-chat-text-local</code> and <code>jabber-chat-text-foreign</code>
+determine the faces used for chat messages.
+
+   <p><a name="index-jabber_002dchat_002dprompt_002dlocal-194"></a><a name="index-jabber_002dchat_002dprompt_002dforeign-195"></a><code>jabber-chat-prompt-local</code> and <code>jabber-chat-prompt-foreign</code>
+determine the faces used for the prompts.
+
+   <p><a name="index-jabber_002dchat_002dlocal_002dprompt_002dformat-196"></a><a name="index-jabber_002dchat_002dforeign_002dprompt_002dformat-197"></a><code>jabber-chat-local-prompt-format</code> and
+<code>jabber-chat-foreign-prompt-format</code> determine what text is
+displayed in the prompts.  They are format strings, with the following
+special sequences defined:
+
+     <dl>
+<dt><code>%t</code><dd>The time when the message was sent or received
+<br><dt><code>%n</code><dd>The nickname of the user.  For the foreign prompt, this is the name of
+the contact in the roster, or the JID if no name set.  For the local
+prompt, this is the username part of your JID. 
+<br><dt><code>%u</code><dd>The username of the user. 
+<br><dt><code>%r</code><dd>The resource. 
+<br><dt><code>%j</code><dd>The bare JID of the user
+</dl>
+
+   <p><a name="index-jabber_002dchat_002dtime_002dformat-198"></a><code>jabber-chat-time-format</code> defines how <code>%t</code> shows time.  Its
+format is identical to that passed to <code>format-time-string</code>. 
+See <a href="../elisp/Time-Conversion.html#Time-Conversion">Time Conversion (GNU Emacs Lisp Reference Manual)</a>.
+
+   <p><a name="index-jabber_002dchat_002ddelayed_002dtime_002dformat-199"></a><code>jabber-chat-delayed-time-format</code> is used instead of
+<code>jabber-chat-time-format</code> for delayed messages (messages sent while
+you were offline, or fetched from history).  This way you can have short
+timestamps everywhere except where you need long ones.  You can always
+see the complete timestamp in a tooltip by hovering over the prompt with
+the mouse.
+
+   <p><a name="index-jabber_002dprint_002drare_002dtime-200"></a><a name="index-jabber_002drare_002dtime_002dformat-201"></a><a name="index-jabber_002dchat_002dtext_002dlocalBy-default_002c-timestamps-are-printed-in-the-chat-buffer-every-hour-_0028at-202"></a>&ldquo;rare&rdquo; times).  This can be toggled with
+<code>jabber-print-rare-time</code>.  You can customize the displayed time by
+setting <code>jabber-rare-time-format</code>.  Rare timestamps will be printed
+whenever time formatted by that format string would change.
+
+   <p><a name="index-jabber_002dchat_002dheader_002dline_002dformat-203"></a><a name="index-jabber_002dmuc_002dheader_002dline_002dformat-204"></a>You can also customize the header line of chat buffers, by modifying
+the variable <code>jabber-chat-header-line-format</code>.  The format of
+that variable is the same as that of <code>mode-line-format</code> and
+<code>header-line-format</code>.  See <a href="../elisp/Mode-Line-Format.html#Mode-Line-Format">Mode-Line Format (GNU Emacs Lisp Reference Manual)</a>.  For MUC buffers,
+<code>jabber-muc-header-line-format</code> is used instead.
+
+   <p><a name="index-jabber_002dchat_002dfill_002dlong_002dlines-205"></a><a name="index-Filling-long-lines-in-chat-buffer-206"></a>The variable <code>jabber-chat-fill-long-lines</code> controls whether long
+lines in the chat buffer are filled.
+
+   </body></html>
+
