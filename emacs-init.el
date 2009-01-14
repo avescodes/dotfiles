@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-13 10:56:11 CST>
+;; Modified: <2009-01-13 21:52:58 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -140,7 +140,45 @@
 (when *jabber*
   (add-path "jabber")
   (require 'jabber)
-  (setq jabber-roster-show-bindings nil))
+  (setq jabber-roster-show-bindings nil)
+  (custom-set-variables
+   '(jabber-chat-buffer-format "*GC-%n*")
+   '(jabber-chat-fill-long-lines nil)
+   '(jabber-connection-ssl-program nil)
+   '(jabber-connection-type (quote ssl))
+   '(jabber-default-priority 25)
+   '(jabber-groupchat-buffer-format "*GGC-%n*")
+   '(jabber-mode-line-mode t)
+   '(jabber-network-server "talk.google.com")
+   '(jabber-nickname "Ryan Neufeld")
+   '(jabber-port 5223)
+   '(jabber-resource-line-format "  -> %s (%r)
+")
+   '(jabber-roster-buffer "*G-roster*")
+   '(jabber-roster-line-format "%c %-15n %u %-8s
+")
+   '(jabber-roster-subscription-display (quote (("none" . "   ") ("from" . "{  ") ("to" . "  }") ("both" . "{-}"))))
+   '(jabber-server "gmail.com")
+   '(jabber-show-resources (quote sometimes))
+   '(jabber-username "neufelry")
+   '(jabber-vcard-avatars-retrieve nil))
+
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(jabber-chat-error ((t (:foreground "red" :weight bold :family "Pragmatta TT"))))
+   '(jabber-chat-prompt-foreign ((t (:foreground "red" :weight bold :family "Pragmatta TT"))))
+   '(jabber-chat-prompt-local ((t (:foreground "blue" :weight bold :family "Pragmatta TT"))))
+   '(jabber-chat-prompt-system ((t (:foreground "green" :weight bold :family "Pragmatta TT"))))
+   '(jabber-chat-text-foreign ((t (:family "Pragmatta TT"))))
+   '(jabber-chat-text-local ((t (:family "Pragmatta TT"))))
+   '(jabber-roster-user-online ((t (:foreground "blue" :slant normal :weight bold))))
+   '(jabber-title-large ((t (:inherit variable-pitch :weight bold :height 2.4 :width ultra-expanded :family "Pragmatta TT"))))
+   '(jabber-title-medium ((t (:inherit variable-pitch :weight bold :height 1.8 :width expanded :family "Pragmatta TT"))))
+   '(jabber-title-small ((t (:inherit variable-pitch :weight bold :height 1.0 :width semi-expanded :family "Pragmatta TT"))))))
+
 
 (when *jess*
   (add-path "jess")
