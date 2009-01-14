@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-13 23:19:18 CST>
+;; Modified: <2009-01-13 23:24:36 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -145,7 +145,10 @@
                                        ;;I should parse out the name and coalesce msgs
   (defun jabber-growl-message (msg)
     "Show MSG via Growl"
-    (shell-command (concat "growlnotify --appIcon 'Aquamacs Emacs' Jabber.el -m '" msg "'")))
+    (shell-command 
+     (concat 
+      "growlnotify --appIcon 'Aquamacs Emacs' Jabber.el -m '" 
+      msg "' -d '" msg "'")))
   (define-jabber-alert growl "Show a message through OS X Growl" 'jabber-growl-message)
   (custom-set-variables
    '(jabber-chat-buffer-format "~%n~")
