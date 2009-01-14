@@ -132,7 +132,7 @@ If we can't find SRV records, use standard defaults."
 	    (when (setq *jabber-connection* 
 			(open-network-stream
 			 "jabber"
-			 jabber-process-buffer
+			 (get-buffer-create jabber-process-buffer)
 			 (car target)
 			 (cdr target)))
 	      (throw 'connected t))
@@ -165,7 +165,7 @@ If we can't find SRV records, use standard defaults."
       (setq *jabber-connection*
 	    (funcall connect-function
 		     "jabber"
-		     jabber-process-buffer
+		     (get-buffer-create jabber-process-buffer)
 		     (or jabber-network-server jabber-server)
 		     (or jabber-port 5223)))))
 
