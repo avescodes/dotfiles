@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-13 21:52:58 CST>
+;; Modified: <2009-01-13 23:19:18 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -141,8 +141,14 @@
   (add-path "jabber")
   (require 'jabber)
   (setq jabber-roster-show-bindings nil)
+  (defalias 'chat 'jabber-chat-with)
+                                       ;;I should parse out the name and coalesce msgs
+  (defun jabber-growl-message (msg)
+    "Show MSG via Growl"
+    (shell-command (concat "growlnotify --appIcon 'Aquamacs Emacs' Jabber.el -m '" msg "'")))
+  (define-jabber-alert growl "Show a message through OS X Growl" 'jabber-growl-message)
   (custom-set-variables
-   '(jabber-chat-buffer-format "*GC-%n*")
+   '(jabber-chat-buffer-format "~%n~")
    '(jabber-chat-fill-long-lines nil)
    '(jabber-connection-ssl-program nil)
    '(jabber-connection-type (quote ssl))
@@ -154,10 +160,10 @@
    '(jabber-port 5223)
    '(jabber-resource-line-format "  -> %s (%r)
 ")
-   '(jabber-roster-buffer "*G-roster*")
+   '(jabber-roster-buffer "~ROSTER~")
    '(jabber-roster-line-format "%c %-15n %u %-8s
 ")
-   '(jabber-roster-subscription-display (quote (("none" . "   ") ("from" . "{  ") ("to" . "  }") ("both" . "{-}"))))
+   '(jabber-roster-subscription-display (quote (("none" . "<>") ("from" . "< ") ("to" . " >") ("both" . "  "))))
    '(jabber-server "gmail.com")
    '(jabber-show-resources (quote sometimes))
    '(jabber-username "neufelry")
