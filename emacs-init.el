@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-13 23:24:36 CST>
+;; Modified: <2009-01-15 22:45:35 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -38,6 +38,7 @@
 (defvar *jess*        t)   ;; Jess, a java expert systems language
 (defvar *joust*       nil) ;; Joust package manager
 (defvar *merb*        t)   ;; Merb, Rails minor modes
+(defvar *org-mode*    t)   ;; Organization Mode
 (defvar *ruby*        t)   ;; Ruby
 (defvar *slime*       t)   ;; Using lisp?
 (defvar *timestamp*   t)   ;; Update "Modified: <>" comments on save
@@ -199,6 +200,15 @@
         (turn-on-font-lock)))
   (setq auto-mode-alist
     (append auto-mode-alist `(("\\.clp$" . jess-mode)))))
+
+(when *org-mode*
+  (add-path "org-mode")
+  (require 'org-install)
+  ;; The following lines are always needed.  Choose your own keys.
+  (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+  (define-key global-map "\C-cl" 'org-store-link)
+  (define-key global-map "\C-ca" 'org-agenda)
+  (global-font-lock-mode 1))
 
 (when *ruby* 
   (add-path "ruby")
