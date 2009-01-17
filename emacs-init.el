@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-15 22:45:35 CST>
+;; Modified: <2009-01-17 14:06:19 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -112,8 +112,9 @@
   (require 'erc))
 
 (when *flyspell*
+  (autoload 'flyspell-mode "flyspell" "On-the-fly spelling checker." t)
   (setq ispell-program-name "aspell")
-  (require 'flyspell))
+  (setq ispell-dictionary "en_US"))
 
 (when *fuzzy-find*
   (add-path "fuzzy-find-in-project")
@@ -156,7 +157,7 @@
    '(jabber-chat-fill-long-lines nil)
    '(jabber-connection-ssl-program nil)
    '(jabber-connection-type (quote ssl))
-   '(jabber-default-priority 25)
+   '(jabber-default-priority 30)
    '(jabber-groupchat-buffer-format "*GGC-%n*")
    '(jabber-mode-line-mode t)
    '(jabber-network-server "talk.google.com")
@@ -208,7 +209,8 @@
   (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
   (define-key global-map "\C-cl" 'org-store-link)
   (define-key global-map "\C-ca" 'org-agenda)
-  (global-font-lock-mode 1))
+  (global-font-lock-mode 1)
+  (setq org-completion-use-ido t))
 
 (when *ruby* 
   (add-path "ruby")
@@ -367,6 +369,36 @@
 
 ;; how patronizing could an editor possibly be? 'y' will do...
 (fset 'yes-or-no-p 'y-or-n-p)
+
+(defun fix-frame-horizontal-size (width)
+  "Set the frame's size to 80 (or prefix arg WIDTH) columns wide."
+  (interactive "P")
+  (if window-system
+      (set-frame-width (selected-frame) (or width 80))
+    (error "Cannot resize frame horizontally: is a text terminal")))
+
+(defun fix-window-horizontal-size (width)
+  "Set the window's size to 80 (or prefix arg WIDTH) columns wide."
+  (interactive "P")
+  (enlarge-window (- (or width 80) (window-width)) 'horizontal))
+
+(defun fix-vertical-size (height)
+  "Set the window's or frame's height to 80 (or prefix arg HEIGHT)."
+  (interactive "P")
+  (set-frame-height (selected-frame) (or height 47)))
+
+(defun fix-horizontal-size (width)
+  "Set the window's or frame's width to 80 (or prefix arg WIDTH)."
+  (interactive "P")
+  (condition-case nil
+      (fix-window-horizontal-size width)
+    (error 
+     (condition-case nil
+	 (fix-frame-horizontal-size width)
+       (error
+	(error "Cannot resize window or frame horizontally"))))))
+
+(global-set-key (kbd "C-x W") 'fix-horizontal-size)
 
 ;;; ----[ Key Bindings ]--------------------------------------------------------
 

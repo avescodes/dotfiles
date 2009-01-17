@@ -16,6 +16,21 @@ if (RUBY_VERSION == "1.8.7")
   Wirble.init
   Wirble.colorize
 
+  colors = Wirble::Colorize.colors.merge(
+  {
+    :comma => :light_grey,
+    :refers => :light_grey,
+    :string => :light_green,
+    :number => :red,
+    :symbol => :blue,
+    :symbol_prefix => :light_blue,
+
+    :open_hash          => :purple,
+    :close_hash         => :purple,
+    :open_array         => :purple,
+    :close_array        => :purple,
+  })
+  Wirble::Colorize.colors = colors
   class Object
     # print documentation
     #
