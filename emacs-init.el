@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-17 14:06:19 CST>
+;; Modified: <2009-01-20 10:18:30 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -22,7 +22,7 @@
 (setq debug-on-error t)
 
 (defvar *user-name* "Ryan Neufeld <neufelry@gmail.com>")
-(defvar *default-font*  "Anonymous")
+(defvar *default-font*  "Pragmata TT")
 
 ;;; >>> Feature Selection <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -179,16 +179,16 @@
    ;; If you edit it by hand, you could mess it up, so be careful.
    ;; Your init file should contain only one such instance.
    ;; If there is more than one, they won't work right.
-   '(jabber-chat-error ((t (:foreground "red" :weight bold :family "Pragmatta TT"))))
-   '(jabber-chat-prompt-foreign ((t (:foreground "red" :weight bold :family "Pragmatta TT"))))
-   '(jabber-chat-prompt-local ((t (:foreground "blue" :weight bold :family "Pragmatta TT"))))
-   '(jabber-chat-prompt-system ((t (:foreground "green" :weight bold :family "Pragmatta TT"))))
-   '(jabber-chat-text-foreign ((t (:family "Pragmatta TT"))))
-   '(jabber-chat-text-local ((t (:family "Pragmatta TT"))))
+   '(jabber-chat-error ((t (:foreground "red" :weight bold :family "Pragmata TT"))))
+   '(jabber-chat-prompt-foreign ((t (:foreground "red" :weight bold :family "Pragmata TT"))))
+   '(jabber-chat-prompt-local ((t (:foreground "blue" :weight bold :family "Pragmata TT"))))
+   '(jabber-chat-prompt-system ((t (:foreground "green" :weight bold :family "Pragmata TT"))))
+   '(jabber-chat-text-foreign ((t (:family "Pragmata TT"))))
+   '(jabber-chat-text-local ((t (:family "Pragmata TT"))))
    '(jabber-roster-user-online ((t (:foreground "blue" :slant normal :weight bold))))
-   '(jabber-title-large ((t (:inherit variable-pitch :weight bold :height 2.4 :width ultra-expanded :family "Pragmatta TT"))))
-   '(jabber-title-medium ((t (:inherit variable-pitch :weight bold :height 1.8 :width expanded :family "Pragmatta TT"))))
-   '(jabber-title-small ((t (:inherit variable-pitch :weight bold :height 1.0 :width semi-expanded :family "Pragmatta TT"))))))
+   '(jabber-title-large ((t (:inherit variable-pitch :weight bold :height 2.4 :width ultra-expanded :family "Pragmata TT"))))
+   '(jabber-title-medium ((t (:inherit variable-pitch :weight bold :height 1.8 :width expanded :family "Pragmata TT"))))
+   '(jabber-title-small ((t (:inherit variable-pitch :weight bold :height 1.0 :width semi-expanded :family "Pragmata TT"))))))
 
 
 (when *jess*
@@ -265,13 +265,19 @@
 (when window-system
 
   (global-unset-key "\C-z")
-  (tabbar-mode nil)
   (when *color-theme*
     (require 'color-theme)
     (setq color-theme-is-global t)
     (require 'sunburst)
     (color-theme-sunburst))
 
+  (when (boundp 'aquamacs-version)
+    (tabbar-mode nil)
+    (one-buffer-one-frame-mode 0)
+    (setq mac-allow-anti-aliasing t)
+    ;; M-x mac-font-panel, describe-font
+    (set-default-font
+     "-apple-pragmata tt-medium-r-normal--12-0-72-72-m-0-iso10646-1"))
   (when *yasnippet*
     (require 'yasnippet)
     (yas/initialize)
@@ -406,11 +412,9 @@
 (set-register ?Z '(file . "~/.emacs.d/zshrc.zsh"))     ;; Ditto.
 (set-register ?T '(file . "~/Documents/todo.txt"))     ;; And more for me
 
-(windmove-default-keybindings 'meta)
-
 (global-set-key "\C-cd"      'insert-date)
 (global-set-key "\C-ce"      'insert-name-email)
-(global-set-key "\C-cf"      'insert-file-name)
+;(global-set-key "\C-cf"      'insert-file-name)
 
 ;; How did I live without this?
 (global-set-key "\C-w"       'backward-kill-word)
@@ -431,6 +435,7 @@
 
 (global-set-key "\C-ch" 'hs-hide-block)
 (global-set-key "\C-cs" 'hs-show-block)
+(global-set-key "\C-cf" 'hs-toggle-hiding)
 
 (global-set-key "\C-xg" 'magit-status)
 
