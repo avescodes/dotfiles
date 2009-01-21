@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-20 10:18:30 CST>
+;; Modified: <2009-01-20 18:16:57 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -421,7 +421,6 @@
 (global-set-key "\C-x\C-k"   'kill-region)
 
 ;; Select all. Apparently some morons bind this to C-a.
-(global-set-key "\C-c\C-a"   'mark-whole-buffer)
 (global-set-key "\C-ct"      '(lambda () (interactive) (ansi-term "/bin/zsh")))
 
 ;; Alternative to RSI-inducing M-x, and extra insurance.
