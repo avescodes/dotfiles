@@ -1,6 +1,6 @@
 # File:     ~/.zshrc
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2008-12-23 02:09:28 CST>
+# Modified: <2009-01-29 15:06:36 CST>
 
 export NAME="Ryan Neufeld"
 export EMAIL="neufelry@gmail.com"
@@ -34,3 +34,4 @@ bindkey -e
 . ~/.emacs.d/zsh/prompts.zsh
 . ~/.emacs.d/zsh/aliases.zsh
 . ~/.emacs.d/zsh/rake_completions.zsh
+. ~/.emacs.d/zsh/multiruby.zsh
