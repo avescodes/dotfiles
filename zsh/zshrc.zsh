@@ -1,6 +1,6 @@
 # File:     ~/.zshrc
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2009-01-29 15:06:36 CST>
+# Modified: <2009-01-29 15:47:03 CST>
 
 export NAME="Ryan Neufeld"
 export EMAIL="neufelry@gmail.com"
@@ -35,3 +35,15 @@ bindkey -e
 . ~/.emacs.d/zsh/aliases.zsh
 . ~/.emacs.d/zsh/rake_completions.zsh
 . ~/.emacs.d/zsh/multiruby.zsh
+
+# zsh-git setup
+# zgitinit and prompt_wunjo_setup must be somewhere in your $fpath, see README for more.
+ 
+setopt promptsubst
+ 
+# Load the prompt theme system
+autoload -U promptinit
+promptinit
+ 
+# Use the wunjo prompt theme
+prompt wunjo
