@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-02-08 14:53:46 CST>
+;; Modified: <2009-02-08 21:08:36 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -215,12 +215,10 @@
 (when *ruby* 
   (add-path "ruby")
   (add-path "ri")
-  (add-path "emacs-rails") 
-
-  (require 'rails)
-  (require 'find-recursive)
-  (require 'snippet)
-  (global-set-key "\C-c\C-f" 'rails-goto-file-on-current-line)
+  (add-path "rinari")
+  
+  ;; Rinari 
+  (require 'rinari)
 
   (require 'ri)
   (require 'ruby-block)
