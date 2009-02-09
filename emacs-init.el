@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-01-20 18:16:57 CST>
+;; Modified: <2009-02-08 14:53:46 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -263,7 +263,6 @@
   (setq time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S %Z"))
 
 (when window-system
-
   (global-unset-key "\C-z")
   (when *color-theme*
     (require 'color-theme)

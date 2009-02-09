@@ -1,10 +1,11 @@
 # File:     ~/.emacs.d/zsh/prompts.zsh
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2008-12-15 09:10:14 CST>
+# Modified: <2009-01-30 12:45:31 CST>
 
 # This file is loaded by zshrc.zsh
 
 setopt ALL_EXPORT
+setopt prompt_subst
 
 autoload colors zsh/terminfo
 if [[ "$terminfo[colors]" -ge 8 ]]; then

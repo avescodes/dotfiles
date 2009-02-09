@@ -1,6 +1,6 @@
 # File:     ~/.emacs.d/zsh/aliases.zsh
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2009-01-11 19:38:24 CST>
+# Modified: <2009-01-30 15:04:21 CST>
 
 # This file is loaded by zshrc.zsh
 
@@ -39,6 +39,9 @@ alias cd..='cd ..'
 alias ..='cd ..'
 alias po='popd'
 alias pu='pushd'
+
+alias dev='cd ~/dev'
+
 alias tsl="tail -f /var/log/system.log"
 alias df="df -hT"
 alias em="emacs -nw"
@@ -53,6 +56,11 @@ alias pull="git pull"
 alias rb="ruby"
 alias rd="ruby -d"
 alias mg="merb-gen"
+
+alias sg="./script/generate"
+alias sc="./script/console"
+alias ss="./script/server"
+alias pp-reset="touch tmp/restart.txt"
 
 alias ssh-atlantis='ssh quick.thruhere.net -L 5900:localhost:5900'
 
