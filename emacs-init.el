@@ -1,13 +1,14 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-02-08 21:08:36 CST>
+;; Modified: <2009-02-22 21:30:39 CST>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
 ;;; >>> Configure Load Path <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq emacs-config-path "~/.emacs.d/")
 (setq base-lisp-path "~/.emacs.d/site-lisp/")
+(setq site-lisp-path (concat emacs-config-path "/site-lisp"))
 (defun add-path (p)
   (add-to-list 'load-path (concat base-lisp-path p)))
 
@@ -21,7 +22,7 @@
 (defvar *emacs-load-start* (current-time))
 (setq debug-on-error t)
 
-(defvar *user-name* "Ryan Neufeld <neufelry@gmail.com>")
+(defvar *user-name* "Ryan Neufeld <rkneufeld@gmail.com>")
 (defvar *default-font*  "Pragmata TT")
 
 ;;; >>> Feature Selection <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -36,6 +37,7 @@
 (defvar *ido*         t)   ;; Using ido?
 (defvar *jabber*      t)   ;; Jabber client
 (defvar *jess*        t)   ;; Jess, a java expert systems language
+(defvar *js2*         t)   ;; Javascript mode
 (defvar *joust*       nil) ;; Joust package manager
 (defvar *merb*        t)   ;; Merb, Rails minor modes
 (defvar *org-mode*    t)   ;; Organization Mode
@@ -202,6 +204,10 @@
   (setq auto-mode-alist
     (append auto-mode-alist `(("\\.clp$" . jess-mode)))))
 
+(when *js2* 
+  (autoload 'js2-mode  "js2-mode"  nil t)
+  (setq js2-basic-offset 2))
+
 (when *org-mode*
   (add-path "org-mode")
   (require 'org-install)
@@ -216,9 +222,12 @@
   (add-path "ruby")
   (add-path "ri")
   (add-path "rinari")
-  
+  (add-path "jump")
+
   ;; Rinari 
+  (require 'jump)
   (require 'rinari)
+  (setq rinari-tags-file-name "TAGS")
 
   (require 'ri)
   (require 'ruby-block)
@@ -250,8 +259,10 @@
               ))
 
   (when *merb* 
-    (add-path "rinari")
     (require 'rinari-merb)))
+
+;  (add-path "nxhtml")
+;  (require 'nxhtml-menu)
 
 (when *timestamp*
   ;; When files have "Modified: <>" in their first 8 lines, fill it in on save.
@@ -265,8 +276,10 @@
   (when *color-theme*
     (require 'color-theme)
     (setq color-theme-is-global t)
-    (require 'sunburst)
-    (color-theme-sunburst))
+     (load-file (concat site-lisp-path "/color-theme-ir-black/color-theme-ir-black.el"))
+;    (require 'sunburst)
+;    (color-theme-sunburst)
+     (color-theme-ir-black))
 
   (when (boundp 'aquamacs-version)
     (tabbar-mode nil)
@@ -338,7 +351,7 @@
         (if (looking-at "\\_>")
             (hippie-expand nil)
           (indent-for-tab-command))))))
-(global-set-key [(tab)] 'smart-tab)
+;;(global-set-key [(tab)] 'smart-tab)
 
 ;;; ----[ Functions ]-----------------------------------------------------------
 
@@ -481,6 +494,7 @@
     '(("\\.md$"    . markdown-mode))
     '(("\\.zsh$"   . sh-mode))
     '(("Rakefile$" . ruby-mode))
+    '(("\\.rake$" . ruby-mode))
     '(("\\.pro$" . prolog-mode))
     auto-mode-alist))
 

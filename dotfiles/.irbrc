@@ -39,7 +39,15 @@ def cd(arg='.')
   FileUtils.cd(arg, :verbose => true)
 end
 
+module ObjectEnhancer
+  def tap
+    yield self
+    self
+  end
+end
+
 class Object
+  include ObjectEnhancer
   # print documentation
   #
   # ri 'Array#pop'
@@ -59,8 +67,37 @@ class Object
     (methods - Object.instance_methods).sort
   end
 
+  def method_missing(name, *args)
+    result = `#{name} #{args.join}`
+    puts result
+    result
+  end
 end
 
 if (RUBY_VERSION == "1.8.7")
   require 'utility_belt' # Not 1.9.1 compatible
+end
+
+# Prompts
+IRB.conf[:PROMPT][:CUSTOM] = {
+    :PROMPT_N => ">> ",
+    :PROMPT_I => ">> ",
+    :PROMPT_S => nil,
+    :PROMPT_C => " > ",
+    :RETURN => "#=> %s\n"
+}
+
+IRB.conf[:PROMPT_MODE] = :CUSTOM
+
+
+def clear
+  eval "def clear; print #{`clear`.inspect} end"
+  clear
+end
+private :clear
+
+class Symbol
+  def to_proc
+    lambda {|*args| args.shift.__send__(self, *args)}
+  end
 end
