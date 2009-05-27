@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-02-22 21:30:39 CST>
+;; Modified: <2009-05-27 17:10:48 CDT>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -36,19 +36,13 @@
 (defvar *git*         t)   ;; Git & Gist integration
 (defvar *ido*         t)   ;; Using ido?
 (defvar *jabber*      t)   ;; Jabber client
-(defvar *jess*        t)   ;; Jess, a java expert systems language
 (defvar *js2*         t)   ;; Javascript mode
-(defvar *joust*       nil) ;; Joust package manager
 (defvar *merb*        t)   ;; Merb, Rails minor modes
 (defvar *org-mode*    t)   ;; Organization Mode
 (defvar *ruby*        t)   ;; Ruby
 (defvar *slime*       t)   ;; Using lisp?
 (defvar *timestamp*   t)   ;; Update "Modified: <>" comments on save
 (defvar *yasnippet*   t)   ;; Snippets a la Textmate. Awesomeness, defined.abc
-
-(when *joust*
-  (add-to-list 'load-path (concat emacs-config-path "/joust"))
-  (require 'joust))
 
 ;;; >>> Loading Packages <<< ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'ansi-color)
@@ -193,17 +187,6 @@
    '(jabber-title-small ((t (:inherit variable-pitch :weight bold :height 1.0 :width semi-expanded :family "Pragmata TT"))))))
 
 
-(when *jess*
-  (add-path "jess")
-  (autoload 'jess-mode "jess-mode" "Jess Editing Mode" t nil)
-  (autoload 'run-jess "inf-jess" "Inferior Jess Mode" t nil)
-  (add-hook 'jess-mode-hook
-    #'(lambda ()
-        (auto-fill-mode t)
-        (turn-on-font-lock)))
-  (setq auto-mode-alist
-    (append auto-mode-alist `(("\\.clp$" . jess-mode)))))
-
 (when *js2* 
   (autoload 'js2-mode  "js2-mode"  nil t)
   (setq js2-basic-offset 2))
@@ -257,9 +240,6 @@
               (imenu-add-to-menubar "IMENU")
               (define-key ruby-mode-map "\C-m" 'newline-and-indent) ;Not sure if this line is 100% right but it works!
               ))
-
-  (when *merb* 
-    (require 'rinari-merb)))
 
 ;  (add-path "nxhtml")
 ;  (require 'nxhtml-menu)

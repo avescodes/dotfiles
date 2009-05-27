@@ -1,6 +1,6 @@
 # File:     ~/.emacs.d/zsh/aliases.zsh
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2009-01-30 15:04:21 CST>
+# Modified: <2009-04-18 12:20:18 CDT>
 
 # This file is loaded by zshrc.zsh
 
@@ -22,7 +22,6 @@ alias sl='ls'
 alias mv='nocorrect mv'
 alias cp='nocorrect cp'
 alias mkdir='nocorrect mkdir'
-alias j='jobs'
 alias l='ls'
 if ls -F --color=auto >&/dev/null; then
   alias ls="ls --color=auto -F"
@@ -62,7 +61,7 @@ alias sc="./script/console"
 alias ss="./script/server"
 alias pp-reset="touch tmp/restart.txt"
 
-alias ssh-atlantis='ssh quick.thruhere.net -L 5900:localhost:5900'
+alias nzb="hellanzb.py"
 
 if [[ ! ( -x `which seq` ) && ( -x `which gseq` ) ]]; then
   alias seq=`which gseq`

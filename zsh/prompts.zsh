@@ -1,6 +1,6 @@
 # File:     ~/.emacs.d/zsh/prompts.zsh
 # Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2009-01-30 12:45:31 CST>
+# Modified: <2009-05-22 21:19:27 CDT>
 
 # This file is loaded by zshrc.zsh
 
