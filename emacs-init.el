@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-05-27 17:10:48 CDT>
+;; Modified: <2009-05-27 17:37:51 CDT>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -239,7 +239,7 @@
               (set (make-local-variable 'indent-tabs-mode) 'nil)
               (imenu-add-to-menubar "IMENU")
               (define-key ruby-mode-map "\C-m" 'newline-and-indent) ;Not sure if this line is 100% right but it works!
-              ))
+              )))
 
 ;  (add-path "nxhtml")
 ;  (require 'nxhtml-menu)
