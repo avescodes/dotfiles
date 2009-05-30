@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-05-27 17:37:51 CDT>
+;; Modified: <2009-05-29 21:08:43 CDT>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -206,6 +206,11 @@
   (add-path "ri")
   (add-path "rinari")
   (add-path "jump")
+  
+  ;; Rspec + Cucumber
+  (require 'rspec-mode)
+  (require 'cucumber-mode)
+  (require 'feature-mode)
 
   ;; Rinari 
   (require 'jump)
@@ -216,6 +221,7 @@
   (require 'ruby-block)
   (require 'ruby-mode)
   
+  (defvar ruby-program-name "/Users/ryan/.multiruby/install/1.8.7-p72/bin/ruby")
   (require 'inf-ruby) ;; Not working yet
   
   ;; Hooks
@@ -367,10 +373,10 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (defun fix-frame-horizontal-size (width)
-  "Set the frame's size to 80 (or prefix arg WIDTH) columns wide."
+  "Set the frame's size to 89 (or prefix arg WIDTH) columns wide."
   (interactive "P")
   (if window-system
-      (set-frame-width (selected-frame) (or width 80))
+      (set-frame-width (selected-frame) (or width 89))
     (error "Cannot resize frame horizontally: is a text terminal")))
 
 (defun fix-window-horizontal-size (width)
@@ -466,15 +472,22 @@
   (nconc
     '(("\\.xml$"   . nxml-mode))
     '(("\\.html$"  . nxml-mode))
+    '(("\\.md$"    . markdown-mode))
+    '(("\\.mdown$"    . markdown-mode))
+    '(("\\.zsh$"   . sh-mode))
+
+    '(("\\.gemspec$" . ruby-mode))
+    '(("\\.rb$"    . ruby-mode))
+    '(("Rakefile$" . ruby-mode))
+    '(("\\.rake$" . ruby-mode))
+    '(("Capfile$" . ruby-mode))    
+
+    '(("\\.feature" . feature-mode))
+    '(("\\spec.rb" . rspec-mode))
     '(("\\.haml$"  . haml-mode))
     '(("\\.yml$"   . yaml-mode))
     '(("\\.json$"  . yaml-mode))
-    '(("\\.rb$"    . ruby-mode))
-    '(("\\.gemspec$" . ruby-mode))
-    '(("\\.md$"    . markdown-mode))
-    '(("\\.zsh$"   . sh-mode))
-    '(("Rakefile$" . ruby-mode))
-    '(("\\.rake$" . ruby-mode))
+
     '(("\\.pro$" . prolog-mode))
     auto-mode-alist))
 
