@@ -1,7 +1,7 @@
 ;; File:     ~/.emacs.d/emacs-init.el
 ;; Author:   Ryan Neufeld <neufelry@gmail.com>
 ;; Forked from: Burke Libbey <burke@burkelibbey.org>
-;; Modified: <2009-05-29 21:08:43 CDT>
+;; Modified: <2009-06-16 10:01:45 CDT>
 
 ;; This assumes ~/.emacs contains '(load "~/.emacs.d/emacs-init.el")'
 
@@ -50,7 +50,11 @@
 
 (when *cedet*
   (load-file (concat base-lisp-path "cedet-1.0pre4/common/cedet.el"))
-  (semantic-load-enable-code-helpers))
+  (semantic-load-enable-code-helpers)
+  (require 'speedbar)
+;  (setq load-path (cons "~/.emacs.d/rails" load-path))
+;  (require 'rails)
+  (require 'rails-speedbar-feature))
 
 (when *clojure*
   (add-path "swank-clojure")
@@ -143,9 +147,9 @@
                                        ;;I should parse out the name and coalesce msgs
   (defun jabber-growl-message (msg)
     "Show MSG via Growl"
-    (shell-command 
-     (concat 
-      "growlnotify --appIcon 'Aquamacs Emacs' Jabber.el -m '" 
+    (shell-command
+     (concat
+      "growlnotify --appIcon 'Aquamacs Emacs' Jabber.el -m '"
       msg "' -d '" msg "'")))
   (define-jabber-alert growl "Show a message through OS X Growl" 'jabber-growl-message)
   (custom-set-variables
@@ -187,7 +191,7 @@
    '(jabber-title-small ((t (:inherit variable-pitch :weight bold :height 1.0 :width semi-expanded :family "Pragmata TT"))))))
 
 
-(when *js2* 
+(when *js2*
   (autoload 'js2-mode  "js2-mode"  nil t)
   (setq js2-basic-offset 2))
 
@@ -201,18 +205,20 @@
   (global-font-lock-mode 1)
   (setq org-completion-use-ido t))
 
-(when *ruby* 
+(when *ruby*
   (add-path "ruby")
   (add-path "ri")
   (add-path "rinari")
   (add-path "jump")
-  
+
+  (require 'autotest)
+
   ;; Rspec + Cucumber
   (require 'rspec-mode)
   (require 'cucumber-mode)
   (require 'feature-mode)
 
-  ;; Rinari 
+  ;; Rinari
   (require 'jump)
   (require 'rinari)
   (setq rinari-tags-file-name "TAGS")
@@ -220,10 +226,10 @@
   (require 'ri)
   (require 'ruby-block)
   (require 'ruby-mode)
-  
+
   (defvar ruby-program-name "/Users/ryan/.multiruby/install/1.8.7-p72/bin/ruby")
   (require 'inf-ruby) ;; Not working yet
-  
+
   ;; Hooks
   (add-hook 'ruby-mode-hook     'set-newline-and-indent)
   (add-hook 'ruby-mode-hook
@@ -394,11 +400,11 @@
   (interactive "P")
   (condition-case nil
       (fix-window-horizontal-size width)
-    (error 
+    (error
      (condition-case nil
-	 (fix-frame-horizontal-size width)
+   (fix-frame-horizontal-size width)
        (error
-	(error "Cannot resize window or frame horizontally"))))))
+  (error "Cannot resize window or frame horizontally"))))))
 
 (global-set-key (kbd "C-x W") 'fix-horizontal-size)
 
@@ -480,9 +486,10 @@
     '(("\\.rb$"    . ruby-mode))
     '(("Rakefile$" . ruby-mode))
     '(("\\.rake$" . ruby-mode))
-    '(("Capfile$" . ruby-mode))    
+    '(("Capfile$" . ruby-mode))
 
     '(("\\.feature" . feature-mode))
+    '(("\\steps.rb" . feature-mode))
     '(("\\spec.rb" . rspec-mode))
     '(("\\.haml$"  . haml-mode))
     '(("\\.yml$"   . yaml-mode))

@@ -18,10 +18,11 @@ export GIT_COMMITTER_NAME=$NAME
 export GIT_AUTHOR_EMAIL=$EMAIL
 export GIT_COMMITTER_EMAIL=$EMAIL
 export RUBYOPT=""
-export EDITOR="emacs"
+export EDITOR="vim"
 export BROWSER="w3m"
 export PAGER="less"
-export SHELL="/opt/local/bin/zsh"
+export SHELL="/bin/zsh"
+export VIM=~/.vim
 setopt CORRECT
 
 bindkey -e
@@ -34,6 +35,5 @@ bindkey -e
 . ~/.emacs.d/zsh/prompts.zsh
 . ~/.emacs.d/zsh/aliases.zsh
 . ~/.emacs.d/zsh/rake_completions.zsh
-. ~/.emacs.d/zsh/multiruby.zsh
 
 # zsh-git setup

@@ -28,6 +28,10 @@ namespace :install do
       FileUtils.copy sys_loc, "#{sys_loc}.old" rescue nil
       install "dotfiles/#{dotfile}", sys_loc
     end
+    
+    puts "Installing .vim folder..."
+    vim_folder = File.join(File.expand_path("~"),".config",'vim','.vim')
+    FileUtils.ln_s vim_folder, File.join(File.expand_path("~"),".vim") rescue nil
   end
 
   task :all => [:submodules, :dotfiles]

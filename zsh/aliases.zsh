@@ -3,6 +3,8 @@
 # Modified: <2009-04-18 12:20:18 CDT>
 
 # This file is loaded by zshrc.zsh
+alias scan-view="scan-view --port=1234"
+alias gh="github"
 
 alias b="popd"
 
