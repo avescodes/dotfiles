@@ -27,13 +27,13 @@ setopt CORRECT
 
 bindkey -e
 
-. ~/.emacs.d/zsh/git.zsh
-. ~/.emacs.d/zsh/history.zsh
-. ~/.emacs.d/zsh/path.zsh
-. ~/.emacs.d/zsh/completions.zsh
-. ~/.emacs.d/zsh/functions.zsh
-. ~/.emacs.d/zsh/prompts.zsh
-. ~/.emacs.d/zsh/aliases.zsh
-. ~/.emacs.d/zsh/rake_completions.zsh
+. ~/.config/zsh/git.zsh
+. ~/.config/zsh/history.zsh
+. ~/.config/zsh/path.zsh
+. ~/.config/zsh/completions.zsh
+. ~/.config/zsh/functions.zsh
+. ~/.config/zsh/prompts.zsh
+. ~/.config/zsh/aliases.zsh
+. ~/.config/zsh/rake_completions.zsh
 
 # zsh-git setup
