@@ -30,7 +30,7 @@ namespace :install do
     end
     
     puts "Installing .vim folder..."
-    vim_folder = File.join(File.expand_path("~"),".config",'vim','.vim')
+    vim_folder = File.join(File.expand_path("~"),".config",'vim')
     FileUtils.ln_s vim_folder, File.join(File.expand_path("~"),".vim") rescue nil
   end
 

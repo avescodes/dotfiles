@@ -22,6 +22,13 @@ map <C-b> :FuzzyFinderBuffer<CR>
 " MiniBuffer Explorer config
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplUseSingleClick = 1
+
+" Pathogen
+runtime! autoload/pathogen.vim
+if exists('g:loaded_pathogen')
+  call pathogen#runtime_prepend_subdirectories(expand('~/.vim/bundles'))
+end
+ 
 " ============= </My Stuff> ===========================
 
 " allow backspacing over everything in insert mode
@@ -88,7 +95,7 @@ if has("folding")
   set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
 
   " automatically open folds at the starting cursor position
-  " autocmd BufReadPost .foldo!
+  autocmd BufReadPost .foldo!
 endif
 
 " Softtabs, 2 spaces
