@@ -16,8 +16,8 @@ let g:gist_clip_command = 'pbcopy'
 let g:gist_open_browser_after_post = 1
 
 " Fuzzy Finder Mappings
-map <C-t> :FuzzyFinderFileWithCurrentBufferDir<CR>
-map <C-b> :FuzzyFinderBuffer<CR>
+map <C-t> :FufFileWithCurrentBufferDir<CR>
+map <C-b> :FufBuffer<CR>
 
 " MiniBuffer Explorer config
 let g:miniBufExplMapWindowNavVim = 1
@@ -29,6 +29,7 @@ if exists('g:loaded_pathogen')
   call pathogen#runtime_prepend_subdirectories(expand('~/.vim/bundles'))
 end
  
+set autochdir
 " ============= </My Stuff> ===========================
 
 " allow backspacing over everything in insert mode
@@ -129,6 +130,11 @@ map <Leader>sv :RSview
 map <Leader>su :RSunittest 
 map <Leader>sf :RSfunctionaltest 
 
+" Edit routes
+command! Rroutes :e config/routes.rb
+command! RTroutes :tabe config/routes.rb
+
+
 " Hide search highlighting
 map <Leader>h :set invhls <CR>
 
@@ -162,10 +168,6 @@ imap <C-F> <C-R>=expand("%")<CR>
 
 " Display extra whitespace
 set list listchars=tab:»·,trail:·
-
-" Edit routes
-command! Rroutes :e config/routes.rb
-command! RTroutes :tabe config/routes.rb
 
 " Local config
 if filereadable(".vimrc.local")
