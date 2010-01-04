@@ -36,4 +36,6 @@ bindkey -e
 . ~/.config/zsh/aliases.zsh
 . ~/.config/zsh/rake_completions.zsh
 
+# RVM setup
+if [[ -s /Users/ryan/.rvm/scripts/rvm ]] ; then source /Users/ryan/.rvm/scripts/rvm ; fi
 # zsh-git setup
