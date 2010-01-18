@@ -19,7 +19,7 @@ eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
 done
 
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
-PS1="$PR_RED%2c $PR_YELLOW% $ $PR_NO_COLOR"
+PS1="$PR_RED%2c $PR_YELLOW% ▸ $PR_NO_COLOR"
 RPS1="$PR_RED%n$PR_NO_COLOR@$PR_LIGHT_RED%U%m%u $PR_YELLOW(%T)$PR_NO_COLOR"
 #(`git-prompt`)
 
