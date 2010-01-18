@@ -210,3 +210,10 @@ hi  link csXmlTag             Keyword
 
 
 " Special for PHP
+
+
+" Ryan: Special for vimcasts.org/episodes/show-invisibles/
+"Invisible character colors
+highlight NonText guifg=#4a4a59
+highlight SpecialKey guifg=#4a4a59
+
