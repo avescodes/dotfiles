@@ -6,37 +6,43 @@ if [[ -x `which git` ]]; then
 		git status 2> /dev/null | grep "nothing to commit (working directory clean)"
 		echo $?
 	}
-# 	function gsrb () {
-# 		branch=$(git-branch-name) 
-# 		git checkout master
-# 		git svn rebase
-# 		git checkout "${branch}"
-# 		git rebase master
-# 	}
+
+  function git-remote-is-dotfiles () {
+      git config --get remote.origin.url 2> /dev/null | grep 'dotfiles.git'
+      echo $?
+  }
+
 	function git-prompt() {
-		gstatus=$(git status 2> /dev/null)
-		branch=$(echo $gstatus | head -n 1 | sed 's/^# On branch //')
-		dirty=$(echo $gstatus | sed 's/^#.*$//' | tail -n 2 | grep 'nothing to commit (working directory clean)'; echo $?)
-		if [[ x$branch != x ]]; then
-			dirty_color=$fg[cyan]
-			if [[ $dirty = 1 ]] { dirty_color=$fg[magenta] }
-			[ x$branch != x ] && echo "%{$reset_color%}{%{$dirty_color%}$branch%{$reset_color%}} "
-		fi
+		  branch=$(git-branch-name)
+		  dirty=$(git-dirty)
+      dotfiles=$(git-remote-is-dotfiles)
+			dirty_color=$fg[green]
+			if [[ $dirty == 1 ]]       { dirty_color=$fg[magenta] }
+      if [[ $branch == master ]] { branch=✪ }
+      if [[ $branch == wookie ]] { branch=♨ }
+      if [[ $branch == lazer ]]  { branch=⚡ }
+			if [[ $dotfiles != 1 ]]    { branch=✖ }
+      if [[ x$branch == x ]]     { branch=◻; dirty_color=$fg[white] }
+      echo "%{$dirty_color%}$branch%{$reset_color%} "
 	}
 	function git-scoreboard () {
-		git log | grep Author | sort | uniq -ci | sort -r
+		  git log | grep Author | sort | uniq -ci | sort -r
+	}
+	function github-init () {
+		  git config branch.$(git-branch-name).remote origin
+		  git config branch.$(git-branch-name).merge refs/heads/$(git-branch-name)
 	}
 	
 	function github-url () {
-		git config remote.origin.url | sed -En 's/git(@|:\/\/)github.com(:|\/)(.+)\/(.+).git/https:\/\/github.com\/\3\/\4/p'
+		  git config remote.origin.url | sed -En 's/git(@|:\/\/)github.com(:|\/)(.+)\/(.+).git/https:\/\/github.com\/\3\/\4/p'
 	}
 	
 	# Seems to be the best OS X jump-to-github alias from http://tinyurl.com/2mtncf
-	function github-go () {
-		open $(github-url)
+	function ghg () {
+		  open $(github-url)
 	}
 	
 	function nhgk () {
-		nohup gitk --all &
+		  nohup gitk --all &
 	}
 fi

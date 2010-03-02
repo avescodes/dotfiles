@@ -16,6 +16,14 @@ HIST_EXPIRE_DUPS_FIRST=1
 # Grep the history with 'h'
 h () { history 0 | grep $1 }
 
-setopt appendhistory autocd extendedglob auto_pushd pushd_silent
+
+setopt \
+    appendhistory \
+    autocd \
+    extendedglob \
+    prompt_subst \
+    auto_pushd \
+    pushd_silent \
+    correct
 
 unsetopt ALL_EXPORT
