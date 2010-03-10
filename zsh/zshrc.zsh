@@ -65,4 +65,6 @@ function project_precmd() {
 
 precmd_functions+=(project_precmd)
 
+local WORDCHARS=${WORDCHARS//\//}
+
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
