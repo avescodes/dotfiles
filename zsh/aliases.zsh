@@ -31,7 +31,7 @@ alias gsl="git stash list"
 alias gcob="git checkout -b"
 alias g="git merge"
 
-#alias git="hub"
+alias git="hub"
 
 alias rs="rake spec"
 alias rdm="rake db:migrate"
