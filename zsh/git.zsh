@@ -21,6 +21,7 @@ if [[ -x `which git` ]]; then
       if [[ $branch == master ]] { branch=✪ }
       if [[ $branch == wookie ]] { branch=♨ }
       if [[ $branch == lazer ]]  { branch=⚡ }
+      if [[ $branch == version-1.0 ]] { branch=⓵ }
 			if [[ $dotfiles != 1 ]]    { branch=✖ }
       if [[ x$branch == x ]]     { branch=◻; dirty_color=$fg[white] }
       echo "%{$dirty_color%}$branch%{$reset_color%} "

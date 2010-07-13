@@ -66,6 +66,7 @@ sgm() { rails-script "generate" "migration" $argv }
 sgs() { rails-script "generate" "scaffold"  $argv }
 sgr() { rails-script "generate" "resource"  $argv }
 
+alias   jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc"
 alias cd..='cd ..'
 alias ..='cd ..'
 alias u='cd ..'
@@ -118,3 +119,4 @@ if linux; then
 fi
 
 alias nzb="hellanzb.py"
+
