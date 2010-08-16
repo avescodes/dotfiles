@@ -8,9 +8,12 @@ require 'rubygems'
 require 'fileutils'
 require 'irb/ext/save-history'
 require 'wirble'
+require 'hirb'
 
 Wirble.init
 Wirble.colorize
+# hirb (active record output format in table)
+Hirb::View.enable
 
 colors = Wirble::Colorize.colors.merge(
                                        {
@@ -100,4 +103,23 @@ class Symbol
   def to_proc
     lambda {|*args| args.shift.__send__(self, *args)}
   end
+end
+
+# Log to STDOUT if in Rails
+if ENV.include?('RAILS_ENV') && !Object.const_defined?('RAILS_DEFAULT_LOGGER')
+  require 'logger'
+  RAILS_DEFAULT_LOGGER = Logger.new(STDOUT)
+  #IRB.conf[:USE_READLINE] = true
+
+  # Display the RAILS ENV in the prompt
+  # ie : [Development]>> 
+  IRB.conf[:PROMPT][:CUSTOM] = {
+   :PROMPT_N => "[#{ENV["RAILS_ENV"].capitalize}]>> ",
+   :PROMPT_I => "[#{ENV["RAILS_ENV"].capitalize}]>> ",
+   :PROMPT_S => nil,
+   :PROMPT_C => "?> ",
+   :RETURN => "=> %s\n"
+   }
+  # Set default prompt
+  IRB.conf[:PROMPT_MODE] = :CUSTOM
 end
