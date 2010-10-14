@@ -4,6 +4,9 @@ set nocompatible
 
 " ============= My Stuff ============================
 " My additions
+
+set directory^=$HOME/.vim_swap//   "put all swap files together in one place
+
 let NERDTreeShowHidden = 0
 let NERDTreeMouseMode = 2
 let NERDTreeIgnore=['\.git','\.DS_Store']
@@ -29,7 +32,7 @@ if exists('g:loaded_pathogen')
   call pathogen#runtime_prepend_subdirectories(expand('~/.vim/bundles'))
 end
  
-set autochdir
+
 " ============= </My Stuff> ===========================
 
 " allow backspacing over everything in insert mode

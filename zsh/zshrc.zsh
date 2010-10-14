@@ -3,7 +3,6 @@
 # Modified: <2009-01-29 15:47:03 CST>
 
 export NAME="Ryan Neufeld"
-export EMAIL="Ryan.Neufeld@CanadaDrugs.com"
 
 if [ -f /sw/bin/init.sh ]; then # OS X
   . /sw/bin/init.sh
