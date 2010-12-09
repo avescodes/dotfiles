@@ -48,15 +48,20 @@ set incsearch		" do incremental searching
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
-" This is an alternative that also works in block mode, but the deleted
-" text is lost and it only works for putting the current register.
-"vnoremap p "_dp
-
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
   set hlsearch
+
+endif
+
+colorscheme vividchalk
+if has('gui_running')
+  " Color scheme
+  highlight NonText guibg=#060606
+  highlight Folded  guibg=#0A0A0A guifg=#9090D0
+  colorscheme ir_black
 endif
 
 " Only do this part when compiled with support for autocommands.
@@ -170,7 +175,7 @@ nmap <F1> <Esc>
 imap <C-F> <C-R>=expand("%")<CR>
 
 " Display extra whitespace
-set list listchars=tab:»·,trail:·
+set list listchars=tab:▸\ ,trail:·
 
 " Local config
 if filereadable(".vimrc.local")
@@ -182,10 +187,6 @@ if executable("ack")
   set grepprg=ack\ -H\ --nogroup\ --nocolor
 endif
 
-" Color scheme
-colorscheme ir_black
-highlight NonText guibg=#060606
-highlight Folded  guibg=#0A0A0A guifg=#9090D0
 
 " Numbers
 set number

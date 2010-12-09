@@ -36,7 +36,7 @@ alias rdm="rake db:migrate"
 alias rdmr="rake db:migrate:redo"
 
 alias bi="bundle install"
-alias bp="bundle pack"
+alias be="bundle exec"
 
 find-rakefile () {
   if [ -f $1/Rakefile ]; then
