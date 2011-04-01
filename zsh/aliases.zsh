@@ -1,6 +1,8 @@
 function linux() { [[ `uname -s` = "Linux"  ]] }
 function mac()   { [[ `uname -s` = "Darwin" ]] }
 
+export GEMEDITOR=mvim
+
 alias r="ruby"
 
 alias e="vim"
@@ -20,7 +22,6 @@ alias gco="git checkout"
 alias gs="git stash"
 alias gsa="git stash apply"
 alias gsp="git stash pop"
-alias gx="open -a gitx ."
 alias gb="git branch"
 alias gd="git pull"
 alias gu="git push"
