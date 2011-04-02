@@ -56,7 +56,7 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
 
 endif
 
-colorscheme vividchalk
+colorscheme solarized
 if has('gui_running')
   " Color scheme
   highlight NonText guibg=#060606
