@@ -56,12 +56,12 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
 
 endif
 
-colorscheme solarized
+colorscheme vividchalk
 if has('gui_running')
   " Color scheme
   highlight NonText guibg=#060606
   highlight Folded  guibg=#0A0A0A guifg=#9090D0
-  colorscheme ir_black
+  
 endif
 
 " Only do this part when compiled with support for autocommands.

@@ -8,3 +8,5 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 autoload -U compinit
 compinit
+
+
