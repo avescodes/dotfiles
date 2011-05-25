@@ -33,6 +33,7 @@ let g:miniBufExplUseSingleClick = 1
 runtime! autoload/pathogen.vim
 if exists('g:loaded_pathogen')
   call pathogen#runtime_prepend_subdirectories(expand('~/.vim/bundles'))
+  call pathogen#helptags()
 end
  
 
