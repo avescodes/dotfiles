@@ -5,6 +5,9 @@ set nocompatible
 " ============= My Stuff ============================
 " My additions
 
+" Have Q perform the last recorded macro
+map Q @@
+
 set directory^=$HOME/.vim_swap//   "put all swap files together in one place
 
 let NERDTreeShowHidden = 0
@@ -45,9 +48,6 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
@@ -56,7 +56,7 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
 
 endif
 
-colorscheme vividchalk
+colorscheme ir_black
 if has('gui_running')
   " Color scheme
   highlight NonText guibg=#060606
@@ -204,6 +204,9 @@ set wildmode=list:longest,list:full
 set ignorecase
 set smartcase
 
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
 "define :HighlightLongLines command to highlight the offending parts of
 "lines that are longer than the specified length (defaulting to 80)
 command! -nargs=? HighlightLongLines call s:HighlightLongLines('<args>')
@@ -215,3 +218,4 @@ function! s:HighlightLongLines(width)
         echomsg "Usage: HighlightLongLines [natural number]"
     endif
 endfunction
+
