@@ -5,6 +5,7 @@ set nocompatible
 " ============= My Stuff ============================
 " My additions
 
+map <Leader>s :setlocal spell spelllang=en_us
 " Have Q perform the last recorded macro
 map Q @@
 
@@ -65,6 +66,11 @@ if has('gui_running')
   
 endif
 
+" Softtabs, 2 spaces
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
 
@@ -89,8 +95,10 @@ if has("autocmd")
     \   exe "normal g`\"" |
     \ endif
 
-  augroup END
+  " In Gush workspace do not expand tabs
+  autocmd! BufReadPost,BufNewFile */Gush.workspace/**/* setlocal noet
 
+  augroup END
 else
 
   set autoindent		" always set autoindenting on
@@ -107,11 +115,6 @@ if has("folding")
   " automatically open folds at the starting cursor position
   autocmd BufReadPost .foldo!
 endif
-
-" Softtabs, 2 spaces
-set tabstop=2
-set shiftwidth=2
-set expandtab
 
 " Always display the status line
 set laststatus=2
