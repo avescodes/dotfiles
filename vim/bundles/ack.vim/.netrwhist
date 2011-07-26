@@ -1,3 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/Users/ryan/.config/vim/bundles'
+let g:netrw_dirhist_2='/Volumes/Macintosh HD/Dropbox/Development/work/nimonik/unified_diff/lib/unified_diff'
+let g:netrw_dirhist_3='/Users/ryan/nimonik'
+let g:netrw_dirhist_4='/Volumes/Macintosh HD/Dropbox/Development/work/nimonik/repo/app/views/template_upload_notification_mailer'
+let g:netrw_dirhist_5='/Volumes/Macintosh HD/Dropbox/Development/work/nimonik/repo/app/views/legislation_changes'
+let g:netrw_dirhist_6='/Users/ryan/.vim'
