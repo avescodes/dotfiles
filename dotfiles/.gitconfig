@@ -1,0 +1,32 @@
+[user]
+	name = Ryan Neufeld
+	email = ryan@ryanneufeld.ca
+[color]
+        branch = auto
+        status = auto
+        diff = auto
+[core]
+        excludesfile = /Users/ryan/.gitignore
+	autocrlf = input
+[branch]
+	autosetupmerge = true
+[alias]
+        st = status
+        ci = commit
+        br = branch
+        co = checkout
+        df = diff
+        lg = log -p
+        cp = cherry-pick
+[difftool "Kaleidoscope"]
+[difftool]
+[diff]
+[difftool "Kaleidoscope"]
+	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+[diff]
+  tool = Kaleidoscope
+[push]
+  # Push current branch even if you've never pushed it before
+  default = current

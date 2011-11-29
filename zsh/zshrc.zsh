@@ -15,7 +15,7 @@ fi
 export GIT_AUTHOR_NAME=$NAME
 export GIT_COMMITTER_NAME=$NAME
 export RUBYOPT=""
-export EDITOR="pico"
+export EDITOR='mvim -f --nomru -c "au VimLeave * !open -a Terminal"'
 export BROWSER="w3m"
 export PAGER="less"
 export SHELL="/bin/zsh"
