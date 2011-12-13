@@ -29,10 +29,6 @@ namespace :install do
       install "dotfiles/#{dotfile}", sys_loc
     end
     
-    puts "Installing .vim folder..."
-    vim_folder = File.join(File.expand_path("~"),".config",'vim')
-    FileUtils.ln_s vim_folder, File.join(File.expand_path("~"),".vim") rescue nil
-  end
 
   task :all => [:submodules, :dotfiles]
 end
@@ -44,13 +40,5 @@ namespace :update do
     system("cd #{PATH}; git submodule init; git submodule update")
   end
 
-  desc "Update emacs.d repository"
-  task :git do
-    puts "Updating emacs.d repository..."
-    system("cd #{PATH}; git pull")
-    puts "Updating emacs.d remotes"
-    system("cd #{PATH}; git remote update")
-  end
-
-  task :all => [:submodules, :git]
+  task :all => [:submodules]
 end
