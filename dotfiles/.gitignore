@@ -2,3 +2,5 @@
 .rake_tasks
 .#*
 #*#
+.*.swp
+.*.swo
