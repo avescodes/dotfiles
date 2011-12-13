@@ -15,18 +15,10 @@
         ci = commit
         br = branch
         co = checkout
+	ci = commit
         df = diff
         lg = log -p
         cp = cherry-pick
-[difftool "Kaleidoscope"]
-[difftool]
-[diff]
-[difftool "Kaleidoscope"]
-	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
-[difftool]
-	prompt = false
-[diff]
-  tool = Kaleidoscope
 [push]
   # Push current branch even if you've never pushed it before
   default = current
