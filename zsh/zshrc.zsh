@@ -39,14 +39,21 @@ colors
 # j
 #. ~/.config/zsh/rake_completions.zsh
 
-function og {
-  scp -r $1 og:~/h
-  echo "http://hammerofcode.com/$1" | pbcopy
+function rn {
+  scp -r $1 prgmr:~/r
+  echo "http://ryanneufeld.ca/$1" | pbcopy
 }
 
 precmd_functions+=(project_precmd)
 
 local WORDCHARS=${WORDCHARS//\//}
 
- [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+# Ruby stuff
+export RUBY_HEAP_MIN_SLOTS=1000000
+export RUBY_HEAP_SLOTS_INCREMENT=1000000
+export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+export RUBY_GC_MALLOC_LIMIT=1000000000
+export RUBY_HEAP_FREE_MIN=500000
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
