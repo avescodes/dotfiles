@@ -5,7 +5,7 @@ function build-prompt() {
     esac 
     git=$(git-prompt)
     #ruby=$(rvm-prompt u g)
-    
+
     #echo "%{$fg[cyan]%}%2c $git%{$fg[red]%}$ruby $statcolor▸%{$reset_color%} "
     echo "%{$fg[cyan]%}%2c $git $statcolor▸%{$reset_color%} "
 }

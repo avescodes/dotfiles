@@ -1,59 +1,23 @@
-# File:     ~/.zshrc
-# Author:   Ryan Neufeld <neufelry@gmail.com>
-# Modified: <2009-01-29 15:47:03 CST>
+setopt ALL_EXPORT
 
-export NAME="Ryan Neufeld"
-
-if [ -f /sw/bin/init.sh ]; then # OS X
-  . /sw/bin/init.sh
-fi
-
-if [ -f /usr/share/gentoo/mc/mc.gentoo ]; then # gentoo linux
-  . /usr/share/mc/mc.gentoo
-fi
-
-export GIT_AUTHOR_NAME=$NAME
-export GIT_COMMITTER_NAME=$NAME
-export RUBYOPT=""
-export EDITOR='mvim -f --nomru -c "au VimLeave * !open -a Terminal"'
-export BROWSER="w3m"
-export PAGER="less"
-export SHELL="/bin/zsh"
-export VIM=~/.vim
+autoload -Uz colors && colors
+bindkey -e # emacs style key bindings
+local WORDCHARS=${WORDCHARS//\//}
 setopt CORRECT
 
-bindkey -e
+EDITOR=vim
+BROWSER="w3m"
+PAGER="less"
+SHELL="/bin/zsh"
+VIM=~/.vim
 
-autoload -Uz colors
-colors
+PATH=$HOME/bin:/usr/local/bin:$PATH
+MANPATH=/usr/local/share/man:$MANPATH
+CLASSPATH=.:$CLASSPATH
 
-. ~/.config/zsh/path.zsh
-. ~/.config/zsh/history.zsh
+unsetopt ALL_EXPORT
 
-. ~/.config/zsh/git.zsh
-. ~/.config/zsh/prompts.zsh
-. ~/.config/zsh/titles.zsh
-. ~/.config/zsh/completions.zsh
-. ~/.config/zsh/functions.zsh
-. ~/.config/zsh/aliases.zsh
-# j
-#. ~/.config/zsh/rake_completions.zsh
-
-function rn {
-  scp -r $1 prgmr:~/r
-  echo "http://ryanneufeld.ca/$1" | pbcopy
-}
-
-precmd_functions+=(project_precmd)
-
-local WORDCHARS=${WORDCHARS//\//}
-
-# Ruby stuff
-export RUBY_HEAP_MIN_SLOTS=1000000
-export RUBY_HEAP_SLOTS_INCREMENT=1000000
-export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
-export RUBY_GC_MALLOC_LIMIT=1000000000
-export RUBY_HEAP_FREE_MIN=500000
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
+# Load nested configs
+for f in $(find ~/.config/zsh -name \*.zsh | grep -v zshrc.zsh); do
+  . $f
+done

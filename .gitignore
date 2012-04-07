@@ -1,12 +1,5 @@
-autosaves/*
-auto-save-list/*
-tramp
-\#*\#
 *.cache
 private
 *~
-joust
-elpa/archive-contents
-url
-.rvmrc
 libimobiledevice
+.*.swp
