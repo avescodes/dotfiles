@@ -1,4 +1,4 @@
-# source: https://github.com/spicycode/ze-best-zsh-config/blob/master/.zsh/functions.zsh
+# https://github.com/spicycode/ze-best-zsh-config/blob/master/.zsh/functions.zsh
 function zsh_recompile {
   autoload -U zrecompile
 
