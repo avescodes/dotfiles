@@ -7,5 +7,6 @@ export RUBY_GC_MALLOC_LIMIT=1000000000
 export RUBY_HEAP_FREE_MIN=500000
 
 export PATH="$HOME/.rbenv/bin:$PATH"
-
 eval "$(rbenv init -)"
+
+alias rake="noglob rake"

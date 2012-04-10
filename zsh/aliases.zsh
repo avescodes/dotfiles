@@ -28,3 +28,5 @@ function rn {
   scp -r $1 prgmr:~/r
   echo "http://ryanneufeld.ca/$1" | pbcopy
 }
+
+alias find="noglob find"
