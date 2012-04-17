@@ -20,3 +20,5 @@ unsetopt ALL_EXPORT
 for f in $(find ~/.config/zsh -name \*.zsh | grep -v zshrc.zsh); do
   . $f
 done
+
+
