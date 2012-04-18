@@ -1,31 +1,31 @@
 if [[ -x `which git` ]]; then
-  function pair-initials () {
+  function __pair-initials () {
     author_email=${${${GIT_AUTHOR_EMAIL#pair+}%@thinkrelevance.com}//+/\/}
     if [[ -n "$author_email" ]]; then
       echo " ($author_email)"
     fi
   }
 
-  function git-branch-name () {
+  function __branch-name () {
     git branch 2> /dev/null | grep '^\*' | sed 's/^\*\ //'
   }
 
-  function git-dirty () {
+  function __dirty () {
     git status 2> /dev/null | grep "nothing to commit (working directory clean)"
     echo $?
   }
 
-  function git-remote-is-dotfiles () {
+  function __remote-is-dotfiles () {
       git config --get remote.origin.url 2> /dev/null | grep 'dotfiles.git'
       echo $?
   }
 
   function git-prompt() {
-    branch=$(git-branch-name)
-    dirty=$(git-dirty)
-    dotfiles=$(git-remote-is-dotfiles)
+    branch=$(__branch-name)
+    dirty=$(__dirty)
+    dotfiles=$(__remote-is-dotfiles)
     dirty_color=$fg[green]
-    pair=$(pair-initials)
+    pair=$(__pair-initials)
     if [[ $dirty == 1 ]]       { dirty_color=$fg[magenta] }
     if [[ $branch == master ]] { branch=✪ }
     if [[ $dotfiles != 1 ]]    { branch=✖ }
@@ -33,7 +33,7 @@ if [[ -x `which git` ]]; then
     echo "%{$dirty_color%}$branch%{$reset_color%}$pair"
   }
 
-  function git-scoreboard () {
+  function __scoreboard () {
     git log | grep Author | sort | uniq -ci | sort -r
   }
 fi
