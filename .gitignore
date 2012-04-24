@@ -4,3 +4,4 @@ private
 libimobiledevice
 .*.swp
 *.zwc
+zsh/cache
