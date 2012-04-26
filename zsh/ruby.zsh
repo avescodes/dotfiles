@@ -7,3 +7,9 @@ export RUBY_GC_MALLOC_LIMIT=1000000000
 export RUBY_HEAP_FREE_MIN=500000
 
 alias rake="noglob rake"
+
+# Rails
+alias sc="rails console"
+alias ss="rails server"
+alias sg="rails generate"
+alias sgm="rails generate migration"

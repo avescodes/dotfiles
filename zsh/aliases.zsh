@@ -30,3 +30,9 @@ function rn {
 }
 
 alias find="noglob find"
+
+# TrueCrypt
+function decrypt {
+  /Applications/TrueCrypt.app/Contents/MacOS/TrueCrypt -t -k "" --protect-hidden=no ~/relevance.tc ~/relevance
+}
+alias tc="decrypt"
