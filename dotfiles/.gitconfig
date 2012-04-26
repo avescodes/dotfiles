@@ -1,24 +1,29 @@
 [user]
-	name = Ryan Neufeld
-	email = ryan@ryanneufeld.ca
+  name = Ryan Neufeld
+  email = ryan@ryanneufeld.ca
 [color]
-        branch = auto
-        status = auto
-        diff = auto
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
 [core]
-        excludesfile = /Users/ryan/.gitignore
-	autocrlf = input
+  excludesfile = /Users/ryan/.gitignore
+  autocrlf = input
 [branch]
-	autosetupmerge = true
+  autosetupmerge = true
 [alias]
-        st = status
-        ci = commit
-        br = branch
-        co = checkout
-	ci = commit
-        df = diff
-        lg = log -p
-        cp = cherry-pick
+  both = diff HEAD # show staged and unstaged changes (what would be committed with "git commit -a")
+  br = branch
+  ci = commit
+  co = checkout
+  cp = cherry-pick
+  df = diff
+  lg = log -p
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  st = status
+  staged = diff --cached # show difference between the HEAD and the index
+  unstaged = diff # show difference between working tree and the index
 [push]
   # Push current branch even if you've never pushed it before
   default = current
