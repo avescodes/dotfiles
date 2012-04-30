@@ -10,7 +10,7 @@ BROWSER="w3m"
 PAGER="less"
 SHELL="/bin/zsh"
 
-PATH=$HOME/bin:/usr/local/bin:$PATH:/usr/X11/bin
+PATH=$HOME/bin:/usr/local/bin:$PATH:/usr/X11/bin:/Applications/Xcode.app/Contents/Developer/usr/bin/
 MANPATH=/usr/local/share/man:$MANPATH
 CLASSPATH=.:$CLASSPATH
 
