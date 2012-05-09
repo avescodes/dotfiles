@@ -6,7 +6,6 @@ setopt CORRECT
 setopt ALL_EXPORT
 
 EDITOR=vim
-BROWSER="w3m"
 PAGER="less"
 SHELL="/bin/zsh"
 

@@ -1,9 +1,7 @@
+--sort-files
 --smart-case
 --follow
 
---type-add=features=.feature
---type-add=javascript=.json
---type-add=js=.coffee
 --type-add=ruby=.gemspec
 --type-add=ruby=.haml
 --type-add=ruby=.rake
@@ -12,6 +10,8 @@
 --type-set=conf=.conf
 --type-set=cucumber=.feature
 --type-set=erb=.erb
+--type-set=features=.feature
 --type-set=haml=.haml
+--type-set=json=.json
 --type-set=sass=.sass
 --type-set=scss=.scss
