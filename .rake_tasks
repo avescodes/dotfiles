@@ -1,4 +1,0 @@
-install:dotfiles
-install:submodules
-update:git
-update:submodules
