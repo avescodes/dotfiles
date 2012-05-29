@@ -30,3 +30,5 @@ function rn {
 }
 
 alias find="noglob find"
+
+alias g=hub
