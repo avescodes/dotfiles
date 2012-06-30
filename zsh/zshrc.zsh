@@ -16,7 +16,7 @@ CLASSPATH=.:$CLASSPATH
 GREP_OPTIONS='--color=auto'
 GREP_COLOR='3;33'
 
-cdpath=(~ ~/relevance ~/code ~/code/projects/ruby-motion)
+cdpath=(. ~ ~/relevance ~/code ~/code/projects/ruby-motion)
 
 unsetopt ALL_EXPORT
 
