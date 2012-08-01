@@ -12,6 +12,11 @@
                       starter-kit-ruby
                       starter-kit-js
                       starter-kit-bindings
+                      clojure-mode
+                      slime
+                      slime-repl
+                      clojure-test-mode
+                      zenburn-theme
                       )
   "A list of packages to ensure are installed at launch.")
 
