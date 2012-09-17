@@ -6,6 +6,7 @@ export SAVEHIST=10000
 
 # If you type foo, and it isn't a command, and it is a directory in your cdpath, go there
 setopt AUTO_CD
+setopt AUTO_PUSHD
 
 # Allow comments even in interactive shells (especially for Muness)
 setopt INTERACTIVE_COMMENTS

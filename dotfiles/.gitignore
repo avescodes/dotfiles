@@ -6,3 +6,6 @@
 .*.swo
 *.un~
 *.orig
+.lein-plugins
+ribbon_notes.txt
+notes.txt
