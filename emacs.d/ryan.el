@@ -5,6 +5,7 @@
 
 (setq initial-scratch-message nil)
 
-(add-hook 'clojure-mode-hook
-  (lambda ()
-    (setq inferior-lisp-program "lein trampoline repl")))
+;; nREPL customizations
+(setq nrepl-popup-stacktraces nil)
+(add-hook 'nrepl-interaction-mode-hook
+          'nrepl-turn-on-eldoc-mode)
