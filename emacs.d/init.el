@@ -16,6 +16,8 @@
                       starter-kit-bindings
                       clojure-mode
                       nrepl
+                      clojure-test-mode
+                      zenburn-theme
                       )
   "A list of packages to ensure are installed at launch.")
 
