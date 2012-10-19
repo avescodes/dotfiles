@@ -32,3 +32,5 @@ function rn {
 alias find="noglob find"
 
 alias g=hub
+alias be="bundle exec"
+alias last_migration='vim `ls db/migrate/*.rb | sort -r | head -n 1`'

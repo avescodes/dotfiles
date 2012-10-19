@@ -1,6 +1,6 @@
 # https://raw.github.com/spicycode/ze-best-zsh-config/master/.zsh/completion.zsh
 
-autoload -U compinit && compinit                                                                                       
+autoload -U compinit && compinit -u
 zmodload -i zsh/complist
 
 # man zshcontrib

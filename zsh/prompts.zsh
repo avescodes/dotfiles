@@ -1,13 +1,21 @@
+function git-user-initials {
+  initials="`git config --get user.initials`"
+  if [[ $initials =~ ".+" ]]; then
+    echo "($initials) "
+  else
+    echo ""
+  fi
+}
+
 function build-prompt() {
     case "$?" in 
         0) statcolor="%{$fg[green]%}" ;;
         *) statcolor="%{$fg[red]%}"   ;;
     esac 
     git=$(git-prompt)
-    #ruby=$(rvm-prompt u g)
+    pair=$(git-user-initials)
 
-    #echo "%{$fg[cyan]%}%2c $git%{$fg[red]%}$ruby $statcolor▸%{$reset_color%} "
-    echo "%{$fg[cyan]%}%2c $git $statcolor▸%{$reset_color%} "
+    echo "%{$fg[cyan]%}%2c $git $pair$statcolor▸%{$reset_color%} "
 }
 PS1='`build-prompt`'
 
