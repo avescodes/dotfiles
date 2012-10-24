@@ -11,7 +11,7 @@ if [[ -x `which git` ]]; then
   }
 
   function __dirty () {
-    git status 2> /dev/null | grep "nothing to commit (working directory clean)"
+    git status 2> /dev/null | grep "nothing to commit.*working directory clean"
     echo $?
   }
 
