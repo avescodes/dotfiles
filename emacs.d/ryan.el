@@ -1,4 +1,4 @@
-(global-hl-line-mode -1)
+(remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarized")
 (load-theme 'solarized-dark t)
