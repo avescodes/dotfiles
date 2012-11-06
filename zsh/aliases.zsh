@@ -34,3 +34,6 @@ alias find="noglob find"
 alias g=hub
 alias be="bundle exec"
 alias last_migration='vim `ls db/migrate/*.rb | sort -r | head -n 1`'
+alias gst='git st'
+alias gba='git br -ra'
+
