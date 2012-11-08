@@ -19,7 +19,7 @@ function build-prompt() {
 }
 
 function build-right-prompt() {
-  if [ -n $TMUX ]; then
+  if [[ "$TERM" =~ "screen" ]]; then
     echo ""
   else
     echo "%{$fg[cyan]%}%n %{$reset_color%}@ %{$fg_bold[green]%}%U%m%u %{$reset_color%}(%T)"

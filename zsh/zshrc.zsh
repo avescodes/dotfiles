@@ -9,14 +9,14 @@ EDITOR=vim
 PAGER="less"
 SHELL="/bin/zsh"
 
-PATH=/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH:/usr/X11/bin:/Applications/Xcode.app/Contents/Developer/usr/bin
+PATH=.bundle/binstubs:/usr/local/bin:$HOME/bin:$PATH:/usr/X11/bin:/Applications/Xcode.app/Contents/Developer/usr/bin
 MANPATH=/usr/local/share/man:$MANPATH
 CLASSPATH=.:$CLASSPATH
 
 GREP_OPTIONS='--color=auto'
 GREP_COLOR='3;33'
 
-cdpath=(. ~ ~/relevance ~/code ~/code/projects/ruby-motion)
+cdpath=(. ~ ~/relevance ~/code)
 
 unsetopt ALL_EXPORT
 
