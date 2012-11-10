@@ -24,3 +24,9 @@ unsetopt ALL_EXPORT
 for f in $(find ~/.config/zsh -name \*.zsh | grep -v zshrc.zsh); do
   . $f
 done
+
+if mac; then
+  eval $( gdircolors -b ~/.config/zsh/LS_COLORS)
+else
+  eval $( dircolors -b $HOME/.config/zsh/LS_COLORS)
+fi
