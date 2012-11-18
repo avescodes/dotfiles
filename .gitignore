@@ -5,3 +5,4 @@ libimobiledevice
 .*.swp
 *.zwc
 zsh/cache
+.lein/self-installs

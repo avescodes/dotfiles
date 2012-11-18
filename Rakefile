@@ -8,6 +8,13 @@ PATH = File.dirname __FILE__
 
 task :default => [:install]
 
+INSTALL_MAP = [
+  'dotfiles/.*' => '~/'
+  'emacs.d' => '~/.emacs.d',
+  'lein/*' => '~/.lein/',
+  'zsh' => '~/.zsh',
+]
+
 desc "Install dotfiles to user home directory (~/)"
 task :install do
   puts "Installing dotfiles..."
