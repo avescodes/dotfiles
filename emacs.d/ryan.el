@@ -12,6 +12,8 @@
 (when (locate-library "clojure-mode")
   (setq initial-major-mode 'clojure-mode))
 
+(setq auto-mode-alist (cons '("\\.dtm$" . clojure-mode) auto-mode-alist))
+
 ;; Linum Mode
 (line-number-mode 1) ; have line numbers and
 (column-number-mode 1) ; column numbers in the mode line
