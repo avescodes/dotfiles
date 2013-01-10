@@ -16,11 +16,20 @@
                       starter-kit-bindings
                       clojure-mode
                       nrepl
-                      nrepl-ritz
-                      zenburn-theme
+                      markdown-mode
+                      rainbow-delimiters
                       )
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(linum-highlight-face ((t (:inherit default :foreground "white"))))
+ '(paren-face-match ((((class color)) (:inherit nil))))
+ '(show-paren-match ((((class color) (background dark)) (:inherit nil :foreground "red")))))
