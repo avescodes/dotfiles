@@ -16,17 +16,15 @@ CLASSPATH=.:$CLASSPATH
 GREP_OPTIONS='--color=auto'
 GREP_COLOR='3;33'
 
-cdpath=(. ~ ~/relevance ~/code)
-
 unsetopt ALL_EXPORT
 
 # Load nested configs
-for f in $(find ~/.config/zsh -name \*.zsh | grep -v zshrc.zsh); do
+for f in $(find ~/dotfiles/zsh -name \*.zsh | grep -v zshrc.zsh); do
   . $f
 done
 
 if mac; then
-  eval $( gdircolors -b ~/.config/zsh/LS_COLORS)
+  eval $( gdircolors -b ~/dotfiles/zsh/LS_COLORS)
 else
-  eval $( dircolors -b $HOME/.config/zsh/LS_COLORS)
+  eval $( dircolors -b $HOME/dotfiles/zsh/LS_COLORS)
 fi
