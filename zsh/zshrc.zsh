@@ -19,12 +19,12 @@ GREP_COLOR='3;33'
 unsetopt ALL_EXPORT
 
 # Load nested configs
-for f in $(find ~/dotfiles/zsh -name \*.zsh | grep -v zshrc.zsh); do
+for f in $(find -L $HOME/.zsh/ -name \*.zsh  | grep -v zshrc.zsh); do
   . $f
 done
 
 if mac; then
-  eval $( gdircolors -b ~/dotfiles/zsh/LS_COLORS)
+  eval $( gdircolors -b $HOME/.zsh/LS_COLORS)
 else
-  eval $( dircolors -b $HOME/dotfiles/zsh/LS_COLORS)
+  eval $( dircolors -b $HOME/.zsh/LS_COLORS)
 fi
