@@ -19,3 +19,15 @@
 (setq initial-scratch-message nil)
 (when (locate-library "clojure-mode")
   (setq initial-major-mode 'clojure-mode))
+
+;; Clojure
+(setq auto-mode-alist (cons '("\\.dtm$" . clojure-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.edn$" . clojure-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.cljs$" . clojure-mode) auto-mode-alist))
+
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode) ; Rainbows!
+
+;; nREPL customizations
+(setq nrepl-popup-stacktraces nil)
+(add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
+(add-hook 'nrepl-interaction-mode-hook 'paredit-mode)
