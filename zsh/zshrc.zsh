@@ -23,6 +23,10 @@ for f in $(find -L $HOME/.zsh/ -name \*.zsh  | grep -v zshrc.zsh); do
   . $f
 done
 
+if which stty > /dev/null; then
+  stty -ixon
+fi
+
 if mac; then
   eval $( gdircolors -b $HOME/.zsh/LS_COLORS)
 else

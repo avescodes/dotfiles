@@ -7,8 +7,12 @@
 (setq-default tab-width 2)
 (fset 'yes-or-no-p 'y-or-n-p)
 
+
+(add-to-list 'load-path "~/.emacs.d/site-lisp/")
+(require 'hlinum)
 (line-number-mode 1) ; have line numbers and
 (column-number-mode 1) ; column numbers in the mode line
+(setq linum-format "%4d ")
 (global-linum-mode t)
 
 ;; scratch
