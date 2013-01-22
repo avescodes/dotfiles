@@ -10,10 +10,11 @@
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 (require 'hlinum)
-(line-number-mode 1) ; have line numbers and
-(column-number-mode 1) ; column numbers in the mode line
 (setq linum-format "%4d ")
 (global-linum-mode t)
+
+(line-number-mode 1) ; have line numbers and
+(column-number-mode 1) ; column numbers in the mode line
 
 ;; scratch
 (setq initial-scratch-message nil)
@@ -30,9 +31,9 @@
 ;; nREPL customizations
 (setq nrepl-popup-stacktraces nil)
 (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
-(add-hook 'nrepl-interaction-mode-hook 'paredit-mode)
-
-;; IDO mode ---------------------------------------------------------
+(add-hook 'nrepl-mode-hook 'paredit-mode)
+(global-set-key (kbd "C-c C-j") 'nrepl-jack-in)
+(add-to-list 'same-window-buffer-names "*nrepl*") ; Make C-c C-z switch to *nrepl*
 ;; Make ido-mode list things vertically
 (setq ido-decorations
       (quote
@@ -55,3 +56,14 @@
             (define-key ido-completion-map [up] 'ido-prev-match)
             (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
             (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)))
+
+;; Syntax highlighting customizations
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(fundamental-mode-default ((t (:inherit autoface-default))) t)
+ '(linum-highlight-face ((t (:inherit default :background "color-238" :foreground "white"))))
+ '(paren-face-match ((((class color)) (:inherit nil))))
+ '(show-paren-match ((((class color) (background dark)) (:inherit nil :foreground "red")))))
