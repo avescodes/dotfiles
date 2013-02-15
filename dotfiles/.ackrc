@@ -17,6 +17,7 @@
 --type-set=scss=.scss
 --type-add=clojure=.clj
 --type-add=clojure=.cljs
+--type-add=clojure=.edn
 
 --ignore-dir=vendor
 --ignore-dir=coverage

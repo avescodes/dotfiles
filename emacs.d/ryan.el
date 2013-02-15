@@ -28,12 +28,27 @@
 
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode) ; Rainbows!
 
+(defun clojure-maven-etags (project-root)
+  "Create tags file for clojure project."
+
+  (interactive "DProject Root:")
+  (eshell-command
+   (format "find %s -name \'*.clj\' -or -name \'*.cljs\' | xargs etags --regex=@$HOME/.emacs.d/clojure.etags -o %s/TAGS" project-root project-root)))
+
+
 ;; nREPL customizations
 (setq nrepl-popup-stacktraces nil)
 (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
 (add-hook 'nrepl-mode-hook 'paredit-mode)
+(add-hook 'nrepl-mode-hook
+          (lambda ()
+            (linum-mode -1)
+            (column-number-mode -1)
+            (line-number-mode -1)))
+
 (global-set-key (kbd "C-c C-j") 'nrepl-jack-in)
 (add-to-list 'same-window-buffer-names "*nrepl*") ; Make C-c C-z switch to *nrepl*
+
 ;; Make ido-mode list things vertically
 (setq ido-decorations
       (quote
