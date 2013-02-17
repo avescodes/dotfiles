@@ -27,6 +27,7 @@
 (setq auto-mode-alist (cons '("\\.cljs$" . clojure-mode) auto-mode-alist))
 
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode) ; Rainbows!
+(projectile-global-mode)
 
 (defun clojure-maven-etags (project-root)
   "Create tags file for clojure project."
