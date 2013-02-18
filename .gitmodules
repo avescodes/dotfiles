@@ -1,6 +1,0 @@
-[submodule "emacs-solarized"]
-  path = emacs.d/themes/emacs-color-theme-solarized
-  url = https://github.com/sellout/emacs-color-theme-solarized.git
-[submodule "twilight-theme"]
-  path = emacs.d/themes/twilight-theme
-  url = https://github.com/nhunzaker/twilight-theme.git

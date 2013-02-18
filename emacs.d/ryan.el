@@ -1,35 +1,33 @@
-(remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)
+;; General
+(remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)                    ; Disable emacs-starter-kits line highlighting
 
-;; Colours and Formatting
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/twilight-theme")
-(load-theme 'twilight t)
-
-(setq-default tab-width 2)
-(fset 'yes-or-no-p 'y-or-n-p)
-
-
-(add-to-list 'load-path "~/.emacs.d/site-lisp/")
-(require 'hlinum)
-(setq linum-format "%4d ")
-(global-linum-mode t)
-
-(line-number-mode 1) ; have line numbers and
-(column-number-mode 1) ; column numbers in the mode line
-
-;; scratch
-(setq initial-scratch-message nil)
-(when (locate-library "clojure-mode")
+(setq initial-scratch-message nil)                                         ; *scratch* starts empty
+(when (locate-library "clojure-mode")                                      ; Set *scratch* to Clojure mode
   (setq initial-major-mode 'clojure-mode))
 
+(projectile-global-mode)                                                   ; Quickly navigate projects using Projectile (C-c p C-h for available commands)
+(setq projectile-show-paths-function 'projectile-hashify-with-relative-paths) ; Projectile shows full relative paths
+
+
+;; Visual
+(load-theme 'twilight t)                                                   ; Load my preferred theme, twilight
+(global-rainbow-delimiters)                                                ; Every level of delimiters is a slightly different color
+
+(global-linum-mode t)                                                      ; Always show line numbers on left
+(setq linum-format "%4d ")                                                 ; Line numbers gutter should be four characters wide
+
+(line-number-mode 1)                                                       ; Mode line shows line numbers
+(column-number-mode 1)                                                     ; Mode line shows column numbers
+
+(setq-default tab-width 2)                                                 ; Tab width of 2
+(fset 'yes-or-no-p 'y-or-n-p)                                              ; Emacs prompts should accept "y" or "n" instead of the full word
+
+
 ;; Clojure
-(setq auto-mode-alist (cons '("\\.dtm$" . clojure-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.edn$" . clojure-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.cljs$" . clojure-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.edn$" . clojure-mode) auto-mode-alist))  ; *.edn are Clojure files
+(setq auto-mode-alist (cons '("\\.cljs$" . clojure-mode) auto-mode-alist)) ; *.cljs are Clojure files
 
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode) ; Rainbows!
-(projectile-global-mode)
-
-(defun clojure-maven-etags (project-root)
+(defun clojure-generate-etags (project-root)                               ; Attempt at a Clojure etags generating fn
   "Create tags file for clojure project."
 
   (interactive "DProject Root:")
@@ -38,20 +36,17 @@
 
 
 ;; nREPL customizations
-(setq nrepl-popup-stacktraces nil)
-(add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)
-(add-hook 'nrepl-mode-hook 'paredit-mode)
-(add-hook 'nrepl-mode-hook
-          (lambda ()
-            (linum-mode -1)
-            (column-number-mode -1)
-            (line-number-mode -1)))
+(setq nrepl-popup-stacktraces nil)                                         ; Don't aggresively popup stacktraces
+(setq nrepl-popup-stacktraces-in-repl t)                                   ; Display stacktrace inline
 
-(global-set-key (kbd "C-c C-j") 'nrepl-jack-in)
-(add-to-list 'same-window-buffer-names "*nrepl*") ; Make C-c C-z switch to *nrepl*
+(add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)          ; Enable eldoc - shows fn argument list in echo area
+(add-hook 'nrepl-mode-hook 'paredit-mode)                                  ; Use paredit in *nrepl* buffer
 
-;; Make ido-mode list things vertically
-(setq ido-decorations
+(add-to-list 'same-window-buffer-names "*nrepl*")                          ; Make C-c C-z switch to *nrepl*
+
+
+;; Ido-mode customizations
+(setq ido-decorations                                                      ; Make ido-mode display vertically
       (quote
        ("\n-> "           ; Opening bracket around prospect list
         ""                ; Closing bracket around prospect list
@@ -65,21 +60,9 @@
         " [Too big]"      ; directory too big
         " [Confirm]")))   ; confirm creation of new file or buffer
 
-;; And let us use standard navagation keys that make sense vertically
-(add-hook 'ido-setup-hook
+(add-hook 'ido-setup-hook                                                  ; Navigate ido-mode vertically
           (lambda ()
             (define-key ido-completion-map [down] 'ido-next-match)
             (define-key ido-completion-map [up] 'ido-prev-match)
             (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
             (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)))
-
-;; Syntax highlighting customizations
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(fundamental-mode-default ((t (:inherit autoface-default))) t)
- '(linum-highlight-face ((t (:inherit default :background "color-238" :foreground "white"))))
- '(paren-face-match ((((class color)) (:inherit nil))))
- '(show-paren-match ((((class color) (background dark)) (:inherit nil :foreground "red")))))
