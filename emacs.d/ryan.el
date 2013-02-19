@@ -11,7 +11,7 @@
 
 ;; Visual
 (load-theme 'twilight t)                                                   ; Load my preferred theme, twilight
-(global-rainbow-delimiters)                                                ; Every level of delimiters is a slightly different color
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)                        ; Enable rainbow delimiters when programming
 
 (global-linum-mode t)                                                      ; Always show line numbers on left
 (setq linum-format "%4d ")                                                 ; Line numbers gutter should be four characters wide
