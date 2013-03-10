@@ -27,12 +27,11 @@
 (setq auto-mode-alist (cons '("\\.edn$" . clojure-mode) auto-mode-alist))  ; *.edn are Clojure files
 (setq auto-mode-alist (cons '("\\.cljs$" . clojure-mode) auto-mode-alist)) ; *.cljs are Clojure files
 
-(defun clojure-generate-etags (project-root)                               ; Attempt at a Clojure etags generating fn
-  "Create tags file for clojure project."
-
+(defun create-tags (project-root)                                          ; Generate the initial TAGS file for a project.
+  "Create TAGS file for project."
   (interactive "DProject Root:")
   (eshell-command
-   (format "find %s -name \'*.clj\' -or -name \'*.cljs\' | xargs etags --regex=@$HOME/.emacs.d/clojure.etags -o %s/TAGS" project-root project-root)))
+   (format "ctags -f %s/TAGS -Re %s" project-root project-root)))
 
 
 ;; nREPL customizations
