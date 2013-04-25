@@ -2,7 +2,7 @@
   path = ~/.gitconfig.github
 [user]
   name = Ryan Neufeld
-  email = ryan@ryanneufeld.ca
+  email = ryan@rkn.io
 [color]
   branch = auto
   diff = auto

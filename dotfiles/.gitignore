@@ -11,3 +11,5 @@ ribbon_notes.txt
 notes.txt
 tags
 pom.xml.asc
+repl-port
+.lein-repl-history
