@@ -22,6 +22,11 @@
 (setq-default tab-width 2)                                                 ; Tab width of 2
 (fset 'yes-or-no-p 'y-or-n-p)                                              ; Emacs prompts should accept "y" or "n" instead of the full word
 
+;; Markdown
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+(add-to-list 'auto-mode-alist '("\\.asciidoc\\'" . adoc-mode))
 
 ;; Clojure
 (setq auto-mode-alist (cons '("\\.edn$" . clojure-mode) auto-mode-alist))  ; *.edn are Clojure files
@@ -42,6 +47,10 @@
 (add-hook 'nrepl-mode-hook 'paredit-mode)                                  ; Use paredit in *nrepl* buffer
 
 (add-to-list 'same-window-buffer-names "*nrepl*")                          ; Make C-c C-z switch to *nrepl*
+(add-hook 'nrepl-mode-hook                                                 ; Key bindings *just* for nrepl
+          (lambda ()
+            (define-key nrepl-mode-map [down] 'nrepl-forward-input)        ; "Up" is history backwards
+            (define-key nrepl-mode-map [up] 'nrepl-backward-input)))       ; "Down" is history forwards
 
 
 ;; Ido-mode customizations
@@ -65,3 +74,43 @@
             (define-key ido-completion-map [up] 'ido-prev-match)
             (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
             (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)))
+
+(defun rkn-print-results-on-next-line (value)
+  (end-of-line)
+  (newline)
+  (insert (format ";; -> %s" value)))
+
+(defun rkn-nrepl-eval-newline-comment-print-handler (buffer)
+  (nrepl-make-response-handler buffer
+                               (lambda (buffer value)
+                                 (with-current-buffer buffer
+                                   (rkn-print-results-on-next-line value)))
+                               '()
+                               (lambda (buffer value)
+                                 (with-current-buffer buffer
+                                   (rkn-print-results-on-next-line value)))
+                               '()))
+
+(defun rkn-nrepl-interactive-eval-print (form)
+  "Evaluate the given FORM and print the value in the current
+  buffer on the next line as a comment."
+  (let ((buffer (current-buffer)))
+    (nrepl-send-string form
+                       (rkn-nrepl-eval-newline-comment-print-handler buffer)
+                       nrepl-buffer-ns)))
+
+(defun rkn-eval-expression-at-point-to-comment ()
+  (interactive)
+  (let ((form (nrepl-last-expression)))
+    (rkn-nrepl-interactive-eval-print form)))
+
+(add-hook 'nrepl-interaction-mode-hook
+          (lambda ()
+            (define-key nrepl-interaction-mode-map (kbd "C-M-j") 'rkn-eval-expression-at-point-to-comment)))
+
+(defun kill-other-buffers ()
+  "Kill all other buffers."
+  (interactive)
+  (mapc 'kill-buffer
+        (delq (current-buffer)
+                              (remove-if-not 'buffer-file-name (buffer-list)))))
