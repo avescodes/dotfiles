@@ -27,8 +27,7 @@ if which stty > /dev/null; then
   stty -ixon
 fi
 
-if mac; then
-  eval $( gdircolors -b $HOME/.zsh/LS_COLORS)
-else
-  eval $( dircolors -b $HOME/.zsh/LS_COLORS)
-fi
+command -v gdircolors >/dev/null 2>&1 && eval $( gdircolors -b $HOME/.zsh/LS_COLORS)
+command -v  dircolors >/dev/null 2>&1 && eval $( dircolors -b $HOME/.zsh/LS_COLORS)
+
+[ -f "/opt/boxen/env.sh" ] && source /opt/boxen/env.sh

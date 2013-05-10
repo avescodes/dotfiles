@@ -1,4 +1,4 @@
-if [[ -x `which git` ]]; then
+if [ "$(command -v git)" ]; then
   function __pair-initials () {
     author_email=${${${GIT_AUTHOR_EMAIL#pair+}%@thinkrelevance.com}//+/\/}
     if [[ -n "$author_email" ]]; then
