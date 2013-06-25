@@ -22,6 +22,8 @@
 (setq-default tab-width 2)                                                 ; Tab width of 2
 (fset 'yes-or-no-p 'y-or-n-p)                                              ; Emacs prompts should accept "y" or "n" instead of the full word
 
+(define-key input-decode-map "\e[1;2A" [S-up])
+
 ;; Markdown
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
@@ -40,8 +42,9 @@
 
 
 ;; nREPL customizations
-(setq nrepl-popup-stacktraces nil)                                         ; Don't aggresively popup stacktraces
-(setq nrepl-popup-stacktraces-in-repl t)                                   ; Display stacktrace inline
+(setq nrepl-hide-special-buffers t)
+(setq nrepl-popup-on-error nil)
+(setq nrepl-popup-stacktraces-in-repl t)
 
 (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)          ; Enable eldoc - shows fn argument list in echo area
 (add-hook 'nrepl-mode-hook 'paredit-mode)                                  ; Use paredit in *nrepl* buffer
