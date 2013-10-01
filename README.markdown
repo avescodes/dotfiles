@@ -1,5 +1,3 @@
-# DevOp dotfiles scaffold
+# Here be my dotfiles
 
-Detailed explaination at http://thedevop.com/members/dotfiles/
-
-Customize these to your heart's content.
+Years of experimentation + <https://github.com/cowboy/dotfiles>: now we're cooking with propane.
