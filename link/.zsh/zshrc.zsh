@@ -9,7 +9,7 @@ EDITOR=vim
 PAGER="less"
 SHELL="/bin/zsh"
 
-PATH=.bundle/binstubs:/usr/local/bin:$HOME/bin:$PATH:/usr/X11/bin:/Applications/Xcode.app/Contents/Developer/usr/bin
+PATH=.bundle/binstubs:/usr/local/bin:$HOME/bin:$PATH:/usr/X11/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:$HOME/.dotfiles/bin
 MANPATH=/usr/local/share/man:$MANPATH
 CLASSPATH=.:$CLASSPATH
 

@@ -1,0 +1,14 @@
+GPG_KEYS_ENC=''
+GPG_PW=''
+GPG_KEY_SIGN=''
+GPG_PW_SIGN=''
+GPG_OPTS='--trust-model always'
+
+TARGET='s3://s3.amazonaws.com/your-bucket/optional-prefix/'
+TARGET_USER=''
+TARGET_PASS=''
+
+SOURCE='/'
+MAX_AGE=100Y
+MAX_FULL_BACKUPS=1000
+MAX_FULLBKP_AGE=6M

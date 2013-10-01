@@ -1,7 +1,6 @@
 function mac()   { [[ `uname -s` = "Darwin" ]] }
 
 alias e="vim"
-alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc"
 
 alias cd..='cd ..'
 alias ..='cd ..'
@@ -18,6 +17,7 @@ if mac; then
   else
     alias ls="ls -GF"
   fi
+  alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc"
 else
   alias ls="ls --color=auto -F"
 fi
@@ -28,16 +28,11 @@ alias md='mkdir -p'
 alias rd='rmdir'
 alias su="su -s /bin/zsh"
 
-function rn {
-  scp -r $1 prgmr:~/r
-  echo "http://ryanneufeld.ca/$1" | pbcopy
-}
-
 alias find="noglob find"
 
 alias g=hub
 alias be="bundle exec"
-alias last_migration='vim `ls db/migrate/*.rb | sort -r | head -n 1`'
+
 alias gst='git st'
 alias gba='git br -ra'
 
