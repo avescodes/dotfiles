@@ -2,7 +2,7 @@
   name = Ryan Neufeld
   email = ryan@rkn.io
 [credential]
-  helper = osxkeychain
+  helper = /opt/boxen/bin/boxen-git-credential
 [push]
   # Push current branch even if you've never pushed it before
   default = current
@@ -50,3 +50,6 @@
   # http://gitready.com/advanced/2011/10/21/ribbon-and-catchup-reading-new-commits.html
   ribbon   = tag --force ribbon origin/master
   catchup  = log --patch --reverse --topo-order ribbon..origin/master
+
+[hub]
+protocol = https

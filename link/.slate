@@ -114,4 +114,4 @@ bind g:${hyper} focus 'GitHub'
 bind m:${hyper} focus 'Sparrow'
 bind i:${hyper} focus 'iTerm'
 
-bind space:cmd;shift grid padding:5 0:6,2 1:8,3
+bind space:cmd;shift grid padding:5 0:6,5 1:8,3
