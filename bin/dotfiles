@@ -79,7 +79,7 @@ function do_stuff() {
   done
 }
 
-#Run all of the init scripts; these'll install git and other requirements.
+# Run all of the init scripts; these'll install git and other requirements.
 do_stuff "init"
 
 # If Git isn't installed by now, something exploded. We gots to quit!
@@ -87,6 +87,11 @@ if [[ ! "$(type -P git)" ]]; then
   e_error "Git should be installed. It isn't. Aborting."
   exit 1
 fi
+
+# Initialize and update git submodules
+e_header "Updating git submodules"
+git submodule update --init
+e_success "Done"
 
 # Update existing sudo time stamp if set, otherwise do nothing.
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &

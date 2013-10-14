@@ -29,6 +29,7 @@
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 (add-to-list 'auto-mode-alist '("\\.asciidoc\\'" . adoc-mode))
+(add-hook 'adoc-mode-hook 'nrepl-interaction-mode)
 
 ;; Clojure
 (setq auto-mode-alist (cons '("\\.edn$" . clojure-mode) auto-mode-alist))  ; *.edn are Clojure files

@@ -37,5 +37,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(font-lock-warning-face ((t (:inherit nil :foreground "red" :background nil))))
- '(linum-highlight-face ((t (:inherit default :background "color-238" :foreground "white"))))
+ '(linum-highlight-face ((t (:inherit default :background "color-238" :foreground "white"))) t)
  '(show-paren-match ((((class color) (background dark)) (:inherit nil :foreground "red")))))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("1f3304214265481c56341bcee387ef1abb684e4efbccebca0e120be7b1a13589" default))))
