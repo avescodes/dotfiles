@@ -93,8 +93,8 @@
 ;; ;; Key bindings *just* for nrepl
 (add-hook 'cider-repl-mode-hook
           (lambda ()
-            (define-key cider-mode-map [down] 'cider-forward-input)        ; "Up" is history backwards
-            (define-key cider-mode-map [up] 'cider-backward-input)))       ; "Down" is history forwards
+            (define-key cider-repl-mode-map [down] 'cider-forward-input)        ; "Up" is history backwards
+            (define-key cider-repl-mode-map [up] 'cider-backward-input)))       ; "Down" is history forwards
 
 (defun rkn-print-results-on-next-line (value)
   (end-of-line)

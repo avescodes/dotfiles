@@ -23,7 +23,8 @@
                       ;; Misc.
                       markdown-mode
                       twilight-theme
-                      hlinum)  
+                      hlinum
+                      adoc-mode)
   "A list of packages to ensure are installed at launch.")
 
 ;; Automaticaly install any missing packages
