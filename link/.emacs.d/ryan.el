@@ -1,41 +1,71 @@
 ;; General
-(remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)                    ; Disable emacs-starter-kits line highlighting
+;; =======
 
-(setq initial-scratch-message nil)                                         ; *scratch* starts empty
-(when (locate-library "clojure-mode")                                      ; Set *scratch* to Clojure mode
+;; Disable emacs-starter-kits line highlighting
+(remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)
+
+;; *scratch* starts empty
+(setq initial-scratch-message nil)
+
+;; Set *scratch* to Clojure mode
+(when (locate-library "clojure-mode")
   (setq initial-major-mode 'clojure-mode))
 
-(projectile-global-mode)                                                   ; Quickly navigate projects using Projectile (C-c p C-h for available commands)
-(setq projectile-show-paths-function 'projectile-hashify-with-relative-paths) ; Projectile shows full relative paths
+;; Quickly navigate projects using Projectile (C-c p C-h for available commands)
+(projectile-global-mode)
+;; Projectile shows full relative paths
+(setq projectile-show-paths-function 'projectile-hashify-with-relative-paths)
 
 
 ;; Visual
-(load-theme 'twilight t)                                                   ; Load my preferred theme, twilight
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)                        ; Enable rainbow delimiters when programming
+;; ======
 
-(global-linum-mode t)                                                      ; Always show line numbers on left
-(setq linum-format "%4d ")                                                 ; Line numbers gutter should be four characters wide
+(load-theme 'twilight t)
+;; Enable rainbow delimiters when programming
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
-(line-number-mode 1)                                                       ; Mode line shows line numbers
-(column-number-mode 1)                                                     ; Mode line shows column numbers
+;; Always show line numbers on left
+(global-linum-mode t)
+;; Line numbers gutter should be four characters wide
+(setq linum-format "%4d ")
 
-(setq-default tab-width 2)                                                 ; Tab width of 2
-(fset 'yes-or-no-p 'y-or-n-p)                                              ; Emacs prompts should accept "y" or "n" instead of the full word
+;; Mode line shows line numbers
+(line-number-mode 1)
+;; Mode line shows column numbers
+(column-number-mode 1)
 
+;; Tab width of 2
+(setq-default tab-width 2)
+
+;; Emacs prompts should accept "y" or "n" instead of the full word
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; Make the Shift-up binding work in iTerm
 (define-key input-decode-map "\e[1;2A" [S-up])
 
+;; Modes
+;; =====
+
 ;; Markdown
+;; --------
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
+;; AsciiDoc
+;; --------
 (add-to-list 'auto-mode-alist '("\\.asciidoc\\'" . adoc-mode))
+;; AsciiDoc should also turn on cider-interaction-mode
 (add-hook 'adoc-mode-hook 'nrepl-interaction-mode)
 
 ;; Clojure
-(setq auto-mode-alist (cons '("\\.edn$" . clojure-mode) auto-mode-alist))  ; *.edn are Clojure files
-(setq auto-mode-alist (cons '("\\.cljs$" . clojure-mode) auto-mode-alist)) ; *.cljs are Clojure files
+;; -------
+;; *.edn are Clojure files
+(setq auto-mode-alist (cons '("\\.edn$" . clojure-mode) auto-mode-alist))
+;; *.cljs are Clojure files
+(setq auto-mode-alist (cons '("\\.cljs$" . clojure-mode) auto-mode-alist))
 
-(defun create-tags (project-root)                                          ; Generate the initial TAGS file for a project.
+;; Generate the initial TAGS file for a project. (deprecated)
+(defun create-tags (project-root)
   "Create TAGS file for project."
   (interactive "DProject Root:")
   (eshell-command
@@ -110,7 +140,37 @@
 
 (add-hook 'nrepl-interaction-mode-hook
           (lambda ()
-            (define-key nrepl-interaction-mode-map (kbd "C-M-j") 'rkn-eval-expression-at-point-to-comment)))
+            (define-key nrepl-mode-map (kbd "C-M-j") 'rkn-eval-expression-at-point-to-comment)))
+
+
+;; Ido-mode customizations
+;; -----------------------
+
+;; Make ido-mode display vertically
+(setq ido-decorations
+      (quote
+       ("\n-> "           ; Opening bracket around prospect list
+        ""                ; Closing bracket around prospect list
+        "\n   "           ; separator between prospects
+        "\n   ..."        ; appears at end of truncated list of prospects
+        "["               ; opening bracket around common match string
+        "]"               ; closing bracket around common match string
+        " [No match]"     ; displayed when there is no match
+        " [Matched]"      ; displayed if there is a single match
+        " [Not readable]" ; current diretory is not readable
+        " [Too big]"      ; directory too big
+        " [Confirm]")))   ; confirm creation of new file or buffer
+
+;; Navigate ido-mode vertically
+(add-hook 'ido-setup-hook
+          (lambda ()
+            (define-key ido-completion-map [down] 'ido-next-match)
+            (define-key ido-completion-map [up] 'ido-prev-match)
+            (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
+            (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)))
+
+;; Customer Functions
+;; ==================
 
 (defun kill-other-buffers ()
   "Kill all other buffers."
