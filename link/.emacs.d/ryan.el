@@ -55,7 +55,7 @@
 ;; --------
 (add-to-list 'auto-mode-alist '("\\.asciidoc\\'" . adoc-mode))
 ;; AsciiDoc should also turn on cider-interaction-mode
-(add-hook 'adoc-mode-hook 'nrepl-interaction-mode)
+(add-hook 'adoc-mode-hook 'cider-interaction-mode)
 
 ;; Clojure
 ;; -------
@@ -73,41 +73,28 @@
 
 
 ;; nREPL customizations
+;; --------------------
+;; Don't show cider/nrepl's special buffer
 (setq nrepl-hide-special-buffers t)
-(setq nrepl-popup-on-error nil)
-(setq nrepl-popup-stacktraces-in-repl t)
+;; ;; Don't pop-up error buffers
+(setq cider-popup-on-error nil)
+;; ;; Show stacktraces in REPL
+(setq cider-repl-popup-stacktraces t)
+;; ;; Don't auto-display REPL
+;(setq cider-repl-pop-to-buffer-on-connect nil)
 
-(add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode)          ; Enable eldoc - shows fn argument list in echo area
-(add-hook 'nrepl-mode-hook 'paredit-mode)                                  ; Use paredit in *nrepl* buffer
+;; ;; Enable eldoc - shows fn argument list in echo area
+(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+(add-hook 'cider-repl-mode-hook 'paredit-mode)
 
-(add-to-list 'same-window-buffer-names "*nrepl*")                          ; Make C-c C-z switch to *nrepl*
-(add-hook 'nrepl-mode-hook                                                 ; Key bindings *just* for nrepl
+;; ;; Make C-c C-z switch to *nrepl*
+(setq cider-repl-display-in-current-window t)
+
+;; ;; Key bindings *just* for nrepl
+(add-hook 'cider-repl-mode-hook
           (lambda ()
-            (define-key nrepl-mode-map [down] 'nrepl-forward-input)        ; "Up" is history backwards
-            (define-key nrepl-mode-map [up] 'nrepl-backward-input)))       ; "Down" is history forwards
-
-
-;; Ido-mode customizations
-(setq ido-decorations                                                      ; Make ido-mode display vertically
-      (quote
-       ("\n-> "           ; Opening bracket around prospect list
-        ""                ; Closing bracket around prospect list
-        "\n   "           ; separator between prospects
-        "\n   ..."        ; appears at end of truncated list of prospects
-        "["               ; opening bracket around common match string
-        "]"               ; closing bracket around common match string
-        " [No match]"     ; displayed when there is no match
-        " [Matched]"      ; displayed if there is a single match
-        " [Not readable]" ; current diretory is not readable
-        " [Too big]"      ; directory too big
-        " [Confirm]")))   ; confirm creation of new file or buffer
-
-(add-hook 'ido-setup-hook                                                  ; Navigate ido-mode vertically
-          (lambda ()
-            (define-key ido-completion-map [down] 'ido-next-match)
-            (define-key ido-completion-map [up] 'ido-prev-match)
-            (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
-            (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)))
+            (define-key cider-mode-map [down] 'cider-forward-input)        ; "Up" is history backwards
+            (define-key cider-mode-map [up] 'cider-backward-input)))       ; "Down" is history forwards
 
 (defun rkn-print-results-on-next-line (value)
   (end-of-line)
@@ -135,12 +122,12 @@
 
 (defun rkn-eval-expression-at-point-to-comment ()
   (interactive)
-  (let ((form (nrepl-last-expression)))
+  (let ((form (cider-last-expression)))
     (rkn-nrepl-interactive-eval-print form)))
 
-(add-hook 'nrepl-interaction-mode-hook
+(add-hook 'cider-mode-hook
           (lambda ()
-            (define-key nrepl-mode-map (kbd "C-M-j") 'rkn-eval-expression-at-point-to-comment)))
+            (define-key cider-mode-map (kbd "C-M-j") 'rkn-eval-expression-at-point-to-comment)))
 
 
 ;; Ido-mode customizations

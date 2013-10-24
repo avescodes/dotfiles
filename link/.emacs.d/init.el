@@ -15,7 +15,7 @@
                       starter-kit-lisp
                       ;; Clojure & friends
                       clojure-mode
-                      nrepl
+                      cider
                       rainbow-delimiters
                       ;; Project navigation
                       projectile
