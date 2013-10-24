@@ -34,6 +34,7 @@
   br       = branch
   ci       = commit
   co       = checkout
+  cl       = clone
   cp       = cherry-pick
   d        = diff
   df       = diff
