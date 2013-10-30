@@ -54,8 +54,8 @@
 ;; AsciiDoc
 ;; --------
 (add-to-list 'auto-mode-alist '("\\.asciidoc\\'" . adoc-mode))
-;; AsciiDoc should also turn on cider-interaction-mode
-(add-hook 'adoc-mode-hook 'cider-interaction-mode)
+;; AsciiDoc should also turn on cider-mode
+(add-hook 'adoc-mode-hook 'cider-mode)
 
 ;; Clojure
 ;; -------

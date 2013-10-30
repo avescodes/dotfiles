@@ -25,7 +25,7 @@ Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-rails'
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'derekwyatt/vim-scala'
+Bundle 'scala/scala-dist', {'rtp': 'tool-support/src/vim/'}
 
 " Extras
 Bundle 'paredit.vim'
