@@ -16,11 +16,14 @@
 ;; Projectile shows full relative paths
 (setq projectile-show-paths-function 'projectile-hashify-with-relative-paths)
 
+;; Make the Shift-up binding work in iTerm
+(define-key input-decode-map "\e[1;2A" [S-up])
 
 ;; Visual
 ;; ======
 
-(load-theme 'twilight t)
+(load-theme 'monokai t)
+
 ;; Enable rainbow delimiters when programming
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
@@ -31,17 +34,12 @@
 
 ;; Mode line shows line numbers
 (line-number-mode 1)
-;; Mode line shows column numbers
-(column-number-mode 1)
 
 ;; Tab width of 2
 (setq-default tab-width 2)
 
 ;; Emacs prompts should accept "y" or "n" instead of the full word
 (fset 'yes-or-no-p 'y-or-n-p)
-
-;; Make the Shift-up binding work in iTerm
-(define-key input-decode-map "\e[1;2A" [S-up])
 
 ;; Modes
 ;; =====
@@ -54,15 +52,16 @@
 ;; AsciiDoc
 ;; --------
 (add-to-list 'auto-mode-alist '("\\.asciidoc\\'" . adoc-mode))
-;; AsciiDoc should also turn on cider-mode
-(add-hook 'adoc-mode-hook 'cider-mode)
+(add-hook 'adoc-mode-hook 'cider-mode) ;; For book writing
 
 ;; Clojure
 ;; -------
-;; *.edn are Clojure files
-(setq auto-mode-alist (cons '("\\.edn$" . clojure-mode) auto-mode-alist))
-;; *.cljs are Clojure files
-(setq auto-mode-alist (cons '("\\.cljs$" . clojure-mode) auto-mode-alist))
+(add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))
+(add-to-list 'auto-mode-alist '("\\.cljs$" . clojure-mode))
+
+;; Scala
+;; -----
+(add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
 
 ;; Generate the initial TAGS file for a project. (deprecated)
 (defun create-tags (project-root)
@@ -93,8 +92,10 @@
 ;; ;; Key bindings *just* for nrepl
 (add-hook 'cider-repl-mode-hook
           (lambda ()
-            (define-key cider-repl-mode-map [down] 'cider-forward-input)        ; "Up" is history backwards
-            (define-key cider-repl-mode-map [up] 'cider-backward-input)))       ; "Down" is history forwards
+            ;; "Up" is history backwards
+            (define-key cider-repl-mode-map [down] 'cider-forward-input)
+            ;; "Down" is history forwards
+            (define-key cider-repl-mode-map [up] 'cider-backward-input)))
 
 (defun rkn-print-results-on-next-line (value)
   (end-of-line)
@@ -156,12 +157,13 @@
             (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
             (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)))
 
-;; Customer Functions
-;; ==================
+;; Evil-mode
+;; ---------
 
-(defun kill-other-buffers ()
-  "Kill all other buffers."
-  (interactive)
-  (mapc 'kill-buffer
-        (delq (current-buffer)
-                              (remove-if-not 'buffer-file-name (buffer-list)))))
+(require 'evil)
+(evil-mode 1)
+(setq evil-shift-width 2)
+
+;; C-c exits insert mode
+(define-key evil-insert-state-map (kbd "C-c") 'normal-mode)
+
