@@ -41,6 +41,16 @@
 ;; Emacs prompts should accept "y" or "n" instead of the full word
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; Evil-mode
+;; ---------
+
+(require 'evil)
+;;(evil-mode 1)
+(setq evil-shift-width 2)
+
+;; C-c exits insert mode
+(define-key evil-insert-state-map (kbd "C-c") 'normal-mode)
+
 ;; Modes
 ;; =====
 
@@ -156,14 +166,4 @@
             (define-key ido-completion-map [up] 'ido-prev-match)
             (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
             (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)))
-
-;; Evil-mode
-;; ---------
-
-(require 'evil)
-(evil-mode 1)
-(setq evil-shift-width 2)
-
-;; C-c exits insert mode
-(define-key evil-insert-state-map (kbd "C-c") 'normal-mode)
 
