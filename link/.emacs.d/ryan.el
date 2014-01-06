@@ -53,6 +53,10 @@
 
 ;; Modes
 ;; =====
+(defmacro rename-modeline (package-name mode new-name)
+  `(eval-after-load ,package-name
+     '(defadvice ,mode (after rename-modeline activate)
+        (setq mode-name ,new-name))))
 
 ;; Markdown
 ;; --------
@@ -66,6 +70,7 @@
 
 ;; Clojure
 ;; -------
+(rename-modeline "clojure-mode" clojure-mode "λ")
 (add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))
 (add-to-list 'auto-mode-alist '("\\.cljs$" . clojure-mode))
 
