@@ -142,9 +142,19 @@
   (let ((form (cider-last-expression)))
     (rkn-nrepl-interactive-eval-print form)))
 
+;; From http://blog.jenkster.com/2013/12/a-cider-excursion.html
+;; Put [org.clojure/tools.namespace "0.2.4"] in ~/.lein/profiles.clj's
+;; :user :dependencies vector
+(defun cider-namespace-refresh ()
+  (interactive)
+  (cider-interactive-eval
+   "(require 'clojure.tools.namespace.repl)
+    (clojure.tools.namespace.repl/refresh)"))
+
 (add-hook 'cider-mode-hook
           (lambda ()
-            (define-key cider-mode-map (kbd "C-M-j") 'rkn-eval-expression-at-point-to-comment)))
+            (define-key cider-mode-map (kbd "C-M-j") 'rkn-eval-expression-at-point-to-comment)
+            (define-key cider-mode-map (kbd "C-M-r") 'cider-namespace-refresh)))
 
 
 ;; Ido-mode customizations
