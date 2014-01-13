@@ -28,8 +28,8 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'scala/scala-dist', {'rtp': 'tool-support/src/vim/'}
 
 " Extras
-Bundle 'paredit.vim'
 Bundle 'guns/vim-sexp'
+Bundle 'tpope/vim-sexp-mappings-for-regular-people'
 Bundle 'SirVer/ultisnips'
 Bundle 'TailMinusF'
 Bundle 'airblade/vim-gitgutter'
