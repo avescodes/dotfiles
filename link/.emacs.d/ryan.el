@@ -1,9 +1,5 @@
 ;; General
 ;; =======
-
-;; Disable emacs-starter-kits line highlighting
-(remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)
-
 ;; *scratch* starts empty
 (setq initial-scratch-message nil)
 
@@ -183,3 +179,14 @@
             (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
             (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)))
 
+
+;; Magit
+;; -----
+(require 'magit)
+(global-set-key (kbd "C-c g") 'magit-status)
+
+;; Smex
+;; ----
+(setq smex-save-file (concat user-emacs-directory ".smex-items"))
+(smex-initialize)
+(global-set-key (kbd "M-x") 'smex)
