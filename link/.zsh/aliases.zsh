@@ -18,6 +18,8 @@ if mac; then
     alias ls="ls -GF"
   fi
   alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc"
+
+  alias truecrypt='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text'
 else
   alias ls="ls --color=auto -F"
 fi

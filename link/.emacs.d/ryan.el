@@ -15,6 +15,8 @@
 ;; Make the Shift-up binding work in iTerm
 (define-key input-decode-map "\e[1;2A" [S-up])
 
+(global-auto-revert-mode nil)
+
 ;; Visual
 ;; ======
 
@@ -71,6 +73,12 @@
 (add-to-list 'auto-mode-alist '("\\.cljx\\'" . clojure-mode))
 (add-to-list 'auto-mode-alist '("\\.cljs$" . clojure-mode))
 
+;; Paredit
+;; -------
+(dolist (mode '(emacs-lisp lisp clojure clojurescript))
+    (add-hook (intern (concat (symbol-name mode) "-mode-hook"))
+              'paredit-mode))
+
 ;; Scala
 ;; -----
 (add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
@@ -96,7 +104,6 @@
 
 ;; ;; Enable eldoc - shows fn argument list in echo area
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-(add-hook 'cider-repl-mode-hook 'paredit-mode)
 
 ;; ;; Make C-c C-z switch to *nrepl*
 (setq cider-repl-display-in-current-window t)
@@ -105,9 +112,9 @@
 (add-hook 'cider-repl-mode-hook
           (lambda ()
             ;; "Up" is history backwards
-            (define-key cider-repl-mode-map [down] 'cider-forward-input)
+            (define-key cider-repl-mode-map [down] 'cider-repl-forward-input)
             ;; "Down" is history forwards
-            (define-key cider-repl-mode-map [up] 'cider-backward-input)))
+            (define-key cider-repl-mode-map [up] 'cider-repl-backward-input)))
 
 (defun rkn-print-results-on-next-line (value)
   (end-of-line)
