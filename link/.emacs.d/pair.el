@@ -1,1 +1,0 @@
-/home/pair/.emacs.d/ryan.el
