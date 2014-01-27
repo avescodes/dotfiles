@@ -1,8 +1,6 @@
 [user]
   name = Ryan Neufeld
   email = ryan@rkn.io
-[credential]
-  helper = /opt/boxen/bin/boxen-git-credential
 [push]
   # Push current branch even if you've never pushed it before
   default = current
@@ -44,6 +42,8 @@
   lola     = log --graph --decorate --pretty=oneline --abbrev-commit --all
   st       = status
   staged   = diff --cached # show difference between the HEAD and the index
+  diffstep = diff @{1}..
+  dubstep = diff @{1}..
   unstaged = diff # show difference between working tree and the index
 
   m        = merge
@@ -54,3 +54,5 @@
 
 [hub]
 protocol = https
+[credential]
+	helper = cache --timeout=3600

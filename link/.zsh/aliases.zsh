@@ -31,6 +31,7 @@ alias rd='rmdir'
 alias su="su -s /bin/zsh"
 
 alias find="noglob find"
+alias search='find . | xargs grep -I --no-messages --colour --line-number'
 
 alias g=hub
 alias be="bundle exec"

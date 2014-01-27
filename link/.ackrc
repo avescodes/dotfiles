@@ -15,7 +15,7 @@
 --type-set=json=.json
 --type-set=sass=.sass
 --type-set=scss=.scss
---type-add=clojure=.clj
+--type-set=clojure=.clj
 --type-add=clojure=.cljs
 --type-add=clojure=.edn
 
