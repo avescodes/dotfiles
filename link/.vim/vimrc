@@ -137,6 +137,7 @@ let g:airline#extensions#tabline#enabled=1
 "" CtrlP
 let g:ctrlp_root_markers = ['.ctrlp-root']
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+let g:ctrlp_map = 'p'
 
 " Remember last location in file, but not for commit messages.
 " see :help last-position-jump
@@ -179,6 +180,10 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
+
+"Add some nice short cuts for tab swapping
+nnoremap <silent> <C-n> :tabnext<CR>
+nnoremap <silent> <C-p> :tabprevious<CR>
 
 " Reselect visual block after indent/outdent - vimbits.com/bits/20
 vnoremap < <gv
