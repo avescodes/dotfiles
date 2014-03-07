@@ -2,6 +2,8 @@
 ;; =======
 ;; *scratch* starts empty
 (setq initial-scratch-message nil)
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-message t)
 
 ;; Set *scratch* to Clojure mode
 (when (locate-library "clojure-mode")
@@ -100,7 +102,7 @@
 ;; ;; Show stacktraces in REPL
 (setq cider-repl-popup-stacktraces t)
 ;; ;; Don't auto-display REPL
-;(setq cider-repl-pop-to-buffer-on-connect nil)
+(setq cider-repl-pop-to-buffer-on-connect nil)
 
 ;; ;; Enable eldoc - shows fn argument list in echo area
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
@@ -142,7 +144,7 @@
 
 (defun rkn-eval-expression-at-point-to-comment ()
   (interactive)
-  (let ((form (cider-last-expression)))
+  (let ((form (cider-last-sexp)))
     (rkn-nrepl-interactive-eval-print form)))
 
 ;; From http://blog.jenkster.com/2013/12/a-cider-excursion.html
