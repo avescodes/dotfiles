@@ -82,7 +82,7 @@ bind pad. focus behind
 # bind pad* layout 2monitors
 # bind pad/ layout 1monitor
 
-bind e:cmd  ${showNormalHint}
+# bind e:cmd  ${showNormalHint}
 
 # ======================================
 # The HYPER key
