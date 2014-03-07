@@ -30,9 +30,9 @@ Bundle 'scala/scala-dist', {'rtp': 'tool-support/src/vim/'}
 " Extras
 Bundle 'guns/vim-sexp'
 Bundle 'tpope/vim-sexp-mappings-for-regular-people'
-Bundle 'SirVer/ultisnips'
+" Bundle 'SirVer/ultisnips' " - slow
 Bundle 'TailMinusF'
-Bundle 'airblade/vim-gitgutter'
+" Bundle 'airblade/vim-gitgutter' " - slow
 Bundle 'godlygeek/tabular'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mileszs/ack.vim'
@@ -65,7 +65,7 @@ set listchars+=extends:>
 set listchars+=precedes:<
 
 set wildignore+=target,*.jar,*.class,ivyrepo
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.un~,.DS_Store,.gitkeep,*/vendor/*,*/bin/*,.*,*/coverage/*,*.pyc
+set wildignore+=*.so,*.swp,*.zip,*.un~,.DS_Store,.gitkeep,*/vendor/*,*/bin/*,.*,*/coverage/*,*.pyc
 
 set number                         " Show numbers gutter
 set numberwidth=3                  " Numbers gutter 3 cols wide
