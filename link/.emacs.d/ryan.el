@@ -45,7 +45,8 @@
 ;; ---------
 
 (require 'evil)
-;;(evil-mode 1)
+(global-set-key (kbd "C-c r v") 'evil-mode)
+
 (setq evil-shift-width 2)
 
 ;; C-c exits insert mode
