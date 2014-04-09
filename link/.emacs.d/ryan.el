@@ -14,6 +14,7 @@
 ;; Projectile shows full relative paths
 (setq projectile-show-paths-function 'projectile-hashify-with-relative-paths)
 
+(windmove-default-keybindings)
 ;; Make the Shift-up binding work in iTerm
 (define-key input-decode-map "\e[1;2A" [S-up])
 
@@ -78,7 +79,7 @@
 
 ;; Paredit
 ;; -------
-(dolist (mode '(emacs-lisp lisp clojure clojurescript))
+(dolist (mode '(emacs-lisp lisp clojure clojurescript cider-repl))
     (add-hook (intern (concat (symbol-name mode) "-mode-hook"))
               'paredit-mode))
 
@@ -110,14 +111,6 @@
 
 ;; ;; Make C-c C-z switch to *nrepl*
 (setq cider-repl-display-in-current-window t)
-
-;; ;; Key bindings *just* for nrepl
-(add-hook 'cider-repl-mode-hook
-          (lambda ()
-            ;; "Up" is history backwards
-            (define-key cider-repl-mode-map [down] 'cider-repl-forward-input)
-            ;; "Down" is history forwards
-            (define-key cider-repl-mode-map [up] 'cider-repl-backward-input)))
 
 (defun rkn-print-results-on-next-line (value)
   (end-of-line)
@@ -200,3 +193,5 @@
 (setq smex-save-file (concat user-emacs-directory ".smex-items"))
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
+
+(global-set-key (kbd "M-p") 'projectile-find-file)

@@ -14,6 +14,7 @@
                       clojure-mode
                       cider
                       rainbow-delimiters
+                      align-cljlet
                       ;; Project navigation
                       projectile
                       ack-and-a-half
