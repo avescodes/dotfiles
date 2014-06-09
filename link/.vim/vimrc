@@ -10,41 +10,35 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Aesthetics
-Bundle 'mrtazz/molokai.vim'
 Bundle 'nanotech/jellybeans.vim'
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'bling/vim-airline'
 
 " Syntaxon
-Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'guns/vim-clojure-static'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'pangloss/vim-javascript'
 Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-rails'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'scala/scala-dist', {'rtp': 'tool-support/src/vim/'}
 
-" Extras
+" Clojure
+Bundle 'tpope/vim-leiningen'
+Bundle 'tpope/vim-projectionist'
+Bundle 'tpope/vim-dispatch'
+Bundle 'tpope/vim-fireplace'
 Bundle 'guns/vim-sexp'
 Bundle 'tpope/vim-sexp-mappings-for-regular-people'
-" Bundle 'SirVer/ultisnips' " - slow
+Bundle 'kien/rainbow_parentheses.vim'
+
+" Extras
 Bundle 'TailMinusF'
-" Bundle 'airblade/vim-gitgutter' " - slow
 Bundle 'godlygeek/tabular'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mileszs/ack.vim'
-Bundle 'taglist.vim'
-Bundle 'tpope/vim-classpath'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-fireplace'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
-Bundle 'wookiehangover/jshint.vim'
+Bundle 'majutsushi/tagbar'
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General config
@@ -59,13 +53,13 @@ set showcmd                     " display incomplete commands
 filetype plugin indent on       " load file type plugins + indentation
 set list
 set listchars=""
-set listchars+=tab:▸\ 
+set listchars+=tab:▸\
 set listchars+=trail:·
 set listchars+=extends:>
 set listchars+=precedes:<
 
 set wildignore+=target,*.jar,*.class,ivyrepo
-set wildignore+=*.so,*.swp,*.zip,*.un~,.DS_Store,.gitkeep,*/vendor/*,*/bin/*,.*,*/coverage/*,*.pyc
+set wildignore+=*.so,*.swp,*.zip,*.un~,.DS_Store,.gitkeep,*/vendor/*,.*,*/coverage/*,*.pyc
 
 set number                         " Show numbers gutter
 set numberwidth=3                  " Numbers gutter 3 cols wide
@@ -187,6 +181,11 @@ nnoremap <c-l> <c-w>l
 nnoremap <silent> <C-n> :tabnext<CR>
 nnoremap <silent> <C-p> :tabprevious<CR>
 
+"Tag traversal
+nnoremap <leader>. :CtrlPTag<cr>
+nnoremap <silent> <Leader>b :TagbarToggle<CR>
+
+
 " Reselect visual block after indent/outdent - vimbits.com/bits/20
 vnoremap < <gv
 vnoremap > >gv
@@ -216,36 +215,36 @@ map <leader>ws :call KillWhitespace
 " Writing
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Bundle 'reedes/vim-pencil'
-Bundle 'reedes/vim-lexical'
-Bundle 'reedes/vim-wheel'
-Bundle 'reedes/vim-wordy'
-Bundle 'reedes/vim-litecorrect'
-Bundle 'kana/vim-textobj-user'
-Bundle 'reedes/vim-textobj-sentence'
+" Bundle 'reedes/vim-pencil'
+" Bundle 'reedes/vim-lexical'
+" Bundle 'reedes/vim-wheel'
+" Bundle 'reedes/vim-wordy'
+" Bundle 'reedes/vim-litecorrect'
+" Bundle 'kana/vim-textobj-user'
+" Bundle 'reedes/vim-textobj-sentence'
 
-let g:pencil#wrapModeDefault = 'soft'   " or 'soft'
+" let g:pencil#wrapModeDefault = 'soft'   " or 'soft'
 
-augroup pencil
-  autocmd!
-  autocmd FileType markdown call pencil#init()
-  " autocmd FileType text call pencil#init()
-augroup END
+" augroup pencil
+"   autocmd!
+"   autocmd FileType markdown call pencil#init()
+"   " autocmd FileType text call pencil#init()
+" augroup END
 
-augroup lexical
-  autocmd!
-  autocmd FileType markdown call lexical#init()
-  " autocmd FileType text call lexical#init({ 'spell': 0 })
-augroup END
+" augroup lexical
+"   autocmd!
+"   autocmd FileType markdown call lexical#init()
+"   " autocmd FileType text call lexical#init({ 'spell': 0 })
+" augroup END
 
-augroup litecorrect
-  autocmd!
-  autocmd FileType markdown call litecorrect#init()
-  " autocmd FileType text call litecorrect#init()
-augroup END
+" augroup litecorrect
+"   autocmd!
+"   autocmd FileType markdown call litecorrect#init()
+"   " autocmd FileType text call litecorrect#init()
+" augroup END
 
-augroup textobj_sentence
-  autocmd!
-  autocmd FileType markdown call textobj#sentence#init()
-  " autocmd FileType text call textobj#sentence#init()
-augroup END
+" augroup textobj_sentence
+"   autocmd!
+"   autocmd FileType markdown call textobj#sentence#init()
+"   " autocmd FileType text call textobj#sentence#init()
+" augroup END
