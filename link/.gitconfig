@@ -3,7 +3,7 @@
   email = ryan@rkn.io
 [push]
   # Push current branch even if you've never pushed it before
-  default = current
+  default = simple
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
