@@ -1,32 +1,40 @@
 [user]
   name = Ryan Neufeld
   email = ryan@rkn.io
+
 [push]
   # Push current branch even if you've never pushed it before
   default = simple
+
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
+
 [branch]
   autosetupmerge = true
+
 [color]
   branch = auto
   diff = auto
   interactive = auto
   status = auto
+
 [color "branch"]
   current = yellow reverse
   local = yellow
   remote = green
+
 [color "diff"]
   meta = yellow bold
   frag = magenta bold
   old = red bold
   new = green bold
+
 [color "status"]
   added = yellow
   changed = green
   untracked = cyan
+
 [alias]
   both     = diff HEAD # show staged and unstaged changes (what would be committed with "git commit -a")
   br       = branch
@@ -55,6 +63,7 @@
   sha      = rev-parse --short HEAD
 
 [hub]
-protocol = https
+  protocol = https
+
 [credential]
-  helper = /opt/boxen/bin/boxen-git-credential
+  helper = cache --timeout=7200
