@@ -26,6 +26,7 @@ Bundle 'tpope/vim-fireplace'
 Bundle 'guns/vim-sexp'
 Bundle 'tpope/vim-sexp-mappings-for-regular-people'
 Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'guns/vim-clojure-highlight'
 
 " Extras
 Bundle 'TailMinusF'
@@ -212,6 +213,7 @@ map <leader>mk :make<cr>
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 map <leader>ws :call KillWhitespace
 
+nnoremap <leader>r :Require<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Writing
