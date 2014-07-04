@@ -52,6 +52,8 @@
   ribbon   = tag --force ribbon origin/master
   catchup  = log --patch --reverse --topo-order ribbon..origin/master
 
+  sha      = rev-parse --short HEAD
+
 [hub]
 protocol = https
 [credential]
