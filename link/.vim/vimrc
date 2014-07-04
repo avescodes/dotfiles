@@ -1,45 +1,54 @@
-set nocompatible
+if has('vim_starting')
+  set nocompatible
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+end
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Bundles
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
-set runtimepath+=~/.vim/vundle.git
-call vundle#rc()
 
-Bundle 'gmarik/vundle'
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': 'make'}}
 
 " Aesthetics
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'bling/vim-airline'
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'bling/vim-airline'
 
 " Syntaxon
-Bundle 'guns/vim-clojure-static'
-Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-markdown'
+NeoBundle 'guns/vim-clojure-static'
+NeoBundle 'tpope/vim-git'
+NeoBundle 'tpope/vim-markdown'
 
 " Clojure
-Bundle 'tpope/vim-leiningen'
-Bundle 'tpope/vim-projectionist'
-Bundle 'tpope/vim-dispatch'
-Bundle 'tpope/vim-fireplace'
-Bundle 'guns/vim-sexp'
-Bundle 'tpope/vim-sexp-mappings-for-regular-people'
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'guns/vim-clojure-highlight'
+NeoBundle 'tpope/vim-leiningen'
+NeoBundle 'tpope/vim-projectionist'
+NeoBundle 'tpope/vim-dispatch'
+NeoBundle 'tpope/vim-fireplace'
+NeoBundle 'guns/vim-sexp'
+NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
+NeoBundle 'kien/rainbow_parentheses.vim'
+NeoBundle 'guns/vim-clojure-highlight'
 
 " Extras
-Bundle 'TailMinusF'
-Bundle 'godlygeek/tabular'
-Bundle 'kien/ctrlp.vim'
-Bundle 'mileszs/ack.vim'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'majutsushi/tagbar'
+NeoBundle 'TailMinusF'
+NeoBundle 'godlygeek/tabular'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'mileszs/ack.vim'
+NeoBundle 'tpope/vim-commentary'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'majutsushi/tagbar'
 
+call neobundle#end()
+
+filetype plugin indent on       " load file type plugins + indentation
+NeoBundleCheck
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General config
@@ -51,7 +60,6 @@ set encoding=utf-8
 set background=dark
 colorscheme jellybeans
 set showcmd                     " display incomplete commands
-filetype plugin indent on       " load file type plugins + indentation
 set list
 set listchars=""
 set listchars+=tab:▸\
