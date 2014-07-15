@@ -21,6 +21,9 @@ NeoBundle 'bling/vim-airline'
 NeoBundle 'guns/vim-clojure-static'
 NeoBundle 'tpope/vim-git'
 NeoBundle 'tpope/vim-markdown'
+NeoBundle 'dotcloud/docker', {
+  \ 'rtp': 'contrib/syntax/vim'
+  \ }
 
 " Clojure
 NeoBundle 'tpope/vim-leiningen'
