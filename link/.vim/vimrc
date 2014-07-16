@@ -30,20 +30,20 @@ NeoBundle 'tpope/vim-fireplace'
 NeoBundle 'guns/vim-sexp'
 NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
 NeoBundle 'kien/rainbow_parentheses.vim'
-NeoBundle 'guns/vim-clojure-highlight'
+" NeoBundle 'guns/vim-clojure-highlight'
 
 " Extras
+NeoBundle 'ConradIrwin/vim-bracketed-paste'
 NeoBundle 'TailMinusF'
 NeoBundle 'godlygeek/tabular'
-NeoBundle 'Shougo/unite.vim'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'majutsushi/tagbar'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'ConradIrwin/vim-bracketed-paste'
 
 call neobundle#end()
 
@@ -142,7 +142,7 @@ let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#tabline#enabled=1
 
 "" vim-clojure-static
-let g:clojure_maxlines = 1000 " Search an unlimited number of lines for identation
+let g:clojure_maxlines = 1000 " Search more lines for identation (correctness over speed)
 
 " Remember last location in file, but not for commit messages.
 " see :help last-position-jump
@@ -185,6 +185,7 @@ nnoremap <silent> <C-p> :tabprevious<CR>
 
 "Tag traversal
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
+nmap <F7> :TagbarOpen j<CR>
 
 
 " Reselect visual block after indent/outdent - vimbits.com/bits/20
@@ -214,11 +215,10 @@ map <leader>ws :call KillWhitespace
 
 nnoremap <leader>r :Require<CR>
 
-" Unite!
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts = '-line-numbers --nocolor --nogroup --smart-case'
-nnoremap p :Unite -start-insert file_rec/async:!<cr>
-nnoremap <leader>/ :Unite grep:.<cr>
+" CtrlP for life
+nnoremap p :CtrlP<cr>
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+let g:ctrlp_map = ''
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Writing
