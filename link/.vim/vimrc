@@ -26,14 +26,14 @@ NeoBundle 'dotcloud/docker', {
   \ }
 
 " Clojure
-NeoBundle 'tpope/vim-leiningen'
-NeoBundle 'tpope/vim-projectionist'
+NeoBundle 'amdt/vim-niji'
+NeoBundle 'guns/vim-clojure-highlight'
+NeoBundle 'guns/vim-sexp'
 NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'tpope/vim-fireplace'
-NeoBundle 'guns/vim-sexp'
+NeoBundle 'tpope/vim-leiningen'
+NeoBundle 'tpope/vim-projectionist'
 NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
-NeoBundle 'kien/rainbow_parentheses.vim'
-" NeoBundle 'guns/vim-clojure-highlight'
 
 " Extras
 NeoBundle 'ConradIrwin/vim-bracketed-paste'
