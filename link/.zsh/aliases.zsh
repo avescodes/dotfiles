@@ -39,3 +39,4 @@ alias be="bundle exec"
 alias gst='git st'
 alias gba='git br -ra'
 
+alias ack=ag

@@ -146,6 +146,8 @@ let g:airline#extensions#tabline#enabled=1
 
 "" vim-clojure-static
 let g:clojure_maxlines = 1000 " Search more lines for identation (correctness over speed)
+let g:clojure_fuzzy_indent = 1
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', 'describe', 'context']
 
 " Remember last location in file, but not for commit messages.
 " see :help last-position-jump
