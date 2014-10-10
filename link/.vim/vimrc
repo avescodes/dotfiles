@@ -65,7 +65,7 @@ colorscheme jellybeans
 set showcmd                     " display incomplete commands
 set list
 set listchars=""
-set listchars+=tab:▸\
+set listchars+=tab:▸\ 
 set listchars+=trail:·
 set listchars+=extends:>
 set listchars+=precedes:<
@@ -102,11 +102,6 @@ set splitbelow
 set splitright
 
 set mouse=a " Enable mouse events (scrolling), particularly over tmux+iTerm2
-
-if version >= 730 && has("macunix")
-  " Default yank and paste go to Mac's clipboard
-  set clipboard=unnamed
-endif
 
 if v:version >= 703
   set undofile
@@ -172,9 +167,6 @@ nmap <F1> <nop>
 " Swap w/ mru buffer
 nnoremap <leader><leader> <c-^>
 
-" find merge conflict markers
-nmap <silent> <leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
-
 " No help please
 nmap <F1> <Esc>
 
@@ -192,14 +184,9 @@ nnoremap <silent> <C-p> :tabprevious<CR>
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
 nmap <F7> :TagbarOpen j<CR>
 
-
 " Reselect visual block after indent/outdent - vimbits.com/bits/20
 vnoremap < <gv
 vnoremap > >gv
-
-" For pairing
-inoremap jk <Esc>
-inoremap jj <Esc>
 
 " Rename current file
 function! RenameFile()
@@ -213,7 +200,6 @@ function! RenameFile()
 endfunction
 
 map <leader>mv :call RenameFile()<cr>
-map <leader>mk :make<cr>
 
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 map <leader>ws :call KillWhitespace
