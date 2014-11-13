@@ -29,7 +29,7 @@ if [ "$(command -v git)" ]; then
     if [[ $dirty == 1 ]]       { dirty_color=$fg[magenta] }
     if [[ $branch == master ]] { branch=✪ }
     if [[ $dotfiles != 1 ]]    { branch=✖ }
-    if [[ x$branch == x ]]     { branch=◻; dirty_color=$fg[white] }
+    if [[ x$branch == x ]]     { branch=''; dirty_color=$fg[white] }
     echo "%{$dirty_color%}$branch%{$reset_color%}$pair"
   }
 
