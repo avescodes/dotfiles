@@ -143,6 +143,24 @@ let g:clojure_maxlines = 1000 " Search more lines for identation (correctness ov
 let g:clojure_fuzzy_indent = 1
 let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', 'describe', 'context']
 
+"" Tagbar + Clojure
+let g:tagbar_type_clojure = {
+    \ 'ctagstype' : 'clojure',
+    \ 'kinds'     : [
+        \ 'a:multimethod definition',
+        \ 'b:multimethod instance',
+        \ 'c:definition (once)',
+        \ 'd:definition',
+        \ 'f:function',
+        \ 'i:inline',
+        \ 'm:macro',
+        \ 'n:namespace',
+        \ 'p:private function',
+        \ 's:struct',
+        \ 'v:intern',
+    \ ]
+\ }
+
 " Remember last location in file, but not for commit messages.
 " see :help last-position-jump
 au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
