@@ -1,11 +1,4 @@
 if [ "$(command -v git)" ]; then
-  function __pair-initials () {
-    author_email=${${${GIT_AUTHOR_EMAIL#pair+}%@thinkrelevance.com}//+/\/}
-    if [[ -n "$author_email" ]]; then
-      echo " ($author_email)"
-    fi
-  }
-
   function __branch-name () {
     git branch 2> /dev/null | grep '^\*' | sed 's/^\*\ //'
   }
@@ -25,12 +18,11 @@ if [ "$(command -v git)" ]; then
     dirty=$(__dirty)
     dotfiles=$(__remote-is-dotfiles)
     dirty_color=$fg[green]
-    pair=$(__pair-initials)
     if [[ $dirty == 1 ]]       { dirty_color=$fg[magenta] }
     if [[ $branch == master ]] { branch=✪ }
     if [[ $dotfiles != 1 ]]    { branch=✖ }
     if [[ x$branch == x ]]     { branch=''; dirty_color=$fg[white] }
-    echo "%{$dirty_color%}$branch%{$reset_color%}$pair"
+    echo "%{$dirty_color%}$branch%{$reset_color%}"
   }
 
   function __scoreboard () {

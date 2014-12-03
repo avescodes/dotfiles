@@ -40,3 +40,4 @@ alias gst='git st'
 alias gba='git br -ra'
 
 alias ack=ag
+alias ack='noglob ack'

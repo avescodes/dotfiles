@@ -31,6 +31,7 @@ NeoBundle 'guns/vim-sexp'
 NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'tpope/vim-fireplace'
 NeoBundle 'tpope/vim-leiningen'
+NeoBundle 'rkneufeld/vim-boot'
 NeoBundle 'tpope/vim-projectionist'
 NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
 
@@ -46,6 +47,8 @@ NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-speeddating'
+NeoBundle 'jceb/vim-orgmode'
 
 call neobundle#end()
 
@@ -55,6 +58,7 @@ NeoBundleCheck
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 syntax enable
 
 set directory=/tmp/
@@ -81,13 +85,19 @@ set scrolljump=8
 set shortmess=atI
 set lazyredraw
 
+set comments+=fb:*              " Make bullet lists reflow nicely
+
 "" Whitespace
 set nowrap                      " don't wrap lines
 set tabstop=2 shiftwidth=2      " a tab is two spaces (or set this to 4)
 set expandtab                   " use spaces, not tabs (optional)
 set backspace=indent,eol,start  " backspace through everything in insert mode
 
-autocmd BufWritePre * :%s/\s\+$//e " Strip all trailing whitespace
+" Strip all trailing whitespace, but not this vim files
+augroup striptrailing
+  autocmd!
+  autocmd BufWritePre * if &ft != "vim" | :%s/\s\+$//e
+augroup END
 
 "" Searching
 set hlsearch                    " highlight matches
@@ -117,20 +127,25 @@ endfunc
 
 " nnoremap <C-n> :call NumberToggle()<cr>
 
-autocmd FocusLost * :set number
-autocmd FocusGained * :set relativenumber
-autocmd InsertEnter * :set number
-autocmd InsertLeave * :set relativenumber
-autocmd CursorMoved * :set relativenumber
+augroup numbering
+  autocmd!
+  autocmd FocusLost * :set number
+  autocmd FocusGained * :set relativenumber
+  autocmd InsertEnter * :set number
+  autocmd InsertLeave * :set relativenumber
+  autocmd CursorMoved * :set relativenumber
+augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Status line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 set laststatus=2  " always show the status bar
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Extras Customization
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 "" vim-airline
 " let g:airline_powerline_fonts=1
 let g:airline_left_sep = ''
@@ -163,19 +178,26 @@ let g:tagbar_type_clojure = {
 
 " Remember last location in file, but not for commit messages.
 " see :help last-position-jump
-au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
-      \| exe "normal! g`\"" | endif
+augroup lastposnjump
+  autocmd!
+  au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
+        \| exe "normal! g`\"" | endif
+augroup END
 
 " Treat JSON files like JavaScript
-autocmd BufRead,BufNewFile {Vagrantfile,Guardfile,Gemfile,Rakefile,Capfile,*.rake,config.ru} set filetype=ruby
-autocmd BufRead,BufNewFile {COMMIT_EDITMSG}                                                  set filetype=gitcommit
-autocmd BufRead,BufNewFile {*.json}                                                          set filetype=javascript
-autocmd BufRead,BufNewFile {*.cljs,*.hl,*.edn,*.cljx}                                        setlocal filetype=clojure
-autocmd FileType           python                                                            setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
+augroup filetypes
+  autocmd!
+  autocmd BufRead,BufNewFile {Vagrantfile,Guardfile,Gemfile,Rakefile,Capfile,*.rake,config.ru} set filetype=ruby
+  autocmd BufRead,BufNewFile {COMMIT_EDITMSG}                                                  set filetype=gitcommit
+  autocmd BufRead,BufNewFile {*.json}                                                          set filetype=javascript
+  autocmd BufRead,BufNewFile {*.cljs,*.hl,*.edn,*.cljx,*.boot}                                 setlocal filetype=clojure
+  autocmd FileType           python                                                            setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
+augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keybindings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 let mapleader = ","
 let maplocalleader = ","
 
@@ -222,11 +244,22 @@ command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 map <leader>ws :call KillWhitespace
 
 nnoremap <leader>r :Require<CR>
+nnoremap <leader>e :Eval (clojure.repl/pst *e)<CR>
+nnoremap <leader>q <Plug>FireplacePrompt
+
 
 " CtrlP for life
 nnoremap p :CtrlP<cr>
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 let g:ctrlp_map = ''
+
+" vim-orgmode tweaks
+augroup org-disable-list
+  autocmd!
+  autocmd FileType org :set nolist
+augroup END
+
+let g:org_indent=0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Writing
