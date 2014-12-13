@@ -162,15 +162,16 @@ let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', 'describe', 'con
 let g:tagbar_type_clojure = {
     \ 'ctagstype' : 'clojure',
     \ 'kinds'     : [
+        \ 'n:namespace',
+        \ 'd:definition',
+        \ 'c:definition (once)',
+        \ 'o:protocol',
+        \ 'f:function',
+        \ 'p:private function',
+        \ 'm:macro',
+        \ 'i:inline',
         \ 'a:multimethod definition',
         \ 'b:multimethod instance',
-        \ 'c:definition (once)',
-        \ 'd:definition',
-        \ 'f:function',
-        \ 'i:inline',
-        \ 'm:macro',
-        \ 'n:namespace',
-        \ 'p:private function',
         \ 's:struct',
         \ 'v:intern',
     \ ]
