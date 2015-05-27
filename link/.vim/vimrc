@@ -11,7 +11,7 @@ filetype off
 call neobundle#begin(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': 'make'}}
+NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': 'make', 'linux': 'make'}}
 
 " Aesthetics
 NeoBundle 'nanotech/jellybeans.vim'
@@ -32,7 +32,7 @@ NeoBundle 'cespare/vim-toml'
 NeoBundle 'Raimondi/delimitMate'
 
 " Clojure
-NeoBundle 'amdt/vim-niji'
+NeoBundle 'vim-scripts/vim-niji'
 NeoBundle 'guns/vim-sexp'
 NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'tpope/vim-fireplace'
