@@ -41,4 +41,5 @@ alias gba='git br -ra'
 
 alias ack=ag
 alias ack='noglob ack'
-
+alias siege='noglob siege'
+alias http='noglob http'
