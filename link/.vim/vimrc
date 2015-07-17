@@ -16,9 +16,6 @@ NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': 'make', 'linux': 'make'}}
 " Aesthetics
 NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'freeo/vim-kalisi'
-NeoBundle 'chriskempson/base16-vim'
-NeoBundle 'altercation/vim-colors-solarized'
 
 " Syntaxon
 NeoBundle 'guns/vim-clojure-static'
@@ -27,9 +24,6 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'dotcloud/docker', {
   \ 'rtp': 'contrib/syntax/vim'
   \ }
-NeoBundle 'wting/rust.vim'
-NeoBundle 'cespare/vim-toml'
-NeoBundle 'Raimondi/delimitMate'
 
 " Clojure
 NeoBundle 'vim-scripts/vim-niji'
@@ -38,7 +32,6 @@ NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'tpope/vim-fireplace'
 NeoBundle 'tpope/vim-leiningen'
 NeoBundle 'rkneufeld/vim-boot'
-NeoBundle 'tpope/vim-scriptease'
 NeoBundle 'tpope/vim-projectionist'
 NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
 
@@ -71,10 +64,8 @@ syntax enable
 
 set directory=/tmp/
 set encoding=utf-8
-" set background=dark
-" colorscheme jellybeans
-set background=light
-colorscheme solarized
+set background=dark
+colorscheme jellybeans
 set showcmd                     " display incomplete commands
 set list
 set listchars=""
@@ -146,8 +137,6 @@ augroup numbering
   autocmd CursorMoved * :set relativenumber
 augroup END
 
-nnoremap Q q
-nnoremap q <Nop>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Status line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -160,7 +149,6 @@ set laststatus=2  " always show the status bar
 
 "" vim-airline
 " let g:airline_powerline_fonts=1
-" let g:airline_theme='kalisi'
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline#extensions#branch#enabled=1
@@ -206,14 +194,8 @@ augroup filetypes
   autocmd BufRead,BufNewFile {*.json}                                                          set filetype=javascript
   autocmd BufRead,BufNewFile {*.cljs,*.hl,*.edn,*.cljx,*.boot}                                 setlocal filetype=clojure
   autocmd FileType           python                                                            setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
-  autocmd FileType           rust                                                              setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 augroup END
 
-" delimitMate
-" let loaded_delimitMate = 1
-augroup clojure-delimitMate
-  autocmd FileType clojure let b:loaded_delimitMate = 0
-augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keybindings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -279,7 +261,6 @@ augroup org-disable-list
   autocmd FileType org :set nolist
 augroup END
 
-let g:org_heading_shade_leading_stars=0
 let g:org_indent=0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
