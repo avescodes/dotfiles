@@ -56,6 +56,7 @@ NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-speeddating'
 NeoBundle 'jceb/vim-orgmode'
+NeoBundle 'AnsiEsc.vim'
 
 call neobundle#end()
 
