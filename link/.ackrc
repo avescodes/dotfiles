@@ -26,3 +26,5 @@
 --ignore-dir=.m2
 --ignore-dir=doc
 --ignore-dir=logs
+--ignore-dir=out
+--ignore-dir=tmp

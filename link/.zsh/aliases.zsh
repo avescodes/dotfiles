@@ -44,3 +44,5 @@ alias ack='noglob ack'
 
 alias siege='noglob siege'
 alias http='noglob http'
+
+alias d=docker
