@@ -1,5 +1,5 @@
 # Ubuntu/Debian only stuff
-[[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]] || [[ "$(cat /etc/issue 2> /dev/null)" =~ Debian ]] || return 1
+[[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]] || return 1
 
 # Update APT.
 e_header "Updating APT"
