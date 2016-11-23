@@ -4,7 +4,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'Shougo/vimproc.vim', {'build': {'unix': 'make', 'linux': 'make'}}
 
 " Aesthetics
 Plug 'nanotech/jellybeans.vim'
