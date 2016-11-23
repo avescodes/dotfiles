@@ -1,65 +1,62 @@
-if has('vim_starting')
-  set nocompatible
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-end
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Bundles
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype off
+call plug#begin('~/.config/nvim/plugged')
 
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': 'make', 'linux': 'make'}}
+Plug 'Shougo/vimproc.vim', {'build': {'unix': 'make', 'linux': 'make'}}
 
 " Aesthetics
-NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'chriskempson/base16-vim'
+Plug 'nanotech/jellybeans.vim'
+Plug 'bling/vim-airline'
+Plug 'chriskempson/base16-vim'
 
 " Syntaxon
-NeoBundle 'guns/vim-clojure-static'
-NeoBundle 'tpope/vim-git'
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'dotcloud/docker', {
+Plug 'tpope/vim-git'
+Plug 'tpope/vim-markdown'
+Plug 'dotcloud/docker', {
   \ 'rtp': 'contrib/syntax/vim'
   \ }
-NeoBundle 'wting/rust.vim'
-NeoBundle 'cespare/vim-toml'
-" NeoBundle 'Raimondi/delimitMate'
+Plug 'wting/rust.vim', { 'for': 'rust' }
+Plug 'cespare/vim-toml', { 'for': 'toml' }
+" Plug 'Raimondi/delimitMate'
 
 " Clojure
-" NeoBundle 'vim-scripts/vim-niji'
-NeoBundle 'guns/vim-sexp'
-NeoBundle 'tpope/vim-dispatch'
-NeoBundle 'tpope/vim-fireplace'
-NeoBundle 'tpope/vim-leiningen'
-NeoBundle 'rkneufeld/vim-boot'
-NeoBundle 'tpope/vim-scriptease'
-NeoBundle 'tpope/vim-projectionist'
-NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
+" Plug 'vim-scripts/vim-niji'
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+Plug 'guns/vim-sexp', { 'for': 'clojure' }
+Plug 'tpope/vim-dispatch', { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'tpope/vim-leiningen', { 'for': 'clojure' }
+Plug 'rkneufeld/vim-boot', { 'for': 'clojure' }
+Plug 'tpope/vim-scriptease', { 'for': 'clojure' }
+Plug 'tpope/vim-projectionist', { 'for': 'clojure' }
+Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
 
 " Extras
-NeoBundle 'ConradIrwin/vim-bracketed-paste'
-" NeoBundle 'TailMinusF'
-NeoBundle 'godlygeek/tabular'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'mileszs/ack.vim'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-speeddating'
-NeoBundle 'jceb/vim-orgmode'
-NeoBundle 'AnsiEsc.vim'
-NeoBundle 'ctrlpvim/ctrlp.vim'
+Plug 'ConradIrwin/vim-bracketed-paste'
+" Plug 'TailMinusF'
+Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
+Plug 'majutsushi/tagbar', { 'on': 'Tagbar' }
+Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-eunuch', { 'on': [ 'Rename', 'Move', 'SudoWrite' ] }
+Plug 'jceb/vim-orgmode'
+Plug 'AnsiEsc.vim'
 
-call neobundle#end()
+" Neovim
+Plug 'benekastah/neomake', { 'on': ['Neomake'] }
+Plug 'Shougo/deoplete.nvim'
+Plug 'junegunn/fzf.vim'
 
-filetype plugin indent on       " load file type plugins + indentation
-NeoBundleCheck
+set rtp+=/usr/local/opt/fzf
+
+call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General config
@@ -198,6 +195,7 @@ augroup filetypes
   autocmd BufRead,BufNewFile {COMMIT_EDITMSG}                                                  set filetype=gitcommit
   autocmd BufRead,BufNewFile {*.json}                                                          set filetype=javascript
   autocmd BufRead,BufNewFile {*.cljs,*.hl,*.edn,*.cljx,*.boot}                                 setlocal filetype=clojure
+  autocmd BufRead,BufNewFile {*.gradle}                                                        setlocal filetype=groovy
   autocmd FileType           python                                                            setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
   autocmd FileType           rust                                                              setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 augroup END
@@ -218,17 +216,14 @@ let maplocalleader = ","
 
 nmap <F1> <nop>
 
-" Swap w/ mru buffer
-nnoremap <leader><leader> <c-^>
-
 " No help please
 nmap <F1> <Esc>
 
 " easier navigation between split windows
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
+nmap <c-j> <c-w>j
+nmap <c-k> <c-w>k
+nmap <BS> <C-w>h
+nmap <c-l> <c-w>l
 
 "Add some nice short cuts for tab swapping
 nnoremap <silent> <C-n> :tabnext<CR>
@@ -268,10 +263,6 @@ nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
 nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
 nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd qall!<cr>
 
-" CtrlP for life
-nnoremap p :CtrlP<cr>
-let g:ctrlp_map = ''
-
 " vim-orgmode tweaks
 augroup org-disable-list
   autocmd!
@@ -283,6 +274,18 @@ let g:org_indent=0
 
 " tnoremap <Esc> <C-\><C-n>
 
+" if has('nvim')
+"   let $FZF_DEFAULT_OPTS .= ' --inline-info'
+" endif
+
+nnoremap <silent> <Leader><Leader> :Files<CR>
+nnoremap <silent> <Leader>p        :Files<CR>
+nnoremap <silent> <Leader>f        :Files<CR>
+nnoremap <silent> <Leader>C        :Colors<CR>
+nnoremap <silent> <Leader>b        :Buffers<CR>
+nnoremap <silent> <Leader>ag       :Ag <C-R><C-W><CR>
+
+nnoremap p :File<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Writing
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

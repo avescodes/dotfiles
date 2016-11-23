@@ -13,3 +13,4 @@ tags
 pom.xml.asc
 repl-port
 .lein-repl-history
+.envrc

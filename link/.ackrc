@@ -18,13 +18,18 @@
 --type-set=clojure=.clj
 --type-add=clojure=.cljs
 --type-add=clojure=.edn
+--type-add=gradle=.gradle
 
 --ignore-dir=vendor
 --ignore-dir=coverage
 --ignore-dir=.bundle
 --ignore-dir=target
+--ignore-dir=public
 --ignore-dir=.m2
 --ignore-dir=doc
 --ignore-dir=logs
 --ignore-dir=out
 --ignore-dir=tmp
+--ignore-dir=.idea
+--ignore-file=ext:svg
+--ignore-file=ext:iml
