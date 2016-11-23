@@ -12,7 +12,6 @@ SHELL="/bin/zsh"
 MANPATH=/usr/local/share/man:$MANPATH
 CLASSPATH=.:$CLASSPATH
 
-GREP_OPTIONS='--color=auto'
 GREP_COLOR='3;33'
 
 unsetopt ALL_EXPORT
