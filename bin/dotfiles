@@ -1,7 +1,6 @@
 #!/bin/bash
 #Based heavily on Ben Alman's dotfiles repo
 
-set -x
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then cat <<HELP
 
 Usage: $(basename "$0")
