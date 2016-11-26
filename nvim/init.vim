@@ -7,7 +7,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Aesthetics
 Plug 'nanotech/jellybeans.vim'
-Plug 'bling/vim-airline'
+" Plug 'bling/vim-airline'
 Plug 'chriskempson/base16-vim'
 
 " Syntaxon
