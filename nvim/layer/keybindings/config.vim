@@ -40,10 +40,6 @@ map <leader>mv :call RenameFile()<cr>
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 map <leader>ws :call KillWhitespace
 
-nnoremap <leader>r :Require<CR>
-nnoremap <leader>e :Eval (clojure.repl/pst *e)<CR>
-nnoremap <leader>q <Plug>FireplacePrompt
-
 " Profiling Support
 nnoremap <silent> <leader>DD :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
 nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
