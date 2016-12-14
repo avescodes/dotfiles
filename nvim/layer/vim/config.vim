@@ -6,8 +6,6 @@ syntax enable
 
 set directory=/tmp/
 set encoding=utf-8
-set background=dark
-colorscheme jellybeans
 set showcmd                     " display incomplete commands
 set list
 set listchars=""
@@ -19,6 +17,7 @@ set listchars+=precedes:<
 set wildignore+=target,*.jar,*.class,ivyrepo
 set wildignore+=*.so,*.swp,*.zip,*.un~,.DS_Store,.gitkeep,*/vendor/*,.*,*/coverage/*,*.pyc
 
+set foldlevelstart=99
 set number                         " Show numbers gutter
 set numberwidth=3                  " Numbers gutter 3 cols wide
 set ruler       " show the cursor position all the time
