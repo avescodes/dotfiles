@@ -46,9 +46,9 @@ nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
 nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
 nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd qall!<cr>
 
-nnoremap <silent> <Leader><Leader> :Files<CR>
-nnoremap <silent> <Leader>p        :Files<CR>
-nnoremap <silent> <Leader>f        :Files<CR>
+nnoremap <silent> <Leader><Leader> :FZF<CR>
+nnoremap <silent> <Leader>p        :FZF<CR>
+nnoremap <silent> <Leader>f        :FZF<CR>
 nnoremap <silent> <Leader>C        :Colors<CR>
 nnoremap <silent> <Leader>b        :Buffers<CR>
 nnoremap <silent> <Leader>ag       :Ag <C-R><C-W><CR>

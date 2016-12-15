@@ -13,8 +13,7 @@ Plug 'tpope/vim-scriptease'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 
-Plug 'junegunn/fzf.vim'
-set rtp+=/usr/local/opt/fzf
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 
 " Syntaxon

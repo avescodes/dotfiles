@@ -8,6 +8,18 @@ let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.#]*'
 
 let g:sexp_enable_insert_mode_mappings = 0
 
+function! s:SwapParinferMode()
+  if g:parinfer_mode == "off"
+    let g:parinfer_mode = "indent"
+  elseif g:parinfer_mode == "indent"
+    let g:parinfer_mode = "paren"
+  elseif g:parinfer_mode == "paren"
+    let g:parinfer_mode = "indent"
+  endif
+endfunction
+
+command! -nargs=0 SwapParinfer :call s:SwapParinferMode()
+nnoremap <buffer> <localleader>sp :call <SID>SwapParinferMode()<CR>
 
 if !exists('g:test_terminal_id')
   let g:test_terminal_id = -2
@@ -158,7 +170,7 @@ function! BootRepl(...)
   if a:0 > 0 && a:1 != ''
     call RunRepl('boot repl '.join(a:000, ' '))
   else
-    call RunRepl('boot repl')
+    call RunRepl('boot dev repl')
   endif
 endfunction
 
