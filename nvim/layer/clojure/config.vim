@@ -6,6 +6,9 @@ setlocal lispwords+=go-loop,try-n-times,fdef
 let g:deoplete#keyword_patterns = {}
 let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.#]*'
 
+let g:sexp_enable_insert_mode_mappings = 0
+
+
 if !exists('g:test_terminal_id')
   let g:test_terminal_id = -2
 endif

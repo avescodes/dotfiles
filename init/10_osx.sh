@@ -14,3 +14,5 @@ fi
 brew install git
 brew install htop
 brew install tree
+pip3 install neovim
+
