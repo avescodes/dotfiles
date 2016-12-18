@@ -9,7 +9,7 @@ nmap <F1> <Esc>
 " easier navigation between split windows
 nmap <c-j> <c-w>j
 nmap <c-k> <c-w>k
-nmap <BS> <C-w>h
+nmap <c-h> <c-w>h
 nmap <c-l> <c-w>l
 
 "Add some nice short cuts for tab swapping
@@ -18,7 +18,7 @@ nnoremap <silent> <C-p> :tabprevious<CR>
 
 "Tag traversal
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
-nmap <F7> :TagbarOpen j<CR>
+nmap <F7> :TagbarOpen<CR>
 
 " Reselect visual block after indent/outdent - vimbits.com/bits/20
 vnoremap < <gv

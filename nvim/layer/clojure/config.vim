@@ -1,6 +1,6 @@
 let g:rainbow_active = 1
 let g:clojure_special_indent_words = 'deftype,defrecord,reify,proxy,extend-type,extend-protocol,letfn,defcomponent'
-let g:clojure_maxlines = 0
+let g:clojure_maxlines = 1000
 setlocal lispwords+=go-loop,try-n-times,fdef
 
 let g:deoplete#keyword_patterns = {}
