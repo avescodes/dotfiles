@@ -1,5 +1,5 @@
 let g:rainbow_active = 1
-let g:clojure_special_indent_words = 'deftype,defrecord,reify,proxy,extend-type,extend-protocol,letfn,defcomponent'
+let g:clojure_special_indent_words = 'deftype,defrecord,reify,proxy,extend-type,extend-protocol,letfn,defcomponent,deftask,set-env!,task-options!'
 let g:clojure_maxlines = 1000
 setlocal lispwords+=go-loop,try-n-times,fdef
 
@@ -49,6 +49,7 @@ function! s:ReplDoc(symbol)
 endfunction
 
 nnoremap <silent> RK :call <SID>ReplDoc(expand('<cword>'))<CR>
+nnoremap <leader>r :Require<CR>
 
 function! FindSymbol(symbol, ns, curr_file, pos)
   let info = get(fireplace#message({'op': 'info', 'symbol': a:symbol, 'ns': a:ns}), 0, {})
@@ -168,7 +169,7 @@ endfunction
 
 function! BootRepl(...)
   if a:0 > 0 && a:1 != ''
-    call RunRepl('boot repl '.join(a:000, ' '))
+    call RunRepl('boot '.join(a:000, ' '))
   else
     call RunRepl('boot dev repl')
   endif
@@ -176,6 +177,7 @@ endfunction
 
 " TODO: Take an optional arg for alternative tasks
 command! -nargs=* -buffer Boot :exe BootRepl(<q-args>)
+command! -nargs=* -buffer CljsRepl :call RunRepl("boot repl -c --port 3001")
 command! -buffer Lein :call RunRepl("lein repl")
 command! -buffer Figwheel :call RunRepl("lein figwheel")")
 
