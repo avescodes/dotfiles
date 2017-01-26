@@ -167,6 +167,14 @@ function! RunRepl(cmd)
   tabprevious
 endfunction
 
+function! GradleRepl(cmd)
+  if a:0 > 0 && a:1 != ''
+    call RunRepl('gradle '.join(a:000, ' '))
+  else
+    call RunRepl('gradle :switch:nrepl')
+  endif
+endfunction
+
 function! BootRepl(...)
   if a:0 > 0 && a:1 != ''
     call RunRepl('boot '.join(a:000, ' '))
@@ -177,6 +185,8 @@ endfunction
 
 " TODO: Take an optional arg for alternative tasks
 command! -nargs=* -buffer Boot :exe BootRepl(<q-args>)
+command! -nargs=* -buffer Gradle :exe GradleRepl(<q-args>)
+command! -buffer ReplConnect :FireplaceConnect('nrepl://localhost:7888')
 command! -nargs=* -buffer CljsRepl :call RunRepl("boot repl -c --port 3001")
 command! -buffer Lein :call RunRepl("lein repl")
 command! -buffer Figwheel :call RunRepl("lein figwheel")")
