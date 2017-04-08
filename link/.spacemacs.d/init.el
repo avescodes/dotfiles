@@ -72,7 +72,7 @@ values."
 
      (github :packages (not magit-gh-pulls)
              :variables
-             ;; view your Gist using `browse-url` after it is created 
+             ;; view your Gist using `browse-url` after it is created
              gist-view-gist t)
 
      ag-clojure
@@ -289,7 +289,7 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers 't
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -350,6 +350,9 @@ should place your code here."
    apropos-sort-by-scores t)
 
   (add-hook 'prog-mode-hook 'spacemacs/toggle-visual-line-navigation-on))
+
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

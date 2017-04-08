@@ -10,8 +10,7 @@
 ;;; License: GPLv3
 
 (defconst ag-clojure-packages
-  '(
-    ac-cider
+  '(ac-cider
     flycheck-clojure
     clojure-mode-extra-font-locking
     helm-clojuredocs

@@ -13,7 +13,6 @@ Plug 'guns/vim-clojure-static'
 Plug 'guns/vim-clojure-highlight'
 
 Plug 'neovim/node-host', {'do': 'npm install'}
-" Plug 'snoe/nvim-parinfer.js', {'do': function('RefactorDoRemote')}
 Plug 'snoe/clj-refactor.nvim', {'do': function('RefactorDoRemote')}
 
 " TODO: Move to completion layer?
