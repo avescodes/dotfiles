@@ -13,3 +13,5 @@ tags
 pom.xml.asc
 repl-port
 .lein-repl-history
+.envrc
+/jbake-2.5.0-SNAPSHOT

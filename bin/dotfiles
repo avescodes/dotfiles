@@ -79,6 +79,13 @@ function do_stuff() {
   done
 }
 
+# Install NeoVim config
+link_neovim () {
+  if ! [ -d "$HOME/.config" ]; then mkdir $HOME/.config; fi
+
+  ln -fs ~/.dotfiles/nvim ~/.config/nvim
+}
+
 # Run all of the init scripts; these'll install git and other requirements.
 do_stuff "init"
 
@@ -118,6 +125,10 @@ do_stuff "link"
 if [[ "$backup" ]]; then
   echo -e "\nBackups were moved to ~/${backup_dir#$HOME/}"
 fi
+
+e_header "Linking neovim (nvim) to ~/.config/nvim"
+link_neovim
+e_success "Done"
 
 # All done!
 e_header "All done!"

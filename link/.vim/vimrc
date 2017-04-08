@@ -16,9 +16,7 @@ NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': 'make', 'linux': 'make'}}
 " Aesthetics
 NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'freeo/vim-kalisi'
 NeoBundle 'chriskempson/base16-vim'
-NeoBundle 'altercation/vim-colors-solarized'
 
 " Syntaxon
 NeoBundle 'guns/vim-clojure-static'
@@ -29,10 +27,10 @@ NeoBundle 'dotcloud/docker', {
   \ }
 NeoBundle 'wting/rust.vim'
 NeoBundle 'cespare/vim-toml'
-NeoBundle 'Raimondi/delimitMate'
+" NeoBundle 'Raimondi/delimitMate'
 
 " Clojure
-NeoBundle 'vim-scripts/vim-niji'
+" NeoBundle 'vim-scripts/vim-niji'
 NeoBundle 'guns/vim-sexp'
 NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'tpope/vim-fireplace'
@@ -44,9 +42,8 @@ NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
 
 " Extras
 NeoBundle 'ConradIrwin/vim-bracketed-paste'
-NeoBundle 'TailMinusF'
+" NeoBundle 'TailMinusF'
 NeoBundle 'godlygeek/tabular'
-NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'tpope/vim-commentary'
@@ -57,6 +54,7 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-speeddating'
 NeoBundle 'jceb/vim-orgmode'
 NeoBundle 'AnsiEsc.vim'
+NeoBundle 'ctrlpvim/ctrlp.vim'
 
 call neobundle#end()
 
@@ -71,10 +69,8 @@ syntax enable
 
 set directory=/tmp/
 set encoding=utf-8
-" set background=dark
-" colorscheme jellybeans
-set background=light
-colorscheme solarized
+set background=dark
+colorscheme jellybeans
 set showcmd                     " display incomplete commands
 set list
 set listchars=""
@@ -146,8 +142,6 @@ augroup numbering
   autocmd CursorMoved * :set relativenumber
 augroup END
 
-nnoremap Q q
-nnoremap q <Nop>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Status line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -160,7 +154,6 @@ set laststatus=2  " always show the status bar
 
 "" vim-airline
 " let g:airline_powerline_fonts=1
-" let g:airline_theme='kalisi'
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline#extensions#branch#enabled=1
@@ -169,7 +162,7 @@ let g:airline#extensions#tabline#enabled=1
 "" vim-clojure-static
 let g:clojure_maxlines = 1000 " Search more lines for identation (correctness over speed)
 let g:clojure_fuzzy_indent = 1
-let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', 'describe', 'context']
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^dom\/.*']
 
 "" Tagbar + Clojure
 let g:tagbar_type_clojure = {
@@ -209,12 +202,14 @@ augroup filetypes
   autocmd FileType           rust                                                              setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 augroup END
 
+
 " delimitMate
 " let loaded_delimitMate = 1
 augroup clojure-delimitMate
+  autocmd!
   autocmd FileType clojure let b:loaded_delimitMate = 0
 augroup END
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Keybindings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -267,10 +262,14 @@ nnoremap <leader>r :Require<CR>
 nnoremap <leader>e :Eval (clojure.repl/pst *e)<CR>
 nnoremap <leader>q <Plug>FireplacePrompt
 
+" Profiling Support
+nnoremap <silent> <leader>DD :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
+nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
+nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
+nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd qall!<cr>
 
 " CtrlP for life
 nnoremap p :CtrlP<cr>
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 let g:ctrlp_map = ''
 
 " vim-orgmode tweaks
@@ -281,6 +280,8 @@ augroup END
 
 let g:org_heading_shade_leading_stars=0
 let g:org_indent=0
+
+" tnoremap <Esc> <C-\><C-n>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Writing
