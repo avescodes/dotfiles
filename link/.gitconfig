@@ -66,4 +66,4 @@
   protocol = https
 
 [credential]
-  helper = cache --timeout=7200
+	helper = cache --timeout=259200

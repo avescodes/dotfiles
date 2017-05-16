@@ -30,7 +30,9 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(;; -- Core Emacs
+   '(
+     vimscript
+     sql;; -- Core Emacs
      helm
      themes-megapack
      (auto-completion :variables
@@ -41,7 +43,6 @@ values."
      syntax-checking
      spell-checking
      (ibuffer :variables ibuffer-old-time 8)
-     osx
      search-engine
      imenu-list
 
@@ -163,7 +164,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro for Powerline"
-                               :size 18
+                               :size 12
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -191,7 +192,7 @@ values."
    ;; works in the GUI. (default nil)
    dotspacemacs-distinguish-gui-tab nil
    ;; If non nil `Y' is remapped to `y$' in Evil states. (default nil)
-   dotspacemacs-remap-Y-to-y$ nil
+   dotspacemacs-remap-Y-to-y$  nil
    ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
    ;; there. (default t)
    dotspacemacs-retain-visual-state-on-shift t
@@ -205,10 +206,10 @@ values."
    dotspacemacs-default-layout-name "Default"
    ;; If non nil the default layout name is displayed in the mode-line.
    ;; (default nil)
-   dotspacemacs-display-default-layout nil
+   dotspacemacs-display-default-layout t
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts nil
+   dotspacemacs-auto-resume-layouts t
    ;; Size (in MB) above which spacemacs will prompt to open the large file
    ;; literally to avoid performance issues. Opening a file literally means that
    ;; no major mode or minor modes are active. (default is 1)
@@ -221,7 +222,7 @@ values."
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
    ;; If non nil, `helm' will try to minimize the space it uses. (default nil)
-   dotspacemacs-helm-resize nil
+   dotspacemacs-helm-resize t
    ;; if non nil, the helm header is hidden when there is only one source.
    ;; (default nil)
    dotspacemacs-helm-no-header nil
@@ -247,7 +248,7 @@ values."
    ;; If non nil a progress bar is displayed when spacemacs is loading. This
    ;; may increase the boot time on some systems and emacs builds, set it to
    ;; nil to boost the loading time. (default t)
-   dotspacemacs-loading-progress-bar t
+   dotspacemacs-loading-progress-bar nil
    ;; If non nil the frame is fullscreen when Emacs starts up. (default nil)
    ;; (Emacs 24.4+ only)
    dotspacemacs-fullscreen-at-startup nil
@@ -344,10 +345,15 @@ configuration. This is the place where most of your
 configurations should be done. Unless it is explicitly specified
 that a variable should be set before a package is loaded,you
 should place your code here."
-  (setq
-   powerline-center-theme t
-   linum-format "%3d \u2502"
-   apropos-sort-by-scores t)
+  (setq powerline-center-theme t)
+  (setq linum-format "%3d \u2502")
+  (setq apropos-sort-by-scores t)
+
+  (setq org-directory "~/Dropbox/code/notebook/")
+  (setq org-agenda-files '("~/Dropbox/code/notebook/latest.org"))
+
+  (evil-ex-define-cmd "sp[lit]" 'split-window-below-and-focus)
+  (evil-ex-define-cmd "vs[plit]" 'split-window-right-and-focus)
 
   (add-hook 'prog-mode-hook 'spacemacs/toggle-visual-line-navigation-on))
 

@@ -9,7 +9,6 @@ EDITOR=vim
 PAGER="less"
 SHELL="/bin/zsh"
 
-MANPATH=/usr/local/share/man:$MANPATH
 CLASSPATH=.:$CLASSPATH
 
 GREP_COLOR='3;33'

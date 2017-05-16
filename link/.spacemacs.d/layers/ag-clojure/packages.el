@@ -16,7 +16,8 @@
     helm-clojuredocs
     clojars
     clojure-cheatsheet
-    helm-cider))
+    helm-cider
+    evil-smartparens))
 
 (defun ag-clojure/init-ac-cider ())
 (defun ag-clojure/init-flycheck-clojure ())
@@ -26,6 +27,7 @@
 (defun ag-clojure/init-clojure-cheatsheet ())
 (defun ag-clojure/init-helm-cider ())
 (defun ag-clojure/init-cider-hydra ())
+(defun ag-clojure/init-evil-smartparens ())
 
 (with-eval-after-load 'clojure-mode
   (setq clojure-enable-fancify-symbols nil
@@ -37,8 +39,9 @@
         nrepl-log-messages nil
         clojure-align-binding-forms '("binding" "loop" "doseq" "for" "with-open" "with-local-vars" "with-redefs"))
 
-  (add-hook 'clojure-mode #'flyspell-prog-mode)
-
+  (add-hook 'clojure-mode-hook #'flyspell-prog-mode)
+  (add-hook 'clojure-mode-hook #'smartparens-mode)
+  (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode)
   ;; annoying Java Cup icon - no longer will bother you
   (setenv "JAVA_TOOL_OPTIONS" "-Dapple.awt.UIElement=true"))
 
