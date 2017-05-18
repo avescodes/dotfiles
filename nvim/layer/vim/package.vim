@@ -1,3 +1,6 @@
+Plug 'nanotech/jellybeans.vim'
+Plug 'chriskempson/base16-vim'
+
 Plug 'AnsiEsc.vim'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'benekastah/neomake', { 'on': ['Neomake'] }
@@ -14,7 +17,8 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
+Plug 'kassio/neoterm'
+Plug 'scrooloose/nerdtree'
 
 " Syntaxon
 Plug 'tpope/vim-markdown'

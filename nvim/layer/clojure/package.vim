@@ -18,4 +18,3 @@ Plug 'snoe/clj-refactor.nvim', {'do': function('RefactorDoRemote')}
 " TODO: Move to completion layer?
 " Plug 'SevereOverfl0w/async-clj-omni'
 Plug 'clojure-vim/async-clj-omni'
-Plug 'SevereOverfl0w/unite-clojure'

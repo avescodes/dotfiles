@@ -4,6 +4,9 @@
 
 syntax enable
 
+colorscheme jellybeans
+set background=dark
+
 set directory=/tmp/
 set encoding=utf-8
 set showcmd                     " display incomplete commands
@@ -87,3 +90,5 @@ augroup lastposnjump
 augroup END
 
 let g:deoplete#enable_at_startup = 0
+
+tnoremap <Esc> <C-\><C-n>
