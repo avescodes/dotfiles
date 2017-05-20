@@ -28,4 +28,6 @@ endfunction
 
 nnoremap <silent> RK :call <SID>ReplDoc(expand('<cword>'))<CR>
 nnoremap <leader>r :Require<CR>
+nnoremap <leader>t :RunTests<CR>
+nnoremap <leader>T :RunAllTests<CR>
 
