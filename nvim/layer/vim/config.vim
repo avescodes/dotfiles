@@ -92,3 +92,7 @@ augroup END
 let g:deoplete#enable_at_startup = 0
 
 tnoremap <Esc> <C-\><C-n>
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif

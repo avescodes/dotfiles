@@ -8,13 +8,15 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'luochen1990/rainbow'
 
 " Clojure plugins
-Plug 'tpope/vim-fireplace'
 Plug 'guns/vim-clojure-static'
-Plug 'guns/vim-clojure-highlight'
+Plug 'tpope/vim-salve'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fireplace'
+
+" Plug 'guns/vim-clojure-highlight'
 
 Plug 'neovim/node-host', {'do': 'npm install'}
 Plug 'snoe/clj-refactor.nvim', {'do': function('RefactorDoRemote')}
 
-" TODO: Move to completion layer?
-" Plug 'SevereOverfl0w/async-clj-omni'
 Plug 'clojure-vim/async-clj-omni'
