@@ -96,3 +96,6 @@ tnoremap <Esc> <C-\><C-n>
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
+set clipboard+=unnamedplus
+

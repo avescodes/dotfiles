@@ -6,21 +6,7 @@ setlocal lispwords+=go-loop,try-n-times,fdef
 let g:deoplete#keyword_patterns = {}
 let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.#]*'
 
-if !exists('g:test_terminal_id')
-  let g:test_terminal_id = -2
-endif
-
-function! s:GetOrMakeTerm()
-  if g:test_terminal_id <= 0 || jobwait([g:test_terminal_id], 0)[0] <= -2
-    botright new
-    resize 7
-    set wfh
-    let g:test_terminal_id = termopen('boot repl -c')
-  endif
-  return g:test_terminal_id
-endfunction
-
-command! -nargs=0 Repl :call s:GetOrMakeTerm()
+command! BootCljs Piggieback (adzerk.boot-cljs-repl/repl-env)
 
 function! s:ReplDoc(symbol)
   exec "Eval (clojure.repl/doc " a:symbol ")"
@@ -31,3 +17,5 @@ nnoremap <leader>r :Require<CR>
 nnoremap <leader>t :RunTests<CR>
 nnoremap <leader>T :RunAllTests<CR>
 
+nnoremap <F6> :Require<CR>
+nnoremap <F5> :RunTests<CR>

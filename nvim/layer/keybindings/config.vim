@@ -54,3 +54,4 @@ nnoremap <silent> <Leader>ag       :Ag <C-R><C-W><CR>
 
 nnoremap p :File<cr>
 
+nnoremap <silent> <leader>c :ccl<CR>
