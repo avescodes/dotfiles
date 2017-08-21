@@ -1,5 +1,5 @@
 let g:rainbow_active = 1
-let g:clojure_special_indent_words = 'deftype,defrecord,reify,proxy,extend-type,extend-protocol,letfn,defcomponent,deftask,set-env!,task-options!'
+let g:clojure_special_indent_words = 'deftype,defrecord,reify,proxy,extend-type,extend-protocol,letfn,defcomponent,deftask,set-env!,task-options!,s/fdef'
 let g:clojure_maxlines = 1000
 setlocal lispwords+=go-loop,try-n-times,fdef
 
@@ -19,3 +19,9 @@ nnoremap <leader>T :RunAllTests<CR>
 
 nnoremap <F6> :Require<CR>
 nnoremap <F5> :RunTests<CR>
+
+augroup cljautopairs
+  autocmd!
+  au FileType clojure let b:AutoPairs = {'(':')','{':'}',"'":"'",'"':'"', '[':']'}
+augroup END
+

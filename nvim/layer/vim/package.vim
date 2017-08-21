@@ -8,7 +8,7 @@ Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
 Plug 'majutsushi/tagbar', { 'on': 'Tagbar' }
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch', { 'on': [ 'Rename', 'Move', 'SudoWrite' ] }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
