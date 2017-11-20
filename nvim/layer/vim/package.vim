@@ -30,3 +30,5 @@ Plug 'wting/rust.vim', { 'for': 'rust' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 Plug 'jiangmiao/auto-pairs'
+
+Plug 'gcmt/taboo.vim'
