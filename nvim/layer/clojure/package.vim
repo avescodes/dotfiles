@@ -16,7 +16,4 @@ Plug 'tpope/vim-fireplace'
 
 " Plug 'guns/vim-clojure-highlight'
 
-Plug 'neovim/node-host', {'do': 'npm install'}
 Plug 'snoe/clj-refactor.nvim', {'do': function('RefactorDoRemote')}
-
-Plug 'clojure-vim/async-clj-omni'

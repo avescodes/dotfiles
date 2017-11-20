@@ -89,11 +89,7 @@ augroup lastposnjump
         \| exe "normal! g`\"" | endif
 augroup END
 
-let g:deoplete#enable_at_startup = 0
-
 tnoremap <Esc> <C-\><C-n>
-
-set clipboard+=unnamedplus
 
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
