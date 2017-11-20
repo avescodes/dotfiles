@@ -48,6 +48,8 @@ nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd qall!<cr>
 
 nnoremap <silent> <Leader><Leader> :FZF<CR>
 nnoremap <silent> <Leader>p        :FZF<CR>
+nnoremap <silent> <Leader>R        :Rg<CR>
+
 nnoremap <silent> <Leader>C        :Colors<CR>
 nnoremap <silent> <Leader>b        :Buffers<CR>
 nnoremap <silent> <Leader>ag       :Ag <C-R><C-W><CR>
