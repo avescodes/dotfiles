@@ -1,5 +1,2 @@
-function! DeopleteDoRemote(arg)
-  UpdateRemotePlugins
-endfunction
-
-Plug 'Shougo/deoplete.nvim', {'do': function('DeopleteDoRemote')}
+Plug 'roxma/nvim-completion-manager'
+Plug 'clojure-vim/async-clj-omni'
