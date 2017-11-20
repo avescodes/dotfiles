@@ -7,25 +7,13 @@ let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^s/fdef']
 let g:clojure_fuzzy_indent_blacklist = ['-fn$', '\v^with-%(meta|out-str|loading-context)$']
 setlocal lispwords+=go-loop,try-n-times,fdef
 
-let g:deoplete#keyword_patterns = {}
-let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.#]*'
-
 command! BootCljs Piggieback (adzerk.boot-cljs-repl/repl-env)
 
 function! s:ReplDoc(symbol)
   exec "Eval (clojure.repl/doc " a:symbol ")"
 endfunction
 
-nnoremap <silent> RK :call <SID>ReplDoc(expand('<cword>'))<CR>
-nnoremap <leader>r :Require<CR>
-nnoremap <leader>t :RunTests<CR>
-nnoremap <leader>T :RunAllTests<CR>
-
-nnoremap <F6> :Require<CR>
-nnoremap <F5> :RunTests<CR>
-
 augroup cljautopairs
   autocmd!
   au FileType clojure let b:AutoPairs = {'(':')','{':'}',"'":"'",'"':'"', '[':']'}
 augroup END
-
