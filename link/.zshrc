@@ -3,3 +3,5 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+fpath=(~/.zsh/zsh-completions $fpath)
