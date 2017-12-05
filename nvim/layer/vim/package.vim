@@ -8,7 +8,7 @@ Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
 Plug 'majutsushi/tagbar', { 'on': 'Tagbar' }
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-commentary'
-" Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch', { 'on': [ 'Rename', 'Move', 'SudoWrite' ] }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
@@ -21,6 +21,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'kassio/neoterm'
 Plug 'scrooloose/nerdtree'
+
+Plug 'janko-m/vim-test'
 
 " Syntaxon
 Plug 'tpope/vim-markdown'

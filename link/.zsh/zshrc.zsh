@@ -9,8 +9,6 @@ EDITOR=vim
 PAGER="less"
 SHELL="/bin/zsh"
 
-CLASSPATH=.:$CLASSPATH
-
 GREP_COLOR='3;33'
 
 unsetopt ALL_EXPORT
@@ -29,3 +27,6 @@ command -v  dircolors >/dev/null 2>&1 && eval $( dircolors -b $HOME/.zsh/LS_COLO
 
 [ -f "/opt/boxen/env.sh" ] && source /opt/boxen/env.sh
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+fpath=(~/.zsh/completion ~/.zsh/zsh-completions/src $fpath)
