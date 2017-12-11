@@ -1,8 +1,0 @@
-Plug 'jceb/vim-orgmode'
-" Plug 'reedes/vim-pencil'
-" Plug 'reedes/vim-lexical'
-" Plug 'reedes/vim-wheel'
-" Plug 'reedes/vim-wordy'
-" Plug 'reedes/vim-litecorrect'
-" Plug 'kana/vim-textobj-user'
-" Plug 'reedes/vim-textobj-sentence'
