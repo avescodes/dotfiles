@@ -31,5 +31,6 @@
 --ignore-dir=out
 --ignore-dir=tmp
 --ignore-dir=.idea
+--ignore-dir=_build
 --ignore-file=ext:svg
 --ignore-file=ext:iml

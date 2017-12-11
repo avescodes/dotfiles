@@ -16,35 +16,19 @@ NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': 'make', 'linux': 'make'}}
 " Aesthetics
 NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'chriskempson/base16-vim'
 
 " Syntaxon
 NeoBundle 'guns/vim-clojure-static'
-NeoBundle 'tpope/vim-git'
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'dotcloud/docker', {
-  \ 'rtp': 'contrib/syntax/vim'
-  \ }
 NeoBundle 'wting/rust.vim'
 NeoBundle 'cespare/vim-toml'
-" NeoBundle 'Raimondi/delimitMate'
-
-" Clojure
-" NeoBundle 'vim-scripts/vim-niji'
+NeoBundle 'jceb/vim-orgmode'
 NeoBundle 'guns/vim-sexp'
-NeoBundle 'tpope/vim-dispatch'
-NeoBundle 'tpope/vim-fireplace'
-NeoBundle 'tpope/vim-leiningen'
-NeoBundle 'rkneufeld/vim-boot'
-NeoBundle 'tpope/vim-scriptease'
-NeoBundle 'tpope/vim-projectionist'
 NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
 
 " Extras
 NeoBundle 'ConradIrwin/vim-bracketed-paste'
-" NeoBundle 'TailMinusF'
+NeoBundle 'TailMinusF'
 NeoBundle 'godlygeek/tabular'
-NeoBundle 'majutsushi/tagbar'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-endwise'
@@ -52,7 +36,6 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-speeddating'
-NeoBundle 'jceb/vim-orgmode'
 NeoBundle 'AnsiEsc.vim'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 
