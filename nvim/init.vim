@@ -1,26 +1,3 @@
-syntax enable
-
-let g:config_base_dir = '~/.config/nvim'
-
-let mapleader = ","
-let maplocalleader = ","
-
-" TODO
-"
-" - [ ] Add stuff from old tree-based config to single file
-"   - completion/package.vim
-"   - elixir/config.vim
-"   - elixir/package.vim
-"   - git/config.vim
-"   - git/package.vim
-"   - Keybindings/config.vim
-"   - kotlin/package.vim
-"   - statusline/package.vim
-"   - statusline/config.vim
-"   - vim/config.vim
-"   - vim/package.vim
-"   - writing/package.vim
-"
 " Plugins to explore:
 "
 " - vim-test
@@ -32,6 +9,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Editor Style
 Plug 'nanotech/jellybeans.vim' " Preferred theme
 Plug 'vim-airline/vim-airline' " Status line
+Plug 'vim-airline/vim-airline-themes' " Themes for airline
 
 " General Editing
 Plug 'ConradIrwin/vim-bracketed-paste' " Paste support for iTerm2 paste
@@ -43,12 +21,25 @@ Plug 'tpope/vim-endwise' " Add end and other language-aware completions for fn s
 Plug 'tpope/vim-repeat' " Support repeat for plugins
 Plug 'tpope/vim-speeddating' " Extended C-a/x incrementor/decrementors.
 Plug 'tpope/vim-surround' " Manage delimiters (ys)
+Plug 'tpope/vim-projectionist' " Move to related files easily using :E*
 
 " Language Support
 Plug 'dotcloud/docker', { 'rtp': 'contrib/syntax/vim' } " Dockerfile support
 Plug 'jceb/vim-orgmode' " .org support
 Plug 'tpope/vim-markdown' " .md support
 Plug 'udalov/kotlin-vim' " Kotlin lang
+
+"" Lisps
+Plug 'guns/vim-sexp' " S-expression text-objects and manipulations
+Plug 'tpope/vim-sexp-mappings-for-regular-people' " Better bindings for vim-sexp
+Plug 'luochen1990/rainbow' " Rainbow parentheses
+
+" Clojure plugins
+Plug 'guns/vim-clojure-static' " Clojure runtime files
+Plug 'tpope/vim-salve' " Static lein/boot support (:Connect, :E*)
+Plug 'tpope/vim-fireplace' " Clojure/ClojureScript REPL support
+" Plug 'guns/vim-clojure-highlight'
+Plug 'snoe/clj-refactor.nvim', {'do': ':UpdateRemotePlugins'} " Clojure Refactoring support
 
 "" Elixir
 Plug 'c-brenn/phoenix.vim' "Phoenix support (jump/gf, :E* projections, server)
@@ -63,6 +54,8 @@ Plug 'slashmili/alchemist.vim' " Completion, doc and mix support
 Plug 'gcmt/taboo.vim' " Vim :tabe manager
 Plug 'janko-m/vim-test' " :Test runners hooked into multiple languages
 Plug 'tpope/vim-eunuch' " Unix utilities
+Plug 'tpope/vim-dispatch'  " Async compiler execution (used by vim-salve)
+Plug 'radenling/vim-dispatch-neovim' " vim-dispatch support for Neovim
 
 "" Navigation Utilities
 Plug 'majutsushi/tagbar' " Visualize/jump to ctags. (TODO: need Clojure tag config)
@@ -100,6 +93,7 @@ set background=dark
 set laststatus=2  " always show the status bar
 
 let g:airline_powerline_fonts = 1
+let g:airline_theme='badcat'
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline#extensions#branch#enabled=1
@@ -188,6 +182,57 @@ augroup cljautopairs
   au FileType clojure let b:AutoPairs = {'(':')','{':'}',"'":"'",'"':'"', '[':']'}
 augroup END
 
+" Elixir """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
+
+augroup elixir
+  autocmd!
+  autocmd FileType elixir
+    \ let b:endwise_addition = 'end' |
+    \ let b:endwise_words = ''
+      \ . 'def,'
+      \ . 'defmodule,'
+      \ . 'case,'
+      \ . 'cond,'
+      \ . 'bc,'
+      \ . 'lc,'
+      \ . 'inlist,'
+      \ . 'inbits,'
+      \ . 'if,'
+      \ . 'unless,'
+      \ . 'try,'
+      \ . 'receive,'
+      \ . 'function,'
+      \ . 'fn'
+      \ |
+    \ let b:endwise_pattern = ''
+      \ . '^\s*\zs\%('
+        \ . 'def\|'
+        \ . 'defmodule\|'
+        \ . 'case\|'
+        \ . 'cond\|'
+        \ . 'bc\|'
+        \ . 'lc\|'
+        \ . 'inlist\|'
+        \ . 'inbits\|'
+        \ . 'if\|'
+        \ . 'unless\|'
+        \ . 'try\|'
+        \ . 'receive\|'
+        \ . 'function\|'
+        \ . 'fn'
+      \ . '\)\>\%(.*[^:]\<end\>\)\@!'
+      \ |
+    \ let b:endwise_syngroups = ''
+      \ . 'elixirDefine,'
+      \ . 'elixirModuleDefine,'
+      \ . 'elixirKeyword'
+augroup END
+
 " Status Line """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function! NumberToggle()
@@ -254,6 +299,9 @@ command! -bang -nargs=* Rg
 
 " Keybindings """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " TODO: Document & clean
+
+let mapleader = ","
+let maplocalleader = ","
 
 "" No help please
 nmap <F1> <Esc>
