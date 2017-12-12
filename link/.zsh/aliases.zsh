@@ -39,8 +39,11 @@ alias be="bundle exec"
 alias gst='git st'
 alias gba='git br -ra'
 
-alias ack=ag
-alias ack='noglob ack'
+if type rg > /dev/null; then
+  alias ack='noglob rg'
+else
+  alias ack='noglob ack'
+fi
 
 alias siege='noglob siege'
 alias http='noglob http'
