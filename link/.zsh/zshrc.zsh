@@ -25,8 +25,6 @@ fi
 command -v gdircolors >/dev/null 2>&1 && eval $( gdircolors -b $HOME/.zsh/LS_COLORS)
 command -v  dircolors >/dev/null 2>&1 && eval $( dircolors -b $HOME/.zsh/LS_COLORS)
 
-[ -f "/opt/boxen/env.sh" ] && source /opt/boxen/env.sh
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 fpath=(~/.zsh/completion ~/.zsh/zsh-completions/src $fpath)

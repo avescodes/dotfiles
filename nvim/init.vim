@@ -112,8 +112,8 @@ set listchars+=trail:·
 set listchars+=extends:>
 set listchars+=precedes:<
 
-set wildignore+=target,*.jar,*.class,ivyrepo
-set wildignore+=*.so,*.swp,*.zip,*.un~,.DS_Store,.gitkeep,*/vendor/*,.*,*/coverage/*,*.pyc
+" set wildignore+=target,*.jar,*.class,ivyrepo
+" set wildignore+=*.so,*.swp,*.zip,*.un~,.DS_Store,.gitkeep,*/vendor/*,.*,*/coverage/*,*.pyc
 
 set foldlevelstart=99
 set number                         " Show numbers gutter
