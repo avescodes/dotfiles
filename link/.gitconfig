@@ -63,7 +63,9 @@
   catchup  = log --patch --reverse --topo-order ribbon..origin/master
 
   sha      = rev-parse --short HEAD
+  quick-stats = ! /usr/local/bin/git-quick-stats
 
+  me        = "! git log --all --since=yesterday --before=0m --author=$(git config user.email)"
 [hub]
   protocol = https
 
