@@ -48,10 +48,12 @@
   lg       = log -p
   lol      = log --graph --decorate --pretty=oneline --abbrev-commit
   lola     = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  re       = rebase
+  rec      = rebase --continue
+  rea      = rebase --abort
   st       = status
   staged   = diff --cached # show difference between the HEAD and the index
   diffstep = diff @{1}..
-  dubstep = diff @{1}..
   unstaged = diff # show difference between working tree and the index
 
   m        = merge
