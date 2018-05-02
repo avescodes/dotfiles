@@ -76,8 +76,7 @@ Plug 'w0rp/ale' " Async linting engine. Use w/ joker
 Plug 'kassio/neoterm' " :term helpers (e.g. T, Tmap, TREPLSend*)
 
 " Search & Completions
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy finder
-Plug 'junegunn/fzf.vim' " Additional finders for FZF (:Rg, :Buffers, :Colors, :Windows, etc.)
+Plug 'cloudhead/neovim-fuzzy'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Async completions
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer'} " TRIAL: Code completion engine
 " Plug 'clojure-vim/async-clj-omni' " TODO: Diagnose freezing of UI input
@@ -262,7 +261,7 @@ augroup lastposnjump
         \| exe "normal! g`\"" | endif
 augroup END
 
-tnoremap <Esc> <C-\><C-n>
+" tnoremap <Esc> <C-\><C-n>
 let g:neoterm_autoscroll = 1
 
 " Neovim Plugins """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -280,21 +279,6 @@ let g:deoplete#enable_at_startup = 1
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
-
-" ripgrep
-if executable('rg')
-  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
-  let g:ackprg = 'rg --vimgrep --no-heading'
-  set grepprg=rg\ --vimgrep
-  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-endif
-
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%', '?'),
-  \   <bang>0)
 
 " Keybindings """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " TODO: Document & clean
@@ -359,19 +343,31 @@ nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
 nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd qall!<cr>
 
 "" Search Assistance
-nnoremap <silent> <Leader><Leader> :FZF<CR>
-nnoremap <silent> <Leader>p        :FZF<CR>
-nnoremap <silent> <Leader>R        :Rg<CR>
+nnoremap <silent> <Leader>p        :FuzzyOpen<CR>
+nnoremap <silent> <Leader>g        :FuzzyGrep<CR>
 
-nnoremap <silent> <Leader>C        :Colors<CR>
-nnoremap <silent> <Leader>b        :Buffers<CR>
-nnoremap <silent> <Leader>ag       :Ag <C-R><C-W><CR>
+function! FzyCommand(choice_command, vim_command)
+  try
+    let output = system(a:choice_command . " | fzy ")
+  catch /Vim:Interrupt/
+    " Swallow errors from ^C, allow redraw! below
+  endtry
+  redraw!
+  if v:shell_error == 0 && !empty(output)
+    exec a:vim_command . ' ' . output
+  endif
+endfunction
+
+nnoremap <leader>e :call FzyCommand("ag . --silent -l -g ''", ":e")<cr>
+nnoremap <leader>v :call FzyCommand("ag . --silent -l -g ''", ":vs")<cr>
+nnoremap <leader>s :call FzyCommand("ag . --silent -l -g ''", ":sp")<cr>
+
 nnoremap <silent> <leader>c :ccl<CR>
 
 nnoremap <silent> <Leader>ts        :TREPLSendSelection<CR>
 nnoremap <silent> <Leader>tf        :TREPLSendFile<CR>
 
-let g:neoterm_position = 'horizontal'
+let g:neoterm_default_mod = 'rightbelow'
 let g:neoterm_automap_keys = ',tt'
 
 nnoremap <silent> <f10> :TREPLSendFile<cr>
@@ -393,15 +389,15 @@ nnoremap <silent> ,tc :call neoterm#kill()<cr>
 let g:gitgutter_map_keys = 0
 
 command! -nargs=+ Tg :T git <args>
-nnoremap <Leader>gv :GV
-nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gc :Gcommit<CR>
-nnoremap <Leader>gp :Gpush<CR>
-nnoremap <Leader>gf :Gpull<CR>
-nnoremap <Leader>gW :Gwrite<CR>:Gcommit<CR>
-nnoremap <Leader>gd :Gdiff<CR>
-nnoremap <Leader>gD :Gvdiff<CR>
-nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>Gv :GV
+nnoremap <Leader>Gs :Gstatus<CR>
+nnoremap <Leader>Gc :Gcommit<CR>
+nnoremap <Leader>Gp :Gpush<CR>
+nnoremap <Leader>Gf :Gpull<CR>
+nnoremap <Leader>GW :Gwrite<CR>:Gcommit<CR>
+nnoremap <Leader>Gd :Gdiff<CR>
+nnoremap <Leader>GD :Gvdiff<CR>
+nnoremap <Leader>Gb :Gblame<CR>
 
 nmap [c <Plug>GitGutterPrevHunk
 nmap ]c <Plug>GitGutterNextHunk
