@@ -54,6 +54,7 @@ Plug 'janko-m/vim-test' " :Test runners hooked into multiple languages
 Plug 'tpope/vim-eunuch' " Unix utilities
 Plug 'tpope/vim-dispatch'  " Async compiler execution (used by vim-salve)
 Plug 'radenling/vim-dispatch-neovim' " vim-dispatch support for Neovim
+Plug 'svermeulen/vim-easyclip' 
 
 "" Navigation Utilities
 Plug 'scrooloose/nerdtree', {'on': ['NERDTree','NERDTreeToggle']} " Tree-based directory viewer
@@ -73,7 +74,9 @@ Plug 'w0rp/ale' " Async linting engine. Use w/ joker
 Plug 'kassio/neoterm', {'on': ['T']} " :term helpers (e.g. T, Tmap, TREPLSend*)
 
 " Search & Completions
-Plug 'cloudhead/neovim-fuzzy'
+" Plug 'cloudhead/neovim-fuzzy'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Async completions
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer'} " TRIAL: Code completion engine
 " Plug 'clojure-vim/async-clj-omni' " TODO: Diagnose freezing of UI input
@@ -306,8 +309,8 @@ nnoremap <c-k> <C-w>k
 nnoremap <c-l> <C-w>l
 
 "" Add some nice short cuts for tab swapping
-nnoremap <silent> <C-n> :tabnext<CR>
-nnoremap <silent> <C-p> :tabprevious<CR>
+nnoremap <silent> <Leader>tn :tabnext<CR>
+nnoremap <silent> <Leader>tp :tabprevious<CR>
 
 "" Tag traversal
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
@@ -340,24 +343,66 @@ nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
 nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd qall!<cr>
 
 "" Search Assistance
-nnoremap <silent> <Leader>p        :FuzzyOpen<CR>
-nnoremap <silent> <Leader>g        :FuzzyGrep<CR>
 
-function! FzyCommand(choice_command, vim_command)
-  try
-    let output = system(a:choice_command . " | fzy ")
-  catch /Vim:Interrupt/
-    " Swallow errors from ^C, allow redraw! below
-  endtry
-  redraw!
-  if v:shell_error == 0 && !empty(output)
-    exec a:vim_command . ' ' . output
-  endif
-endfunction
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
-nnoremap <leader>e :call FzyCommand("ag . --silent -l -g ''", ":e")<cr>
-nnoremap <leader>v :call FzyCommand("ag . --silent -l -g ''", ":vs")<cr>
-nnoremap <leader>s :call FzyCommand("ag . --silent -l -g ''", ":sp")<cr>
+" Ctrl-N and Ctrl-P navigate history
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+let g:fzf_command_prefix = 'Fzf' 
+
+let g:fzf_layout = { 'down': '~30%' }
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+nnoremap <silent> <Leader>fp :FZF<CR>
+nnoremap <silent> <Leader>p :FZF<CR>
+nnoremap <silent> <Leader>fg :FzfAg<CR>
+nnoremap <silent> <Leader>fm :FzfMarks<CR>
+nnoremap <silent> <Leader>fh :FzfHelp<CR>
+nnoremap <silent> <Leader>fp :FZF<CR>
+nnoremap <silent> <Leader>fp :FZF<CR>
+
+" nnoremap <silent> <Leader>p        :FuzzyOpen<CR>
+" nnoremap <silent> <Leader>g        :FuzzyGrep<CR>
+
+" function! FzyCommand(choice_command, vim_command)
+"   try
+"     let output = system(a:choice_command . " | fzy ")
+"   catch /Vim:Interrupt/
+"     " Swallow errors from ^C, allow redraw! below
+"   endtry
+"   redraw!
+"   if v:shell_error == 0 && !empty(output)
+"     exec a:vim_command . ' ' . output
+"   endif
+" endfunction
+
+" nnoremap <leader>e :call FzyCommand("ag . --silent -l -g ''", ":e")<cr>
+" nnoremap <leader>v :call FzyCommand("ag . --silent -l -g ''", ":vs")<cr>
+" nnoremap <leader>s :call FzyCommand("ag . --silent -l -g ''", ":sp")<cr>
 
 nnoremap <silent> <leader>c :ccl<CR>
 
