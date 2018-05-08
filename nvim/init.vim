@@ -12,39 +12,37 @@ Plug 'vim-airline/vim-airline' " Status line
 Plug 'vim-airline/vim-airline-themes' " Themes for airline
 
 " General Editing
-Plug 'ConradIrwin/vim-bracketed-paste' " Paste support for iTerm2 paste
-Plug 'godlygeek/tabular' " Align blocks of text
+Plug 'godlygeek/tabular', {'on': 'Tabularize'}  " Align blocks of text
 Plug 'jiangmiao/auto-pairs' " Automatically complete pairs
 Plug 'mileszs/ack.vim' " Search with :Ack
 Plug 'tpope/vim-commentary' " Comment out with gc.* commands
 Plug 'tpope/vim-endwise' " Add end and other language-aware completions for fn syntax
 Plug 'tpope/vim-repeat' " Support repeat for plugins
-Plug 'tpope/vim-speeddating' " Extended C-a/x incrementor/decrementors.
 Plug 'tpope/vim-surround' " Manage delimiters (ys)
 Plug 'tpope/vim-projectionist' " Move to related files easily using :E*
 
 " Language Support
-Plug 'dotcloud/docker', { 'rtp': 'contrib/syntax/vim' } " Dockerfile support
-Plug 'jceb/vim-orgmode' " .org support
-Plug 'tpope/vim-markdown' " .md support
+Plug 'dotcloud/docker', { 'for': 'docker', 'rtp': 'contrib/syntax/vim' } " Dockerfile support
+Plug 'jceb/vim-orgmode', {'for': 'org'} " .org support
+Plug 'tpope/vim-markdown', {'for': 'markdown'} " .md support
 Plug 'udalov/kotlin-vim' " Kotlin lang
 
 "" Lisps
-Plug 'guns/vim-sexp' " S-expression text-objects and manipulations
-Plug 'tpope/vim-sexp-mappings-for-regular-people' " Better bindings for vim-sexp
-Plug 'luochen1990/rainbow' " Rainbow parentheses
+Plug 'guns/vim-sexp', { 'for': 'clojure' } " S-expression text-objects and manipulations
+Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' } " Better bindings for vim-sexp
+Plug 'luochen1990/rainbow', { 'for': 'clojure' } " Rainbow parentheses
 
 " Clojure plugins
-Plug 'guns/vim-clojure-static' " Clojure runtime files
-Plug 'tpope/vim-salve' " Static lein/boot support (:Connect, :E*)
-Plug 'tpope/vim-fireplace' " Clojure/ClojureScript REPL support
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' } " Clojure runtime files
+Plug 'tpope/vim-salve', { 'for': 'clojure' } " Static lein/boot support (:Connect, :E*)
+Plug 'tpope/vim-fireplace', {'for': 'clojure'} " Clojure/ClojureScript REPL support
 " Plug 'guns/vim-clojure-highlight'
-Plug 'snoe/clj-refactor.nvim', {'do': ':UpdateRemotePlugins'} " Clojure Refactoring support
+Plug 'snoe/clj-refactor.nvim', { 'for': 'clojure', 'do': ':UpdateRemotePlugins'} " Clojure Refactoring support
 
 "" Elixir
-Plug 'c-brenn/phoenix.vim' "Phoenix support (jump/gf, :E* projections, server)
-Plug 'elixir-editors/vim-elixir' " Elixir language support
-Plug 'slashmili/alchemist.vim' " Completion, doc and mix support
+Plug 'c-brenn/phoenix.vim', {'for': 'elixir'} "Phoenix support (jump/gf, :E* projections, server)
+Plug 'elixir-editors/vim-elixir', {'for': 'elixir'} " Elixir language support
+Plug 'slashmili/alchemist.vim', {'for': 'elixir'} " Completion, doc and mix support
 """ TODO: Trial elixir.nvim + related plugins
 " Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
 " Plug 'thinca/vim-ref' 
@@ -58,8 +56,7 @@ Plug 'tpope/vim-dispatch'  " Async compiler execution (used by vim-salve)
 Plug 'radenling/vim-dispatch-neovim' " vim-dispatch support for Neovim
 
 "" Navigation Utilities
-Plug 'majutsushi/tagbar' " Visualize/jump to ctags. (TODO: need Clojure tag config)
-Plug 'scrooloose/nerdtree' " Tree-based directory viewer
+Plug 'scrooloose/nerdtree', {'on': ['NERDTree','NERDTreeToggle']} " Tree-based directory viewer
 
 "" Git Utilities
 Plug 'tpope/vim-fugitive' " Git wrapper (:G* family)
@@ -73,7 +70,7 @@ Plug 'tpope/vim-scriptease' " Various plugin development utilities
 " Neovim Plugins
 Plug 'benekastah/neomake', { 'on': ['Neomake'] } " Used for async make. Drop?
 Plug 'w0rp/ale' " Async linting engine. Use w/ joker 
-Plug 'kassio/neoterm' " :term helpers (e.g. T, Tmap, TREPLSend*)
+Plug 'kassio/neoterm', {'on': ['T']} " :term helpers (e.g. T, Tmap, TREPLSend*)
 
 " Search & Completions
 Plug 'cloudhead/neovim-fuzzy'
