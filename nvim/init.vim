@@ -362,6 +362,12 @@ let g:fzf_command_prefix = 'Fzf'
 
 let g:fzf_layout = { 'down': '~30%' }
 
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
@@ -375,7 +381,7 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 
 nnoremap <silent> <Leader>fp :FZF<CR>
 nnoremap <silent> <Leader>p :FZF<CR>
-nnoremap <silent> <Leader>fg :FzfAg<CR>
+nnoremap <silent> <Leader>fg :Ag<CR>
 nnoremap <silent> <Leader>fm :FzfMarks<CR>
 nnoremap <silent> <Leader>fh :FzfHelp<CR>
 nnoremap <silent> <Leader>fp :FZF<CR>
@@ -384,8 +390,11 @@ nnoremap <silent> <Leader>fp :FZF<CR>
 " nnoremap <silent> <Leader>p        :FuzzyOpen<CR>
 " nnoremap <silent> <Leader>g        :FuzzyGrep<CR>
 
+
 nnoremap <silent> <leader>c :ccl<CR>
 
+" Terminal bindings
+"
 nnoremap <silent> <Leader>ts        :TREPLSendSelection<CR>
 nnoremap <silent> <Leader>tf        :TREPLSendFile<CR>
 
