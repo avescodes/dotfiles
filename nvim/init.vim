@@ -283,8 +283,8 @@ endif
 " Keybindings """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " TODO: Document & clean
 
-let mapleader = ","
-let maplocalleader = ","
+let mapleader = " "
+let maplocalleader = " "
 
 "" No help please
 nmap <F1> <Esc>
@@ -309,12 +309,8 @@ nnoremap <c-k> <C-w>k
 nnoremap <c-l> <C-w>l
 
 "" Add some nice short cuts for tab swapping
-nnoremap <silent> <Leader>tn :tabnext<CR>
-nnoremap <silent> <Leader>tp :tabprevious<CR>
-
-"" Tag traversal
-nnoremap <silent> <Leader>b :TagbarToggle<CR>
-nmap <F7> :TagbarOpen<CR>
+nnoremap <silent> <Leader>N :tabnext<CR>
+nnoremap <silent> <Leader>P :tabprevious<CR>
 
 "" Reselect visual block after indent/outdent - vimbits.com/bits/20
 vnoremap < <gv
@@ -388,22 +384,6 @@ nnoremap <silent> <Leader>fp :FZF<CR>
 " nnoremap <silent> <Leader>p        :FuzzyOpen<CR>
 " nnoremap <silent> <Leader>g        :FuzzyGrep<CR>
 
-" function! FzyCommand(choice_command, vim_command)
-"   try
-"     let output = system(a:choice_command . " | fzy ")
-"   catch /Vim:Interrupt/
-"     " Swallow errors from ^C, allow redraw! below
-"   endtry
-"   redraw!
-"   if v:shell_error == 0 && !empty(output)
-"     exec a:vim_command . ' ' . output
-"   endif
-" endfunction
-
-" nnoremap <leader>e :call FzyCommand("ag . --silent -l -g ''", ":e")<cr>
-" nnoremap <leader>v :call FzyCommand("ag . --silent -l -g ''", ":vs")<cr>
-" nnoremap <leader>s :call FzyCommand("ag . --silent -l -g ''", ":sp")<cr>
-
 nnoremap <silent> <leader>c :ccl<CR>
 
 nnoremap <silent> <Leader>ts        :TREPLSendSelection<CR>
@@ -419,11 +399,11 @@ vnoremap <silent> <f9> :TREPLSendSelection<cr>
 "" neoterm
 
 " hide/close terminal
-nnoremap <silent> ,th :call neoterm#close()<cr>
+nnoremap <silent> <Leader>th :call neoterm#close()<cr>
 " clear terminal
-nnoremap <silent> ,tl :call neoterm#clear()<cr>
+nnoremap <silent> <Leader>tl :call neoterm#clear()<cr>
 " kills the current job (send a <c-c>)
-nnoremap <silent> ,tc :call neoterm#kill()<cr>
+nnoremap <silent> <Leader>tc :call neoterm#kill()<cr>
 
 "" Git
 " See also after/ftplugin/git{commit,rebase}.vim
