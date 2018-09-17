@@ -22,7 +22,6 @@ Plug 'tpope/vim-surround' " Manage delimiters (ys)
 Plug 'tpope/vim-projectionist' " Move to related files easily using :E*
 
 " Language Support
-Plug 'dotcloud/docker', { 'for': 'docker', 'rtp': 'contrib/syntax/vim' } " Dockerfile support
 Plug 'jceb/vim-orgmode', {'for': 'org'} " .org support
 Plug 'tpope/vim-markdown', {'for': 'markdown'} " .md support
 Plug 'udalov/kotlin-vim' " Kotlin lang
@@ -55,6 +54,7 @@ Plug 'tpope/vim-eunuch' " Unix utilities
 Plug 'tpope/vim-dispatch'  " Async compiler execution (used by vim-salve)
 Plug 'radenling/vim-dispatch-neovim' " vim-dispatch support for Neovim
 Plug 'svermeulen/vim-easyclip' 
+Plug 'liuchengxu/vim-which-key'
 
 "" Navigation Utilities
 Plug 'scrooloose/nerdtree', {'on': ['NERDTree','NERDTreeToggle']} " Tree-based directory viewer
@@ -388,11 +388,14 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 
 nnoremap <silent> <Leader>fp :FZF<CR>
 nnoremap <silent> <Leader>p :FZF<CR>
+nnoremap <silent> <Leader>a :Ag<CR>
 nnoremap <silent> <Leader>fg :Ag<CR>
 nnoremap <silent> <Leader>fm :FzfMarks<CR>
 nnoremap <silent> <Leader>fh :FzfHelp<CR>
 nnoremap <silent> <Leader>fp :FZF<CR>
 nnoremap <silent> <Leader>fp :FZF<CR>
+
+inoremap <c-c> <Nop>
 
 " nnoremap <silent> <Leader>p        :FuzzyOpen<CR>
 " nnoremap <silent> <Leader>g        :FuzzyGrep<CR>
@@ -439,3 +442,13 @@ nnoremap <Leader>Gb :Gblame<CR>
 
 nmap [c <Plug>GitGutterPrevHunk
 nmap ]c <Plug>GitGutterNextHunk
+
+nmap <leader>l :set list!<CR>
+nmap <leader>w :set wrap!<CR>
+command! -nargs=* Wrap set wrap linebreak nolist
+
+nnoremap <Leader>m m
+
+" WhichKey (like spacemacs)
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+set timeoutlen=500
