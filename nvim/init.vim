@@ -58,7 +58,7 @@ Plug 'janko-m/vim-test' " :Test runners hooked into multiple languages
 Plug 'tpope/vim-eunuch' " Unix utilities
 Plug 'tpope/vim-dispatch'  " Async compiler execution (used by vim-salve)
 Plug 'radenling/vim-dispatch-neovim' " vim-dispatch support for Neovim
-"Plug 'svermeulen/vim-easyclip'
+Plug 'svermeulen/vim-easyclip'
 Plug 'liuchengxu/vim-which-key'
 
 "" Navigation Utilities
@@ -514,51 +514,46 @@ nnoremap <silent> <leader>Tx :call neoterm#kill()<cr>
 " g - Git commands
 let g:which_key_map['g'] = {
       \ 'name' : '+git',
+      \ 's': ['Gstatus', 'git-status'],
+      \ 'c': ['Gcommit', 'commit'],
+      \ 'p': ['Gpush', 'git-push'],
+      \ 'f': ['Gpull', 'git-pull'],
+      \ 'W': ['Gwrite', 'git-write'],
+      \ 'd': ['Gdiff', 'git-diff'],
+      \ 'D': ['Gvdiff', 'git-vdiff'],
+      \ 'b': ['Gblame', 'git-blame'],
 \ }
-nnoremap <Leader>gv :GV
-nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gc :Gcommit<CR>
-nnoremap <Leader>gp :Gpush<CR>
-nnoremap <Leader>gf :Gpull<CR>
-nnoremap <Leader>gW :Gwrite<CR>
-nnoremap <Leader>gd :Gdiff<CR>
-nnoremap <Leader>gD :Gvdiff<CR>
-nnoremap <Leader>gb :Gblame<CR>
 
 " w - window management
-
 let g:which_key_map['w'] = {
-      \ 'name' : '+windows'                       ,
-      \ 'w' :  'other-window'                     ,
-      \ 'd' :  'delete-window'                    ,
-      \ '-' :  'split-window-below'               ,
-      \ '|' :  'split-window-right'               ,
-      \ '2' :  'layout-double-columns'            ,
-      \ 'o' :  'close-all-windows-except-current' ,
-      \ 'h' :  'window-left'                      ,
-      \ 'j' :  'window-below'                     ,
-      \ 'l' :  'window-right'                     ,
-      \ 'k' :  'window-up'                        ,
-      \ 'H' :  'expand-window-left'               ,
-      \ 'J' :  'expand-window-below'              ,
-      \ 'L' :  'expand-window-right'              ,
-      \ 'K' :  'expand-window-up'                 ,
-      \ '=' :  'balance-window'                   ,
-      \ 's' :  'split-window-below'               ,
-      \ 'v' :  'split-window-below'               ,
-      \ '?' :  'fzf-window'                       ,
+      \ 'name' : '+windows' ,
+      \ 'w' : ['<C-W>w'     , 'other-window']          ,
+      \ 'd' : ['<C-W>c'     , 'delete-window']         ,
+      \ '-' : ['<C-W>s'     , 'split-window-below']    ,
+      \ '|' : ['<C-W>v'     , 'split-window-right']    ,
+      \ '2' : ['<C-W>v'     , 'layout-double-columns'] ,
+      \ 'h' : ['<C-W>h'     , 'window-left']           ,
+      \ 'j' : ['<C-W>j'     , 'window-below']          ,
+      \ 'l' : ['<C-W>l'     , 'window-right']          ,
+      \ 'k' : ['<C-W>k'     , 'window-up']             ,
+      \ 'H' : ['<C-W>5<'    , 'expand-window-left']    ,
+      \ 'J' : ['resize +5'  , 'expand-window-below']   ,
+      \ 'L' : ['<C-W>5>'    , 'expand-window-right']   ,
+      \ 'K' : ['resize -5'  , 'expand-window-up']      ,
+      \ '=' : ['<C-W>='     , 'balance-window']        ,
+      \ 's' : ['<C-W>s'     , 'split-window-below']    ,
+      \ 'v' : ['<C-W>v'     , 'split-window-below']    ,
+      \ '?' : ['Windows'    , 'fzf-window']            ,
       \ }
-
-" v - Vim toggles
 
 let g:which_key_map['.'] = {
       \ 'name' : '+vim',
+      \ 's' : ['StripWhitespace', 'strip-whitespace'],
+      \ 'l' : ['set list!', 'Toggle List'],
+      \ 'w' : ['set wrap!', 'Toggle Soft Wrap'],
       \ }
-map <leader>.s :StripWhitespace<CR>
-nmap <leader>.l :set list!<CR>
-nmap <leader>.w :set wrap!<CR>
 
 " Enable WhichKey
 call which_key#register('<Space>', "g:which_key_map")
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-set timeoutlen=100
+set timeoutlen=200
