@@ -401,18 +401,11 @@ let g:which_key_map['a'] = {
       \ }
 
 nmap <Leader>a&     :Tabularize /&<CR>
-vmap <Leader>a&     :Tabularize /&<CR>
 nmap <Leader>a=     :Tabularize /^[^=]*\zs=<CR>
-vmap <Leader>a=     :Tabularize /^[^=]*\zs=<CR>
 nmap <Leader>a=>    :Tabularize /=><CR>
-vmap <Leader>a=>    :Tabularize /=><CR>
 nmap <Leader>a:     :Tabularize /:<CR>
-vmap <Leader>a:     :Tabularize /:<CR>
 nmap <Leader>a::    :Tabularize /:\zs<CR>
-vmap <Leader>a::    :Tabularize /:\zs<CR>
 nmap <Leader>a,     :Tabularize /,<CR>
-vmap <Leader>a,     :Tabularize /,<CR>
-nmap <Leader>a,,    :Tabularize /,\zs<CR>
 vmap <Leader>a,,    :Tabularize /,\zs<CR>
 nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
@@ -420,37 +413,36 @@ vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 " b - buffer commands
 let g:which_key_map['b'] = {
       \ 'name' : '+buffers',
-      \ '1' :  'buffer-1'        ,
-      \ '2' :  'buffer-2'        ,
-      \ '3' :  'buffer-3'        ,
-      \ '4' :  'buffer-4'        ,
-      \ '5' :  'buffer-5'        ,
-      \ '6' :  'buffer-6'        ,
-      \ '7' :  'buffer-7'        ,
-      \ '8' :  'buffer-8'        ,
-      \ '9' :  'buffer-9'        ,
-      \ 'd' :  'delete-buffer'   ,
-      \ 'f' :  'first-buffer'    ,
-      \ 'h' :  'home-buffer'     ,
-      \ 'k' :  'kill-buffer'     ,
-      \ 'l' :  'last-buffer'     ,
-      \ 'n' :  'next-buffer'     ,
-      \ 'p' :  'previous-buffer' ,
-      \ 'b' :  'fzf-buffer'      ,
-      \ '?' : 'fzf-buffer' ,
+      \ 'n' : ['bnext', 'next-buffer']     ,
+      \ 'p' : ['bprev', 'previous-buffer'] ,
+      \ 'd' :  ['bdelete', 'close-buffer']   ,
+      \ 'b' :  ['FzfBuffers', 'fzf-buffer'] ,
+      \ '?' : ['FzfBuffers', 'fzf-buffer'] ,
       \ }
+      " \ '1' :  'buffer-1'        ,
+      " \ '2' :  'buffer-2'        ,
+      " \ '3' :  'buffer-3'        ,
+      " \ '4' :  'buffer-4'        ,
+      " \ '5' :  'buffer-5'        ,
+      " \ '6' :  'buffer-6'        ,
+      " \ '7' :  'buffer-7'        ,
+      " \ '8' :  'buffer-8'        ,
+      " \ '9' :  'buffer-9'        ,
+      " \ 'f' :  'first-buffer'    ,
+      " \ 'h' :  'home-buffer'     ,
+      " \ 'k' :  'kill-buffer'     ,
+      " \ 'l' :  'last-buffer'     ,
+      " \ 'n' :  'next-buffer'     ,
+      " \ 'p' :  'previous-buffer' ,
 nnoremap <silent><Leader>bh :Startify<CR>
 
 " c - quickfix window
 let g:which_key_map['c'] = {
       \ 'name' : '+quickfix',
-      \ 'c' : 'close',
-      \ 'n' : 'next-error'     ,
-      \ 'p' : 'previous-error' ,
+      \ 'c' : ['cclose', 'close-quickfix'],
+      \ 'n' : ['cnext', 'next-error']     ,
+      \ 'p' : ['cprev', 'previous-error'] ,
       \ }
-nnoremap <silent> <leader>cc :cclose<CR>
-nnoremap <silent> <leader>cn :cnext<CR>
-nnoremap <silent> <leader>cp :cprev<CR>
 
 " f - fzf commands
 let g:which_key_map['f'] = {
