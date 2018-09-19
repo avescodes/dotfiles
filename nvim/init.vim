@@ -447,28 +447,34 @@ let g:which_key_map['c'] = {
 " f - fzf commands
 let g:which_key_map['f'] = {
       \ 'name' : '+fzf',
+      \ '/' : ['FzfAg', 'Search'],
+      \ 'l' : [ 'FzfBLines', 'Lines in the current buffer' ],
+      \ 'b' : [ 'FzfBuffers', 'Open buffers' ],
+      \ 'C' : [ 'FzfColors', 'Color schemes' ],
+      \ 'c' : [ 'FzfCommands', 'Commands' ],
+      \ 'f' : [ 'FzfFiles', 'Files (similar to :FZF' ],
+      \ 'g' : {
+        \ 'name': '+git',
+        \ 'c' : [ 'FzfCommits', 'Git commits' ],
+        \ 'C' : [ 'FzfBCommits', 'Git buffer commits' ],
+        \ 'f' : [ 'FzfGFiles', 'ls-files' ],
+        \ 's' : [ 'FzfGFiles?', 'status' ],
+      \ },
+      \ 'h' : [ 'FzfHelptags', 'help' ],
+      \ 'H' : {
+        \ 'name': '+history',
+        \ '/' : [ 'FzfHistory/', 'Search history' ],
+        \ ':' : [ 'FzfHistory:', 'Command history' ],
+        \ 'f' : [ 'FzfHistory', 'v:oldfiles and open buffers' ],
+      \ },
+      \ 'L' : [ 'FzfLines', 'Buffer Lines' ],
+      \ 'M' : [ 'FzfMaps', 'Normal mode mappings' ],
+      \ 'm' : [ 'FzfMarks', 'Marks' ],
+      \ 's' : [ 'FzfSnippets', 'Snippets' ],
+      \ 't' : [ 'FzfTags', 'Project Tags' ],
+      \ 'T' : [ 'FzfBTags', 'Buffer Tags' ],
+      \ 'w' : [ 'FzfWindows', 'Windows' ],
       \ }
-nnoremap <silent> <Leader>f/ :FzfAg<CR>
-nnoremap <silent> <Leader>fl :FzfBLines<CR>    " Lines in the current buffer
-nnoremap <silent> <Leader>fb :FzfBuffers<CR>   " Open buffers
-nnoremap <silent> <Leader>fC :FzfColors<CR>    " Color schemes
-nnoremap <silent> <Leader>fc :FzfCommands<CR>  " Commands
-nnoremap <silent> <Leader>ff :FzfFiles<CR>     " Files (similar to :FZF
-nnoremap <silent> <Leader>fgc :FzfCommits<CR>  " Git commits (requires [fugitive.vim][f
-nnoremap <silent> <Leader>fgC :FzfBCommits<CR> " Git commits for the current buffer
-nnoremap <silent> <Leader>fgf :FzfGFiles<CR>   " Git files (git ls-files
-nnoremap <silent> <Leader>fgs :FzfGFiles?<CR>  " Git files (git status
-nnoremap <silent> <Leader>fh :FzfHelptags<CR>  " Help tags <sup id="a1" >[1](#helptags)</sup>
-nnoremap <silent> <Leader>fH/ :FzfHistory/<CR> " Search history
-nnoremap <silent> <Leader>fH: :FzfHistory:<CR> " Command history
-nnoremap <silent> <Leader>fHf :FzfHistory<CR>  " v:oldfiles and open buffers
-nnoremap <silent> <Leader>fl :FzfLines<CR>     " Lines in loaded buffers
-nnoremap <silent> <Leader>fm :FzfMaps<CR>      " Normal mode mappings
-nnoremap <silent> <Leader>fm :FzfMarks<CR>     " Marks
-nnoremap <silent> <Leader>fs :FzfSnippets<CR>  " Snippets ([UltiSnips][us
-nnoremap <silent> <Leader>ft :FzfTags<CR>      " Tags in the project (ctags -R
-nnoremap <silent> <Leader>fT :FzfBTags<CR>     " Tags in the current buffer
-nnoremap <silent> <Leader>fw :FzfWindows<CR>   " Windows
 
 " m - marks
 let g:which_key_map['m'] = {
