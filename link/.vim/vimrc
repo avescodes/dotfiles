@@ -1,59 +1,53 @@
-if has('vim_starting')
-  set nocompatible
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-end
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Bundles
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype off
+call plug#begin()
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'godlygeek/tabular', {'on': 'Tabularize'}  " Align blocks of text
+Plug 'itchyny/lightline.vim'
+Plug 'jiangmiao/auto-pairs' " Automatically complete pairs
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'nanotech/jellybeans.vim'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'tpope/vim-commentary' " Comment out with gc.* commands
+Plug 'tpope/vim-endwise' " Add end and other language-aware completions for fn syntax
+Plug 'tpope/vim-eunuch' " Unix utilities
+Plug 'tpope/vim-markdown', {'for': 'markdown'} " .md support
+Plug 'tpope/vim-projectionist' " Move to related files easily using :E*
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-repeat' " Support repeat for plugins
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround' " Manage delimiters (ys)
+Plug 'vim-ruby/vim-ruby'
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+call plug#end()
 
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': 'make', 'linux': 'make'}}
+let mapleader=" "
+nnoremap <silent> <Leader>p :FZF<CR>
+nnoremap <silent> <Leader>a :Ag<CR>
+map <leader>t :NERDTreeToggle<CR>
 
-" Aesthetics
-NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'bling/vim-airline'
+set guifont=Luculent:h15
 
-" Syntaxon
-" NeoBundle 'guns/vim-clojure-static'
-" NeoBundle 'wting/rust.vim'
-" NeoBundle 'cespare/vim-toml'
-" NeoBundle 'jceb/vim-orgmode'
-" NeoBundle 'guns/vim-sexp'
-" NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
+if !has('gui_running')
+  set t_Co=256
+endif
 
-" Extras
-" NeoBundle 'ConradIrwin/vim-bracketed-paste'
-" NeoBundle 'TailMinusF'
-" NeoBundle 'godlygeek/tabular'
-" NeoBundle 'mileszs/ack.vim'
-" NeoBundle 'tpope/vim-commentary'
-" NeoBundle 'tpope/vim-endwise'
-" NeoBundle 'tpope/vim-fugitive'
-" NeoBundle 'tpope/vim-repeat'
-" NeoBundle 'tpope/vim-surround'
-" NeoBundle 'tpope/vim-speeddating'
-" NeoBundle 'AnsiEsc.vim'
-" NeoBundle 'ctrlpvim/ctrlp.vim'
+let g:lightline = {
+      \ 'colorscheme': 'PaperColor',
+      \ }
+set background=light
+colorscheme PaperColor
 
-call neobundle#end()
+map <C-o> :NERDTreeToggle<CR>
 
-filetype plugin indent on       " load file type plugins + indentation
-NeoBundleCheck
+"set background=dark
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" General config
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set laststatus=2  " always show the status bar
 
-syntax enable
+" Editor Config """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set directory=/tmp/
 set encoding=utf-8
-set background=dark
-colorscheme jellybeans
 set showcmd                     " display incomplete commands
 set list
 set listchars=""
@@ -62,9 +56,7 @@ set listchars+=trail:·
 set listchars+=extends:>
 set listchars+=precedes:<
 
-set wildignore+=target,*.jar,*.class,ivyrepo
-set wildignore+=*.so,*.swp,*.zip,*.un~,.DS_Store,.gitkeep,*/vendor/*,.*,*/coverage/*,*.pyc
-
+set foldlevelstart=99
 set number                         " Show numbers gutter
 set numberwidth=3                  " Numbers gutter 3 cols wide
 set ruler       " show the cursor position all the time
@@ -76,13 +68,15 @@ set lazyredraw
 
 set comments+=fb:*              " Make bullet lists reflow nicely
 
-"" Whitespace
+" Whitespace
 set nowrap                      " don't wrap lines
 set tabstop=2 shiftwidth=2      " a tab is two spaces (or set this to 4)
 set expandtab                   " use spaces, not tabs (optional)
 set backspace=indent,eol,start  " backspace through everything in insert mode
 
-" Strip all trailing whitespace, but not this vim files
+set guioptions= " No bars
+
+""" Strip all trailing whitespace, but not this vim files
 augroup striptrailing
   autocmd!
   autocmd BufWritePre * if &ft != "vim" | :%s/\s\+$//e
@@ -95,7 +89,7 @@ set ignorecase                  " searches are case insensitive...
 set smartcase                   " ... unless they contain at least one capital letter
 set gdefault                    " Always assume /g on substitutions
 
-" Splits
+"" Splits
 set splitbelow
 set splitright
 
@@ -105,6 +99,8 @@ if v:version >= 703
   set undofile
   let &undodir=&directory
 endif
+
+" Status Line """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function! NumberToggle()
   if(&relativenumber == 1)
@@ -125,12 +121,6 @@ augroup numbering
   autocmd CursorMoved * :set relativenumber
 augroup END
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Status line
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-set laststatus=2  " always show the status bar
-
 " Remember last location in file, but not for commit messages.
 " see :help last-position-jump
 augroup lastposnjump
@@ -139,57 +129,47 @@ augroup lastposnjump
         \| exe "normal! g`\"" | endif
 augroup END
 
-" Treat JSON files like JavaScript
-augroup filetypes
-  autocmd!
-  autocmd BufRead,BufNewFile {Vagrantfile,Guardfile,Gemfile,Rakefile,Capfile,*.rake,config.ru} set filetype=ruby
-  autocmd BufRead,BufNewFile {COMMIT_EDITMSG}                                                  set filetype=gitcommit
-  autocmd BufRead,BufNewFile {*.json}                                                          set filetype=javascript
-  autocmd FileType           python                                                            setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
-  autocmd FileType           rust                                                              setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
-augroup END
+"" Search Assistance
+
+if executable('rg')
+  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+  let g:ackprg = 'rg --vimgrep --no-heading'
+  set grepprg=rg\ --vimgrep
+  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+endif
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 
-" delimitMate
-" let loaded_delimitMate = 1
-" augroup clojure-delimitMate
-"   autocmd!
-"   autocmd FileType clojure let b:loaded_delimitMate = 0
-" augroup END
-
-" Keybindings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let mapleader = ","
-let maplocalleader = ","
-
+"" No help please
+nmap <F1> <Esc>
 nmap <F1> <nop>
 
-" Swap w/ mru buffer
-nnoremap <leader><leader> <c-^>
+"" easier navigation between split windows
+nmap <c-j> <c-w>j
+nmap <c-k> <c-w>k
+nmap <c-h> <c-w>h
+nmap <c-l> <c-w>l
+tnoremap <c-h> <C-\><C-N><C-w>h
+tnoremap <c-j> <C-\><C-N><C-w>j
+tnoremap <c-k> <C-\><C-N><C-w>k
+tnoremap <c-l> <C-\><C-N><C-w>l
+inoremap <c-h> <C-\><C-N><C-w>h
+inoremap <c-j> <C-\><C-N><C-w>j
+inoremap <c-k> <C-\><C-N><C-w>k
+inoremap <c-l> <C-\><C-N><C-w>l
+nnoremap <c-h> <C-w>h
+nnoremap <c-j> <C-w>j
+nnoremap <c-k> <C-w>k
+nnoremap <c-l> <C-w>l
 
-" No help please
-nmap <F1> <Esc>
-
-" easier navigation between split windows
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
-
-"Add some nice short cuts for tab swapping
-nnoremap <silent> <C-n> :tabnext<CR>
-nnoremap <silent> <C-p> :tabprevious<CR>
-
-"Tag traversal
-nnoremap <silent> <Leader>b :TagbarToggle<CR>
-nmap <F7> :TagbarOpen j<CR>
-
-" Reselect visual block after indent/outdent - vimbits.com/bits/20
+"" Reselect visual block after indent/outdent - vimbits.com/bits/20
 vnoremap < <gv
 vnoremap > >gv
 
-" Rename current file
+"" Rename current file
 function! RenameFile()
     let old_name = expand('%')
     let new_name = input('New file name: ', expand('%'), 'file')
@@ -205,65 +185,3 @@ map <leader>mv :call RenameFile()<cr>
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 map <leader>ws :call KillWhitespace
 
-" nnoremap <leader>r :Require<CR>
-" nnoremap <leader>e :Eval (clojure.repl/pst *e)<CR>
-" nnoremap <leader>q <Plug>FireplacePrompt
-
-" Profiling Support
-nnoremap <silent> <leader>DD :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
-nnoremap <silent> <leader>DP :exe ":profile pause"<cr>
-nnoremap <silent> <leader>DC :exe ":profile continue"<cr>
-nnoremap <silent> <leader>DQ :exe ":profile pause"<cr>:noautocmd qall!<cr>
-
-" CtrlP for life
-nnoremap p :CtrlP<cr>
-let g:ctrlp_map = ''
-
-" vim-orgmode tweaks
-augroup org-disable-list
-  autocmd!
-  autocmd FileType org :set nolist
-augroup END
-
-let g:org_heading_shade_leading_stars=0
-let g:org_indent=0
-
-" tnoremap <Esc> <C-\><C-n>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Writing
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Bundle 'reedes/vim-pencil'
-" Bundle 'reedes/vim-lexical'
-" Bundle 'reedes/vim-wheel'
-" Bundle 'reedes/vim-wordy'
-" Bundle 'reedes/vim-litecorrect'
-" Bundle 'kana/vim-textobj-user'
-" Bundle 'reedes/vim-textobj-sentence'
-
-" let g:pencil#wrapModeDefault = 'soft'   " or 'soft'
-
-" augroup pencil
-"   autocmd!
-"   autocmd FileType markdown call pencil#init()
-"   " autocmd FileType text call pencil#init()
-" augroup END
-
-" augroup lexical
-"   autocmd!
-"   autocmd FileType markdown call lexical#init()
-"   " autocmd FileType text call lexical#init({ 'spell': 0 })
-" augroup END
-
-" augroup litecorrect
-"   autocmd!
-"   autocmd FileType markdown call litecorrect#init()
-"   " autocmd FileType text call litecorrect#init()
-" augroup END
-
-" augroup textobj_sentence
-"   autocmd!
-"   autocmd FileType markdown call textobj#sentence#init()
-"   " autocmd FileType text call textobj#sentence#init()
-" augroup END
