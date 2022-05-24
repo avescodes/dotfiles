@@ -1,6 +1,6 @@
 [user]
-  name = Ryan Neufeld
-  email = ryan@rkn.io
+	name = Avery Quinn
+	email = avery@fastmail.com
 
 [push]
   # Push current branch even if you've never pushed it before
@@ -18,6 +18,7 @@
   diff = auto
   interactive = auto
   status = auto
+	ui = true
 
 [color "branch"]
   current = yellow reverse

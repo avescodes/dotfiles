@@ -18,26 +18,26 @@ NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'bling/vim-airline'
 
 " Syntaxon
-NeoBundle 'guns/vim-clojure-static'
-NeoBundle 'wting/rust.vim'
-NeoBundle 'cespare/vim-toml'
-NeoBundle 'jceb/vim-orgmode'
-NeoBundle 'guns/vim-sexp'
-NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
+" NeoBundle 'guns/vim-clojure-static'
+" NeoBundle 'wting/rust.vim'
+" NeoBundle 'cespare/vim-toml'
+" NeoBundle 'jceb/vim-orgmode'
+" NeoBundle 'guns/vim-sexp'
+" NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
 
 " Extras
-NeoBundle 'ConradIrwin/vim-bracketed-paste'
-NeoBundle 'TailMinusF'
-NeoBundle 'godlygeek/tabular'
-NeoBundle 'mileszs/ack.vim'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-speeddating'
-NeoBundle 'AnsiEsc.vim'
-NeoBundle 'ctrlpvim/ctrlp.vim'
+" NeoBundle 'ConradIrwin/vim-bracketed-paste'
+" NeoBundle 'TailMinusF'
+" NeoBundle 'godlygeek/tabular'
+" NeoBundle 'mileszs/ack.vim'
+" NeoBundle 'tpope/vim-commentary'
+" NeoBundle 'tpope/vim-endwise'
+" NeoBundle 'tpope/vim-fugitive'
+" NeoBundle 'tpope/vim-repeat'
+" NeoBundle 'tpope/vim-surround'
+" NeoBundle 'tpope/vim-speeddating'
+" NeoBundle 'AnsiEsc.vim'
+" NeoBundle 'ctrlpvim/ctrlp.vim'
 
 call neobundle#end()
 
@@ -131,41 +131,6 @@ augroup END
 
 set laststatus=2  " always show the status bar
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Extras Customization
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"" vim-airline
-" let g:airline_powerline_fonts=1
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline#extensions#branch#enabled=1
-let g:airline#extensions#tabline#enabled=1
-
-"" vim-clojure-static
-let g:clojure_maxlines = 1000 " Search more lines for identation (correctness over speed)
-let g:clojure_fuzzy_indent = 1
-let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^dom\/.*']
-
-"" Tagbar + Clojure
-let g:tagbar_type_clojure = {
-    \ 'ctagstype' : 'clojure',
-    \ 'kinds'     : [
-        \ 'n:ns',
-        \ 'd:def',
-        \ 'c:defonce',
-        \ 'o:defprotocol',
-        \ 'f:defn',
-        \ 'p:defn-',
-        \ 'm:defmacro',
-        \ 'i:definline',
-        \ 'a:defmulti',
-        \ 'b:defmethod',
-        \ 's:defstruct',
-        \ 'v:intern',
-    \ ]
-\ }
-
 " Remember last location in file, but not for commit messages.
 " see :help last-position-jump
 augroup lastposnjump
@@ -180,7 +145,6 @@ augroup filetypes
   autocmd BufRead,BufNewFile {Vagrantfile,Guardfile,Gemfile,Rakefile,Capfile,*.rake,config.ru} set filetype=ruby
   autocmd BufRead,BufNewFile {COMMIT_EDITMSG}                                                  set filetype=gitcommit
   autocmd BufRead,BufNewFile {*.json}                                                          set filetype=javascript
-  autocmd BufRead,BufNewFile {*.cljs,*.hl,*.edn,*.cljx,*.boot}                                 setlocal filetype=clojure
   autocmd FileType           python                                                            setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
   autocmd FileType           rust                                                              setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 augroup END
@@ -188,10 +152,10 @@ augroup END
 
 " delimitMate
 " let loaded_delimitMate = 1
-augroup clojure-delimitMate
-  autocmd!
-  autocmd FileType clojure let b:loaded_delimitMate = 0
-augroup END
+" augroup clojure-delimitMate
+"   autocmd!
+"   autocmd FileType clojure let b:loaded_delimitMate = 0
+" augroup END
 
 " Keybindings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -241,9 +205,9 @@ map <leader>mv :call RenameFile()<cr>
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 map <leader>ws :call KillWhitespace
 
-nnoremap <leader>r :Require<CR>
-nnoremap <leader>e :Eval (clojure.repl/pst *e)<CR>
-nnoremap <leader>q <Plug>FireplacePrompt
+" nnoremap <leader>r :Require<CR>
+" nnoremap <leader>e :Eval (clojure.repl/pst *e)<CR>
+" nnoremap <leader>q <Plug>FireplacePrompt
 
 " Profiling Support
 nnoremap <silent> <leader>DD :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
